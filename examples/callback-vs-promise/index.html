@@ -1,0 +1,202 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+    <meta charset="utf-8" />
+
+    <title>
+        Traditional callback XHR V.S. promise
+    </title>
+
+</head>
+<body>
+
+    <h1>
+        Traditional callback XHR V.S. promise
+    </h1>
+    <div><a href="#" onclick="callbackWay()">Traditional callback</a></div>
+    <div>
+        <div class="paragraph">
+        <p>这段回调函数风格的代码有以下几个要点。</p>
+        </div>
+        <div class="ulist">
+        <ul>
+        <li>
+        <p>直接使用 <code>JSON.parse</code> 函数的话可能会抛出异常，所以这里使用了一个包装函数 <code>jsonParse</code></p>
+        </li>
+        <li>
+        <p>如果将多个XHR处理进行嵌套调用的话层次会比较深，所以使用了 <code>allRequest</code> 函数并在其中对request进行调用。</p>
+        </li>
+        <li>
+        <p>回调函数采用了 <code>callback(error,value)</code> 这种写法，第一个参数表示错误信息，第二个参数为返回值</p>
+        </li>
+        </ul>
+        </div>
+        <div class="paragraph">
+        <p>在使用 <code>jsonParse</code> 函数的时候我们使用了 <code>bind</code> 进行绑定，通过使用这种偏函数（Partial Function）的方式就可以减少匿名函数的使用。（如果在函数回调风格的代码能很好的做到函数分离的话，也能减少匿名函数的数量）</p>
+        </div>
+        <div class="listingblock">
+        <div class="content">
+        <pre class="CodeRay"><code class="javascript language-javascript">jsonParse.bind(<span class="predefined-constant">null</span>, callback);
+        <span class="comment">// 可以认为这种写法能转换为以下的写法</span>
+        <span class="keyword">function</span> <span class="function">bindJSONParse</span>(error, value){
+            jsonParse(callback, error, value);
+        }</code></pre>
+        </div>
+        </div>
+        <div class="paragraph">
+        <p>在这段回调风格的代码中，我们也能发现如下一些问题。</p>
+        </div>
+        <div class="ulist">
+        <ul>
+        <li>
+        <p>需要显示进行异常处理</p>
+        </li>
+        <li>
+        <p>为了不让嵌套层次太深，需要一个对request进行处理的函数</p>
+        </li>
+        <li>
+        <p>到处都是回调函数</p>
+        </li>
+        </ul>
+        </div>
+    </div>
+    <div><a href="#" onclick="promiseWay()">Promise</a></div>
+    <div>
+        <p>将上述代码和<a href="#multiple-xhr-callback.js">回调函数风格</a>相比，我们可以得到如下结论。</p>
+        
+        <div class="ulist">
+        <ul>
+        <li>
+        <p>可以直接使用 <code>JSON.parse</code> 函数</p>
+        </li>
+        <li>
+        <p>函数 <code>main()</code> 返回promise对象</p>
+        </li>
+        <li>
+        <p>错误处理的地方直接对返回的promise对象进行处理</p>
+        </li>
+        </ul>
+        </div>
+    </div>
+
+
+    <!-- Load scripts. -->
+    <script type="text/javascript">
+    /**
+     * A traditional callback way to do something after finish ajax request
+     * @return {[type]}
+     */
+    function callbackWay(){
+        function getURLCallback(URL, callback) {
+            var req = new XMLHttpRequest();
+            req.open('GET', URL, true);
+            req.onload = function () {
+                if (req.status === 200) {
+                    callback(null, req.responseText);
+                } else {
+                    callback(new Error(req.statusText), req.response);
+                }
+            };
+            req.onerror = function () {
+                callback(new Error(req.statusText));
+            };
+            req.send();
+        }
+        // <1> 对JSON数据进行安全的解析
+        function jsonParse(callback, error, value) {
+            if (error) {
+                callback(error, value);
+            } else {
+                try {
+                    var result = JSON.parse(value);
+                    callback(null, result);
+                } catch (e) {
+                    callback(e, value);
+                }
+            }
+        }
+        // <2> 发送XHR请求
+        var request = {
+                comment: function getComment(callback) {
+                    return getURLCallback('http://azu.github.io/promises-book/json/comment.json', jsonParse.bind(null, callback));
+                },
+                people: function getPeople(callback) {
+                    return getURLCallback('http://azu.github.io/promises-book/json/people.json', jsonParse.bind(null, callback));
+                }
+            };
+        // <3> 启动多个XHR请求，当所有请求返回时调用callback
+        function allRequest(requests, callback, results) {
+            if (requests.length === 0) {
+                return callback(null, results);
+            }
+            var req = requests.shift();
+            req(function (error, value) {
+                if (error) {
+                    callback(error, value);
+                } else {
+                    results.push(value);
+                    allRequest(requests, callback, results);
+                }
+            });
+        }
+        function main(callback) {
+            allRequest([request.comment, request.people], callback, []);
+        }
+
+        // 运行的例子
+        main(function(error, results){
+            if(error){
+                return console.error(error);
+            }
+            console.log(results);
+        });
+    }
+
+    function promiseWay(){
+        function getURL(URL) {
+            return new Promise(function (resolve, reject) {
+                var req = new XMLHttpRequest();
+                req.open('GET', URL, true);
+                req.onload = function () {
+                    if (req.status === 200) {
+                        resolve(req.responseText);
+                    } else {
+                        reject(new Error(req.statusText));
+                    }
+                };
+                req.onerror = function () {
+                    reject(new Error(req.statusText));
+                };
+                req.send();
+            });
+        }
+        var request = {
+                comment: function getComment() {
+                    return getURL('http://azu.github.io/promises-book/json/comment.json').then(JSON.parse);
+                },
+                people: function getPeople() {
+                    return getURL('http://azu.github.io/promises-book/json/people.json').then(JSON.parse);
+                }
+            };
+        function main() {
+            function recordValue(results, value) {
+                results.push(value);
+                return results;
+            }
+            // [] 用来保存初始化的值
+            var pushValue = recordValue.bind(null, []);
+            return request.comment().then(pushValue).then(request.people).then(pushValue);
+        }
+        // 运行的例子
+        main().then(function (value) {
+            console.log(value);
+        }).catch(function(error){
+            console.error(error);
+        });
+    }
+
+
+    </script>
+
+</body>
+</html>
