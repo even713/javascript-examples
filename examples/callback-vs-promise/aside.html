@@ -20,6 +20,9 @@
 		<li>
 			<a href="javascript: testSetTimeout()">Does "setTimeout" has delay?</a>
 		</li>
+		<li>
+			<a href="javascript: testPromise()">"then" after "resove"</a>
+		</li>
 	</ul>
 
 </body>
@@ -54,5 +57,29 @@ function testSetTimeout(){
 		console.log(Date.now() - startDate + 'ms');
 	}, 500);
 }	
+
+function testPromise(){
+	function timerPromisefy(delay) {
+	    return new Promise(function (resolve) {
+	        setTimeout(function () {
+	        	console.log("resolve");
+	            resolve(delay);
+	        }, delay);
+	    });
+	}
+
+	var p = timerPromisefy(5);
+	setTimeout(function(){
+		p.then(function(v){
+			console.log(v);
+		});
+	}, 3000);
+
+	setTimeout(function(){
+		p.then(function(v){
+			console.log(v);
+		});
+	}, 2000);
+}
 </script>
 </html>

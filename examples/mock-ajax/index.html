@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+    <meta charset="utf-8" />
+
+    <title>
+        Mock ajax example
+    </title>
+
+</head>
+<body>
+
+    <h1>
+        Mock ajax exampl
+    </h1>
+    <div><a href="#" onclick="mockAjax()">simple mock ajax</a></div>
+
+
+    <!-- Load scripts. -->
+    <script src="../../vendor/jquery/dist/jquery.js"></script>
+    <script src="../../tools/jquery.mockjax.js"></script>
+    <script type="text/javascript">
+    function mockAjax(){
+        $.mockjax({
+            url: '/api/comment',
+            proxy: 'http://azu.github.io/promises-book/json/comment.json',
+            responseTime: 1000
+        });
+
+        $.getJSON("/api/comment", function(response) {
+                    console.log(["success", response]);
+                }).done(function(response){
+                    console.log(["done", response]);
+                }).fail(function(error){
+                    console.log(["error", error]);
+                }).always(function(response){
+                	console.log(["always", response]);
+                });
+
+    }
+    </script>
+
+</body>
+</html>

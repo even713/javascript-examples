@@ -79,8 +79,12 @@
         </div>
     </div>
 
+    <div><a href="#" onclick="sequenceWay()">Promise sequence</a></div>
 
-    <!-- Load scripts. -->
+
+    <!-- Load scripts. -->    
+    <script src="../../vendor/jquery/dist/jquery.js"></script>
+    <script src="../../tools/jquery.mockjax.js"></script>
     <script type="text/javascript">
     /**
      * A traditional callback way to do something after finish ajax request
@@ -178,6 +182,55 @@
                     return getURL('http://azu.github.io/promises-book/json/people.json').then(JSON.parse);
                 }
             };
+        function main() {
+            function recordValue(results, value) {
+                results.push(value);
+                return results;
+            }
+            // [] 用来保存初始化的值
+            var pushValue = recordValue.bind(null, []);
+            return request.comment().then(pushValue).then(request.people).then(pushValue);
+        }
+        // 运行的例子
+        main().then(function (value) {
+            console.log(value);
+        }).catch(function(error){
+            console.error(error);
+        });
+    }
+
+    function sequenceWay(){
+        $.mockjax({
+            url: '/api/comment',
+            proxy: 'http://azu.github.io/promises-book/json/comment.json',
+            responseTime: 3000
+        });
+
+        $.mockjax({
+            url: '/api/people',
+            proxy: 'http://azu.github.io/promises-book/json/people.json',
+            responseTime: 1000
+        });
+
+        function getURL(URL) {
+            return new Promise(function (resolve, reject) {
+                $.getJSON(URL, function(responseText){
+                    console.log(["resolve", URL]);
+                    resolve(responseText);
+                }).fail(function(error){
+                    reject(new Error(error));
+                });
+            });
+        }
+        var request = {
+                comment: function getComment() {
+                    return getURL('/api/comment');
+                },
+                people: function getPeople() {
+                    return getURL('/api/people');
+                }
+            };
+
         function main() {
             function recordValue(results, value) {
                 results.push(value);
