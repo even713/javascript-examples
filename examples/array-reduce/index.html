@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+	<neta charset="utf-8" />
+	<title>
+		Array Reduce
+	</title>
+</head>
+<body>
+
+	<h1>
+		Array Reduce
+	</h1>
+
+</body>
+<script type="text/javascript">
+function Array() {
+    this.is = 'SPARTA';
+}
+
+	// Production steps of ECMA-262, Edition 5, 15.4.4.21
+// Reference: http://es5.github.io/#x15.4.4.21
+if (!Array.prototype.myreduce) {
+  Array.prototype.myreduce = function(callback /*, initialValue*/) {
+    'use strict';
+    if (this == null) {
+      throw new TypeError('Array.prototype.reduce called on null or undefined');
+    }
+    if (typeof callback !== 'function') {
+      throw new TypeError(callback + ' is not a function');
+    }
+    var t = Object(this), 
+    	len = t.length >>> 0, // *avoid case 3, t.length = undefined
+    	k = 0, value;
+    if (arguments.length == 2) {
+      value = arguments[1];
+    } else {
+      // check empty array whith valid length, like case 2.
+      // get the value of array, e.g. a={c:1, d:2, "1": "test"}, it will filter "c" and "d" properties, and preserve only the number properties, while number must smaller than length.
+      // ** this can be applied in d3, sometimes array only have length while don't have value
+      while (k < len && !(k in t)) {
+        k++; 
+      }
+      if (k >= len) {
+        throw new TypeError('Reduce of empty array with no initial value');
+      }
+      value = t[k++]; // here k++, will make it get the next value of array, if only one value in array, "callback" won't be called.
+    }
+    for (; k < len; k++) {
+      if (k in t) {
+        value = callback(value, t[k], k, t);
+      }
+    }
+    return value;
+  };
+}
+
+// case 1: 
+/*var total = [4, 1, 2, 3].myreduce(function(a, b) {
+  return a + b;
+});*/
+
+// case 2: emtpy array with length
+// var ary = new Array(4);
+
+// case 3: 
+function Array() {
+    this.is = 'SPARTA';
+    this.length = 4;
+    this["2"] = "hehe";
+    this["5"] = "meinv";
+}
+
+var ary = new Array();
+
+var total = ary.myreduce(function(a, b) {
+  return a + b;
+});
+
+console.log(total);
+
+</script>
+</html>
