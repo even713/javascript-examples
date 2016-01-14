@@ -14,6 +14,7 @@
 
 </body>
 <script type="text/javascript">
+// case 3
 function Array() {
     this.is = 'SPARTA';
 }
@@ -64,7 +65,7 @@ if (!Array.prototype.myreduce) {
 // var ary = new Array(4);
 
 // case 3: 
-function Array() {
+/*function Array() {
     this.is = 'SPARTA';
     this.length = 4;
     this["2"] = "hehe";
@@ -77,7 +78,14 @@ var total = ary.myreduce(function(a, b) {
   return a + b;
 });
 
-console.log(total);
+console.log(total);*/
+
+// case 4: if give it an initvalue, the arguments in callback changes for the first loop.
+var result = [1].myreduce(function(initvalue, aryvalue){
+  return initvalue + aryvalue;
+}, 3);
+
+console.log(result);
 
 </script>
 </html>
