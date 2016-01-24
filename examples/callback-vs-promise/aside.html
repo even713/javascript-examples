@@ -1,12 +1,12 @@
 <!doctype html>
-<html>
+<html ng-app="Demo">
 <head>
 	<neta charset="utf-8" />
 	<title>
 		Promise examples
 	</title>
 </head>
-<body>
+<body ng-controller="mycontroller">
 
 	<h1>
 		Promise examples
@@ -26,9 +26,18 @@
 		<li>
 			<a href="javascript: sequencePromise()">execute sequence tasks using Promise</a>
 		</li>
+		<li>
+			<a href="#" ng-click="sequenceNgPromise()">execute sequence tasks using Angular $q</a>
+		</li>
+		<li>
+			<a href="#" ng-click="allNgPromise()">execute all tasks using Angular $q</a>
+		</li>
 	</ul>
 
 </body>
+
+	<!-- Load scripts. -->
+<script type="text/javascript" src="../../vendor/angularjs/angular-1.2.18.js"></script>
 <script type="text/javascript">
 function promiseAll(){
 		// `delay`毫秒后执行resolve
@@ -114,10 +123,12 @@ function sequencePromise(){
 	    });
 	}
 	var request = {
-	        comment: function getComment() {
+	        comment: function getComment(value) {
+	        	console.log(arguments);
 	            return getURL('http://azu.github.io/promises-book/json/comment.json').then(JSON.parse);
 	        },
 	        people: function getPeople() {
+	        	console.log(arguments);
 	            return getURL('http://azu.github.io/promises-book/json/people.json').then(JSON.parse);
 	        }
 	    };
@@ -131,5 +142,69 @@ function sequencePromise(){
 	    console.error(error);
 	});
 }
+
+// Create an application module for our demo.
+var app = angular.module( "Demo", [] );
+app.service("helpers", ["$q", function($q){
+	this.sequenceTasks = function(tasks){
+		function recordValue(results, value) {
+	        results.push(value);
+	        return results;
+	    }
+	    var pushValue = recordValue.bind(null, []);
+	    
+	    var defer = $q.defer();	    
+	    defer.resolve()
+	    return tasks.reduce(function (promise, task) {
+	        return promise.then(task).then(pushValue);
+	    }, defer.promise);
+	};
+
+	this.getURL = function(URL){
+		var defer = $q.defer();
+        var req = new XMLHttpRequest();
+        req.open('GET', URL, true);
+        req.onload = function () {
+            if (req.status === 200) {
+                defer.resolve(req.responseText);
+            } else {
+                defer.reject(new Error(req.statusText));
+            }
+        };
+        req.onerror = function () {
+            defer.reject(new Error(req.statusText));
+        };
+        req.send();	
+
+        return defer.promise;	
+	};
+}]);
+
+app.controller("mycontroller", ["$scope", "helpers", function($scope, helpers){
+	var request = {
+	        comment: function getComment(value) {
+	        	console.log(arguments);
+	            return helpers.getURL('http://azu.github.io/promises-book/json/comment.json').then(JSON.parse);
+	        },
+	        people: function getPeople() {
+	        	console.log(arguments);
+	            return helpers.getURL('http://azu.github.io/promises-book/json/people.json').then(JSON.parse);
+	        }
+	    };
+
+	function main() {
+		return helpers.sequenceTasks([request.comment, request.people]);
+	}
+
+		// 运行示例
+	$scope.sequenceNgPromise = function(){
+		main().then(function (value) {
+		    console.log(value);
+		}, function(reason){
+		    console.error(reason);
+		});
+	}
+}]);
+
 </script>
 </html>
