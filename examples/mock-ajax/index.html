@@ -23,7 +23,8 @@
     function mockAjax(){
         $.mockjax({
             url: '/api/comment',
-            proxy: 'http://azu.github.io/promises-book/json/comment.json',
+            proxy: 'test.json',
+            /*proxy: 'http://azu.github.io/promises-book/json/comment.json',*/
             responseTime: 1000
         });
 
@@ -34,7 +35,10 @@
                 }).fail(function(error){
                     console.log(["error", error]);
                 }).always(function(response){
-                	console.log(["always", response]);
+                	for(var el in response) {
+                        console.log(el);
+                    }
+                    //console.log(["always", response]);
                 });
 
     }

@@ -1,0 +1,29 @@
+{
+  "CPU_READY": {
+    "baseVersion": 1,
+    "version": 1,
+    "minorThreshold": 3,
+    "majorThreshold": 4,
+    "criticalThreshold": 5.3
+  },
+  "CPU_SWAPWAIT": null,
+  "CPU_USAGE_PCT": {
+    "baseVersion": 1,
+    "version": 1,
+    "minorThreshold": 1,
+    "majorThreshold": 2,
+    "criticalThreshold": 3
+  },
+  "MEMORY_USAGE_PCT": null,
+  "STORAGE_READ_lATENCY": null,
+  "STORAGE_WRITE_lATENCY": null,
+  "FATAL_RETRY": {
+    "baseVersion": 1,
+    "version": 1,
+    "minorThreshold": 0,
+    "majorThreshold": 0,
+    "criticalThreshold": 0
+  },
+  "ROUND_TRIP_TIME": null,
+  "VIRTUAL_PACKET_DROP": null
+}
