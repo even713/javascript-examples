@@ -1,0 +1,510 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#dashBoardPage .widget-class{
+	   margin-bottom: 10px;
+	}
+
+#dashBoardPage .show-stat-microcharts .dashBoardFootProgressBar{
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 11px;
+}
+#dashBoardPage .show-stat-microcharts .dashBoardFootTransaction{
+	padding: 0px !important;
+}
+#dashBoardPage .show-stat-microcharts .dashBoardFootShowStats {
+	  padding: 0px;
+}
+.dashboard-main {
+	overflow: hidden;
+}
+.dashboard-main .panel-heading {
+	text-transform:none;
+	text-align:center;
+	padding:5px 5px 5px 5px;
+	background-color:#428bca;
+	color:#fff;
+}
+.dashboard-main .widget-body {
+	border: 1px solid #FFF; /* to avoid the bug that height is not the same for container who has ul element */
+}
+.dashboard-main .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.dashboard-main .col-lg-12 {
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-bottom: 10px;
+}
+
+.dashboard-main .col-lg-12 .panel-heading {
+	font-size: 18px;
+	font-weight:bold;
+}
+
+.dashboard-main .col-lg-4 {
+	padding-left: 0;
+	padding-right: 4px;
+	width: 33.33%;
+}
+.dashboard-main .col-lg-3 {
+	width: 25%;
+}
+
+.dashboard-main .widget-body{
+	height: 350px;
+}
+
+.dashboard-main .col-lg-3 {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.dashboard-main .arrow .pull-right {
+	position:absolute;
+	bottom:40;
+	right:40;
+}
+
+.dashboard-main .panel-body {
+	position: relative;
+}
+
+.dashboard-main .visit-chart-title {
+	font-size: 30px;
+}
+
+.dashboard-main .thead {
+	background-color:#428bca;
+	color:#fff;
+	font-weight:bold;
+	background-image: none;
+}
+
+.dashboard-main .dataCenter.table-bordered {
+		border:1px solid #428bca;
+}
+
+.dashboard-main .dataCenter>thead>tr>td {
+	border:1px solid #428bca;
+}
+
+.dashboard-main .dataCenter>tbody>tr>td {
+	border:1px solid #428bca;
+}
+
+.dashboard-main .odd {
+	background-color:#AAC5F5;
+	color:black;
+}
+
+.dashboard-main .even {
+	background-color:#B7DAF0;
+	color:black;
+}
+
+.dashboard-main .worstPerformers>thead>tr>td {
+	border:1px solid black;
+	color:black;
+}
+
+.dashboard-main .worstPerformers>tbody>tr>td {
+	border:1px solid black;
+	color:black;
+}
+
+.dashboard-main .worstPerformers.table-bordered {
+	border:1px solid black;
+	/*table-layout: fixed;*/
+}
+
+.dashboard-main .worstPerformers>thead>tr>td {
+	color:#fff;
+	font-weight:bold;
+	text-align:center;
+}
+
+.dashboard-main .worstPerformers>tbody>tr>td {
+	word-wrap:break-word;
+}
+
+.dashboard-main .worstPerformers>thead .black {
+	background-color:black;
+}
+
+.dashboard-main .worstPerformers>thead .blue {
+	background-color:#7FC5F0;
+}
+
+.dashboard-main .worstPerformers>thead .orange {
+	background-color:#F1A558;
+}
+
+.dashboard-main .worstPerformers .red {
+	background-color:red;
+}
+
+.dashboard-main .worstPerformers .orange {
+	background-color:orange;
+}
+
+.dashboard-main .worstPerformers .yellow {
+	background-color:yellow;
+}
+
+.menuToolTips {
+	list-style: none;
+	padding: 0;
+}
+/*dashBoard new UI styleCss code*/
+#dashBoardPage .show-stats {
+	height: 90px !important;
+    
+}
+
+#dashBoardPage ul li {
+	list-style-type: none;
+}
+
+#dashBoardPage .showStats .col-md-6{
+	 padding-left: 5px; 
+	 padding-right: 5px;
+	
+}
+
+#dashBoardPage .showStats .col-md-2, #dashBoardPage .showStats .col-sm-2, #dashBoardPage .showStats .col-lg-2{
+	 padding-left: 5px; 
+	 padding-right: 5px;
+	
+}
+
+#dashBoardPage .widget-body {
+	/* height: 390px; */
+	padding-bottom: 0px;
+}
+
+#dashBoardPage .dash-style-div {
+	border-bottom: 1px solid #DADADA;
+	/* border-color: red; */
+}
+
+#dashBoardPage .num-easy-pie {
+	padding-right: 0px;
+	
+}
+#dashBoardPage .set-width-num-easy-pie {
+	width: 20%;
+}
+#dashBoardPage .set-width-color-wheel {
+	width: 80%;
+}
+#dashBoardPage .node-name {
+	/* font-size: xx-small !important; */
+	font-size: 13px;
+	text-overflow:ellipsis; /*showing the ellipsis if the div size is short*/
+	white-space:nowrap; 
+	overflow:hidden;
+}	
+
+#dashBoardPage .path_text {
+	
+	 font-size: 12px;
+}
+
+#dashBoardPage .loading {
+	display: none;
+}
+
+
+#colorWheelTooltip .show-stats {
+    height: 100px
+}
+#dashBoardPage .show-stat-microcharts>div {
+	  padding: 7px 13px;
+}
+
+#dashBoardPage .worstByGroup {
+     color: gray;
+     margin-right: 0;
+}
+
+#dashBoardPage .svg-container {
+    display: inline-block;
+    position: relative;
+    width: 80%;
+    padding-bottom: 58%; /* aspect ratio */
+    vertical-align: top;
+    /* overflow: hidden; */
+}
+
+#dashBoardPage .svg-content-responsive {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+#menuToolTips {
+	font-size: 13px;
+}
+
+.dataTables_scrollHeadInner{
+    padding-left: 0px !important;
+}
+
+table.dataTable {
+clear: both;
+margin-top: 0px!important;
+margin-bottom: 6px!important;
+max-width: none!important;
+}
+/*color-wheel style*/
+.colorWheelStyle {
+	padding-left: 0px;
+}
+/*-----------------colorWheel FullScreen style------------------------------------------*/
+.full-screen-colorwheel-container-width  {
+	width: 50%;
+}
+.full-screen-worst-by-group-width {
+	/* width: 45%; */
+}
+.full-screen-colorwheel-dashboardFoot  {
+	width: 100%;
+	display: inline-block;
+}
+.easy-pie-group-style {
+  display: inline-block;
+}
+
+.bottomBorder{
+	border-bottom:1px solid #000;
+}
+
+.dashBoardTooltips .fatalRetryColor{
+	background: #DB1B1B;
+	color:white;
+	 text-align: center;
+}
+
+.dashBoardTooltips .tootipTextValue{
+	  padding-left: 0px;
+}
+
+.dashBoardTooltips .popover-subTitle{
+	margin: 0;
+	padding: 24px 0px 8px;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 18px;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #ebebeb;
+	border-radius: 2px 2px 0 0
+}
+
+
+
+/*-----------------colorWheel FullScreen style------------------------------------------*/
+ 
+ .full-screen-table-style {
+  padding-top: 50px;
+  width: 100%;!important;
+ }
+ 
+ .color-red{
+	background-color:#DB1B1B;
+	width: 16px;
+     height: 16px;
+	   margin-left: 25px;
+ 
+}
+.color-yellow{
+	background-color:#FFD033;;
+	  width: 16px;
+     height: 16px;
+	   margin-left: 25px;
+}
+.color-orange{
+	background-color:#FF6321;
+	  width: 16px;
+     height: 16px;
+	   margin-left: 25px;
+}
+.color-green{
+	background-color:#7BDC2A;
+	 width: 16px;
+     height: 16px;
+	   margin-left: 25px;
+}
+
+.color-gray{
+	width: 16px;
+     height: 16px;
+	background-color:gray!important;
+}
+/* hidden the x-scroll bar*/
+.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody {
+  *margin-top: -1px;
+  -webkit-overflow-scrolling: touch;
+ /* overflow-x: hidden!important;*/
+  overflow-y: auto;
+}
+
+.fullScreenDataTable .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody {
+	overflow-x: hidden!important;
+}
+
+.fullScreenDataTable .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody td .ellipsis{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.fullScreenDataTable .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody table{
+	table-layout: fixed;
+}
+	
+.table tbody tr td{
+	vertical-align: middle!important;
+	
+}
+
+.table thead tr th{
+	background-color: white!important;
+}
+
+#dashBoardPage .text-overflow{
+	 text-overflow:ellipsis;
+		white-space:nowrap;
+        overflow:hidden;
+}
+#dashBoardPage .text-overflow-host{
+	 text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        width:80px;
+}
+
+#dashBoardPage table .grade-green {
+	color: black;
+	background: #7BDC2A !important;
+}
+#dashBoardPage table .grade-yellow {
+	color: black;
+	background: #FFD033 !important;
+}
+#dashBoardPage table  .grade-orange {
+	color: black;
+	background: #FF6321 !important;
+}
+#dashBoardPage table .grade-red {
+	color: white;
+	background: #DB1B1B !important;
+}
+
+#dashboard-server-alarm.jarviswidget .widget-body {
+min-height: 60px;
+position: relative;
+padding-bottom: 13px;
+}
+
+#appResponseVAppSvg .titles text {
+	pointer-events: none;
+}
+
+#appResponsePortGroupSvg .titles text {
+	pointer-events: none;
+}
+
+.dashboard-app-server-alarm .dataTables_wrapper .dt-toolbar-footer{
+	display:none;
+}
+
+#alarm-content ul.severity-level li,
+.dashboard-app-server-alarm ul.severity-level li{
+     float:left;
+     margin:0px 0px;
+ }
+
+
+#alarm-content ul.severity-level,
+.dashboard-app-server-alarm ul.severity-level{
+    list-style:none;
+    position:relative;
+    margin:0px;
+  
+}
+#alarm-content .alarmColor,
+.dashboard-app-server-alarm .alarmColor {
+     width: 32px;
+     height: 32px;
+ }
+
+
+.newCheckModal .modal-footer > button {
+	float: right;
+	margin-left: 10px;
+	padding: 2px 5px;
+}
+#dashBoardPage .jarviswidget>header {
+	height: 34.5px!important;
+}
+.color-wheel-full-screen-width {
+	 width: 45%;
+}
+
+.worst-by-group-full-screen-width {
+	 width: 45%;
+}
+/* #dashBoardPage #jarviswidget-fullscreen-mode .jarviswidget>div {
+	overflow-y: hidden!important;
+} */
+
+#dashBoardPage #dashboard-critical-services-table table tr td{
+	height:50px!important;
+}
+
+#dashboard-critical-resources .form-control{
+	height:28px!important;
+}
+
+#dashboard-critical-resources .form-control a{
+	height:28px!important;
+}
+#dashboard-critical-resources .form-control a>span{
+	padding:0px;
+    color: #000;
+}
+#dashboard-critical-services-table ul li{
+  padding-bottom:0px!important;
+  padding-top: 0px!important;
+  /* border-bottom: 0px; */
+}
+
+#dashboard-critical-services-table td ul{
+  width: 100%!important;
+}
+
+.smart-style-5 #dashboard-critical-resources .form-control a>span, .smart-style-5 #dashboard-critical-services-table .form-control a>span{
+    color: #fff;
+}
+#dashboard-critical-resources .form-control a>span, #dashboard-critical-services-table .form-control a>span{
+	padding:0px;
+}
+.restore-colorwheel-btn {
+	
+}
+.restore-colorwheel-btn.disabled {
+	cursor: not-allowed;
+    pointer-events: none;
+    opacity: .65;
+    filter: alpha(opacity = 65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #BDAEAE!important;
+}

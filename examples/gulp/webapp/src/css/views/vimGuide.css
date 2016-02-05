@@ -1,0 +1,218 @@
+.tab-pane .vim-guide{
+	padding: 20px;
+}
+.vim-guide .row {
+	/* min-width: 760px; */
+}
+.vim-guide #content{
+	width: 95% !important;
+}
+.vim-guide .links{
+	text-align: center;
+	margin-top: 70px;
+}
+
+.vim-guide .links>ul {
+	padding-left: 40px;
+}
+
+.vim-guide .links>h1, #content .links>ul{
+	/* margin: auto; */
+	width: 300px;
+}
+.vim-guide .links>ul>li{
+	text-align: left;
+	line-height: 25px;
+	height: 25px;
+	margin-left: 10px;
+	width:500px;
+}
+
+.vim-guide .row .step{
+	border: 2px solid #24ACE1;
+    background:#24ACE1;
+    -webkit-border-radius:12px;
+    -moz-border-radius:12px;
+    -o-border-radius:12px;
+    border-radius:12px; 
+    margin-bottom: 30px;	
+}
+
+.vim-guide .row .step>.text{
+	color: #FFF;
+	display: table;
+	height: 110px;
+}
+.vim-guide .row .step>.detail a{
+	color: #FFF;
+}
+.vim-guide .row .step>.text>div{
+	display:table-cell;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 2.3em;
+	font-weight: bold;
+}
+.vim-guide .row .step>.detail{
+	background:#FFF;
+    -webkit-border-radius:0 10px 10px 0;
+    -moz-border-radius:0 10px 10px 0;
+    -o-border-radius:0 10px 10px 0;
+    border-radius:0 10px 10px 0; 
+    border-color:#FFF;
+}
+
+.vim-guide .row .step>.detail>.title{
+	font-weight: bold;
+}
+
+.vim-guide .row .step>.detail>.note{
+	color: #24ACE1;
+	margin-bottom: 15px;
+}
+
+.vim-guide .row .step>.detail>.download{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+.vim-guide .row .step>.detail>.download>div{
+	font-weight: bold;	
+}
+
+.vim-guide .row .step>.detail>div{
+	margin-top:20px;
+}
+
+.vim-guide .row .step.one>.text{
+	height: 112px;
+}
+
+.vim-guide .row .step.two .system-require{
+    background:#C0EFFF;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    -o-border-radius:3px;
+    border-radius:3px; 
+    margin-bottom: 20px;	
+    padding: 10px;
+}
+
+.vim-guide .row .step.two .system-require>ol {
+	padding-left: 20px;
+}
+
+.vim-guide .row .step.three>.text{
+	height: 114px;
+}
+
+.vim-guide .row .step.three .current-status{
+    background:#246298;
+    -webkit-border-radius:7px;
+    -moz-border-radius:7px;
+    -o-border-radius:7px;
+    border-radius:7px; 
+    margin-bottom: 20px;
+    padding: 10px;
+    color: #FFF;
+    font-weight: bold;		
+}
+
+/*.vi m-guide .button {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	vertical-align: baseline;
+	margin: 0 2px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+} */
+.vim-guide .medium {
+font-size: 12px;
+padding: .4em 1.5em .42em;
+}
+
+.vim-guide .button:hover {
+	text-decoration: none;
+}
+.vim-guide .button:active {
+	position: relative;
+	top: 1px;
+}
+
+/* blue */
+.vim-guide .blue {
+	color: #d9eef7;
+	border: solid 1px #0076a3;
+	background: #0095cd;
+	background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+}
+.vim-guide .blue:hover {
+	background: #007ead;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+	background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
+}
+.vim-guide .blue:active {
+	color: #80bed6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+}
+
+/* orange*/
+.vim-guide .orange {
+	color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.vim-guide .orange:hover {
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.vim-guide .orange:active {
+	color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+
+#vicRepeatModal .modal-dialog {
+  margin-top: 80px;
+}
+#vicRepeatModal .modal-content {
+	width: 100%;
+	height: 100%;
+}
+#vicRepeatModal ol{
+	padding-left: 40px;
+}
+#vicRepeatModal li {
+	padding: 5px;
+	list-style: none;
+}
+#vicRepeatModal li>input {
+    margin-right: 8px;
+}
+#vicRepeatModal .err-msg {
+	color: red;
+	display: none;
+	font-size: 14px;
+}

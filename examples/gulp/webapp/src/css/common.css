@@ -1,0 +1,1182 @@
+/*page layout*/
+.smart-style-5 ::-webkit-scrollbar-thumb{
+	background-color:rgba(255,255,255,0.5) !important;
+}
+.smart-style-5 .input-group #statusFilter{
+	width: 10em !important;
+}
+#chord{
+/* 	padding: 1em; */
+	text-align: center;
+	height: 900px;
+}
+#chord svg{
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+#chord .node{
+	cursor: auto;
+}
+#chord .chord{
+	cursor: pointer;
+}
+./* smart-style-5 .modal-footer .btn-next, .smart-style-5 .modal-footer .btn-primary, .smart-style-5 .buttons .btn-primary {
+	color: #fff !important;
+} */
+.smart-style-5 a:focus, .smart-style-5 a:hover {
+    color: #FFD600!important;
+    text-decoration: none;
+}
+.smart-style-5 #single-button{
+	color: #fff;
+}
+.smart-style-5 .iradio_minimal.checked{
+	background-position: -180px 0;
+}
+.smart-style-5 .progressLabel{
+	color: #fff !important;
+}
+.smart-style-5 .vimAction select{
+	color: #fff !important;
+}
+.smart-style-5 #logo img, .smart-style-1 #logo img, .smart-style-5 .profile-pic #user-photo{
+	border-radius: 0 !important;
+	border: none;
+}
+#userPhoto{
+    height: 25px;
+    border-radius: 0 !important;
+ }
+ .login-info span .user-name{    
+ 	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
+/* .smart-style-5 .slider-bar svg .resize path {
+    stroke: #57c8f1 !important;
+    stroke-opacity: 1!important;
+} */
+/* .smart-style-5 .btn-primary:hover{
+	background: none !important;
+} */
+.smart-style-5 .icheckbox_minimal.hover{
+	background-position: 0 0;
+}
+.smart-style-5 .icheckbox_minimal.disabled{
+	background: none;
+}
+.smart-style-5 .icheckbox_minimal.checked{
+	background-position: -80px 0;
+}
+.smart-style-5 .smart-form .state-error+em{
+	color: #fff;
+}
+.smart-style-5 body{
+	color: #fff !important;
+}
+.smart-style-5 #dashboard-critical-services-table tspan,
+.smart-style-5 #app-depService tspan,
+.smart-style-5 #force-div tspan,
+.smart-style-5 g.nodes text
+{
+	fill: #fff !important;
+}
+.smart-style-5 #switchDatacenter span{
+	color: #fff !important;
+}
+.smart-style-5 .orange span, .smart-style-5 .green span, .smart-style-5 .yellow span{
+	color: #000 !important;
+}
+.smart-style-5 .rootcause-storage a, .smart-style-5 .rootcause-cpu a, .smart-style-5 .rootcause-memory a, .smart-style-5 .rootcause-network a{
+	color: #000 !important;
+}
+.smart-style-5 table.dataTable thead .sorting{
+	background: url('/img/sort_both.png') no-repeat center right !important;
+}
+.smart-style-5 .btn-primary, .smart-style-5 .btn-next{
+	color: #000;
+}
+.smart-style-5 #sankeyDiagram .link{
+	stroke: #57c8f1 !important;
+	stroke-opacity: 0.7 !important;
+}
+.smart-style-5 .matrix-toolbar .chart path{
+	fill: #57c8f1 !important;
+}
+.smart-style-5 #sankeyDiagram .link:hover {
+  stroke-opacity: 1 !important;
+}
+.smart-style-5 .goUpdate, .smart-style-5 .install-vim, .smart-style-5 .okbtn{
+	border: none !important;
+}
+.smart-style-5 #storageDiagram .node text{
+	text-shadow: none !important;
+}
+.smart-style-5 .updateLater, .smart-style-5 .continue, .smart-style-5 .cancelbtn{
+	border: none !important;
+}
+.smart-style-5 text.label{
+	fill:#fff;
+}
+.smart-style-5 .bootstrap-duallistbox-container option{
+	background: none !important;
+}
+.smart-style-5 #bootstrap-duallistbox-nonselected-list_ option{
+	background: none !important;
+}
+.smart-style-5 .circleHover{
+	stroke:#fff!important;
+}
+ .tagsinput .tag{
+    border: none !important;
+ }
+.smart-style-5 .bg-color-green{
+	background: green !important;
+}
+.smart-style-5 .bg-color-orange{
+	background: orange !important;
+}
+.smart-style-5 .bg-color-red{
+	background: red !important;
+}
+.smart-style-5 .bg-color-yellow{
+	background: yellow !important;
+}
+.smart-style-5 .tooltips-table-style{
+	/* margin-left: 0 !important;
+	margin-right: 0 !important; */
+}
+.smart-style-5 #vstConfigurationWidget .IPContanier-title, .smart-style-5 #vstConfigurationWidget .DNSContanier-title{
+	background: url(../img/glass.jpg) no-repeat !important;
+}
+.smart-style-5 #baselineWidget td{
+	background: none !important;
+}
+.smart-style-5 #snmpConfiguration input,.smart-style-5 #snmpConfiguration textarea, .smart-style-5 #vstConfigurationWidget input{
+	background: url(../img/glass.jpg) no-repeat;
+}
+.smart-style-5 #emailConfiguration input, .smart-style-5 #vstConfigurationWidget input{
+	background: url(../img/glass.jpg) no-repeat;
+}
+.smart-style-5 #syslogConfiguration input, .smart-style-5 #vstConfigurationWidget input, .smart-style-5 #timeline-edit-title input{
+	background: url(../img/glass.jpg) no-repeat;
+}
+.smart-style-5 #alarmConfigModal input,.smart-style-5 #alarmConfigModal textarea{
+		background: url(../img/glass.jpg) no-repeat !important;
+}
+.smart-style-5 #newCheckModal .modal-footer button{
+	/* background: url(../img/glass.jpg) no-repeat; */
+}
+.smart-style-5 #reportTable_wrapper td, .smart-style-5 #scheduleReportTable td, .smart-style-5 #sysLogTable_wrapper td{
+	background: url(../img/glass.jpg) no-repeat !important;
+	color: #fff !important;
+}
+.smart-style-5 .softwareVersion th, .smart-style-5 .softwareVersion td{
+	color: #fff !important;
+	background: url(../img/glass.jpg) no-repeat !important;
+	
+}
+.smart-style-5 .popover .title, .smart-style-5 .popover th{
+	color: #fff !important;
+}
+.smart-style-5 table thead tr th,.smart-style-5 table tbody tr td, .smart-style-5 .dataTables_scroll, .smart-style-5 .dataTables_scroll td{
+	background: url(../img/glass.jpg) no-repeat !important
+}
+/* .smart-style-5 .table-striped>tbody>tr:nth-child(odd)>td, .smart-style-5 .table-striped>thead>tr>td { */
+/* 	background: rgba(0, 0, 0, .13) */
+/* } */
+.smart-style-4:not(.mobile-view-activated) .login-info{
+	display:inline!important;
+}
+.smart-style-4 #left-panel {
+  padding-top: 19px!important;
+}
+.smart-style-4 .login-info>span{
+	border:0px!important;
+}
+.smart-style-4 .login-info{
+	border:0px!important;
+	box-shadow: initial!important;
+}
+.smart-style-0 .login-info span .user-name{
+	color:#fff!important;
+}
+.smart-style-2 #left-panel{
+	padding-top: 10px!important;
+}
+.smart-style-2 .login-info span{
+	  padding: 5px 10px 0px!important;
+}
+
+.smart-style-2 .login-info span .user-name{
+	  padding: 5px 0px 0px!important;
+}
+.smart-style-1 #switchlanguage a.dropdown-toggle{
+	color:#214e75!important;
+}
+
+.smart-style-2 #switchlanguage a.dropdown-toggle{
+	color:#214e75!important;
+}
+.smart-style-1 .login-info span .fa-user{
+	/* margin-right: 0px!important; */
+}
+.smart-style-1 .login-info span{
+	  padding: 0px 10px !important;
+}
+/* .smart-style-1 .login-info span#logo{
+	  margin: 0px 0px 0px!important;
+} */
+
+.smart-style-1 .login-info span.user-name{
+	 padding: 0px 0px !important;
+	 color:#fff!important;
+}
+.smart-style-1 #headerSlider,
+.smart-style-1 .top-right-div{
+	 background: #1b1e24; 
+	 color:#E1EAF1!important;
+	 fill:#E1EAF1;
+}
+/* .smart-style-2 .page-footer{
+	background: #333!important;
+} */
+/* .smart-style-2 #headerSlider,
+.smart-style-2 .top-right-div{
+ 	 background: #333; 
+	 fill:#C5C6CA;
+	 color:#C5C6CA!important;
+} */
+.smart-style-0 .top-right-div{
+	color: black!important;
+}
+  
+.smart-style-3 .page-footer{
+	 background:#f78c40!important;
+}
+.smart-style-5 .page-footer, .smart-style-5 html{
+	background: url(../img/glass.jpg) repeat center top fixed !important
+}
+.smart-style-3 #headerSlider,
+.smart-style-3 .top-right-div{
+	 background:#f78c40;
+}
+.smart-style-4 #headerSlider,
+.smart-style-4 .top-right-div{
+	 background:#3a3f51!important;
+	 color:#bbc0cf!important;
+	 fill:#bbc0cf;
+}
+.smart-style-4 .page-footer{
+	 background:#3a3f51!important;
+}
+.smart-style-5 #headerSlider,
+.smart-style-5 .top-right-div{
+	background: url(../img/glass.jpg) no-repeat
+}
+
+#left-panel .login-info {
+	height: 91px;
+}
+ .login-info>span#logo {
+ 	border-bottom: none;
+ 	margin-left: 0px;
+ 	width:180px;
+ }
+.login-info>span#logo>span {
+	margin-left: 10px;
+}
+.minified .login-info>span#logo>span{
+	display: none;
+}
+.login-info>span>img {
+	border-left: none;
+	float: left;
+}
+.login-info #logo>img.logo-icon {
+	width: 28px;
+	padding-left:3px;
+}
+
+.login-info #logo>img.logo-text {
+	width: 38px;
+	height:22px;
+	padding-left:0px;
+}
+/* .login-info #logo>img.logo-text {
+	width: 100px;
+	padding-top: 6px;
+} */
+.hidden-menu aside#left-panel,
+aside#left-panel{
+	padding-top: 0;
+	/* z-index: 905; */
+}
+
+/*Show minified menu when width <=767px*/
+@media (max-width: 979px) { 
+	#left-panel .minifyme {
+		display: none;
+	} 
+	#main{
+		width: auto !important;
+	}
+}
+/*end to show minified menu*/
+
+.minified .login-info>span#logo{
+	padding-left: 0;
+	margin-left: 3px;
+	text-align: left;
+	width: 40px;
+	border-bottom: none;
+}
+.minified .login-info #logo>img.logo-text,
+.minified .login-info .user-name
+ {
+	display: none;
+}
+.minified aside#left-panel{
+	padding-top: 0;
+}
+.minified aside#left-panel nav{
+	/* padding-top: 65px; */
+}
+#container #top_menu.notify-row {
+	margin: 0 0 0 10px;
+}
+#headerSlider {
+	/* margin-left: 220px; */
+	height: 165px;
+	padding-right: 20px;
+	background-image: none;
+	background-color: #EEEEEE;
+}
+.desktop-detected.mobile-view-activated #headerSlider{
+	margin-left: 15px;
+}
+/* #header > *:first-child {
+	margin-left: -220px;
+} */
+
+#headerSlider .top-right-div {
+	float: left;
+	width: 100%;
+}
+.minified #logo-group {
+	width: 45px!important;
+	overflow: hidden;
+}
+.dashboard-main .jarviswidget {
+	margin-bottom: 10px;
+}
+
+ #switchDatacenter .fa-bank {
+ 	font-size: 1.5em;
+ } 
+ 
+ #switchDatacenter i.dc-list-icon {
+ 	padding: 0 5px;
+ 	width: 23px;
+ 	height: 13px;
+ 	color: red;
+	display: inline-block;
+ }
+
+.minified.desktop-detected #headerSlider {
+	/* margin-left: 45px; */
+}
+.minified #headerSlider > *:first-child {
+	margin-left: -45px;
+}
+.minified #left-panel {
+	padding-top: 156px;
+}
+
+.hidden-menu #logo-group {
+	width: 0;
+}
+.hidden-menu.desktop-detected #headerSlider {
+	margin-left: 20px;
+}
+
+/* Make left menu as selected status */
+#sidebar a.active-menu {
+    background:#28282e;
+    color:#1FB5AD;
+    display:block;
+    -webkit-transition:all 0.3s ease;
+    -moz-transition:all 0.3s ease;
+    -o-transition:all 0.3s ease;
+    -ms-transition:all 0.3s ease;
+    transition:all 0.3s ease;	
+}
+
+/* Overwrite system style since we have higher height to place matrix bar  */
+#container .brand,
+#headerSlider div.matrix-container
+ {
+	height: 155px;
+	padding-right: 13px;
+}
+#sidebar ul.sidebar-menu {
+	padding-top: 180px;
+}
+
+#container .top-nav {
+	margin-top: 0px;
+}
+
+#main-content {
+	
+}
+
+#main {
+	min-height: 900px !important;
+}
+
+/* body, html a {
+	cursor: pointer;
+} */
+
+.daterangepicker {
+	z-index: 1500;
+}
+.popover {
+	z-index: 1050;
+}
+.popover h6 {
+	margin:2px 0 !important;
+}
+/*Matrix toolbar*/
+body .matrix-container {
+	background-color: #FFF;
+	border-radius: 6px;
+	padding: 0;
+	font-size: 12px;
+	-moz-user-select: none;  
+	-webkit-user-select: none;  
+	-ms-user-select: none;  	
+}
+
+.matrix-container .matrix-toolbar {
+	clear: both;
+}
+
+.top-nav .slider-bar {
+	padding-right: 10px;
+	margin-top: 70px;
+}
+.top-nav .slider-bar li {
+	list-style: none;
+	padding-bottom: 20px;
+	float: right;
+	padding-right: 20px;
+}
+
+.matrix-container input.date{
+	width: 165px;
+	display: inline;
+}
+
+.matrix-container div.col-lg-1{
+	padding-left:35px;
+	padding-top:5px;
+	padding-right:0px;
+	width:auto !important;
+}
+
+.matrix-container span.label{
+	background-color:#57c8f1;
+	font-weight:normal;
+	font-size:12px;
+	padding: 0.7em 0.8em;
+	display: block;
+	height: 30px;
+}
+
+.slider-bar svg .brush .extent {
+    fill-opacity: 0.125;
+    shape-rendering: crispedges;
+}
+
+.slider-bar div.tooltip {	
+    position: absolute;			
+    text-align: right;			
+    width: 15em;		
+	color: #000;
+	padding: 0.3em 1em;				
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;
+    font-size: 0.8em;			
+}
+
+.slider-bar svg .resize path {
+    fill: #EEEEEE;
+    stroke: #666666;
+}
+
+.slider-bar svg path{
+	stroke: steelblue;
+	stroke-width: 2;
+	fill: none;
+}
+.slider-bar g.brush rect.wait-layer {
+	cursor: wait;
+	fill-opacity: 0;
+}
+.slider-bar g.brush.loading .resize {
+	cursor: wait!important;
+}
+svg .axis path,
+svg .axis line{
+	fill: none;
+	stroke: grey;
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
+
+
+.brand .top-nav.nav.pull-right {
+    margin-left: 25px;
+    margin-top: 5px;
+    float: left !important;	
+}
+.brand .top-nav .username {
+	/* color: #FFF; */
+	padding-left: 5px;
+} 
+.brand .dropdown-menu.extended.logout {
+	left: 0;
+}
+.dropdown .dropdown-menu.extended {
+	width: 140px !important;
+}
+#top_menu ul.top-menu {
+	margin-top: 5px;
+}
+.brand .top-nav.nav > li > a:hover, .brand .top-nav.nav > li > a:focus,
+.brand .nav .open > a,
+.brand .nav .open > a:hover,
+.brand .nav .open > a:focus {
+	background-color: #1FB5AD !important;
+}
+
+.matrix-toolbar > svg {
+	margin-top: -7px;
+}
+.brand .nav>li>a {
+	padding-left: 0px;
+}
+/*The date range picker in matrix-tool-bar page*/
+time-range .time-mode{
+	float: left;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+.daterangepicker .ranges li .daterangepicker,
+.matrix-tool-bar-page .daterangepicker .ranges li {
+	font-size: 12px;
+}
+.matrix-tool-bar-page .daterangepicker .ranges {
+	width: 175px;
+}
+.matrix-tool-bar-page .daterangepicker .ranges label {
+	float: left;
+	width: 40px;
+}
+.matrix-tool-bar-page .daterangepicker .ranges .input-mini {
+	width: 135px;
+	float: left;
+}
+.matrix-tool-bar-page .daterangepicker .ranges .range_inputs > div:nth-child(2){
+	padding-left: 0;
+}
+.matrix-tool-bar-page .range_inputs>button{
+	clear: both;
+}
+
+/* for dashboard */
+.row-5-gutter {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.col-5-gutter {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.widgets-10-v-margin {
+	margin-bottom: 10px;
+}
+
+.tooltip-templates {
+	display: none;
+}
+.pagetitle{
+	font-size:15px;
+	font-weight:bold;
+}
+ body {
+	overflow: auto;
+	overflow-x:hidden;
+	 } 
+	 
+/*Quick helper start*/
+#quick-helper-root-cause .fadeModal{
+	cursor: pointer; margin-top: 8px; margin-right: 5px;
+}
+#quick-helper-root-cause .modal-dialog {
+	height: 96%;
+	width: 90%;
+}
+#quick-helper-root-cause .widget-body{
+	padding: 0;
+}
+/*Quick helper end*/
+ #jarviswidget-fullscreen-mode {
+	z-index: 999 !important;
+}
+
+
+#headerSlider .pull-right a {
+    cursor: pointer!important;
+}
+.adaptive-label{
+	width: 90px; 
+    min-height: 20px; 
+    max-height: 300px;
+    _height: 50px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    padding: 3px; 
+    outline: 0; 
+    border: 0px solid #a0b3d6; 
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.common-widgets{
+	display: none;
+}
+
+.mouse-over-form-action-style {
+    background-color: #2489C5!important;
+    color: white!important;
+    font-size: 14px!important;
+    margin-top: 20px!important;
+    
+}
+
+.mouse-click-form-action-style {
+	font-size: 14px!important;
+	background-color: #2489C5!important;
+	 margin-top: 20px!important;
+}
+
+.mouse-click-form-action-style a , .mouse-click-form-action-style i{
+	color: white!important;
+}
+
+.form-action-style-root-cause {
+	background-color: #2489C5!important;
+    color: white!important;
+    font-size: 14px!important;
+    padding-left: 10px!important;
+    margin-top: 1px!important;
+    margin-bottom: -7px!important;
+    padding: 7px 7px 7px!important;
+}
+
+/*------------------------------------toolTips-template-common-style-------------------------------------------*/
+.toolTips-template-common-style th {
+	text-align: center;
+	padding: 10px;
+	padding-bottom: 5px;
+} 
+.toolTips-template-common-style table {
+	width: 100%;
+}
+.toolTips-template-common-style thead tr {
+	
+       border-bottom: 5px solid blue;
+}
+.toolTips-template-common-style table tbody {
+	padding-top: 10px; 
+}
+.toolTips-template-common-style .show-stats {
+	border-right: 1px solid #DADADA;
+	border-left: 1px solid #DADADA;
+	height: 100%;
+}
+.toolTips-template-common-style .rowShow {
+	border-bottom: 1px solid #DADADA;
+	border-top: 1px solid #DADADA;
+}
+.toolTips-template-common-style {
+	width: 500px;
+}
+.toolTips-template-common-style .table-body .grade-0 {
+	color: black;
+	background: #7BDC2A;
+}
+.toolTips-template-common-style .table-body .grade-1 {
+	color: black;
+	background: #FFD033;
+}
+.toolTips-template-common-style .table-body .grade-2 {
+	color: black;
+	background: #FF6321;
+}
+.toolTips-template-common-style .table-body .grade-3 {
+	color: white;
+	background: #DB1B1B;
+}
+.toolTips-template-common-style .table-body {
+	 max-height: 100px;
+	 overflow: auto;
+}
+.toolTips-template-common-style .fa a{
+	font-family:arial ;
+}
+.toolTips-template-common-style table {
+	table-layout: fixed;
+}
+
+.toolTips-template-common-style .table-body td div {
+	font-size: 13px;
+	text-overflow: ellipsis; /*showing the ellipsis if the div size is short*/
+	white-space: nowrap; 
+	overflow: hidden;
+}
+ @media (min-width: 980px) and (max-width: 995px) {
+
+	 #switchlanguage {
+        display: none; 
+    }
+}
+
+#ieWarningModal .modal-body {
+	padding-bottom: 0;
+}
+#ieWarningModal .modal-body div{
+	padding: 10px 0;
+}
+
+#ieWarningModal .modal-body ul{
+	display: inline-block;
+	margin-bottom: 0;
+	list-style: none;
+}
+#ieWarningModal .modal-body img{
+	width: 56px;
+	height: 56px;
+}
+#ieWarningModal .modal-body ul>li{
+	float: left;
+	padding: 15px;
+	text-align: center;
+}
+#ieWarningModal .modal-header .close {
+	margin-top: -8px;
+}
+#ieWarningModal .modal-footer{
+	padding: 10px;
+}
+
+#ieWarningModal .modal-footer>button{
+	padding: 5px;
+}
+
+#loseVimConnection .modal-dialog {
+  margin-top: 80px;
+}
+#loseVimConnection .modal-content {
+	width: 100%;
+	height: 100%;
+}
+#loseVimConnection ol{
+	padding-left: 40px;
+}
+/* #loseVimConnection .modal-footer button{
+	padding: 2px 6px 3px;
+} */
+
+ .modal-dialog .bootbox-body{
+    font-size: 14px;
+    }
+/* @media (max-width: 880px) and (min-width: 768px){
+	#hide-menu{
+	display:block !important;
+	}
+}
+
+@media (max-width: 979px) and (min-width: 768px){
+    #hide-menu{
+	display:block !important;
+	}
+}
+
+@media (min-width: 979px){
+    #hide-menu{
+	display:none !important;
+	}
+} */
+
+.smart-style-5 .matrix-toolbar >svg{
+	fill: #fff;
+}
+.smart-style-5 #loseVimConnection .modal-footer button{
+	/* background: url(../img/glass.jpg) no-repeat; */
+}
+.smart-form button{
+	padding:0px 12px!important;
+}
+  .smart-style-5 .set-width-color-wheel text, 
+  .smart-style-5 .color-wheel-full-screen-width .container_path text, 
+  .smart-style-5 .color-wheel-full-screen-width text{
+	fill: #fff;
+} 
+
+.smart-style-5 #jstree  a:focus, .smart-style-5 #jstree a:hover, 
+.smart-style-5 #virtualInfrastructure a:hover, .smart-style-5 #virtualInfrastructure a:focus{
+	color: #000 !important;
+}
+.smart-style-5 .jstree-default, .smart-style-5 .jstree-search{
+	color: #FFD600 !important;
+}
+.smart-style-5 .worstByGroup {
+	color: #fff !important;
+}
+.smart-style-5 .widget-body >svg, 
+.smart-style-5 #widget-id-storageUsage text, 
+.smart-style-5 #netConversationSankey text, 
+.smart-style-5 #AppResponseVM text, 
+.smart-style-5 #cpuUsageTable table text , 
+.smart-style-5 .widget-body >svg >g >g >g >text >tspan{
+	fill: #fff ;
+}
+ .smart-style-5 .color-wheel-full-screen-width .container_path text,  
+ .smart-style-5 .set-width-color-wheel .container_path text
+{
+	fill: #000!important;
+}  
+/* .smart-style-5 #widget-id-storageUsage .colorWheelContent text{
+	fill: #000 !important;
+} */
+.smart-style-5 #chord >svg{
+	fill: #fff;
+}
+.smart-style-5 .ui-select-choices a{
+	color: #fff !important;
+}
+.smart-style-5 .btn-default-focus{
+	background: url(../img/glass.jpg) no-repeat !important;
+}
+/* .smart-style-5 #newMessage{
+	background: red !important;
+	color: #fff !important
+} */
+
+.smart-style-5 .glassArrow{
+	fill: #fff !important
+}
+.smart-style-5 #main{
+ 	/* min-height: 1000px !important  */
+}
+/* .smart-style-5 .bg-color-redLight{
+	background: rgba(252, 61, 61) !important;
+	color: #fff !important; 
+} */
+.smart-style-5 .nav-tabs>li>a .badge{
+	opacity: 1 !important;
+}
+.smart-style-5 body {
+	background: none;
+}
+.smart-style-5 .canvasToolTip, .smart-style-5 .canvasToolTip .title{
+	background: url(../img/glass.jpg) no-repeat !important;
+}
+ .smart-style-5 time-range .date-range:hover{
+	background: url(../img/glass.jpg) no-repeat !important;
+} 
+.smart-style-5 select{
+	background: url(../img/glass.jpg) no-repeat !important;
+}
+.smart-style-5 select option{
+	background-color: #2f4f4f
+}
+.smart-style-5 #cpuUsageTree text{
+	fill: #fff;
+}
+.smart-style-5 #treeDiagram text, .smart-style-5 #sankeyDiagram text{
+    fill: #fff
+}
+.smart-style-5 .nav-tabs.bordered, .smart-style-5 .nav-tabs>li.active>a, .smart-style-5 #resourceBrowser .nav-tabs>li>a:hover, .smart-style-5 #resourceBrowser .nav-tabs>li.active>a:hover{
+	color: #fff !important
+}
+.smart-style-5 .week-date-range span{
+	color: #fff !important
+}
+.smart-style-5 .emailConfiguration-form label {
+	color: #fff !important
+}
+.smart-style-5 .modal-header{
+	background: url(../img/glass.jpg) no-repeat !important;
+	color: #fff !important
+}
+.smart-style-5 #license-form{
+	background: url(../img/glass.jpg) no-repeat !important;
+	
+}
+.smart-style-5 .smart-form button{
+	/* background: url(../img/glass.jpg) no-repeat; */
+}
+.smart-style-5 footer{
+		background: url(../img/glass.jpg) no-repeat !important;
+	
+}
+.smart-style-5 .tagsinput{
+	background: none !important;
+	
+}
+.smart-style-5 #settingTab li>a, .smart-style-5 #preferencesTab li>a, .smart-style-5 #settingsWidget strong{
+	color: #fff !important
+	
+}
+/* .smart-style-5 .bootstrap-duallistbox-container span, .smart-style-5 .bootstrap-duallistbox-container button, .smart-style-5 .bootstrap-duallistbox-container option, .smart-style-5 .smart-form .checkbox, .smart-style-5 .smart-form button, .smart-style-5 .smart-form label{
+	color: #fff !important
+} */
+.smart-style-5 .datepicker td, .smart-style-5 .datepicker th{
+	border-radius: 0 !important;
+	background: none !important;
+}
+.smart-style-5 .daterangepicker td, .smart-style-5 .daterangepicker th,
+ .smart-style-5.daterangepicker td.start-date, .smart-style-5.daterangepicker td.end-date{
+ border-radius: 0 !important;
+ }
+.smart-style-5 .daterangepicker td.active, .smart-style-5 .daterangepicker th.active {
+  background: rgba(0, 0, 0, .43) !important;
+}
+.smart-style-5 .datepicker td.active, .smart-style-5 .datepicker th.active,.smart-style-5 .datepicker .today:hover {
+  background: rgba(0, 0, 0, .43) !important;
+}
+.smart-style-5 table.dataTable thead .sorting_asc{
+	background: url('/img/sort_asc.png') no-repeat center right !important;
+}
+.smart-style-5 table.dataTable thead .sorting_desc{
+	background: url('/img/sort_desc.png') no-repeat center right !important;
+	
+}
+.smart-style-5 .vim-guide .row .step>.detail{
+	color: #000 !important;
+}
+.smart-style-5 .dashBoardTooltips .popover-subTitle{
+	background: url('/img/sort_desc.png') no-repeat center right !important;
+}
+.smart-style-5 #worstTransactionTable_wrapper{
+	color: #fff !important
+}
+
+.popover-content {
+	padding-top: 0!important;
+}
+.tooltips-table-style {
+	margin-left: -13px;
+	margin-right: -13px;
+}
+.myModalLabel{
+ color: white;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+a:hover{
+	cursor:pointer;
+}
+
+.dropdown-menu>li>a,
+ .detail-content a {
+	
+	padding-right: 30px;
+    padding-left: 10px;
+}
+
+.dropdown-menu>li>a>span{
+	  padding-left: 20px;
+	  color: gray;	  
+	  line-height: normal;
+	  top: 5px;
+}
+
+.dataTables_scrollBody .grade-0 {
+	color: black;
+	background: #7BDC2A;
+}
+.dataTables_scrollBody .grade-1 {
+	color: black;
+	background: #FFD033;
+}
+.dataTables_scrollBody .grade-2 {
+	color: black;
+	background: #FF6321;
+}
+.dataTables_scrollBody .grade-3 {
+	color: white;
+	background: #DB1B1B;
+}
+
+.dataTables_scrollBody .services {
+	
+}
+html ul {
+	list-style-type: none;
+}
+body ul {
+	list-style-type: none;
+}
+#settings-page .jarviswidget header span{
+  line-height: 31px;
+}
+.smart-style-5 .btn-primary, .smart-style-5 .btn-next {
+	color: #FFF;
+}
+#reset-smart-widget i.fa{
+	padding-right: 0.4em;
+}
+#vicRepeatModal .bold-font{
+	font-weight: bold;
+}
+/*
+  Always show vertical scrollbar while using chrome and safari on Mac.
+*/
+::-webkit-scrollbar {
+	-webkit-appearance: none;
+	width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: rgba(0,0,0,.5);
+	-webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.smart-form footer .btn {
+	height:35px!important;
+    padding: 0 12px!important;
+}
+
+button:hover {
+    color: #FFD600!important;
+    text-decoration: none;
+}
+.smart-form .login-button .btn-label{
+	padding: 0 12px!important;
+}
+
+#settingsWidget .widget-toolbar>.btn {
+    padding: 1px 14px!important;
+}
+.vm-service-action {
+	margin-left: 7px;
+}
+h3.popover-title {
+	cursor: move;
+}
+
+.global-progress-bar-background {
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    background-color: #333;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+}
+
+.global-progress-bar {
+    display: block;
+    height: 50px;
+    top: 40%;
+    left: 50%;
+    margin-left: -74px;
+    margin-top: -14px;
+    padding: 10px 10px 10px 50px;
+    text-align: left;
+    line-height: 27px;
+    font-weight: bold;
+    position: fixed;
+    z-index: 2001;
+    color: black;    
+    border: solid 2px #86A5AD;
+    background: white url('/img/loading.gif') no-repeat 10px 19px;
+}
+
+.login-img-box {
+	position: relative;
+}
+.login-img-box>img{
+	width: 80%;
+}
+.login-img-box>iframe{
+	width: 70%; 
+	height: 45%;
+	position: absolute;
+	top: 50%; 
+	left: 5.25%;
+}
+/* css for show-detail-menu directive */
+show-detail-menu .dropdown-menu li {
+	overflow: hidden;
+}
+show-detail-menu {
+	top: 100%;
+	left: 0;
+}
+show-detail-menu .detail-content {
+	background: #3276b1;
+	border-radius: 3px;
+	color: #fff;
+	z-index: 1001;
+	position: absolute;
+	font-size: 13px;
+	word-wrap:break-word;
+	word-break: break-all;
+	white-space: normal;
+}
+
+show-detail-menu .detail-content a:hover {
+	color: #fff !important;
+	text-decoration: none;
+}
+	/* make it consistent with dropdown-menu>li>a */
+show-detail-menu .detail-content a{
+	padding-top: 3px;
+	padding-bottom: 3px;
+    padding-right: 10px!important;
+    line-height: 1.42857143;
+    font-weight: 400;
+    display: inline-block;
+}
+
+.get-license-help {
+	height: 30px;
+	line-height: 30px!important;
+	margin-bottom: 10px!important;
+}
+.license-helper-msg {
+	margin-left: 20px;
+	line-height: 30px;
+	height: 30px;
+}
+
+lose-vim-msg .message {
+	color: #b94a48;
+    padding: 10px 0;
+    font-weight: 700;
+}

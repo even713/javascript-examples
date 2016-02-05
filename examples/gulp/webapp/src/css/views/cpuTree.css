@@ -1,0 +1,91 @@
+.node {
+	cursor: pointer;
+}
+
+.node text {
+  font: 12px sans-serif;
+}
+
+.link {
+  fill: none;
+}
+
+#main-content .btn-group{
+	padding-left:30px;
+}
+
+.memTree-mouseclick-on-node a {
+	cursor: pointer;
+}
+
+.memTree-mouseover-on-node a {
+	cursor: pointer;
+}
+#memoryUsage-widget table .grade-green,
+#cpuUsage-widget table .grade-green {
+	color: black;
+	background: #7BDC2A !important;
+}
+
+#memoryUsage-widget table .grade-yellow,
+#cpuUsage-widget table .grade-yellow {
+	color: black;
+	background: #FFD033 !important;
+}
+#memoryUsage-widget table  .grade-orange,
+#cpuUsage-widget table  .grade-orange {
+	color: black;
+	background: #FF6321 !important;
+}
+#memoryUsage-widget table .grade-red,
+#cpuUsage-widget table .grade-red {
+	color: white;
+	background: #DB1B1B !important;
+}
+
+#memoryUsage-widget .search-box-widget>.dropdown-menu,
+#cpuUsage-widget .search-box-widget>.dropdown-menu {
+	max-height: 300px;
+	overflow: auto;
+}
+
+.circleHover:hover {
+  stroke: #000!important;
+  stroke-width: 1.5px;
+}
+
+.node--leaf {
+ /*  pointer-events: none; */
+}
+/* #storageUsage-widget .color-wheel-full-screen-width,
+#memoryUsage-widget .color-wheel-full-screen-width,
+#cpuUsage-widget .color-wheel-full-screen-width{
+	width:45%
+} */
+#storageUsage-widget .text-overflow,
+#memoryUsage-widget .text-overflow,
+#cpuUsage-widget .text-overflow{
+	 text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        width:100px;
+}
+#storageUsage-widget .show-stats,
+#memoryUsage-widget .show-stats,
+#cpuUsage-widget .show-stats {
+	height: 90px !important;
+    
+}
+
+#storageUsage-widget .worst-by-group-full-screen-width,
+#memoryUsage-widget .worst-by-group-full-screen-width,
+#cpuUsage-widget .worst-by-group-full-screen-width {
+    width: 47.5%;
+}
+
+#storageUsage-widget .full-screen-dashboardfoot,
+#memoryUsage-widget .full-screen-dashboardfoot,
+#cpuUsage-widget .full-screen-dashboardfoot{
+	margin:0px;
+	width: 90%;
+}

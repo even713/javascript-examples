@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-us" data-ng-app="smartApp">
+	<head>
+		<meta charset="utf-8">
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+		<title> Uila </title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=1, user-scalable=yes">	
+		<!-- <script type="text/javascript" src="js/debuggap.js"></script> -->
+
+		<script type="text/javascript">var hash=window.location.href.split("/"),versionNum=null;hash[3]&&(versionNum=unescape(hash[3]));</script>
+		
+		<!-- build:cssplugin css/plugin.css -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/demo.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/invoice.min.css">
+		<link rel="stylesheet" href="css/lockscreen.min.css">
+		<link rel="stylesheet" href="css/smartadmin-production.min.css">
+		<link rel="stylesheet" href="css/smartadmin-rtl.min.css">
+		<link rel="stylesheet" href="css/smartadmin-skins.min.css">
+		
+		<!-- endbuild -->
+		
+		<!-- build:cssAll css/all.css -->
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/dataTables/dataTables.bootstrap.css">
+		<link rel="stylesheet" href="css/dataTables/dataTables.responsive.css">
+		<link rel="stylesheet" href="css/dataTables/dataTables.scroller.css">
+				
+		<link rel="stylesheet" href="css/datepicker.css">
+		<link rel="stylesheet" href="css/directives/timeRange.css">
+		<!-- endbuild -->
+
+		<!-- FAVICONS -->
+		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+
+		<!-- GOOGLE FONT -->
+		<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700"> -->
+
+		<!-- Specifying a Webpage Icon for Web Clip
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+		<link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="img/splash/touch-icon-ipad-retina.png">
+
+		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- Startup image for web apps -->
+		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+		<link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+		<link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+
+         
+	</head>
+	<body class="" data-ng-controller="SmartAppController">
+	   <script>!function(e,n,t,c,a){e[n]=e[n]||{},e[n][t]=e[n][t]||{q:[],track:function(e,n,t){this.q.push({r:e,e:n,t:t||+new Date})}};var r=c.createElement(a),o=c.getElementsByTagName(a)[0];r.async=1,r.src="//pages.uila.com/cdnr/89/acton/bn/tracker/15908",o.parentNode.insertBefore(r,o)}(window,"ActOn","Beacon",document,"script"),ActOn.Beacon.track();</script>		
+	    
+		<!-- POSSIBLE CLASSES: minified, fixed-ribbon, fixed-header, fixed-width, top-menu
+			 You can also add different skin classes such as "smart-skin-0", "smart-skin-1" etc...-->
+
+		<!-- HEADER -->
+		<!-- <header id="header" data-ng-include="getHtml('/includes/header.html')"></header> -->
+		<!-- END HEADER -->
+
+		<!-- Left panel : Navigation area -->
+		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+		<aside id="left-panel"><div data-ng-include="getHtml('/includes/left-panel.html')"></div></aside>
+		<!-- END NAVIGATION -->
+		<!-- MAIN PANEL -->
+		<div id="main" role="main" data-ng-controller="languageController">
+			
+            <div ng-style="ifShowHeader()" id="headerSlider" data-ng-include="getHtml('/includes/headerSlider.html')"></div>
+            
+			<!-- MAIN CONTENT -->
+			<div id="content" data-ng-view="" class="view-animate"></div>
+			<!-- END MAIN CONTENT -->
+
+		</div>
+		<!-- END MAIN PANEL -->
+
+		<!-- PAGE FOOTER -->
+		<div class="page-footer"><div data-ng-include="getHtml('/includes/footer.html')"></div></div>
+		<!-- END FOOTER -->
+		
+		
+		<div class="tooltip-templates" ng-controller="tooltipTemplatesController">
+			<div data-ng-include="getHtml('/includes/tooltipTemplates.html')"></div>
+		</div>
+
+		<!--================================================== -->
+
+		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
+		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
+
+		<!-- build:jslib js/jslib.js -->
+		<script src="js/libs/jquery-2.0.2.min.js"></script>
+        <script src="js/libs/jquery-ui-1.10.3.min.js"></script>
+		<script src="js/libs/bootstrap/bootstrap.min.js"></script>
+		            
+		<!-- endbuild -->     
+	
+		<!--[if IE 8]>
+			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+		<![endif]-->
+		
+		<!-- build:jsall js/jsall.js -->
+		
+		<!-- app -->
+		<script src="js/consoleCatcher.js"></script>
+		<script src="js/app.config.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/app.js"></script>
+		
+		<!-- widgets -->
+		<script src="js/widgets/circlePacking.js"></script>
+		<script src="js/widgets/lineChart-morris.js"></script>
+		<script src="js/widgets/searchBox.js"></script>
+		<script src="js/widgets/sunburst.js"></script>
+		<script src="js/widgets/tableView.js"></script>
+		<script src="js/widgets/tagsInput.js"></script>
+		<script src="js/widgets/ToolTips.js"></script>
+		
+		<!-- modules -->
+		<script src="js/modules/chordDiagram.js"></script>
+		<script src="js/modules/cpuMemTreeView.js"></script>
+		<script src="js/modules/dashboard-html5-video-player.js"></script>
+		<script src="js/modules/flowAnalysisTreeView.js"></script>
+		<script src="js/modules/force-layout.js"></script>
+		<script src="js/modules/netConversationChord.js"></script>
+		<script src="js/modules/netConversationTable.js"></script>
+		<script src="js/modules/parsetsDiagram.js"></script>
+		<script src="js/modules/sankeyDiagram.js"></script>
+		<script src="js/modules/topologyTreeView.js"></script>
+		<script src="js/modules/topology_new.js"></script>
+		
+		<!-- endbuild -->	
+
+	    <script type="text/javascript">var isIE;$(function(){isIE=!!navigator.userAgent.match(/Trident\/7\./),isIE&&laygoon.helpers.onElementReady("#ieWarningModal",function(){$("#ieWarningModal").modal("show")})});</script>
+	</body>
+</html>

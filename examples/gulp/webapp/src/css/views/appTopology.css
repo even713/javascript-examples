@@ -1,0 +1,147 @@
+/*
+ * Css in app Topology page.
+ */
+.app-topology .col-xs-1, .app-topology .col-sm-1, .app-topology .col-md-1, 
+.app-topology .col-lg-1, .app-topology .col-xs-2, .app-topology .col-sm-2, 
+.app-topology .col-md-2, .app-topology .col-lg-2, .app-topology .col-xs-3, 
+.app-topology .col-sm-3, .app-topology .col-md-3, .app-topology .col-lg-3, 
+.app-topology .col-xs-4, .app-topology .col-sm-4, .app-topology .col-md-4, 
+.app-topology .col-lg-4, .app-topology .col-xs-5, .app-topology .col-sm-5, 
+.app-topology .col-md-5, .app-topology .col-lg-5, .app-topology .col-xs-6, 
+.app-topology .col-sm-6, .app-topology .col-md-6, .app-topology .col-lg-6, 
+.app-topology .col-xs-7, .app-topology .col-sm-7, .app-topology .col-md-7, 
+.app-topology .col-lg-7, .app-topology .col-xs-8, .app-topology .col-sm-8, 
+.app-topology .col-md-8, .app-topology .col-lg-8, .app-topology .col-xs-9, 
+.app-topology .col-sm-9, .app-topology .col-md-9, .app-topology .col-lg-9,
+.app-topology .col-xs-10, .app-topology .col-sm-10, .app-topology .col-md-10, 
+.app-topology .col-lg-10, .app-topology .col-xs-11, .app-topology .col-sm-11, 
+.app-topology .col-md-11, .app-topology .col-lg-11, .app-topology .col-xs-12, 
+.app-topology .col-sm-12, .app-topology .col-md-12, .app-topology .col-lg-12 {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+#app-topology-page .tree-view .panel-body {
+	padding-right: 5px;
+	padding-left: 0;
+}
+#widget-id-topology>header{
+	background-color: #fafafa;
+}
+#app-topology-page .force-layout {
+	width: 100%;
+}
+
+/* #widget-id-topology{
+	background-color:white;
+} */
+.smart-style-5 #widget-id-topology>header{
+	background: rgba(0, 0, 0, .5);
+}
+
+
+#app-forceMap .widget-toolbar>i.disabled {
+	color: #CCC;
+}
+
+.app-topology .treeview-container,
+.app-topology #force-div {
+	min-height: 1050px;
+	overflow-x: auto;
+}
+
+#force-div .tree-view-search-box {
+	width: 500px;
+}
+#force-div .tree-view-search-box .dropdown-menu{
+	max-height: 300px;
+	overflow: auto;
+}
+.topology-tooltip th {
+	
+	text-align: center;
+	padding: 10px;
+	padding-bottom: 5px;
+} 
+	
+
+.topology-tooltip .table2 tbody{
+	
+	height: 150px;
+	overflow: auto;
+	
+}
+
+.topology-tooltip table {
+	width: 100%;
+	
+}
+
+.topology-tooltip thead tr {
+	
+       border-bottom: 5px solid blue;
+}
+
+.topology-tooltip table tbody {
+	padding-top: 10px; 
+}
+
+.topology-tooltip .grade-0 {
+	color: black;
+	background: #7BDC2A;
+	cursor: pointer;
+}
+.topology-tooltip .grade-1 {
+	color: black;
+	background: #FFD033;
+	cursor: pointer;
+}
+.topology-tooltip .grade-2 {
+	color: black;
+	background: #FF6321;
+	cursor: pointer;
+}
+.topology-tooltip .grade-3 {
+	color: white;
+	background: #DB1B1B;
+	cursor: pointer;
+}
+.topology-tooltip .link-title {
+	text-align:center; 
+	font-weight:bold; 
+	font-size:15px;
+}
+.topology-nodes-reflesh img {
+	width:22px;
+	height:22px;
+}
+
+.app-topology .color-wheel-full-screen-width{
+	width:52%
+}
+
+.app-topology .text-overflow{
+	 text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        width:100px;
+}
+
+.app-topology .show-stats {
+	height: 90px !important;
+    
+}
+
+#app-topology-page #arrow-end path{
+	fill:#000;
+}
+.smart-style-5 #app-topology-page #arrow-end path{
+	fill:#fff;
+}
+.app-topology .worst-by-group-full-screen-width {
+    width: 47.5%;
+}
+.app-topology .full-screen-dashboardfoot{
+	margin:0px;
+	width: 90%;
+}

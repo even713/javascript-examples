@@ -1,0 +1,24 @@
+#systemLog-widgets button{
+background: #57c8f1;
+color: #fff;
+border: none;
+width: 85px;
+height: 30px;
+border: 1px solid #bbb;
+}
+
+.main-content .force-layout{width:100%;}
+
+#systemLog-widgets table thead th{
+	font-size: 13px;
+	font-weight: bold;
+}
+#systemLog-widgets .dataTables_scrollBody{
+	/* max-height: 700px; */
+  overflow-y: auto;
+   overflow-x: hidden!important;
+}
+
+#systemLog-widgets .dataTables_wrapper .dt-toolbar{
+	display:none;
+}

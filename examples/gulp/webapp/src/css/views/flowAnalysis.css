@@ -1,0 +1,178 @@
+/*
+ * Css in flow analysis page.
+ */
+.flow-analysis .col-xs-1, .flow-analysis .col-sm-1, .flow-analysis .col-md-1, 
+.flow-analysis .col-lg-1, .flow-analysis .col-xs-2, .flow-analysis .col-sm-2, 
+.flow-analysis .col-md-2, .flow-analysis .col-lg-2, .flow-analysis .col-xs-3, 
+.flow-analysis .col-sm-3, .flow-analysis .col-md-3, .flow-analysis .col-lg-3, 
+.flow-analysis .col-xs-4, .flow-analysis .col-sm-4, .flow-analysis .col-md-4, 
+.flow-analysis .col-lg-4, .flow-analysis .col-xs-5, .flow-analysis .col-sm-5, 
+.flow-analysis .col-md-5, .flow-analysis .col-lg-5, .flow-analysis .col-xs-6, 
+.flow-analysis .col-sm-6, .flow-analysis .col-md-6, .flow-analysis .col-lg-6, 
+.flow-analysis .col-xs-7, .flow-analysis .col-sm-7, .flow-analysis .col-md-7, 
+.flow-analysis .col-lg-7, .flow-analysis .col-xs-8, .flow-analysis .col-sm-8, 
+.flow-analysis .col-md-8, .flow-analysis .col-lg-8, .flow-analysis .col-xs-9, 
+.flow-analysis .col-sm-9, .flow-analysis .col-md-9, .flow-analysis .col-lg-9,
+.flow-analysis .col-xs-10, .flow-analysis .col-sm-10, .flow-analysis .col-md-10, 
+.flow-analysis .col-lg-10, .flow-analysis .col-xs-11, .flow-analysis .col-sm-11, 
+.flow-analysis .col-md-11, .flow-analysis .col-lg-11, .flow-analysis .col-xs-12, 
+.flow-analysis .col-sm-12, .flow-analysis .col-md-12, .flow-analysis .col-lg-12 {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+#main-content .tree-view-search-box .input-group{
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+}
+
+#main-content .tree-view {
+	width: 620px;
+}
+#sankeyDiagram .alert.alert-warning {
+	height: 80px;
+	line-height: 80px;	
+}
+.sankey .search-box-widget {
+	position: absolute;
+	width: 600px;
+
+}
+#main-content .tree-view .panel-body {
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+#main-content .sankey {
+	width: 100%;
+}
+
+#widget-id-flow-analysis .search-box-widget .dropdown-menu{
+	max-height: 300px;
+	overflow: auto;	
+}
+
+.flow-analysis .jstree .nav.nav-tabs li{
+	width: 50%;
+}
+
+.flow-analysis .nav.nav-tabs a{
+	word-break:keep-all;
+	white-space:nowrap;
+}
+
+.flow-analysis .jstree .nav.nav-tabs a{
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+/* .flow-analysis .tree-view .panel-body, */
+.flow-analysis .sankey .panel {
+	min-height: 620px;
+}
+
+.flow-analysis .tree-view .panel,
+.flow-analysis .sankey .panel {
+	margin-bottom: 0;
+}
+
+/* Tree view css start */
+#physicalHosts {
+	display: none;
+}
+/* Tree view css end */
+
+/* Override popover css of bootstrap*/
+body .popover {
+	max-width: 1000px;
+	background-color: #F7F7F7;
+	opacity: 0.9 !important;
+	font-family: arial;	
+}
+.sankey-table-view .title {
+	text-align: center;
+	font-weight: bold;
+	color: #333;
+	border-bottom: 2px solid #ddd;
+	height: 30px;
+}
+.sankey-table-view .table {
+	max-height: 200px;
+	overflow: auto;
+}
+.sankey-table-view .table table {
+	width: 100%;
+}
+.sankey-table-view .table th {
+	color: #333;
+	border-bottom: 2px solid #ddd;
+	text-align: center; 
+	padding-left:4px;
+	padding-right:4px;
+}
+.sankey-table-view .table td {
+	border-bottom: 1px solid #ddd;
+	text-align: center; 
+}
+.sankey-table-view>a {
+	position: absolute;
+	font-weight: normal;
+	color: #428BCA;
+	left: 25px;
+}
+.sankey-table-view .grade-0 {
+	color: black;
+	background: #7BDC2A;
+}
+.sankey-table-view .grade-1 {
+	color: black;
+	background: #FFD033;
+}
+.sankey-table-view .grade-2 {
+	color: black;
+	background: #FF6321;
+}
+.sankey-table-view .grade-3 {
+	color: white;
+	background: #DB1B1B;
+}
+ .select-sankey-filter {
+	width: 150px;
+} 
+
+.select-sankey-filter ul li {
+	list-style-type: none;
+	line-height: 30px;
+}
+.select-sankey-filter .list li>div{
+	display: inline-block;
+}
+.select-sankey-filter .list li>label{
+   margin-left: 10px;
+   font-size: 15px;	
+}
+#widget-grid.flowAnalysis-main .widget-toolbar ul.dropdown-menu{
+	overflow: visible; /* overwrite it to make widget color works */
+}
+
+.flow-analysis .color-wheel-full-screen-width{
+	width:52%
+}
+
+.flow-analysis .text-overflow{
+	 text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        width:100px;
+}
+
+.flow-analysis .show-stats {
+	height: 90px !important;
+    
+}
+.flow-analysis .worst-by-group-full-screen-width {
+    width: 47.5%;
+}
+.flow-analysis .full-screen-dashboardfoot{
+	margin:0px;
+	width: 90%;
+}

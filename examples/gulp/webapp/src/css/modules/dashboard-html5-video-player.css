@@ -1,0 +1,113 @@
+ *{
+    padding: 0px;
+    margin: 0px;
+}
+ 
+:-webkit-full-screen {
+ 
+}
+ 
+:-moz-full-screen {
+ 
+}
+ 
+:-ms-fullscreen {
+   
+}
+ 
+:-o-fullscreen {
+   
+}
+ 
+:full-screen { 
+  
+}
+ 
+:fullscreen {
+  
+}
+ 
+:-webkit-full-screen video {
+  width: 100%;
+  height: 100%;
+}
+:-moz-full-screen video{
+    width: 100%;
+    height: 100%;
+}
+
+
+-------------------------------Click Full-Screen Button-------------------------------------
+.normal-screen-video-style {
+	padding-left: 13px;
+	padding-right: 13px;
+	height: 300px;
+}
+
+#videoList img {
+	width: 100%;
+}
+#videoList ul li>div {
+	margin-top: 10px!important;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+#videoList ul li {
+	padding-bottom: 7px!important;
+	border-bottom: 1px solid gray;
+}
+
+#videoList ul li img {
+   cursor: pointer;
+}
+
+#videoList {
+	border: 1px solid blue;
+	overflow: hidden;
+	/* height: 900px; */
+	padding-left: 0!important;
+	padding-right: 0!important;
+}
+.dashboard-video-container-style {
+	/* width: 90%; */
+	margin-left: auto;
+	margin-right: auto;
+}
+.vjs-default-skin.vjs-has-started .vjs-control-bar {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background-color: rgba(7, 20, 30, 1) !important;
+}
+.vjs-fullscreen.vjs-user-inactive {
+	 cursor: none;
+	 
+}
+
+#videobox.fullScreenVideoHeight {
+	height: 500px;
+}
+
+#videobox.normalVideoHeight {
+	height: 300px;
+}
+
+#video-container .video-herf {
+	/* font-size: xx-small !important; */
+	font-size: 13px;
+	text-overflow: ellipsis; /*showing the ellipsis if the div size is short*/
+	white-space:nowrap; 
+	overflow:hidden;
+}	
+
+/* .vjs-fullscreen.vjs-user-inactive .vjs-control-bar {
+  visibility: hidden;
+  opacity: 0;
+   
+   -webkit-transition-delay: 2s;
+     -moz-transition-delay: 2s;
+      -ms-transition-delay: 2s;
+       -o-transition-delay: 2s;
+          transition-delay: 2s;
+}
+ */

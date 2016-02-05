@@ -1,0 +1,107 @@
+/*backgroundColor : green*/
+.criticle-tab-bar-chart {
+	margin-right: 7px!important;
+	margin-left: 0!important;
+}
+
+.criticle-tab-bar-chart .green {
+   	background-color: #A9D96C;
+	color: #000;
+}
+
+.criticle-tab-bar-chart .chart-footer.green, .criticle-tab-bar-chart .chartTitle.green{
+	  background-color: #99C262;
+}
+
+/*backgroundColor : yellow*/
+.criticle-tab-bar-chart .yellow {
+   	background-color: #FCEB00;
+	color: #000;
+}
+
+.criticle-tab-bar-chart .chart-footer.yellow, .criticle-tab-bar-chart .chartTitle.yellow{
+	 background-color: #FEB800;
+}
+
+/*backgroundColor : orange*/
+.criticle-tab-bar-chart .orange {
+   	background-color: #EE8802;
+	color: #000;
+}
+
+.criticle-tab-bar-chart .chart-footer.orange, .criticle-tab-bar-chart .chartTitle.orange{
+	 background-color: #FF6600;
+}
+
+/*backgroundColor : orange*/
+.criticle-tab-bar-chart .red {
+   	background-color: #FF6C60;
+	color: #fff;
+}
+
+.criticle-tab-bar-chart .chart-footer.red, .criticle-tab-bar-chart .chartTitle.red{
+	 background-color: #E56153;
+}
+
+/*backgroundColor : blue*/
+.criticle-tab-bar-chart .blue {
+   	background-color: #65A6FF;
+}
+
+.criticle-tab-bar-chart .chart-footer.blue, .criticle-tab-bar-chart .chartTitle.blue{
+	 background-color: #5A95E5;
+}
+
+.criticle-tab-bar-chart .container-row{
+	margin-bottom: 5px;
+}
+.criticle-tab-bar-chart .chart-title-div {
+	padding-right: 0!important;
+}
+
+.criticle-tab-bar-chart .bar-column{
+	padding-right: 0!important;
+	border-right: 2px solid;
+}
+.criticle-tab-bar-chart .chartTitle {
+	line-height: 1.8em;
+	height: 2em;
+}
+.criticle-tab-bar-chart .chart-footer {
+	line-height: 1.5em;
+	height: 3em;
+}
+.criticle-tab-bar-chart .table-title {
+	height: 7.03em;
+	line-height: 3.3333333em;
+	border-bottom: 1px solid gray;
+}
+
+.criticle-tab-bar-chart .bar-chart-panel{
+	padding-left: 0!important;
+}
+.smart-style-5 .alarm-threshold-config.modal-body input{
+	color: #000;
+}
+.alarm-threshold-config.modal-body input{
+	width: 70px;
+}
+.alarm-threshold-config.modal-body li {
+	height: 30px;
+}
+.alarm-threshold-config.modal-body .error-msg{
+	color: red;
+}
+tr.child .tab-content table thead th:first-child:before {
+	content: ''!important;
+	background: none!important;
+	border: none!important;
+	box-shadow: none!important;
+}
+.criticle-tab-bar-chart  .table-div{
+	background-color: lightgray;
+}
+
+.criticle-tab-bar-chart table td {
+	line-height: 2em;
+}

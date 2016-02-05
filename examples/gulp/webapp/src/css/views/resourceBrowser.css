@@ -1,0 +1,194 @@
+#resourceBrowser .nodeContainer{
+  border: 1px solid #ccc;
+  padding: 0px;
+  margin-left: 13px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+}
+
+#resourceBrowser .res-browser-container {
+	border-radius: 6px;
+	
+}
+
+#resourceBrowser .char-headr-style {
+	padding-left: 10px;
+}
+
+
+#resourceBrowser .res-browser-row {
+	margin-top: -7px;
+	margin-bottom: 10px;
+}
+
+#resourceBrowser .chart-body {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+#resourceBrowser .chart-footer {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#resourceBrowser .bar-title {
+	
+	height:1.5em;
+	padding-top: 0.5em;
+	margin-left: 13px;
+	font-weight: bold;
+}
+#resourceBrowser .checkBoxPad:HOVER {
+     background-color: #00BFFF;
+}
+#resourceBrowser .checkBoxPad label:HOVER {
+	color: white;
+	font-weight: bold;
+}
+
+/*backgroundColor : green*/
+#resourceBrowser .res-browser-container.green {
+   	background-color: #A9D96C;
+	color: #000;
+}
+
+#resourceBrowser .res-browser-container.green .chart-footer {
+	  background-color: #99C262;
+}
+
+/*backgroundColor : yellow*/
+#resourceBrowser .res-browser-container.yellow {
+   	background-color: #FCEB00;
+	color: #000;
+}
+
+#resourceBrowser .res-browser-container.yellow .chart-footer {
+	 background-color: #FEB800;
+}
+
+/*backgroundColor : orange*/
+#resourceBrowser .res-browser-container.orange {
+   	background-color: #EE8802;
+	color: #000;
+}
+
+#resourceBrowser .res-browser-container.orange .chart-footer {
+	 background-color: #FF6600;
+}
+
+/*backgroundColor : orange*/
+#resourceBrowser .res-browser-container.red {
+   	background-color: #FF6C60;
+	color: #fff;
+}
+
+#resourceBrowser .res-browser-container.red .chart-footer {
+	 background-color: #E56153;
+}
+
+/*backgroundColor : blue*/
+#resourceBrowser .res-browser-container.blue {
+   	background-color: #65A6FF;
+}
+
+#resourceBrowser .res-browser-container.blue .chart-footer {
+	 background-color: #5A95E5;
+}
+/*---blue load---*/
+#resourceBrowser .res-browser-container.blue-load {
+   	background-color: #65A6FF;
+}
+
+#resourceBrowser .res-browser-container.blue-load .chart-footer {
+	 background-color: #5A95E5;
+}
+
+
+
+#resourceBrowser .res-browser-container .chart-footer .art>p {
+    margin-bottom: 3px;
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+#resourceBrowser .res-browser-container .chart-footer .num-trans>p {
+    margin-bottom: 3px;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+#resourceBrowser .res-browser-row .col-md-6,  #resourceBrowser .res-browser-row .col-lg-6 {
+	  padding-left: 4px;
+	  padding-right: 4px;
+}
+
+#resourceBrowser>.jarviswidget {
+	margin-bottom: 0px!important;
+}
+
+#resourceBrowser .widget-body {
+	padding-bottom: 0px!important;
+}
+#resourceBrowser .resouce-browser-bar-container {
+	padding-left: 0!important;
+	border: 1px solid #ddd;
+}
+#resourceBrowser .tab-pane {
+	margin-left: 0!important;
+}
+#resourceBrowser .jarviswidget {
+	margin-bottom: 0!important;
+}
+#resourceBrowser .art-bar-chart-x-style {
+	height: 50%;
+}
+
+#resourceBrowser .art-bar-chart-y-style {
+	height: 100%;
+}
+#resourceBrowser .nav-tabs>.active>a{
+	font: bold;
+	color: #333;
+} 
+
+#resourceBrowser .tab-pane.active {
+	padding: 10px;
+}
+
+#resourceBrowser .title-style {
+	font-size: 19px;
+	font-weight: bold;
+	line-height: normal;
+}
+#resourceBrowser .select2-choice.ui-select-match {
+	line-height: 1.42857143;
+}
+
+#resourceBrowser .res-bar-chart-container {
+	height: 7.5em;
+}
+#resourceBrowser .res-bar-no-data {
+	margin-left: 13px;
+}
+#resourceBrowser .res-browser-bar-chart_num_trans {
+	height: 50%;
+}
+
+#resourceBrowser .vm-default-btn{
+	margin: 0;
+	padding: 6px 12px!important;
+}
+
+
+.dropdown.dropdown-scroll .dropdown-menu {
+    max-height: 300px;
+    overflow: auto;
+}
+.search-control {
+    padding: 5px 10px;
+}
+
+#resourceBrowser header{
+	line-height: 34px;
+}
+

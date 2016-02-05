@@ -1,0 +1,47 @@
+#force-div {
+	overflow: hidden;
+}
+
+#force-divsvg {
+	border: 1px solid #ccc;
+}
+
+#force-div body {
+	font: 10px sans-serif;
+}
+
+#force-div circle {
+	cursor: pointer;
+	stroke: #fff;
+	stroke-width: 1.5px;
+}
+
+#force-div text {
+	cursor: pointer;
+}
+
+#force-div path.hull {
+	fill: lightsteelblue;
+	fill-opacity: 0.2;
+}
+
+#force-div path.link {
+	fill: none;
+	stroke: rgb(187, 187, 187);
+	pointer-events: none;
+	stroke-width: 1px;
+}
+
+#force-div line.link , #force-div line{
+  stroke: rgb(187, 187, 187);
+  stroke-width: 1.5px;
+  cursor: pointer;
+}
+
+#force-div .hull, .mouse-click-form-action-style a {
+	cursor: pointer;
+}
+
+.popover{
+	max-width: inherit;	
+}

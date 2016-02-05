@@ -1,0 +1,106 @@
+@CHARSET "UTF-8";
+
+#tor-snmp-config-widgets button {
+  background: #57c8f1;
+  color: #fff;
+  border: none;
+  width: 85px;
+  height: 30px;
+  border: 1px solid #bbb;
+  }
+ #tor-snmp-config-widgets a{
+    cursor: pointer;
+  }
+  
+ #monitoring-widget .monitor-text{
+  margin-left: 10px;
+ } 
+ #tor-snmp-config-widgets table thead th{
+	font-size: 13px;
+	font-weight: bold;
+}
+  
+ #tor-snmp-config-widgets table{
+	border-collapse: separate;
+}
+#torConfigModal #torConfigFade ,
+#editTorConfigModal #torConfigFade{
+	cursor: pointer; 
+	margin-top: 8px; 
+	margin-right: 5px;
+	color:white;
+}
+  
+#torConfigModal .modal-header ,
+#editTorConfigModal .modal-header{
+	background-color: #4C4F53;
+	cursor: move;
+  padding: 0px;
+    border-bottom: 1px solid #4C4F53;
+}
+#torConfigModal #myModalLabel,
+#editTorConfigModal #myModalLabel{
+color: white;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+#torConfigModal #editTorContanier div.rowHeight,
+#editTorConfigModal #editTorContanier div.rowHeight{
+	margin-bottom:20px;
+}
+#torConfigModal #editTorContanier div.minRowHeight,
+#editTorConfigModal #editTorContanier div.minRowHeight{
+	margin-bottom:10px;
+}
+ #torConfigModal .torConfigContent{
+  border: 0px
+ }
+#torConfigForm.smart-form .row {
+	margin:0px;
+}
+
+/* .smart-form *, .smart-form :after, .smart-form :before {
+   box-sizing: content-box!important; 
+} 
+*/
+
+#torConfigForm .tor-btn-group button{
+   margin: 0;
+   padding: 6px 12px;; 
+   box-sizing: border-box; 
+   /* width:70px; */
+}
+
+#torConfigForm .input-group button{
+   margin: 0;
+   padding: 6px 12px;; 
+   box-sizing: border-box; 
+   width:40px;
+}
+
+#torConfigForm input[type='radio']{
+   margin-left: 10px;
+  
+}
+
+#torConfigForm input{
+   box-sizing: border-box; 
+}
+#torConfigForm .passText{
+	margin-right:10px
+}
+
+#torConfigForm hr{
+	margin-bottom:20px
+}
+
+#torConfigForm .validation-error{
+  margin-top: 30px;
+  display: block;
+   font-style: normal;
+  font-size: 15px;
+  line-height: 15px;
+  color: #D56161;
+  padding-left: 10px;
+}
+

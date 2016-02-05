@@ -1,0 +1,42 @@
+.captureBtn{
+	background: #84C1FF;
+	padding: 0.3em 0.5em;
+	border-radius: 0.4em;
+	font-weight: bold;
+	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+}
+.greIp{
+	margin-bottom: 1em;
+}
+.smart-style-5 #captureWidget input{
+	background: rgba(255, 255, 255, .2);
+}
+
+#captureWidget>header{
+	line-height: 40px;
+}
+
+.captureTable thead {
+	width: 100%;
+}
+.captureTable tbody {
+	height: 600px;
+	overflow-y: auto;
+	width: 100%;
+}
+.captureTable thead, .captureTable tbody, .captureTable tr, .captureTable td, .captureTable th {
+	display: block;
+}
+.captureTable tbody td, .captureTable thead > tr> th {
+	float: left;
+	border-bottom-width: 0;
+}
+.captureTable .table-cell{
+	display: table-cell;
+	height: 32px;
+	vertical-align: middle;
+}
+.captureTable .row{
+	margin-right: 0;
+	margin-left: 0;
+}

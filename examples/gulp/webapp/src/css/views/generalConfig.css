@@ -1,0 +1,36 @@
+#language-settings #switchlanguage {
+	float: left;
+	margin-left: 20px;
+}
+#language-settings .emailConfiguration-form .emailRA{
+	color: blue;
+}
+#language-settings .emailConfiguration-form .emailEI{
+	font-weight: bold;
+}
+#language-settings .emailConfiguration-form label{
+	font-size: 13px;
+	color:rgb(51, 51, 51);
+}
+#generalConfigWebId .emailLabel{
+	margin: 0.5em 1em;
+	font-size: 13px;
+	line-height: 24px;
+}
+#generalConfigWebId .snmpLabel{
+	margin: 0.5em 1em;
+	font-size: 13px;
+	line-height: 24px;
+}
+#language-settings .emailConfiguration-form .baselineButton{
+	 padding-left: 1em;
+	 color: black;
+}
+.licensecheckbox{
+	 margin-top: 0.2em;
+	 margin-left: 2em;
+}
+
+.ui-select-container .btn {
+	padding: 6px 12px !important;
+}

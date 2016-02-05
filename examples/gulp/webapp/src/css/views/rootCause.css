@@ -1,0 +1,1821 @@
+#barChartClickPoppver .barChart-title{
+	cursor: move;
+	font-weight: bold;
+}
+#barChartClickPoppver .titleSpan{
+	font-weight: bold;
+	
+}
+.jarviswidget>header .headerTitle{
+	margin-left: 10px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 34px;
+	float: left;
+	
+}
+.pagination a.loading:hover{
+	cursor: wait;
+}
+#barChartClickPoppver .detailLeft {
+	text-align: center;
+}
+
+.cpu-detail-performance{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+.daterangepicker tbody td.week, .daterangepicker tbody td.off, .daterangepicker tbody td.active{
+	cursor: default;
+}
+/* .daterangepicker thead tr:gt(0):eq(1) td{ */
+/* 	cursor: default !important; */
+/* } */
+.daterangepicker tbody td.available{
+	cursor: pointer !important;
+}
+.emailAction-form label{
+	font-size: 13px;
+	color:rgb(51, 51, 51);
+}
+.emailAction-form .emailLabel{
+	margin: 0.5em 1em;
+	font-size: 13px;
+	line-height: 24px;
+}
+.baselineconfig-form .baselineButton{
+	 padding-left: 1em;
+}
+.emailAction-form .baselineButton{
+
+#main-content .emailAction-form .baselineButton{
+	 padding-left: 1em;
+}
+.baselineconfig-form .selectbox{
+	width: 13em;
+	cursor: pointer;
+	color: black;
+}
+.baselineconfig-form .timeSpan{
+	 font-size: 13px;
+	 font-weight: bold;
+}
+
+.memory-detail-performance{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+.storage-detail-performance{
+	width: 100%;
+	height: 100%;
+	border: none;
+} 
+.network-detail-performance{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+.baselineconfig-form  .radio{
+	cursor: default;
+	font-size: 13px;
+}
+
+#baselineConfig  strong.titleFont{
+	display: block;
+  font-size: 19px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+ .baselineconfig-form  .radio i{
+	cursor: pointer;
+}
+}
+.cpu-detail-performance .detailBody{
+	max-height: 200px;
+	min-width: 600px;
+}
+.memory-detail-performance .detailBody{
+	max-height: 200px;
+	min-width: 600px;
+}
+.storage-detail-performance .detailBody{
+	max-height: 200px;
+	min-width: 600px;
+}
+.network-detail-performance .detailBody{
+	max-height: 200px;
+	min-width: 600px;
+}
+.app-response-time-chart-tooltip td .cpu-health{
+/*    white-space:  nowrap; */
+   width: 25%;
+}
+#rootCauseModal .modal-content .app-response-time{
+	height: 257px;
+}
+.detail-stacked-bar-chart>canvas.base{
+	position: absolute;
+	left: 0;
+}
+/* theme part div  */
+/* .themeChart { */
+/* 	background: #65A6FF; */
+/* 	display: block; */
+/* 	border-radius: 6px; */
+/* 	height: 234px; */
+/* 	text-align: center; */
+/* 	font-size: 24px; */
+	
+/* } */
+
+.summarythemeDiv{
+ 	margin-top: 110px;
+}
+.summarythemeSpan{
+	display:block;
+	padding-top: 10px;
+    letter-spacing: 4px;
+	transform: rotate(-90deg); 
+	-webkit-transform: rotate(-90deg);  
+ 	-moz-transform: rotate(-90deg); 
+ 	-ms-transform:rotate(-90deg);
+ 	font-size: 24px;
+ 	
+}
+.vmThemeDiv{
+	margin-top: 40px;
+}
+.hostThemeDiv{
+	margin-top: 50px;
+}
+.clusterThemeDiv{
+	margin-top: 110px;
+}
+.datastoreThemeDiv{
+	margin-top: 140px;
+}
+
+.switchThemeDiv{
+	margin-top: 120px;
+}
+.themeSpan{
+	display:block;
+	padding-bottom: 10px;
+    letter-spacing: 4px;
+	transform: rotate(-90deg); 
+	-webkit-transform: rotate(-90deg);  
+ 	-moz-transform: rotate(-90deg); 
+ 	-ms-transform:rotate(-90deg);
+ 	font-size: 24px;
+}
+.hostChartNet{
+	
+	/* background: #65A6FF; */
+	display: block;
+	/* border-radius: 6px; */
+	height: 412px;
+	/* text-align: center; */
+	/* vertical-align: middle; */
+	/* margin-top: 5px; */
+	/* font-size: 22px; */
+	line-height: 0px;
+	font-weight: bold;
+	padding-top: 7em;
+	padding-left: 1em;
+}
+#netRow{
+	margin-top: 0px;
+}
+.vmChartNet{
+	/* background: #65A6FF; */
+	display: block;
+	/* border-radius: 6px; */
+	height: 412px;
+	/* text-align: center; */
+	/* vertical-align: middle; */
+	/* margin-top: 5px; */
+	/* font-size: 24px; */
+	line-height: 0px;
+	font-weight: bold;
+	padding-top: 8em;
+	padding-left: 1em;
+}
+.hostChartMem{
+	line-height: 0px;
+	padding-top: 2.5em;
+	font-weight: bold;
+	padding-left: 1em;
+	/* height: 238px; */
+}
+
+.vmChartMem {
+	line-height: 0px;
+	font-weight: bold;
+	padding-top: 3.5em;
+	padding-left: 1em;
+	/* height: 238px; */
+}
+
+.clusterChartMem {
+	line-height: 0px;
+	padding-top: 1.5em;
+	font-weight: bold;
+	padding-left: 1em;
+	/* height: 238px; */
+}
+
+.vmChart{
+	line-height: 0px;
+	font-weight: bold;
+	padding-top: 3.5em;
+	padding-left: 1em;
+	/* height: 238px; */
+}
+.hostChart{
+	line-height: 0px;
+	padding-top: 2.5em;
+	font-weight: bold;
+	padding-left: 1em;
+	/* //height: 238px; */
+}
+
+.datastoreChart{
+	line-height: 0px;
+	padding-top: 0.3em;
+	font-weight: bold;
+	padding-left: 1em;
+	/* height: 228px; */
+}
+
+.torChart{
+  line-height: 0px;
+	font-weight: bold;
+	padding-top: 1.5em;
+	padding-left: 1em;
+	/* height: 238px;	 */
+}
+.summaryChart{
+/* 	line-height: 0px; */
+	font-weight: bold;
+	padding-top: 1.2em;
+/* 	padding-left: 1em; */
+	height: 249px;
+}
+.networkChart{
+	line-height: 0px;
+	font-weight: bold;
+	padding-top: 0.5em;
+	padding-left: 1em;
+	/* height: 213px; */
+}
+.networkChart_VM{
+	line-height: 0px;
+	font-weight: bold;
+	padding-left: 1em;
+	/* height: 213px; */
+}
+.clusterChart{
+	line-height: 0px;
+	padding-top: 1.5em;
+	font-weight: bold;
+	padding-left: 1em;
+	/* //height: 238px; */
+}
+/* end theme part div */
+
+.line-hover {
+	stroke: red;
+	stroke-width: 2;
+	fill-opacity: 0.2;
+	stroke-opacity: 0.2;
+}
+
+.line-hover.show {
+	display: block;
+}
+
+.line-hover.hide {
+	display: none;
+}
+
+#rootCauseModal .modal-dialog {
+	height: 93%;
+	width: 95%;
+	margin-top: 17px;
+}
+
+#rootCauseModal .root-cause-modal-helper {
+	margin-right: 10px;
+	
+	line-height: 32px;
+	cursor: pointer;
+}
+
+.root-cause-modal-back-button, .root-cause-modal-forward-button {
+	color: #FFF;
+	margin-right: 18px;
+	height: 32px;
+	line-height: 32px;
+	cursor: pointer;
+}
+
+.pull-right.root-cause-modal-forward-button {
+	margin-right: 10px;
+}
+
+.root-cause-modal-back-button:hover, .root-cause-modal-forward-button:hover
+	{
+	color: #fff;
+}
+
+#rootCauseModal .modal-content {
+	width: 100%;
+	height: 100%;
+}
+
+#rootCauseModal .compute .widget-body>div.row, .root-cause.row {
+	margin-top: -7px;
+}
+
+#root-cause-dependent-service .widget-body {
+	margin-top: -1px;
+	padding-bottom: 3px;
+}
+
+/*bar-chart-contanier*/
+.root-cause .bar-chart-container .chart-title .bar-title{
+	font-weight:bold;
+	height:30px;
+	margin-bottom:0px;
+}
+ 
+ .root-cause .bar-chart-container{
+   height: 15em;
+ }
+/* summary-bar-chart-container css */
+#root-cause-dependent-service .widget-body summary-bar-chart-container {
+	display: block;
+	margin-top: -2px;
+}
+
+.root-cause .summary-bar-chart-container .pie-chart-right{
+	padding-left: 10%;
+}
+.root-cause dependent-bar-chart-container .dependentNetworkStrong strong:hover,
+ .root-cause dependent-bar-chart-container .app-text-align strong:hover,
+.root-cause .summary-bar-chart-container .chart-footer .KeyUnderLine:hover{
+	 text-decoration: underline;
+	 
+}
+.root-cause .dependent-bar-chart-container .mouseHover,
+.root-cause .summary-bar-chart-container.mouseHover{
+	cursor: pointer;
+}
+.root-cause .dependent-bar-chart-container .mouseHover:hover,
+.root-cause .summary-bar-chart-container.mouseHover:hover{
+	filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    opacity:0.8;
+}
+.root-cause .summary-bar-chart-container .chart-title .summaryScore{
+/* 	height: 135px; */
+	padding-left: 5px;
+	height:100%;
+	
+}
+.root-cause .summary-bar-chart-container .chart-title .summaryScore:hover{
+	
+}
+.root-cause .summary-bar-chart-container .chart-body .summaryHealthScore span{
+    font-size: 400;
+}
+.root-cause .summary-bar-chart-container .chart-title .summaryBarChartRight{
+	height: 135px;
+}
+.root-cause .summary-bar-chart-container .chart-title .summaryArt{
+	height: 100px;
+/* 	width: 100px; */
+}
+.root-cause .summary-bar-chart-container .summaryTip{
+	padding-left: 10px;
+}
+.root-cause .summary-bar-chart-container .chart-title .summaryTip p{
+/*     font-size: 16px; */
+    font-size: 1em;
+    line-height: 18px;
+}
+.root-cause .summary-bar-chart-container .chart-title .scoreTitle{
+	padding-top: 10px;
+}
+.root-cause .summary-bar-chart-container .chart-title .scoreTitle p{
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: 25px;
+}
+.root-cause .summary-bar-chart-container .chart-title .summaryScore .summaryScoreLeft span {
+/* 	font-size: 54px; */
+	font-size: 4em;
+	font-weight: 700;
+	
+}
+.root-cause .summary-bar-chart-container {
+	/* width: 100%;
+	height: 100%; */
+	border-radius: 6px;
+}
+.root-cause .summary-bar-chart-container.red {
+	background-color: #FF6C60;
+	color: #fff;
+}
+.root-cause .summary-bar-chart-container.red .chart-footer {
+	background-color: #E56153;
+/* 	border-radius: 4px; */
+/* 	height: 50px; */
+}
+.root-cause .dependent-bar-chart-container .chart-footer .underLineHover:hover,
+.root-cause .summary-bar-chart-container .chart-footer .underLineHover:hover {
+	text-decoration:underline;
+}
+.root-cause .summary-bar-chart-container.green {
+	background-color: #A9D96C;
+	color: #000;
+}
+.root-cause .summary-bar-chart-container.green .chart-footer {
+	background-color: #99C262;
+/* 	border-radius: 4px; */
+/* 	height: 27%; */
+}
+.root-cause .summary-bar-chart-container.yellow {
+	background-color: #FCEB00;
+	color: #000;
+}
+.root-cause .summary-bar-chart-container.yellow .chart-footer {
+	background-color: #FEB800;
+/* 	border-radius: 4px; */
+/* 	height: 50px; */
+}
+.root-cause .summary-bar-chart-container.orange {
+	background-color: #EE8802;
+	color: #000;
+}
+.root-cause .summary-bar-chart-container.orange .chart-footer {
+	background-color: #FF6600;
+/* 	border-radius: 4px; */
+/* 	height: 50px; */
+}
+.root-cause .summary-bar-chart-container .chart-footer{
+/* 	padding: 2px; */
+	border-radius: 4px;
+	/* height: 35%; */
+	 height: 2.5em;
+	padding-bottom: 1%;
+}
+
+
+
+
+.root-cause .summary-bar-chart-container.blue {
+	background-color: #65A6FF;
+}
+
+.root-cause .summary-bar-chart-container.blue .chart-footer {
+	background-color: #5A95E5;
+/* 	border-radius: 4px; */
+/* 	height: 50px; */
+}
+.root-cause .summary-bar-chart-container .chart-title {
+/* 	padding: 5px; */
+}
+.root-cause .summary-bar-chart-container .body-title {
+/* 	padding: 10px; */
+	font-size: 1.5em;
+	padding-left: 15px;
+}
+.root-cause .summary-bar-chart-container .chart-body .summaryScoreLeft{
+	/* height:0px; */
+/* 	margin-right: 10px; */
+}
+.root-cause .summary-bar-chart-container .chart-body {
+/* 	padding: 5px; */
+/* 	height: 65%; */
+    height: 17.5em;
+}
+
+
+.root-cause .summary-bar-chart-container .chart-footer>.time-and-value div {
+	float: left;
+}
+.root-cause .summary-bar-chart-container .chart-footer p {
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-top: 3px;
+}
+
+/* end summary-bar-chart-container css */
+
+/* start summary-container*/
+.root-cause .summary-container.white{
+	background-color: white;
+}
+
+.root-cause .summary-bar-chart-container.container-border{
+	border-style: solid!important;
+border-left: 5px;
+border-color: #65A6FF;
+border-left-width: 5px;
+border-right-width: 5px;
+border-top-width: thin;
+border-bottom-width: 0px;
+}
+
+/* end summary-container*/
+
+/*dependent-bar-chart-container css */
+
+#root-cause-dependent-service .widget-body dependent-bar-chart-container {
+	display: block;
+	margin-top: -2px;
+}
+.root-cause .dependent-bar-chart-container .chart-title .denpendentBody p{
+	/*font-weight: bold;*/
+	margin-left: 5%;
+	margin-bottom:0px;
+	font-size: 1.1em;
+	bottom: 0px;
+position: absolute;
+	/*line-height: 25px;*/
+}
+.root-cause .dependent-bar-chart-container .chart-title .denpendentBody{
+	height: 100%!important;
+}
+.root-cause .dependent-bar-chart-container .chart-title .denpendentBody .dependentBodyRight{
+	height: 100%;
+}
+.root-cause .dependent-bar-chart-container .chart-title .dependentAppRow{
+	height: 35%;
+	margin-top: 2%;
+}
+.root-cause .dependent-bar-chart-container .chart-title .dependentNetworkRow{
+	height: 35%;
+}
+.root-cause .dependent-bar-chart-container .chart-title .dependentScore{
+/* 	height: 135px; */
+	padding-left: 5px;
+}
+.root-cause .dependent-bar-chart-container .chart-title .dependentBarChartRight{
+	height: 135px;
+}
+.root-cause .dependent-bar-chart-container .chart-title .dependentArt{
+	height: 100px;
+/* 	width: 100px; */
+}
+.root-cause .dependent-bar-chart-container .dependentTip{
+	padding-left: 10px;
+}
+.root-cause .dependent-bar-chart-container .chart-title .dependentTip p{
+/*     font-size: 16px; */
+    font-size: 1.5em;
+    line-height: 20px;
+}
+.root-cause .dependent-bar-chart-container .chart-title .scoreTitle{
+	padding-top: 10px;
+}
+.root-cause .dependent-bar-chart-container .chart-title .scoreTitle p{
+	font-weight: bold;
+/* 	font-size: 22px; */
+	font-size: 2em;
+	line-height: 25px;
+}
+.root-cause .dependent-bar-chart-container .chart-title .denpendentBody .dependentProb span {
+/* 	font-size: 54px; */
+	font-size: 18px;
+	font-weight: 700;
+	
+}
+.root-cause .dependent-bar-chart-container .chart-title .denpendentBody .dependentBodyRight {
+	padding-top: 1.5%;
+	
+} 
+.root-cause .dependent-bar-chart-container .chart-title .denpendentBody .dependentContent {
+	padding-top: 1.5%;
+	border-right-color: white;
+border-right-style: solid;
+border-right-width: 5px;
+height:100%;
+}
+
+
+.root-cause .dependent-bar-chart-container .chart-title .denpendentBody .dependentProb {
+	padding-top: 17%;
+	border-right-color: white;
+border-right-style: solid;
+border-right-width: 5px;
+height:100%;
+}
+.root-cause .dependent-bar-chart-container .title-percent{
+	font-size:40px!important;
+}
+.root-cause .dependent-bar-chart-container .percent-text-align{
+	/*padding-left: 10%;*/
+	text-align: right;
+}
+.root-cause .dependent-bar-chart-container .title-text-align{
+	/*padding-left: 10%;*/
+	text-align: left;
+}
+
+.root-cause .dependent-bar-chart-container .app-text-align{
+	padding-left: 4%;
+}
+
+.root-cause .dependent-bar-chart-container .network-text-align{
+	position:absolute;
+	bottom:0px;
+}
+.root-cause .dependent-bar-chart-container {
+	/* width: 100%;
+	height: 100%; */
+	border-radius: 6px;
+}
+.root-cause .dependent-bar-chart-container .chart-footer{
+	height: 25%;
+	margin-top:0px!important;
+}
+.root-cause .dependent-bar-chart-container.red {
+	background-color: #FF6C60;
+	color: #fff;
+}
+.root-cause .dependent-bar-chart-container.red .chart-footer {
+	background-color: #E56153;
+/* 	border-radius: 4px; */
+/* 	height: 50px; */
+}
+.root-cause .dependent-bar-chart-container.green {
+	background-color: #A9D96C;
+	color: #000;
+}
+.root-cause .dependent-bar-chart-container.green .chart-footer {
+	background-color: #99C262;
+/* 	border-radius: 4px; */
+/* 	height: 27%; */
+}
+.root-cause .dependent-bar-chart-container.yellow {
+	background-color: #FCEB00;
+	color: #000;
+}
+.root-cause .dependent-bar-chart-container.yellow .chart-footer {
+	background-color: #FEB800;
+/* 	border-radius: 4px; */
+/* 	height: 50px; */
+}
+.root-cause .dependent-bar-chart-container.orange {
+	background-color: #EE8802;
+	color: #000;
+}
+.root-cause .dependent-bar-chart-container.orange .chart-footer {
+	background-color: #FF6600;
+/* 	border-radius: 4px; */
+/* 	height: 50px; */
+}
+.root-cause .dependent-bar-chart-container .chart-footer{
+/* 	padding: 2px; */
+	border-radius: 4px;
+	height: 3.5em;
+	padding-top:1%;
+	padding-bottom: 1%;
+}
+.root-cause .panelBody .content-row {
+	margin-bottom: -5px;
+}
+
+.root-cause .dependent-bar-chart-container.blue {
+	background-color: #65A6FF;
+}
+.root-cause .dependent-bar-chart-container.blue .chart-footer {
+	background-color: #5A95E5;
+/* 	border-radius: 4px; */
+/* 	height: 50px; */
+}
+
+.root-cause .dependentbar-chart-container .chart-body strong {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    line-height: 100%;
+    height: 100%;
+}
+
+.root-cause .dependent-bar-chart-container .zoom-click{
+	cursor:pointer;
+}
+.root-cause .dependent-bar-chart-container .chart-title .dependentAppRow .dependentAppStrong
+ {
+    line-height: 100%;
+    margin-top: 20%;
+    
+}
+.root-cause .dependent-bar-chart-container .chart-title .dependentNetworkRow .dependentNetworkStrong
+ {
+   margin-top: 38%;
+   bottom: 0px;
+position: absolute;
+  
+ /*
+    line-height: 100%;
+    margin-top: 20%;
+    */
+}
+
+.root-cause .dependent-bar-chart-container .chart-title .bottom-style{
+	 bottom: 0px;
+position: absolute;
+}
+.root-cause .dependent-bar-chart-container .chart-title .dependentNetworkRow .dependentNetWorkInfo {
+    line-height: 100%;
+    margin-top: 3%;
+}
+.root-cause .dependent-bar-chart-container .chart-title .dependentAppRow .dependentAppInfo
+ {
+    line-height: 100%;
+    margin-top: 3%;
+}
+.root-cause .dependent-bar-chart-container .body-title {
+/* 	padding: 10px; */
+	font-size: 1.5em;
+	padding-left: 15px;
+}
+.root-cause .summaryNA{
+	margin-top: 2em;
+}
+.root-cause .dependent-bar-chart-container .chart-body .dependentScoreLeft{
+/* 	margin-right: 10px; */
+}
+.root-cause .dependent-bar-chart-container .chart-body {
+/* 	padding: 5px; */
+	height: 15em;
+	margin-top:0px!important;
+/*	padding-top: 2em;*/
+}
+.root-cause .dependent-bar-chart-container .chart-footer>.time-and-value div {
+	float: left;
+}
+.root-cause .dependent-bar-chart-container .chart-footer p {
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-top: 3px;
+}
+/* end dependent-bar-chart-container css */
+#root-cause-dependent-service .widget-body bar-chart-container {
+	display: block;
+	margin-top: -2px;
+}
+
+.dependent-service.jarviswidget>header h2 {
+	line-height: 30px;
+}
+
+#rootCauseModal .widget-toolbar {
+	height: 30px;
+	line-height: 30px;
+}
+
+#rootCauseModal .widget-toolbar .pagination {
+	margin: 2px 0;
+}
+
+#wid-id-101>.widget-body {
+	padding: 5px;
+	height: 100%;
+	/* overflow: auto; */
+}
+
+#wid-id-101, #widget-id-33 {
+	display: block;
+	margin-bottom: 0;
+}
+
+.root-cause .jarviswidget {
+	margin-bottom: 0;
+}
+
+#rootCauseModal .widget-body {
+	overflow: auto;
+	padding: 0;
+}
+
+#rootCauseModal .rootcause-main-panel .widget-body {
+	overflow: visible;
+}
+
+.root-cause .widget-body {
+	
+}
+
+.root-cause .jarviswidget>header {
+	height: 30px;
+	line-height: 30px;
+}
+
+.root-cause .jarviswidget>header strong {
+	padding-left: 10px;
+}
+
+.root-cause .widget-toolbar>.label {
+	padding: 4px;
+	margin-top: -6px;
+}
+
+.root-cause {
+	color: #FFF;
+	margin-top: -10px;
+}
+
+.root-cause .chart-title strong {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.root-cause .col-lg-1, .root-cause .col-lg-10, .root-cause .col-lg-11, .root-cause .col-lg-12,
+	.root-cause .col-lg-12, .root-cause .col-lg-2, .root-cause .col-lg-3,
+	.root-cause .col-lg-4, .root-cause .col-lg-5, .root-cause .col-lg-6,
+	.root-cause .col-lg-7, .root-cause .col-lg-8, .root-cause .col-lg-9,
+	.root-cause .col-md-1, .root-cause .col-md-10, .root-cause .col-md-11,
+	.root-cause .col-md-12, .root-cause .col-md-2, .root-cause .col-md-3,
+	.root-cause .col-md-4, .root-cause .col-md-5, .root-cause .col-md-6,
+	.root-cause .col-md-7, .root-cause .col-md-8, .root-cause .col-md-9,
+	.root-cause .col-sm-1, .root-cause .col-sm-10, .root-cause .col-sm-11,
+	.root-cause .col-sm-12, .root-cause .col-sm-2, .root-cause .col-sm-3,
+	.root-cause .col-sm-4, .root-cause .col-sm-5, .root-cause .col-sm-6,
+	.root-cause .col-sm-7, .root-cause .col-sm-8, .root-cause .col-sm-9,
+	.root-cause .col-xs-1, .root-cause .col-xs-10, .root-cause .col-xs-11,
+	.root-cause .col-xs-12, .root-cause .col-xs-2, .root-cause .col-xs-3,
+	.root-cause .col-xs-4, .root-cause .col-xs-5, .root-cause .col-xs-6,
+	.root-cause .col-xs-7, .root-cause .col-xs-8, .root-cause .col-xs-9 {
+	padding-left: 3px;
+	padding-right: 3px;
+}
+.root-cause .panelBody{
+	margin-bottom: 0.2em;
+}
+.root-cause .rootCauseColumn1{
+	width: 4.16666666%;
+    background: #65A6FF;
+	display: block;
+	border-radius: 6px;
+/* 	height: 234px; */
+	text-align: center;
+	vertical-align: middle;
+	margin: auto;
+	
+}
+.root-cause .rootCauseColumn11{
+	width: 95.83333333%;
+}
+
+
+.root-cause .jarviswidget>div {
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 3px;
+}
+
+.root-cause .app-response-time {
+	/* height: 230px; */
+	
+}
+
+.root-cause .group {
+	clear: both;
+}
+
+.root-cause .group>div {
+	/* height: 100%; */
+	
+}
+
+
+.root-cause .second-row .jarviswidget {
+	margin-bottom: 0;
+}
+
+#rootCauseModal .jarviswidget>div {
+	padding: 3px;
+}
+
+.root-cause .dependent-relationship .widget-body {
+	height: 198px;
+}
+
+.root-cause .bar-chart-container {
+/* 	width: 100%; */
+	height: 100%; 
+	border-radius: 6px;
+}
+
+.root-cause .row {
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 5px;
+}
+
+/*Container color settings start */
+
+.root-cause .bar-chart-container.red {
+	background-color: #FF6C60;
+	color: #fff;
+}
+
+.root-cause .bar-chart-container.red .chart-footer {
+	background-color: #E56155;
+	border-radius: 4px;
+	
+}
+
+.root-cause .bar-chart-container.green {
+	background-color: #A9D96C;
+	color: #000;
+}
+
+.root-cause .bar-chart-container.green .chart-footer {
+	background-color: #99C262;
+	border-radius: 4px;
+}
+
+.root-cause .bar-chart-container.yellow {
+	background-color: #FCEB00;
+	color: #000;
+}
+
+.root-cause .bar-chart-container.yellow .chart-footer {
+	background-color: #FEB800;
+	border-radius: 4px;
+}
+
+.root-cause .bar-chart-container.orange {
+	background-color: #EE8802;
+	color: #000;
+}
+
+.root-cause .bar-chart-container.orange .chart-footer {
+	background-color: #FF6600;
+	border-radius: 4px;
+}
+
+.root-cause .bar-chart-container.blue {
+	background-color: #65A6FF;
+}
+
+
+.root-cause .bar-chart-container.blue .chart-footer {
+	background-color: #5A95E5;
+	border-radius: 4px;
+}
+
+.root-cause .chart-data {
+	display: none;
+}
+
+/* Container color settings end */
+.root-cause .row>div {
+	/* padding: 0 15px; */
+	
+}
+
+
+
+.root-cause .bar-chart-container .chart-title {
+	padding-top: 0.1em;
+  margin-top: 0.1em;
+}
+
+/* .root-cause .bar-chart-container .chart-title a{
+	color: #FFF;
+} */
+.root-cause .green .chart-title a {
+	color: #000;
+}
+
+.root-cause .green .chart-title i {
+	color: #000;
+}
+
+.root-cause .yellow .chart-title a {
+	color: #000;
+}
+
+.root-cause .yellow .chart-title i {
+	color: #000;
+}
+
+.root-cause .orange .chart-title a {
+	color: #000;
+}
+
+.root-cause .orange .chart-title i {
+	color: #000;
+}
+
+.root-cause .red .chart-title a {
+	color: #fff;
+}
+
+.root-cause .red .chart-title i {
+	color: #fff;
+}
+
+
+.root-cause .bar-chart-container .chart-body {
+	padding: 5px;
+	  padding-top: 0.1em;
+  margin-top: 0.1em;
+}
+.root-cause .bar-chart-container .chart-footer {
+	padding: 2px;
+	/* font-size: 10px; */
+}
+
+.root-cause .bar-chart-container .chart-footer>.time-and-value div {
+	float: left;
+}
+
+.root-cause .bar-chart-container .chart-footer .time-info {
+	/* float: left; */
+	
+}
+
+.root-cause .bar-chart-container .chart-footer .time-info .clock {
+	padding-top: 5px;
+}
+
+.root-cause .bar-chart-container .chart-footer .max-info {
+	/* float: left; */
+	margin-left: 6px;
+}
+
+.root-cause .bar-chart-container .chart-footer .max-info .arrow {
+	padding-top: 3px;
+}
+
+.root-cause .bar-chart-container .chart-footer p {
+	margin-bottom: 3px;
+	margin-left: 5px;
+	margin-top: 3px;
+}
+
+.root-cause .bar-chart-container .chart-footer {
+	margin-top: -10px;
+}
+
+.root-cause .rootcause-cpu .compute .jarviswidget, 
+.root-cause .rootcause-memory .compute .jarviswidget,
+.root-cause .rootcause-network .compute .jarviswidget {
+	margin-top: 0.1em;
+}
+
+.worstRootCouseTable {
+	color: #000000;
+}
+
+.dataTables_wrapper .dataTables_paginate#worstTransactionTable_paginate .paginate_button
+	{
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#rootCauseModal .modal-content .rootcause-main-panel {
+	overflow: auto;
+	width: 100%;
+/* 	margin-top: 10px; */
+}
+
+.modal-open #rootCauseModal.modal {
+	overflow: hidden;
+}
+
+#rootCauseModal .widget-body.root-cause {
+	overflow: hidden;
+}
+
+.crosshairToolTip {
+	background: #fff;
+	z-index: 1024;
+	padding: 0.4em 0.6em;
+	border-radius: 0.5em;
+	font-size: 1.2em;
+	border: 1px solid #EFE0E0;
+	display: block;
+	white-space: nowrap;
+	color: black;
+    opacity: 0.7;
+    filter: alpha(opacity=70); /* For IE8 and earlier */	
+}
+ .bar-chart-click-modal {
+	z-index: 1024;
+	padding: 0.4em 0.6em;
+	/* border-radius: 0.5em;
+ 	font-size: 1.2em; 
+	border: 1px solid #EFE0E0; */
+	display: block;
+	white-space: normal;
+	color: black;
+    opacity: 0.6;
+    filter: alpha(opacity=60); 	
+}
+.bar-chart-click-modal .modal-body{
+	padding:0px;
+}
+.bar-chart-click-modal .modal-dialog{
+	margin: 0px;
+	/* margin: auto;
+ 	margin-top: 4em;  */
+}
+.bar-chart-click-modal .modal-dialog span{
+	line-height: 1.5em;
+}
+.canvasToolTip {
+	background: #F7F7F7;
+	opacity: 0.9 !important;
+	font-family: arial;
+	padding: 1px;
+	text-align: left;
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, .2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+	white-space: normal;
+	border-radius: 3px;
+}
+/* .bar-chart-click-modal { */
+/* 	background: transparent; */
+/* 	opacity: 0.9 !important; */
+/* 	font-family: arial; */
+/* 	padding: 1px; */
+/* 	text-align: left; */
+/* 	background-clip: padding-box; */
+/* 	border: 1px solid rgba(0, 0, 0, .2); */
+/* 	box-shadow: 0 5px 10px rgba(0, 0, 0, .2); */
+/* 	white-space: normal; */
+/* 	border-radius: 3px; */
+/* } */
+
+
+.canvasToolTip .title {
+	margin: 0;
+	padding: 8px 14px;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 18px;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #ebebeb;
+	border-radius: 2px 2px 0 0;
+}
+.bar-chart-click-modal .title {
+	margin: 0;
+	padding: 8px 14px;
+/* 	font-size: 13px; */
+	font-weight: 400;
+	line-height: 18px;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #ebebeb;
+	border-radius: 2px 2px 0 0;
+}
+
+.canvasToolTip .barChart-title p{
+	line-height: 30px;
+	color: #fff;
+	margin-left: 10px;
+}
+.bar-chart-click-modal .barChart-title p{
+	line-height: 30px;
+	color: #fff;
+	margin-left: 10px;
+}
+
+.canvasToolTip .barChart-title {
+	margin: 0;
+	height:30px;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 18px;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #ebebeb;
+	border-radius: 2px 2px 0 0;
+	background-color: #4C4F53!important;
+}
+ .bar-chart-click-modal .barChart-title {
+	margin: 0;
+	color: #fff;
+	height:30px;
+/* 	font-size: 13px; */
+	font-weight: 400;
+	line-height: 18px;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #ebebeb;
+	border-radius: 2px 2px 0 0;
+	background-color: #4C4F53!important;
+}
+
+.canvasToolTip .close-button{
+	cursor: pointer;
+	color: rgb(255, 255, 255);
+	margin-top: 5px;
+	margin-right: 9px;
+}
+/* .bar-chart-click-modal .close-button{
+	cursor: pointer;
+	color: rgb(255, 255, 255);
+	margin-top: 5px;
+	margin-right: 9px;
+}
+ */
+.canvasToolTip .content {
+	margin: 0;
+	padding: 8px 14px;
+}
+/* .bar-chart-click-modal .content {
+	margin: 0;
+	padding: 8px 14px;
+}
+ */
+/* barchart popover css start*/
+
+.cpu-detail-performance{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+.bar-chart-click-modal .detailLeft, .bar-chart-click-modal .detailRight{
+	margin-bottom: 5px;
+}
+.bar-chart-click-modal .detailTitle{
+	margin-bottom: 10px;
+}
+.bar-chart-click-modal .titleSpan{
+	font-weight: bold;
+}
+.storage-detail-performance .detailBody {
+	max-height: 200px;
+	min-width: 600px;
+}
+
+.memory-detail-performance .detailBody{
+	max-height: 200px;
+	min-width: 600px;
+}
+.cpu-detail-performance .detailBody{
+	max-height: 200px;
+	min-width: 600px;
+}
+
+/* bar-chart-click-modal css */
+.bar-chart-click-modal {
+	width: 100%;
+}
+.bar-chart-click-modal .detailScrollTable tr, .bar-chart-click-modal .detailScrollTable th, .bar-chart-click-modal .detailScrollTable td{
+	border: 1px solid #bbb;
+}
+.bar-chart-click-modal .detailScrollTable{
+	max-height: 150px;
+	width: 100%;
+/* 	min-width: 180px; */
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.bar-chart-click-modal .detail-data-table tr{
+	height: 30px;
+}
+.bar-chart-click-modal .detail-data-table th, .bar-chart-click-modal .detail-data-table td{
+	line-height: 15px;
+	vertical-align: middle;
+/* 	padding: 3px 14px 3px 14px; */
+}
+.bar-chart-click-modal .detail-data-table td{
+	text-align: center;
+}
+.bar-chart-click-modal table th{
+	text-align: center;
+}
+.bar-chart-click-modal .detailScrollTable tr, .bar-chart-click-modal .detailScrollTable th, .bar-chart-click-modal .detailScrollTable td{
+	border: 1px solid #bbb;
+}
+.bar-chart-click-modal .detailScrollTable{
+	max-height: 150px;
+/* 	min-width: 180px; */
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.bar-chart-click-modal .detail-data-table tr{
+	height: 30px;
+}
+.bar-chart-click-modal .detail-content-table{
+	min-height: 150px;
+	min-width: 400px;
+}
+.bar-chart-click-modal .detail-data-table th, .bar-chart-click-modal .detail-data-table td{
+	line-height: 15px;
+	vertical-align: middle;
+/* 	padding: 3px 14px 3px 14px; */
+}
+.bar-chart-click-modal .detail-data-table td{
+	text-align: center;
+}
+.bar-chart-click-modal table th{
+	text-align: center;
+}
+.bar-chart-click-modal .detail-data-table tr:odd{
+	background-color: gray;
+}
+.bar-chart-click-modal tr td{
+	padding: 0px;
+}
+.bar-chart-click-modal tr, .bar-chart-click-modal td
+	{
+	clear: both;
+}
+
+.bar-chart-click-modal .network-detail-performance td.src>div,
+	.bar-chart-click-modal .network-performance td.dst>div {
+	float: left;
+}
+.bar-chart-click-modal .network-detail-performance td.network-tcp-reset>div {
+	float: left;
+}
+.bar-chart-click-modal .group-title {
+	white-space: nowrap;
+}
+
+
+/* bar-chart-click-pop-over css */
+.bar-chart-click-pop-over {
+	width: 100%;
+}
+.bar-chart-click-pop-over .detailScrollTable tr, .bar-chart-click-pop-over .detailScrollTable th, .bar-chart-click-pop-over .detailScrollTable td{
+	border: 1px solid #bbb;
+}
+.bar-chart-click-pop-over .detailScrollTable{
+	max-height: 150px;
+/* 	min-width: 180px; */
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.bar-chart-click-pop-over .detail-data-table tr{
+	height: 30px;
+}
+.bar-chart-click-pop-over .detail-data-table th, .bar-chart-click-pop-over .detail-data-table td{
+	line-height: 15px;
+	vertical-align: middle;
+/* 	padding: 3px 14px 3px 14px; */
+}
+.bar-chart-click-pop-over .detail-data-table td{
+	text-align: center;
+}
+.bar-chart-click-pop-over table th{
+	text-align: center;
+}
+
+/* .bar-chart-click-pop-over .detail-data-table tbody{ */
+/* 	height: 150px; */
+/* 	display: block; */
+/* 	overflow-y: auto; */
+/* 	overflow-x: hidden; */
+/* } */
+.bar-chart-click-pop-over .detailScrollTable tr, .bar-chart-click-pop-over .detailScrollTable th, .bar-chart-click-pop-over .detailScrollTable td{
+	border: 1px solid #bbb;
+}
+.bar-chart-click-pop-over .detailScrollTable{
+	max-height: 150px;
+/* 	min-width: 180px; */
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.bar-chart-click-pop-over .detail-data-table tr{
+	height: 30px;
+}
+.bar-chart-click-pop-over .detail-content-table{
+	min-height: 150px;
+	min-width: 400px;
+}
+.bar-chart-click-pop-over .detail-data-table th, .bar-chart-click-pop-over .detail-data-table td{
+	line-height: 15px;
+	vertical-align: middle;
+/* 	padding: 3px 14px 3px 14px; */
+}
+.bar-chart-click-pop-over .detail-data-table td{
+	text-align: center;
+}
+.bar-chart-click-pop-over table th{
+	text-align: center;
+}
+.bar-chart-click-pop-over .detail-data-table tr:odd{
+	background-color: gray;
+}
+
+
+/* .bar-chart-click-pop-over .grading-cell { */
+/* 	padding: 5px; */
+/* } */
+
+/* .bar-chart-click-pop-over .grading-cell>div { */
+/* 	float: left; */
+/* 	width: 55%; */
+/* } */
+
+/* .bar-chart-click-pop-over .grading-cell>div:first-child { */
+/* 	float: left; */
+/* 	width: 45%; */
+/* } */
+
+/* .bar-chart-click-pop-over .grading-cell.cpu-health>div { */
+/* 	width: 48%; */
+/* } */
+
+/* .bar-chart-click-pop-over .grading-cell.cpu-health>div:first-child */
+/* 	{ */
+/* 	width: 52%; */
+/* } */
+
+/* .bar-chart-click-pop-over .grading-cell.no-text>div { */
+/* 	float: none; */
+/* 	width: 100%; */
+/* } */
+
+/* .bar-chart-click-pop-over .grade-0 { */
+/* 	color: black; */
+/* 	background: #7BDC2A; */
+/* } */
+
+/* .bar-chart-click-pop-over .grade-1 { */
+/* 	color: black; */
+/* 	background: #FFD033; */
+/* } */
+
+/* .bar-chart-click-pop-over .grade-2 { */
+/* 	color: black; */
+/* 	background: #FF6321; */
+/* } */
+
+/* .bar-chart-click-pop-over .grade-3 { */
+/* 	color: white; */
+/* 	background: #DB1B1B; */
+/* } */
+
+
+.bar-chart-click-pop-over tr td{
+	padding: 0px;
+}
+.bar-chart-click-pop-over tr, .bar-chart-click-pop-over td
+	{
+	clear: both;
+}
+
+.bar-chart-click-pop-over .network-detail-performance td.src>div,
+	.bar-chart-click-pop-over .network-performance td.dst>div {
+	float: left;
+}
+.bar-chart-click-pop-over .network-detail-performance td.network-tcp-reset>div {
+	float: left;
+}
+
+
+
+.bar-chart-click-pop-over .group-title {
+	white-space: nowrap;
+}
+/* barchart popover css end  */
+
+/* RootCause popover css start*/
+.app-response-time-chart-tooltip {
+/* 	margin-top: -10px; */
+}
+
+.app-response-time-chart-tooltip th {
+	padding-top: 0;
+}
+
+.app-response-time-chart-tooltip th, .app-response-time-chart-tooltip td,
+	.app-response-time-chart-tooltip .dependent-service>ul li {
+	heigth: 23px;
+	line-height: 23px;
+}
+
+.app-response-time-chart-tooltip .dependent-service>ul.dependent-service-body li
+	{
+	text-align: center;
+}
+
+.app-response-time-chart-tooltip table th {
+/* 	text-align: left; */
+}
+
+.app-response-time-chart-tooltip .dependent-service {
+	margin-top: 20px;
+}
+
+.app-response-time-chart-tooltip .dependent-service>ul {
+	float: left;
+	width: 25%;
+	padding-left: 5px;
+	list-style: none;
+}
+
+.app-response-time-chart-tooltip .dependent-service>ul.dependent-service-body
+	{
+	border-left: 5px solid blue;
+}
+
+.app-response-time-chart-tooltip .dependent-service-header {
+	font-weight: bold;
+}
+
+.app-response-time-chart-tooltip .grading-cell {
+	padding: 5px;
+}
+
+.app-response-time-chart-tooltip .grading-cell>div {
+	float: left;
+	width: 55%;
+}
+
+.app-response-time-chart-tooltip .grading-cell>div:first-child {
+	float: left;
+	width: 45%;
+}
+
+.app-response-time-chart-tooltip .grading-cell.cpu-health>div {
+	width: 48%;
+}
+
+.app-response-time-chart-tooltip .grading-cell.cpu-health>div:first-child
+	{
+	width: 52%;
+}
+
+.app-response-time-chart-tooltip .grading-cell.no-text>div {
+	float: none;
+	width: 100%;
+}
+
+.app-response-time-chart-tooltip .grade-0 {
+	color: black;
+	background: #7BDC2A;
+}
+
+.app-response-time-chart-tooltip .grade-1 {
+	color: black;
+	background: #FFD033;
+}
+
+.app-response-time-chart-tooltip .grade-2 {
+	color: black;
+	background: #FF6321;
+}
+
+.app-response-time-chart-tooltip .grade-3 {
+	color: white;
+	background: #DB1B1B;
+}
+
+.app-response-time-chart-tooltip .cpu-performance table th {
+	text-align: center;
+}
+
+.app-response-time-chart-tooltip .cpu-performance table td .td-title {
+	width: 7%;
+}
+
+.app-response-time-chart-tooltip .cpu-performance table td .td-content {
+	width: 31%;
+}
+
+.app-response-time-chart-tooltip .memory-performance table td .td-title {
+	width: 7%;
+}
+
+.app-response-time-chart-tooltip .memory-performance table td .td-content {
+	width: 31%;
+}
+
+.app-response-time-chart-tooltip .storage-performance table td .td-title {
+	width: 7%;
+}
+
+.app-response-time-chart-tooltip .storage-performance table td .td-content {
+	width: 23.25%;
+}
+
+.app-response-time-chart-tooltip tr, .app-response-time-chart-tooltip td
+	{
+	clear: both;
+}
+
+.app-response-time-chart-tooltip .network-performance td.src>div,
+	.app-response-time-chart-tooltip .network-performance td.dst>div {
+	float: left;
+}
+.app-response-time-chart-tooltip .network-performance td.network-tcp-fatal>div {
+	float: left;
+}
+.app-response-time-chart-tooltip .network-performance td.network-tcp-zero-window>div {
+	float: left;
+}
+
+.app-response-time-chart-tooltip .network-performance td.network-tcp-reset>div {
+	float: left;
+}
+
+
+
+.app-response-time-chart-tooltip .network-performance th {
+	text-align: center;
+}
+
+.app-response-time-chart-tooltip .network-performance .network td {
+	  /* width: 22.5%; */
+}
+
+.app-response-time-chart-tooltip .network-performance .tx,
+	.app-response-time-chart-tooltip .network-performance .rx {
+	width: 45%;
+}
+
+.app-response-time-chart-tooltip .network-performance .in,
+	.app-response-time-chart-tooltip .network-performance .out {
+	width: 45%;
+}
+
+.app-response-time-chart-tooltip .network-performance .slash {
+	width: 10%;
+}
+
+.app-response-time-chart-tooltip .group-title {
+	white-space: nowrap;
+}
+/* RootCause popover css end*/
+
+/* RootCause worst table*/
+.table tbody tr td{
+	vertical-align: middle!important;
+	/*height: 40px;*/
+}
+.root-cause .dependent-bar-chart-container .strong-size{
+	font-size:20px;
+
+}
+.root-cause .dependent-bar-chart-container .title-size{
+	font-size:20px;
+
+	
+}
+.table thead tr th{
+	background-color: white!important;
+}
+
+/*rootcause memmroy/stroage/CPU summary*/
+.root-cause .rootcause-network .summary-panel,
+.root-cause .rootcause-cpu .summary-panel,
+.root-cause .rootcause-storage .summary-panel,
+.root-cause .rootcause-memory .summary-panel{
+	margin-top:0px;
+}
+
+.root-cause .rootcause-network .network-widget,
+.root-cause .rootcause-network .summary-widget,
+.root-cause .rootcause-cpu .summary-widget,
+.root-cause .rootcause-storage .summary-widget,
+.root-cause .rootcause-memory .summary-widget{
+	padding-top: 0px!important;
+	margin-top: 0px!important;
+}
+
+.root-cause .rootcause-network .network-widget-border,
+.root-cause .rootcause-network .summary-widget-border,
+.root-cause .rootcause-cpu .summary-widget-border,
+.root-cause .rootcause-storage .summary-widget-border,
+.root-cause .rootcause-memory .summary-widget-border{
+	border-top-style: solid;
+border-top-color: rgb(204, 204, 204);
+border-top-width:1px ;
+}
+
+.root-cause .rootcause-cpu ul a,
+.root-cause .rootcause-storage ul a,
+.root-cause .rootcause-memory ul a{
+	font-size:16px;
+}
+
+
+
+
+.root-cause .widgetBody-network{
+margin-top: 0.4em;
+ padding: 0.3em ;
+}
+
+.root-cause .barChartFixedHeight{
+height:16em;
+margin-top: 0.2em;
+}
+
+.root-cause .widget-body-margin{
+	margin-top:0.4em;
+	padding-bottom: 0.1em;
+}
+/* rootCause responsive */
+@media (min-width: 768px) {
+	.root-cause .networkVmContainer-T{
+	 height:32em;  
+     margin-top: 0.2em;
+	}
+	.networkChart_VM-T{
+     padding-top: 10.5em;
+	}
+   .root-cause .networkVmContainer-F{
+	height:16em;  
+	margin-top: 0.2em;
+	}
+	.networkChart_VM-F{
+     padding-top: 3.5em;
+	}
+	.networkChart_TOR-F{
+	padding-top: 3.5em;
+	}
+	.networkChart_TOR-T{
+     padding-top: 10.5em;
+	}
+	
+	.root-cause .networkContainer{
+	margin-top: 0.1em;
+	height:27em;
+   }
+   .networkThemeDiv {
+    margin-top: 200px;
+  }
+}
+/* @media (min-width: 992px){
+	.root-cause .networkVmContainer-T{
+	 height:32em;  
+     margin-top: 0.2em;
+	}
+	.networkChart_VM-T{
+	 line-height: 0px;
+     padding-top: 10.5em;
+     font-weight: bold;
+     padding-left: 1em;
+	}
+	 .root-cause .networkVmContainer-F{
+	height:16em;  
+	margin-top: 0.2em;
+	}
+	.networkChart_VM-F{
+	 line-height: 0px;
+     padding-top: 3.5em;
+     font-weight: bold;
+     padding-left: 1em;
+	}
+	.root-cause .networkContainer{
+	margin-top: 0.1em;
+	height:27em;
+   }
+   .networkThemeDiv {
+    margin-top: 200px;
+  }
+  
+} */
+
+@media (min-width: 1200px){
+	.root-cause .networkVmContainer-T,
+	.root-cause .networkVmContainer-F{
+	height:16em;  
+	margin-top: 0.2em;
+	}
+	
+	.root-cause .networkContainer{
+	margin-top: 0.1em;
+	height:13.5em;
+   }
+   .networkThemeDiv {
+    margin-top: 120px;
+  }
+  .networkChart_VM-F,
+  .networkChart_VM-T{
+    padding-top: 3.5em;
+	/* height: 238px; */
+   }
+   .networkChart_TOR-F,
+   .networkChart_TOR-T{
+    padding-top: 0px;
+   }
+
+}
+
+
+

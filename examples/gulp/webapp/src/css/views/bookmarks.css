@@ -1,0 +1,56 @@
+/* AGENT_SHEET */ 
+.back-to-top.affix-top {
+    position: absolute;
+    bottom: -82px;
+    right: 30px;
+}
+
+.back-to-top.affix {
+    position: fixed;
+    bottom: 72px;
+    right: 30px;
+}
+
+time-line .timeline-content {
+    white-space:pre-line;
+}
+
+time-line .title {
+    font-size: 14px;
+}
+
+book-mark .main-bookmark-btn {
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+book-mark .rootcause-bookmark-btn{
+    margin-right: 10px;
+    margin-top: -6px;
+}
+
+.modal-body .imageContainer {
+	overflow: auto!important;
+	min-height: 400px;
+	border: 2px solid;
+	
+}
+
+.modal-body .clipDiv {
+	padding: 20px;
+	font-size: 15px;
+	font-weight: bold;
+	width: 100%;
+	border-style: dashed;
+}
+
+.modal-body .timeline-title-form>label{
+	font-weight: bold;
+	font-size: 15px;
+	margin-right: 20px;
+}
+.modal-body .timeline-title-form>input{
+   width: 50%;
+   height: 30px;	
+}

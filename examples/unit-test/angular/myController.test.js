@@ -1,6 +1,5 @@
 describe('PasswordController', function() {
   beforeEach(module('app'));
-
   var $controller;
 
   beforeEach(inject(function(_$controller_){

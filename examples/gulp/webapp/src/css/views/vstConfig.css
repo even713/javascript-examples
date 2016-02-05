@@ -1,0 +1,261 @@
+
+#vstConfig .tree li.parent_li span {
+	cursor: pointer;
+	padding: 7px;
+}
+
+#vstConfig .tree li.collapse_li {
+	display: none;
+}
+#vstConfig .vst-tree-node span label{
+	color:rgb(51, 51, 51);
+}
+#vstConfig .vst-tree-node label.install>select:hover  {}
+
+#vstConfig .vst-tree-node.in-progress{
+	
+}
+#vstConfig input.install-btn{
+	color: #fff;
+	background: #84C1FF;
+	font-size: 16px;
+	padding: 0.1em 0.5em;
+	border-radius: 0.4em;
+	box-shadow: 0 3px 7px rgba(0,0,0,0.5);
+}
+#vstConfig select.action-list{
+	width: 9em;
+}
+#vstConfigList .action{
+	text-align: center;
+}
+#vstConfigList .has-vst{
+	cursor:pointer;
+	text-decoration: underline;
+}
+
+#vstConfigList .no-vst-installed td.control:before{
+	display: none;
+}
+#vstConfigList .no-vst-installed td.control{
+	pointer-events: none;
+}
+#vstConfigList .no-vst-installed td.control:hover{
+	cursor: default;
+}
+#vstConfigList .no-vst-installed + tr.child{
+	display: none;
+}
+#vstConfigList tr:hover td{
+	background: rgba(0, 0, 0, .13)!important;
+}
+#vstConfigurationModal .portgroup{
+	height: 8em !important;
+}
+
+#vstConfigurationModal .portgroup .note{
+	padding-top: 5px;
+}
+
+#vstConfigurationModal .portgroup .form-control{
+	width: 150px;
+}
+
+#vstConfig .vst-tree-node button.configure-btn{
+	padding: 5px 10px;
+}
+
+#vstConfig .vst-tree-node.in-progress .select>select{
+	background-color:#ccc;
+	color:grey;
+}
+
+#vstConfig .smart-form .vst-tree-node.in-progress .select i:before{
+	border-bottom: 4px solid #ccc;
+}
+
+#vstConfig .smart-form .vst-tree-node.in-progress .select i:after {
+	border-top: 4px solid #ccc;
+}
+
+
+#vstConfig .smart-form .input input, .smart-form .select select{
+	-webkit-appearance: menulist-button;
+	appearance: menulist-button;
+	-moz-appearance: listbox;
+}
+
+#vstConfig .vst-tree-node.in-progress .checkbox i{
+	background-color:#ccc;
+	color:grey;
+}
+#vstConfig .smart-form .vst-tree-node.in-progress .checkbox input+i:after {
+	color:grey;
+}
+
+#vstConfig .message{
+	color: #b94a48;
+	padding: 10px 0;
+    font-weight: 700;
+}
+
+#vstConfig .select select{
+	width: 120px;
+}
+
+
+#vstConfig #statusFilter{
+	cursor: inherit;
+}
+
+/* Fix dropdown menu covered by table body issue*/
+#vstConfig .dataTables_scrollHead,
+#vstConfig .input-group-btn>.btn,
+#vstConfig .input-group-btn, 
+#vstConfig .input-group   {
+    position: static!important;
+   } 
+  
+#vstConfigurationModal {
+	top: 10px;
+}
+
+#vstConfigurationModal .jarviswidget{
+	margin-bottom: 0;
+}
+
+#vstConfigurationModal .configure-popover .buttons>input {
+	padding: 0 10px;
+	float: right;
+	margin-right: 5px;
+}
+
+#vstConfigurationModal .configure-popover .error{
+	color: red;
+}
+
+#vstConfigurationModal .configure-popover>form>div {
+	height: 30px;
+	line-height: 30px;
+}
+#vstConfigurationModal .configure-popover>form>div.network{
+	height: 120px;
+}
+
+#vstConfigurationModal .configure-popover div.network li{
+	list-style: none;
+	
+}
+#vstConfigurationModal .configure-popover div.network li input{
+	line-height: 20px;
+}
+
+#vstConfigurationModal .body-content{
+	margin-left:10px;
+	margin-roght:10px;
+}
+#configureForm .state-error input{
+    background: rgba(255, 8, 8, .2) !important;
+    border-color: #a90329 !important;
+}
+#vstConfigurationModal #configureForm .row,
+#vstConfigurationModal #configureFormReadOnly .row{
+	margin:0 0 10px 0;
+}
+#vstConfigurationModal .staticWords{
+	padding:0px;
+}
+#vstConfigurationModal #configureForm input[type=radio]{
+	margin-left:0px;
+}
+#vstConfigurationModal .DNSContanier,
+#vstConfigurationModal .IPContanier{
+	border:1px solid rgb(218, 218, 218);
+}
+#vstConfigurationModal .DNSContanier div,
+#vstConfigurationModal .IPContanier div{
+	margin-bottom:5px;
+}
+.IPContanier-title{
+	background:white;
+	margin-top: -10px;
+	width:200px;
+}
+.DNSContanier-title{
+	background:white;
+	margin-top: -10px;
+	width:270px;
+}
+
+
+.smart-style-5 #vstConfigurationModal .IPContanier.active,
+.smart-style-5 #vstConfigurationModal .DNSContanier.active{
+	color:#fff;
+}
+
+.smart-style-5 #vstConfigurationModal .IPContanier:not(.active),
+.smart-style-5 #vstConfigurationModal .DNSContanier:not(.active){
+	color:rgb(102, 102, 102);
+	
+}
+
+#vstConfigurationModal .IPContanier.active,
+#vstConfigurationModal .DNSContanier.active{
+	color:rgb(102, 102, 102);
+}
+#vstConfigurationModal .IPContanier:not(.active),
+#vstConfigurationModal .DNSContanier:not(.active){
+	color:rgb(168, 168, 168);
+	
+}
+ .smart-style-5 #vstConfigurationModal .IPContanier.active input,
+  .smart-style-5 #vstConfigurationModal .DNSContanier.active input{
+ border-color: rgba(255, 255, 255, .9);
+ background-color:rgba(0, 0, 0, 0);
+ }
+ 
+  .smart-style-5 #vstConfigurationModal .IPContanier:not(.active) input,
+  .smart-style-5 #vstConfigurationModal .DNSContanier:not(.active) input{
+ border-color: rgba(255, 255, 255, .4);
+ background-color:rgba(0, 0, 0, 0);
+ }
+ 
+
+#vstConfigurationModal .IPContanier:not(.active) input,
+#vstConfigurationModal .DNSContanier:not(.active) input{
+	background-color:rgb(235,235,228);
+	
+}
+
+#vstConfigurationModal .modal-header{
+	background-color: #4C4F53;
+	cursor: move;
+  padding: 0px;
+    border-bottom: 1px solid #4C4F53;
+}
+
+#vstConfigurationModal .modal-header span{
+cursor: pointer; 
+margin-top: 8px; 
+margin-right: 5px;
+color:white;}
+
+#vstConfigurationModal #configureForm ul.dropdown-menu{
+	max-height: 400px !important;
+	overflow-y: auto !important;
+	width: 444px;
+}
+
+#vstConfigurationModal .modal-dialog {
+	min-width: 520px;
+}
+
+#vstCiscoUCSWidget .body-content{
+	padding-left: 10px;
+}
+#vstCiscoUCSWidget .body-content div{
+	padding-left: 20px;
+}
+#vstCiscoUCSWidget {
+	margin-bottom: 0;
+}

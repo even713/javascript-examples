@@ -1,0 +1,54 @@
+#sankeyDiagram {
+	overflow: auto;
+	clear:both;
+}
+#sankeyDiagram .node rect {
+  cursor: pointer;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+#sankeyDiagram .node text {
+  pointer-events: none;
+}
+#sankeyDiagram .link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+#sankeyDiagram .link:hover {
+  stroke-opacity: .5;
+}
+#sankeyDiagram .panel-heading {
+	font-weight:bold;
+	padding-left:0;
+	padding-right:5;
+}
+#sankeyDiagram .panel-heading .col-xs-6 {
+	width: 25%;
+	padding-left:0;
+	padding-right:0;
+}
+#sankeyDiagram .panel-heading .col-xs-3 {
+	width: 50%;
+	padding-left:0;
+	padding-right:0;
+}
+#sankeyDiagram .panel-heading .col-xs-4 {
+	width: 50%;
+	padding-left:0;
+	padding-right:0;
+	text-align:right
+}
+#sankeyDiagram span.title {
+	padding-right:5px;
+}
+#sankeyDiagram .configure {
+	position:absolute;
+  	top:20px;
+}
+#sankeyDiagram .configure a {
+	font-size: 23px;
+}
+#sankeyDiagram .configure .glyphicon {
+  	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+}

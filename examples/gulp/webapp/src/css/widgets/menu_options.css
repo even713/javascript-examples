@@ -1,0 +1,28 @@
+.menuStyle{font: 12px 'Microsoft Yahei', Arial;} 
+.menuStyle, .menuStyle li{list-style: none;padding:0;margin:0;} 
+.menuStyle.a{text-decoration: none;color:#000;} 
+
+.menuStyle { 
+background: #eee; 
+border: 1px solid #999; 
+width: 180px; 
+position: absolute; 
+display: none; 
+-moz-box-shadow: 3px 3px 9px #999; 
+-webkit-box-shadow: 3px 3px 9px #999; 
+-o-box-shadow: 3px 3px 9px #999; 
+box-shadow: 3px 3px 9px #999; 
+} 
+.menuStyle li { 
+border-bottom: 1px solid #ddd; 
+line-height: 24px; 
+} 
+.menuStyle li a { 
+display: block; 
+padding-left: .5em; 
+} 
+.menuStyle li a:hover { 
+background-color: blue; 
+color: white;
+font-size: 13px;
+} 

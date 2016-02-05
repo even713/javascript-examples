@@ -1,0 +1,513 @@
+
+/*
+ * Css in reports page.
+ */
+ /*
+ rewirte smartadmin
+ */
+ 
+.badge{
+   padding: 3px 7px;
+ }
+ .fuelux .wizard .tree ul li:first-child {
+  border-radius: 0px 0 0 0px;
+}
+.fuelux .wizard  .tree ul {
+  width: 4000px;
+  margin: 0;
+  list-style: none outside none;
+}
+.fuelux .wizard  .tree  ul li {
+  position: relative;
+   float: inherit; 
+   height: auto; 
+   padding: 5px; 
+   margin: 0;
+   font-size: 16px; 
+   line-height: 22px; 
+   cursor: default; 
+ }
+ 
+ #report-widgets .row{
+ padding-top:10px;
+ }
+ 
+ #reportFuelux .grey-out{
+ 	background-color: #999;
+ }
+ 
+#report-widgets table th {
+	text-align: left;
+}
+
+#report-widgets table thead th{
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#report-widgets table th {
+	text-align: left;
+}
+
+#report-widgets table td .td-title {
+	width: 7%;
+}
+
+
+#report-widgets table td .td-content {
+	width: 31%;
+}
+#report-widgets table tbody td:first-child {
+	width: 30%;
+}
+
+#report-widgets table.table-bordered {
+		border:1px solid rgb(221, 221, 221);;
+}
+
+
+#report-widgets .table{
+	background-color: white!important;
+}
+
+#report-widgets .table tbody tr:hover{
+	background-color: rgb(249, 249, 249);
+}
+#report-widgets .table tbody tr.whiteColor{
+	background-color: white;
+}
+
+#report-widgets .table tbody tr.grayColor{
+	background-color: rgb(249, 249, 249);
+}
+
+#report-widgets .table tbody tr{
+	cursor: pointer;
+}
+
+#report-widgets .delete-icon{
+	cursor: pointer;
+}
+#newScheduledConfigureModal button,
+#scheduledConfigureModal button,
+#report-widgets button{
+background: #57c8f1;
+color: #fff;
+border: none;
+width: 85px;
+height: 30px;
+border: 1px solid #bbb;
+}
+
+#report-widgets table td .row{
+	margin:0px; 
+	padding-top: 0px;
+}
+
+
+#report-widgets table{
+	overflow-y:auto;
+}
+#report-widgets table td .report-name{
+	/* padding:0px 6px 0px 0px; */
+	  padding-left: 0px;
+	    padding-right: 0px;
+}
+#report-widgets table td .delete-icon,
+#report-widgets table td .edit-icon
+{
+	padding:6px 0px 0px 0px;
+}
+ #report-widgets table td .delete-icon{
+	padding-left: 5px;
+} 
+
+#report-widgets table td .report-name p{
+ text-overflow: ellipsis;
+  overflow: hidden;
+  width: 170px;
+}
+
+
+#newReportModal .text-lable{
+	text-align: right;
+margin-bottom: 0;
+}
+#newReportModal .modal-dialog {
+	width: 700px;
+}
+#newReportModal .datepicker{
+	border: solid;
+border-width: 1px;
+}
+
+
+#newReportModal .datepicker td {
+width: 25px;
+height: 25px;
+
+}
+
+#newReportModal input[type=checkbox] {
+ -ms-transform: scale(1.2); /* IE */
+  -moz-transform: scale(1.2); /* FF */
+  -webkit-transform: scale(1.2); /* Safari and Chrome */
+  -o-transform: scale(1.2); /* Opera */
+}
+
+#newReportModal .reportCheckBox span {
+ font-size:14px;
+}
+#editScheduleReportModal .nodeNameBorder,
+#scheduleReportModal .nodeNameBorder,
+#newReportModal .nodeNameBorder{
+	border: 1px solid #ccc;
+  padding: 0px;
+  margin-left: 14px;
+  max-height:200px; 
+  overflow: auto;
+  min-height:150px;
+}
+
+#scheduleReportModal .warning-message{
+	color:#FFD600 ;
+}
+#scheduleReportModal .checkBoxPad,
+#newReportModal .checkBoxPad{
+padding-left: 10px;
+margin-bottom: 5px;
+}
+#scheduleReportModal #nodeLoading{
+	margin-top: 50px;
+}
+#newReportModal #nodeLoading{
+display:none;
+margin-top: 50px;
+}
+
+#newReportModal .input-group .form-control{
+	  width: 90%!important;
+}
+#editScheduleReportModal .validation-error,
+#scheduleReportModal .validation-error,
+#editReportModal .validation-error,
+#newReportModal .validation-error{
+  margin-top: 30px;
+  display: block;
+   font-style: normal;
+  font-size: 15px;
+  line-height: 15px;
+  color: #D56161;
+  padding-left: 10px;
+}
+
+#newReportModal .ajax-creating-animation{
+ margin-top: 30px;
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+}
+#editScheduleReportModal #myModalLabel,
+#scheduleReportModal #myModalLabel,
+#scheduledConfigureModal #myModalLabel,
+#editReportModal #myModalLabel,
+#newReportModal #myModalLabel{
+color: white;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+#editScheduleReportModal .modal-header,
+#scheduleReportModal .modal-header,
+#scheduledConfigureModal .modal-header,
+#newReportModal .modal-header{
+	background-color: #4C4F53;
+	cursor: move;
+  padding: 0px;
+    border-bottom: 1px solid #4C4F53;
+    color:white;
+}
+#scheduledReportModal .serices-context,
+#newReportModal .serices-context{
+	margin:20px;
+}
+
+#editReportModal .modal-header{
+	background-color: #4C4F53;
+	cursor: move;
+  padding: 0px;
+    border-bottom: 1px solid #4C4F53;
+}
+
+#scheduledReportModal #newScheduledReportFade,
+#scheduledConfigureModal #scheduledReportFade,
+#editReportModal #editReportFade,
+#newReportModal #newReportFade{
+	color:white;
+	cursor: pointer; 
+	margin-top: 8px; 
+	margin-right: 5px;
+}
+
+#newScheduledReportFade{
+	color:white;
+	cursor: pointer; 
+	margin-top: 8px; 
+	margin-right: 5px;
+}
+
+#newReportWizard .table input[type='radio']{
+padding-right:5px;	
+}
+#modifyReportForm .state-error+em,
+#editReportModal .state-error+em{
+
+  display: block;
+  margin-top: 6px;
+  padding: 0 1px;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 15px;
+  color: #D56161;
+  }
+  
+  #scheduledConfigureModal .row{
+  margin:0px;
+  margin-bottom:10px;
+  }
+  
+  #scheduleReportModal{
+   top:70px;
+   
+  }
+  #scheduleReportModal .row{
+ /*   margin:8px; */
+  }
+  #scheduleReportModal .step-pane h3{
+    margin:0px;
+    margin-bottom: 16px;
+  }
+  #scheduleReportModal a:hover{
+  cursor: pointer;
+  }
+  #reportTab{
+  padding:0 8px 0 8px;
+  }
+  #scheduleReportTab,
+  #demandReportTab{
+  padding:10px 17px;
+  }
+  
+  /* #scheduleReportWizard .steps{
+  margin-left:0px!important;
+  } */
+  
+   @media (max-width: 991px) {
+	#report-widgets table td .report-name p{
+    width: 200px!important;
+   }
+ }
+ 
+  @media (max-width: 1025px) and (min-width: 992px){
+	#report-widgets table td .report-name p{
+    width: 140px!important;
+   }
+ }
+ 
+   @media (max-width: 1400px) and (min-width: 1024px){
+	#report-widgets table td .report-name p{
+    width: 150px!important;
+   }
+ }
+  
+  .smart-style-5 #report-widgets .progress{
+    background: #fff;
+  }
+  .progress-micro{height:3px!important;line-height:3px!important}
+ .progress-xs{height:7px!important;line-height:7px!important}
+ .progress-sm{height:14px!important;line-height:14px!important}
+ .progress-lg{height:30px!important;line-height:30px!important}
+ .progress .progress-bar{position:absolute;overflow:hidden;line-height:20px}
+ .progress .progressbar-back-text{position:absolute;width:100%;height:100%;font-size:12px;line-height:20px;text-align:center}
+ .progress .progressbar-front-text{display:block;width:100%;font-size:12px;line-height:20px;text-align:center}
+ .progress.right .progress-bar{right:0}.progress.right .progressbar-front-text{position:absolute;right:0}
+ .progress.vertical{width:25px;height:100%;min-height:150px;margin-right:20px;display:inline-block;margin-bottom:0}
+ .progress.wide-bar{width:40px}.progress.vertical.bottom{position:relative}
+ .progress.vertical.bottom .progressbar-front-text{position:absolute;bottom:0}
+ .progress.vertical .progress-bar{width:100%;height:0;-webkit-transition:height .6s ease;transition:height .6s ease}
+ .progress.vertical.bottom .progress-bar{position:absolute;bottom:0}
+ .progress{position:relative;margin-bottom:20px;overflow:hidden;height:22px;background:#eee;box-shadow:0 1px 0 transparent,0 0 0 1px #e3e3e3 inset;-webkit-box-shadow:0 1px 0 transparent,0 0 0 1px #e3e3e3 inset;
+ -moz-box-shadow:0 1px 0 transparent,0 0 0 1px #e3e3e3 inset;border-radius:0;-moz-border-radius:0;-webkit-border-radius:0}
+ .progress-bar{float:left;width:0;height:100%;font-size:11px;color:#fff;text-align:center;background-color:#57889c;-webkit-box-shadow:inset 0 -1px 0 rgba(0,0,0,.15);
+ box-shadow:inset 0 -1px 0 rgba(0,0,0,.15);font-weight:700;text-shadow:0 -1px 0 rgba(0,0,0,.25);
+ /* background-image:url(../img/pattern/overlay-pattern.png) */
+ }
+ .progress-striped .progress-bar{
+ background-image:-webkit-gradient(linear,0 100%,100% 0,color-stop(0.25,rgba(255,255,255,.15)),color-stop(0.25,transparent),color-stop(0.5,transparent),color-stop(0.5,rgba(255,255,255,.15)),color-stop(0.75,rgba(255,255,255,.15)),color-stop(0.75,transparent),to(transparent));
+ background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,
+ transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent);
+ background-image:-moz-linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent);
+ background-image:linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent);
+ background-size:40px 40px
+ }
+ .progress.active .progress-bar{
+ -webkit-animation:progress-bar-stripes 2s linear infinite;
+ -moz-animation:progress-bar-stripes 2s linear infinite;-ms-animation:progress-bar-stripes 2s linear infinite;-o-animation:progress-bar-stripes 2s linear infinite;animation:progress-bar-stripes 2s linear infinite}
+ .progress-bar-danger{background-color:#a90329}
+ .progress-striped .progress-bar-danger{
+ background-image:-webkit-gradient(linear,0 100%,100% 0,color-stop(0.25,rgba(255,255,255,.15)),color-stop(0.25,transparent),color-stop(0.5,transparent),color-stop(0.5,rgba(255,255,255,.15)),color-stop(0.75,rgba(255,255,255,.15)),color-stop(0.75,transparent),to(transparent));
+ background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent);
+ background-image:-moz-linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent);
+ background-image:linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent)
+ }
+ .progress-bar-success{background-color:#739e73}
+ .progress-striped .progress-bar-success{
+ background-image:-webkit-gradient(linear,0 100%,100% 0,color-stop(0.25,rgba(255,255,255,.15)),color-stop(0.25,transparent),color-stop(0.5,transparent),color-stop(0.5,rgba(255,255,255,.15)),color-stop(0.75,rgba(255,255,255,.15)),color-stop(0.75,transparent),to(transparent));
+ background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent);
+ background-image:-moz-linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent);
+ background-image:linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent)}
+ .progress-bar-warning{background-color:#c79121}
+ .progress-striped .progress-bar-warning{
+ background-image:-webkit-gradient(linear,0 100%,100% 0,color-stop(0.25,rgba(255,255,255,.15)),color-stop(0.25,transparent),color-stop(0.5,transparent),color-stop(0.5,rgba(255,255,255,.15)),color-stop(0.75,rgba(255,255,255,.15)),color-stop(0.75,transparent),to(transparent));
+ background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent);
+ background-image:-moz-linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent);
+ background-image:linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent)}
+ .progress-bar-info{
+ background-color:#57889c}
+ .progress-striped .progress-bar-info{
+ background-image:-webkit-gradient(linear,0 100%,100% 0,color-stop(0.25,rgba(255,255,255,.15)),color-stop(0.25,transparent),color-stop(0.5,transparent),color-stop(0.5,rgba(255,255,255,.15)),color-stop(0.75,rgba(255,255,255,.15)),color-stop(0.75,transparent),to(transparent));
+ background-image:-webkit-linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent)
+ ;background-image:-moz-linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent);
+ background-image:linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent 25%,transparent 50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent 75%,transparent)}
+ .progress .bar-info,.progress-info .bar{background:#57889c}
+ .vertical-bars{padding:0;margin:0}.vertical-bars:after{content:"";display:block;height:0;clear:both}
+ .vertical-bars li{padding:14px 0;width:25%;display:block;float:left;text-align:center}
+ .vertical-bars li:first-child{border-left:none}.vertical-bars>li>.progress.vertical:first-child{
+ margin-left:auto}.vertical-bars>li>.progress.vertical{margin:0 auto;float:none}
+ .bar-holder:first-child{border-top:none}.bar-holder{padding:18px 15px}.bar-holder .progress{
+ margin:0}[data-progressbar-value]{margin-top:15px!important;overflow:visible;margin-bottom:0}
+ .dataTable [data-progressbar-value]{min-width:70px}
+ [data-progressbar-value="100"]:after,
+ [data-progressbar-value="100"]:before,
+ [data-progressbar-value]:after,
+ [data-progressbar-value]:before{
+ position:absolute;background:0 0;font-size:11px;top:-12px}
+ [data-progressbar-value]:before{
+ content:attr(data-progressbar-value);left:attr(data-progressbar-value) px}
+ [data-progressbar-value]:after{content:"%";left:13px}
+ [data-progressbar-value="1"]>.progress-bar{
+ width:1%;background:#c79121
+ }
+ [data-progressbar-value="2"]>.progress-bar{width:2%;background:#85ab85}
+ [data-progressbar-value="3"]>.progress-bar{width:3%;background:#85ab85}
+ [data-progressbar-value="4"]>.progress-bar{width:4%;background:#85ab85}
+ [data-progressbar-value="5"]>.progress-bar{width:5%;background:#85ab85}
+ [data-progressbar-value="6"]>.progress-bar{width:6%;background:#85ab85}
+ [data-progressbar-value="7"]>.progress-bar{width:7%;background:#85ab85}
+ [data-progressbar-value="8"]>.progress-bar{width:8%;background:#85ab85}
+ [data-progressbar-value="9"]>.progress-bar{width:9%;background:#85ab85}
+ [data-progressbar-value="10"]>.progress-bar{width:10%;background:#85ab85}
+ [data-progressbar-value="11"]>.progress-bar{width:11%;background:#85ab85}
+ [data-progressbar-value="12"]>.progress-bar{width:12%;background:#85ab85}
+ [data-progressbar-value="13"]>.progress-bar{width:13%;background:#85ab85}
+ [data-progressbar-value="14"]>.progress-bar{width:14%;background:#85ab85}
+ [data-progressbar-value="15"]>.progress-bar{width:15%;background:#85ab85}
+ [data-progressbar-value="16"]>.progress-bar{width:16%;background:#85ab85}
+ [data-progressbar-value="17"]>.progress-bar{width:17%;background:#85ab85}
+ [data-progressbar-value="18"]>.progress-bar{width:18%;background:#85ab85}
+ [data-progressbar-value="19"]>.progress-bar{width:19%;background:#85ab85}
+ [data-progressbar-value="20"]>.progress-bar{width:20%;background:#85ab85}
+ [data-progressbar-value="21"]>.progress-bar{width:21%;background:#85ab85}
+ [data-progressbar-value="22"]>.progress-bar{width:22%;background:#85ab85}
+ [data-progressbar-value="23"]>.progress-bar{width:23%;background:#85ab85}
+ [data-progressbar-value="24"]>.progress-bar{width:24%;background:#85ab85}
+ [data-progressbar-value="25"]>.progress-bar{width:25%;background:#85ab85}
+ [data-progressbar-value="26"]>.progress-bar{width:26%;background:#85ab85}
+ [data-progressbar-value="27"]>.progress-bar{width:27%;background:#85ab85}
+ [data-progressbar-value="28"]>.progress-bar{width:28%;background:#85ab85}
+ [data-progressbar-value="29"]>.progress-bar{width:29%;background:#85ab85}
+ [data-progressbar-value="30"]>.progress-bar{width:30%;background:#85ab85}
+ [data-progressbar-value="31"]>.progress-bar{width:31%;background:#85ab85}
+ [data-progressbar-value="32"]>.progress-bar{width:32%;background:#85ab85}
+ [data-progressbar-value="33"]>.progress-bar{width:33%;background:#85ab85}
+ [data-progressbar-value="34"]>.progress-bar{width:34%;background:#85ab85}
+ [data-progressbar-value="35"]>.progress-bar{width:35%;background:#85ab85}
+ [data-progressbar-value="36"]>.progress-bar{width:36%;background:#85ab85}
+ [data-progressbar-value="37"]>.progress-bar{width:37%;background:#85ab85}
+ [data-progressbar-value="38"]>.progress-bar{width:38%;background:#85ab85}
+ [data-progressbar-value="39"]>.progress-bar{width:39%;background:#85ab85}
+ [data-progressbar-value="40"]>.progress-bar{width:40%;background:#85ab85}
+ [data-progressbar-value="41"]>.progress-bar{width:41%;background:#85ab85}
+ [data-progressbar-value="42"]>.progress-bar{width:42%;background:#85ab85}
+ [data-progressbar-value="43"]>.progress-bar{width:43%;background:#85ab85}
+ [data-progressbar-value="44"]>.progress-bar{width:44%;background:#85ab85}
+ [data-progressbar-value="45"]>.progress-bar{width:45%;background:#85ab85}
+ [data-progressbar-value="46"]>.progress-bar{width:46%;background:#85ab85}
+ [data-progressbar-value="47"]>.progress-bar{width:47%;background:#85ab85}
+ [data-progressbar-value="48"]>.progress-bar{width:48%;background:#85ab85}
+ [data-progressbar-value="49"]>.progress-bar{width:49%;background:#85ab85}
+ [data-progressbar-value="50"]>.progress-bar{width:50%;background:#85ab85}
+ [data-progressbar-value="51"]>.progress-bar{width:51%;background:#85ab85}
+ [data-progressbar-value="53"]>.progress-bar{width:53%;background:#85ab85}
+ [data-progressbar-value="54"]>.progress-bar{width:54%;background:#85ab85}
+ [data-progressbar-value="55"]>.progress-bar{width:55%;background:#85ab85}
+ [data-progressbar-value="56"]>.progress-bar{width:56%;background:#85ab85}
+ [data-progressbar-value="57"]>.progress-bar{width:57%;background:#85ab85}
+ [data-progressbar-value="58"]>.progress-bar{width:58%;background:#85ab85}
+ [data-progressbar-value="59"]>.progress-bar{width:59%;background:#85ab85}
+ [data-progressbar-value="60"]>.progress-bar{width:60%;background:#85ab85}
+ [data-progressbar-value="61"]>.progress-bar{width:61%;background:#85ab85}
+ [data-progressbar-value="62"]>.progress-bar{width:62%;background:#85ab85}
+ [data-progressbar-value="63"]>.progress-bar{width:63%;background:#85ab85}
+ [data-progressbar-value="64"]>.progress-bar{width:64%;background:#85ab85}
+ [data-progressbar-value="65"]>.progress-bar{width:65%;background:#85ab85}
+ [data-progressbar-value="66"]>.progress-bar{width:66%;background:#85ab85}
+ [data-progressbar-value="67"]>.progress-bar{width:67%;background:#85ab85}
+ [data-progressbar-value="68"]>.progress-bar{width:68%;background:#85ab85}
+ [data-progressbar-value="69"]>.progress-bar{width:69%;background:#85ab85}
+ [data-progressbar-value="70"]>.progress-bar{width:70%;background:#85ab85}
+ [data-progressbar-value="71"]>.progress-bar{width:71%;background:#85ab85}
+ [data-progressbar-value="72"]>.progress-bar{width:72%;background:#85ab85}
+ [data-progressbar-value="73"]>.progress-bar{width:73%;background:#85ab85}
+ [data-progressbar-value="74"]>.progress-bar{width:74%;background:#85ab85}
+ [data-progressbar-value="75"]>.progress-bar{width:75%;background:#85ab85}
+ [data-progressbar-value="76"]>.progress-bar{width:76%;background:#85ab85}
+ [data-progressbar-value="77"]>.progress-bar{width:77%;background:#85ab85}
+ [data-progressbar-value="78"]>.progress-bar{width:78%;background:#85ab85}
+ [data-progressbar-value="79"]>.progress-bar{width:79%;background:#85ab85}
+ [data-progressbar-value="80"]>.progress-bar{width:80%;background:#85ab85}
+ [data-progressbar-value="81"]>.progress-bar{width:81%;background:#85ab85}
+ [data-progressbar-value="82"]>.progress-bar{width:82%;background:#85ab85}
+ [data-progressbar-value="83"]>.progress-bar{width:83%;background:#85ab85}
+ [data-progressbar-value="84"]>.progress-bar{width:84%;background:#85ab85}
+ [data-progressbar-value="85"]>.progress-bar{width:85%;background:#85ab85}
+ [data-progressbar-value="86"]>.progress-bar{width:86%;background:#85ab85}
+ [data-progressbar-value="87"]>.progress-bar{width:87%;background:#85ab85}
+ [data-progressbar-value="88"]>.progress-bar{width:88%;background:#85ab85}
+ [data-progressbar-value="89"]>.progress-bar{width:89%;background:#85ab85}
+ [data-progressbar-value="90"]>.progress-bar{width:90%;background:#85ab85}
+ [data-progressbar-value="91"]>.progress-bar{width:91%;background:#85ab85}
+ [data-progressbar-value="92"]>.progress-bar{width:92%;background:#85ab85}
+ [data-progressbar-value="93"]>.progress-bar{width:93%;background:#85ab85}
+ [data-progressbar-value="94"]>.progress-bar{width:94%;background:#85ab85}
+ [data-progressbar-value="95"]>.progress-bar{width:95%;background:#85ab85}
+ [data-progressbar-value="96"]>.progress-bar{width:96%;background:#85ab85}
+ [data-progressbar-value="97"]>.progress-bar{width:97%;background:#85ab85}
+ [data-progressbar-value="98"]>.progress-bar{width:98%;background:#85ab85}
+ [data-progressbar-value="99"]>.progress-bar{width:99%;background:#85ab85}
+ [data-progressbar-value="100"]>.progress-bar{width:100%;background:#739e73;-webkit-animation:none;
+ -moz-animation:none;-ms-animation:none;-o-animation:none;animation:none;background-image:none!important}
+ [data-progressbar-value="100"]:before{
+ content:attr(data-progressbar-value);
+ top:-12px;
+ left:attr(data-progressbar-value) px}
+ [data-progressbar-value="100"]:after{
+ content:"complete";left:auto;right:0;color:#739e73}
+ #report-widgets .progress {
+  padding-left: 0px!important;
+ }
+
+.bootstrap-duallistbox-container label {
+	font-weight: bold;
+	font-size:15px;
+	
+}

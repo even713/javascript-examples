@@ -160,6 +160,10 @@ app.service("helpers", ["$q", function($q){
 	    }, defer.promise);
 	};
 
+	this.paralleTasks = function(tasks){
+		
+	};
+
 	this.getURL = function(URL){
 		var defer = $q.defer();
         var req = new XMLHttpRequest();
@@ -204,6 +208,10 @@ app.controller("mycontroller", ["$scope", "helpers", function($scope, helpers){
 		    console.error(reason);
 		});
 	}
+
+	$scope.allNgPromise = function(){
+
+	};
 }]);
 
 </script>

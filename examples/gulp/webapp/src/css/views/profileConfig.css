@@ -1,0 +1,58 @@
+#profileSettingsWidget .profileContent {
+	margin: 0;
+}
+
+#upload_area{
+	margin-top: 0.5em;
+}
+.fileinput-button input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	cursor: pointer;
+	height: 35px;
+	opacity: 0;
+	width: 100px;	
+}
+
+.fileinput-button {
+	position: relative;
+	background: #57c8f1!important;
+	border: 1px solid #bbb!important;
+}
+#submitUserPhoto{
+	background: #57c8f1!important;
+	border: 1px solid #bbb!important;	
+}
+
+#myCarousel img {
+	width: 100%;
+}
+
+.photoChange {
+	text-align: right;
+	left: 0px;
+	position: relative;
+	margin-top: 5px;
+}
+
+#submit_button {
+	margin-top: 5px;
+}
+
+.smart-style-5 .photoChangeBtn, .smart-style-5 #photoSubmit {
+	background-color: #57c8f1;
+	border: none;
+	padding: 2px 4px;
+}
+
+#photo_change_area {
+	margin-top: 15px;
+}
+
+.profile-pic>img {
+	height: 100px;
+	width: 100px;
+	left: -5px !important;
+}

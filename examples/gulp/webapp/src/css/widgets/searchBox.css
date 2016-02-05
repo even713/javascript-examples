@@ -1,0 +1,32 @@
+/* CSS for search box widget */
+.search-box-widget .disabled {
+	display: none;
+}
+
+.search-box-widget .input-group {
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+}
+
+.search-box-widget {
+	left: 10px;
+	top: 10px;
+	width: 400px;
+}
+.search-box-widget .m-bot15{
+	margin-bottom: 0;
+}
+
+.search-box-widget>.dropdown-menu {
+	width: 100%;
+}
+
+.search-box-widget .glyphicon {
+	top: 0;
+}
+
+/* override treeview selected css so that there's no selection effect on UI*/
+.search-box-widget .jstree-default .jstree-clicked {
+    background: none;
+    border-radius: 0;
+    box-shadow: none;	
+}
