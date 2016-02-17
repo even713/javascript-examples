@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>HTML5 video test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../node_modules/video.js/dist/video-js.min.css" rel="stylesheet">
+    <style>
+    .video-js.video-ss {
+    	width: 960px;
+    	height: 540px;
+    }
+    </style>
+    <!-- If you'd like to support IE8 -->
+    <script src="../../node_modules/video.js/dist/ie8/videojs-ie8.min.js"></script>
+  </head>
+  <body>
+  		<img src="xxx.jpg" alt="first image" vUrl="https://site2.uila.com/video/Root_Cause_Take_1.mp4"/>
+  		<img src="aaa.jpg" alt="second image" vUrl="https://site2.uila.com/video/How_To_Use_Uila.mp4"/>
+  		<div id="videoContainer">
+			<video class="video-js video-ss" controls preload="auto" width="960" height="540" >
+			    <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv">
+			    <p class="vjs-no-js">
+			      To view this video please enable JavaScript, and consider upgrading to a web browser that
+			      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+			    </p>
+			</video>
+		</div>
+
+		<pre id='program_source_mp4'>http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4</pre> 
+		    
+		<button id='btn'>Click</button>
+		    
+		<pre id='output'>Src: http://clips.vorwaerts-gmbh.de/big_buck_bunny.ogv</pre>
+  </body>
+  <script src="../../node_modules/video.js/dist/video.min.js"></script>
+  <script src="../../vendor/jquery/dist/jquery.min.js"></script>
+  <script>
+$.fn.goTo = function() {
+    $('html, body').animate({
+        scrollTop: $(this).offset().top + 'px'
+    }, 'slow');
+    return this; // for chaining...
+}
+
+function initVideos(imgSelector, videoSelector){
+	$(imgSelector).bind("click", function(){
+	  	var vUrl = $(this).attr("vUrl");
+		var tv_main_channel = $(videoSelector + " source");
+		tv_main_channel.attr('src', vUrl);
+		var video_block = $(videoSelector + " video");
+	    video_block.load();
+	    $(videoSelector).goTo();
+	 });
+}
+
+initVideos("img", "#videoContainer");
+
+  </script>
+</html>
