@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+	<neta charset="utf-8" />
+	<title>
+		Array forEach
+	</title>
+</head>
+<body>
+
+	<h1>
+		Array forEach
+	</h1>
+  Object.create()<br/>
+Use forEach to copy
+
+</body>
+<script type="text/javascript">
+// Production steps of ECMA-262, Edition 5, 15.4.4.18
+// Reference: http://es5.github.io/#x15.4.4.18
+if (!Array.prototype.myforEach) {
+
+  Array.prototype.myforEach = function(callback, thisArg) {
+
+    var T, k;
+
+    if (this == null) {
+      throw new TypeError(' this is null or not defined');
+    }
+
+    // 1. Let O be the result of calling toObject() passing the
+    // |this| value as the argument.
+    var O = Object(this);
+
+    // 2. Let lenValue be the result of calling the Get() internal
+    // method of O with the argument "length".
+    // 3. Let len be toUint32(lenValue).
+    var len = O.length >>> 0;
+
+    // 4. If isCallable(callback) is false, throw a TypeError
+    // exception.  See: http://es5.github.com/#x9.11
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + ' is not a function');
+    }
+
+    // 5. If thisArg was supplied, let T be thisArg; else let
+    // T be undefined.
+    if (arguments.length > 1) {
+      T = thisArg;
+    }
+
+    // 6. Let k be 0
+    k = 0;
+
+    // 7. Repeat, while k < len
+    while (k < len) {
+
+      var kValue;
+
+      // a. Let Pk be ToString(k).
+      //    This is implicit for LHS operands of the in operator
+      // b. Let kPresent be the result of calling the HasProperty
+      //    internal method of O with argument Pk.
+      //    This step can be combined with c
+      // c. If kPresent is true, then
+      if (k in O) {
+
+        // i. Let kValue be the result of calling the Get internal
+        // method of O with argument Pk.
+        kValue = O[k];
+
+        // ii. Call the Call internal method of callback with T as
+        // the this value and argument list containing kValue, k, and O.
+        callback.call(T, kValue, k, O);
+      }
+      // d. Increase k by 1.
+      k++;
+    }
+    // 8. return undefined
+  };
+}
+
+function logArrayElements(element, index, array) {
+    console.log("a[" + index + "] = " + element);
+}
+[2, 5, 9].myforEach(logArrayElements);
+
+//Shape - superclass
+function Shape() {
+  this.x = 0;
+  this.y = 0;
+}
+
+Shape.prototype.move = function(x, y) {
+    this.x += x;
+    this.y += y;
+    console.info("Shape moved.");
+};
+
+// Rectangle - subclass
+function Rectangle() {
+  Shape.call(this); //call super constructor.
+}
+
+Rectangle.prototype = Object.create(Shape.prototype);
+
+var rect = new Rectangle();
+
+console.log(rect instanceof Rectangle) //true.
+console.log(rect instanceof Shape) //true.
+
+rect.move(1, 1); //Outputs, "Shape moved."
+
+// compare the old way below:
+function Rectangle2(){
+  Shape.call(this);
+}
+Rectangle2.prototype = new Shape();
+
+var rect2 = new Rectangle2();
+console.log(rect2 instanceof Rectangle2) //true
+console.log(rect2 instanceof Shape) // true;
+
+console.log(Rectangle.prototype); // use Object.create won't execute Shape function.
+console.log(Rectangle2.prototype) // its x and y are initalized.
+
+console.log(Object.getPrototypeOf(rect) === Rectangle.prototype) // true
+console.log(Object.getPrototypeOf(rect) === Shape.prototype) // false
+
+var o;
+
+// 创建一个原型为null的空对象
+o = Object.create(null);
+
+
+o = {};
+// 以字面量方式创建的空对象就相当于:
+o = Object.create(Object.prototype);
+
+
+o = Object.create(Object.prototype, {
+  // foo会成为所创建对象的数据属性
+  foo: { writable:true, configurable:true, value: "hello" },
+  // bar会成为所创建对象的访问器属性
+  bar: {
+    configurable: false,
+    get: function() { return 10 },
+    set: function(value) { console.log("Setting `o.bar` to", value) }
+}})
+
+function copy(obj) {
+  var copy = Object.create(Object.getPrototypeOf(obj));
+  var propNames = Object.getOwnPropertyNames(obj);
+
+  propNames.forEach(function(name) {
+    var desc = Object.getOwnPropertyDescriptor(obj, name);
+    Object.defineProperty(copy, name, desc);
+  });
+
+  return copy;
+}
+
+var obj1 = { a: 1, b: 2 };
+var obj2 = copy(obj1); // obj2 looks like obj1 now
+
+</script>
+</html>
