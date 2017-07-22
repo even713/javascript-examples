@@ -1,6 +1,7 @@
 <html ng-app="showcase.angularWay.withOptions">
 <link rel="stylesheet" href="../../vendor/angular-plugin/angular-datatables.css">
 <link rel="stylesheet" href="../../vendor/datatable/jquery.dataTables.min.css">
+<link rel="stylesheet" href="../../vendor/datatable/dataTables.responsive.css">
 
 <body>
 <div ng-controller="AngularWayWithOptionsCtrl as showCase">
@@ -29,6 +30,9 @@
             <th>ID</th>
             <th>First name</th>
             <th>Last name</th>
+            <th>Age</th>
+            <th>Phone</th>
+            <th>Company</th>
         </tr>
         </thead>
         <tbody>
@@ -51,6 +55,9 @@
             <td>{{ person.id }}</td>
             <td>{{ person.firstName }}</td>
             <td>{{ person.lastName }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.phone }}</td>
+            <td>{{ person.company }}</td>
         </tr>
         </tbody>
     </table>
@@ -62,6 +69,7 @@
 <script src="../../vendor/angularjs/angular-1.4.5.js"></script>
 <script src="../../vendor/angular-plugin/angular-datatables.js"></script>
 <script src="../../vendor/angular-plugin/angular-resource.js"></script>
+<script src="../../vendor/datatable/dataTables.responsive.js"></script>
 
 <script>
 angular.module('showcase.angularWay.withOptions', ['datatables', 'ngResource'])
@@ -89,34 +97,58 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
     vm.persons = [{
         "id": 860,
         "firstName": "Superman",
-        "lastName": "Yoda"
+        "lastName": "Yoda",
+        "age": 20,
+        "phone": "1234334343",
+        "company": "uila"
     }, {
         "id": 870,
         "firstName": "Foo",
-        "lastName": "Whateveryournameis"
+        "lastName": "Whateveryournameis",
+        "age": 20,
+        "phone": "1234334343",
+        "company": "uila"
     }, {
         "id": 590,
         "firstName": "Toto",
-        "lastName": "Titi"
+        "lastName": "Titi",
+        "age": 20,
+        "phone": "1234334343",
+        "company": "uila"
     }];
 
+    var oldtrs;
+
     vm.changeData = function(){
+
             vm.persons = [{
                 "id": 860,
                 "firstName": "Superman",
-                "lastName": "Yoda"
+                "lastName": "Yoda",
+                "age": 20,
+                "phone": "1234334343",
+                "company": "uila"
             }, {
                 "id": 590,
                 "firstName": "Toto",
-                "lastName": "Titi"
+                "lastName": "Titi",
+                "age": 20,
+                "phone": "1234334343",
+                "company": "uila"
             }, {
                 "id": 803,
                 "firstName": "Luke",
-                "lastName": "Kyle"
+                "lastName": "Kyle",
+                "age": 20,
+                "phone": "1234334343",
+                "company": "uila"
             }, {
                 "id": 476,
                 "firstName": "Zed",
-                "lastName": "Kyle"
+                "lastName": "Kyle",
+                "age": 20,
+                "phone": "1234334343",
+                "company": "uila"
             }];
 
             var ary = vm.persons.map(function(d){
@@ -125,20 +157,36 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
             // console.log(ary);
             $timeout(function(){
                 var dt = $(".my-dt").DataTable();
-                var trs = $('.my-dt tbody').children();
-                console.log(trs);
+                var trs = $('.my-dt tbody').children().not(".child");
+                var trsToBeRemoved = diffRows(oldtrs, trs);
+                var trsToBeAdded = diffRows(trs, oldtrs);
+                debugger;
                 /*dt.clear().draw();
                 $timeout(function(){
                     dt.rows.add(ary).draw();
                 }, 1000)*/
-                dt.clear().rows.add(trs)//.draw();
+                var r = dt.rows(trsToBeRemoved).remove()
+                        .rows.add(trsToBeAdded);
+                oldtrs = $('.my-dt tbody').children().not(".child");
+
+                //dt.clear().rows.add(trs)//.draw();
             }, 100);
     }
 
     $timeout(function(){
-        $(".my-dt").dataTable();
-    }, 200);    
+        oldtrs = $('.my-dt tbody').children().not(".child");
+        $(".my-dt").dataTable({
+            responsive: true,
+            retrieve: true
+        });
+    }, 200);  
+ 
 }
+
+// Get the rows that are not in "newTrs"
+function diffRows(oldTrs, newTrs){
+    return $.grep(oldTrs, function(x) {return $.inArray(x, newTrs) < 0})
+} 
 
 </script>
 </html>
