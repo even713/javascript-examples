@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		$http header settings
+	</title>
+
+</head>
+<body ng-controller="pageController">
+
+	<h1>
+		$http header settings
+	</h1>
+
+
+
+	<!-- Load scripts. -->
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+	<script type="text/javascript">
+	angular.module("Demo", [])
+	.controller('pageController', function($http){
+		var conf = {
+			method: 'GET',
+			url: 'test.json'
+		};
+
+		$http(conf).then(function(response){
+			debugger;
+			console.log(response.data);
+		}, function(){
+			debugger;
+			console.log("error");
+		}).finally(function(){
+			console.log("finally");
+		});
+	});
+
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<html>
+<body>
+
+</body>
+<script  type="module">
+import { area, circumference, addTextToBody } from './circle.js';
+
+addTextToBody('Modules are pretty cool.');
+
+console.log("圆面积：" + area(4));
+console.log("圆周长：" + circumference(14));
+</script>
+<script>
+
+</script>
+<script type="text/javascript">
+// ES6 
+class Foo {
+    constructor(prop) {
+        this.prop = prop;
+    }
+    static staticMethod() {
+        return 'classy';
+    }
+    prototypeMethod() {
+        return 'prototypical';
+    }
+}
+let foo = new Foo(123);
+
+function getCar(make, model, value) {
+
+	return{
+		make,
+		model,
+		_value: value,
+
+		get value(){
+			return this._value;
+		},
+		set value(value) {
+			if(value < 0) 
+				throw new Error('invalid value');
+
+			this._value = value;
+		}
+
+	}
+}
+
+// let car = getCar('Kia', 'Sorento', 40000);
+
+// console.log(car.value);
+
+// car.value = 30000;
+
+// console.log([car.value, car._value]);
+
+// ES5
+function getMyCar(make, model, value){
+	return {
+		make: make,
+		model: model,
+		_value: value,
+		get value(){
+			return this._value;
+		},
+		set value(v){
+			this._value = v;
+		}
+	}
+}
+// var car = getMyCar('Kia', 'Sorento', 40000);
+// console.log(car.value);
+
+// car.value = 30000;
+// console.log(car.value);
+
+// Generator:
+
+function* quips(name) {
+  yield "你好 " + name + "!";
+  yield "希望你能喜欢这篇介绍ES6的译文";
+  if (name.startsWith("X")) {
+    yield "你的名字 " + name + "  首字母是X，这很酷！";
+  }
+  yield "我们下次再见！";
+}
+
+var iter = quips("John");
+// console.log(iter);
+
+// console.log(iter.next());
+// console.log(iter.next());
+// console.log(iter.next());
+// console.log(iter.next());
+
+// Iterator:
+class RangeIterator {
+	constructor(start, stop){
+		this.value = start;
+		this.stop = stop;
+	}
+
+	[Symbol.iterator](){return this;}
+
+	next(){
+		var value = this.value;
+		if(value < this.stop) {
+			this.value++;
+			return{done: false, value: value};
+		} else {
+			return{done: true, value: undefined};
+		}
+	}
+}
+
+function range(start, stop) {
+	return new RangeIterator(start, stop);
+}
+
+var tmp = range(0, 3);
+// console.log(tmp);
+//tmp = {value: 0, stop: 3};
+//tmp = [1, 2, 3];
+for (var value of tmp) {
+  // console.log("Ding! at floor #" + value);
+}
+
+// 使用生成器实现上述同样功能
+function* range2(start, stop) {
+  for (var i = start; i < stop; i++)
+    yield i;
+}
+for (var value of range2(0, 3)) {
+  // console.log("Ding! at floor #" + value);
+}
+
+//Generator 摆脱回调
+function* Foo2(x) {
+  yield x + 1;
+
+  var y = yield null;
+  return y;
+}
+
+var foo2 = Foo2(5);
+// console.log(foo2.next());     // { value: 6, done: false }
+// console.log(foo2.next());     // { value: null, done: false }
+// console.log(foo2.next(8));    // { value: 13, done: true }
+
+// Class subclass
+class Point {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
+	}
+	toString() {
+		return ('('+ this.x +', '+ this.y +')');
+	}
+	static staticMethod(){
+		return 'hi';
+	}
+}
+
+class ColorPoint extends Point {
+	constructor(x, y, color) {
+		super(x, y);
+		this.color = color;
+	}
+
+	toString(){
+		return super.toString() + ' in ' + this.color;
+	}
+
+	static staticMethod(){
+		return super.staticMethod() + ', too';
+	}
+}
+
+let cp = new ColorPoint(3, 4, 'green');
+console.log(cp.toString());
+console.log(ColorPoint.staticMethod());
+
+function Person(name) {
+    if (typeof new.target !== "undefined") {  
+    	console.log( new.target);
+        this.name = name;
+    } else {
+        throw new Error("You must use new with Person");
+    }
+}
+
+// var person = new Person("Zakas");
+// var notAPerson = Person("Zakas");  //  throws an error
+
+// fat arrow
+var r = [1, 2, 3].map(n => n * 2);
+console.log(r);
+
+
+</script>
+
+</html>

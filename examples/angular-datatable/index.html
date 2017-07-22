@@ -1,0 +1,42 @@
+<html ng-app="showcase">
+<link rel="stylesheet" href="../../vendor/angular-plugin/angular-datatables.css">
+<link rel="stylesheet" href="../../vendor/datatable/jquery.dataTables.min.css">
+
+<body>
+<table datatable="" class="row-border hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>Foo</td>
+        <td>Bar</td>
+    </tr>
+    <tr>
+        <td>123</td>
+        <td>Someone</td>
+        <td>Youknow</td>
+    </tr>
+    <tr>
+        <td>987</td>
+        <td>Iamout</td>
+        <td>Ofinspiration</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/datatable/jquery.dataTables.js"></script>
+<script src="../../vendor/angularjs/angular-1.4.5.js"></script>
+<script src="../../vendor/angular-plugin/angular-datatables.min.js"></script>
+
+<script>
+ angular.module('showcase', ['datatables']);
+</script>
+</html>
