@@ -160,15 +160,15 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
                 var trs = $('.my-dt tbody').children().not(".child");
                 var trsToBeRemoved = diffRows(oldtrs, trs);
                 var trsToBeAdded = diffRows(trs, oldtrs);
-                debugger;
+                //debugger;
                 /*dt.clear().draw();
                 $timeout(function(){
                     dt.rows.add(ary).draw();
                 }, 1000)*/
                 var r = dt.rows(trsToBeRemoved).remove()
-                        .rows.add(trsToBeAdded);
+                        .rows.add(trsToBeAdded).draw();
                 oldtrs = $('.my-dt tbody').children().not(".child");
-
+                //r.draw();
                 //dt.clear().rows.add(trs)//.draw();
             }, 0);
     }
@@ -179,6 +179,10 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
             responsive: true,
             retrieve: true
         });
+
+        $timeout(function(){
+            addColors();
+        });
     }, 0);  
  
 }
@@ -188,6 +192,14 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
 function diffRows(oldTrs, newTrs){
     return $.grep(oldTrs, function(x) {return $.inArray(x, newTrs) < 0})
 } 
+
+function addColors() {
+    var trs = $('.my-dt tbody').children().not(".child");
+    var colors = ["red", "green", "yellow", "blue"];
+    trs.each(function(idx, tr){
+        tr.style.backgroundColor = colors[idx];
+    });
+}
 
 </script>
 </html>

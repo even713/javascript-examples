@@ -9,15 +9,10 @@ class UilaTableDirective extends laygoon.util.BaseDirectiveClass {
 			data: '='
 		}
 
-		//this.replace = true;
 		this.controller = UilaTableDirectiveWorker.create();
 		this.controllerAs = "vm";
 		this.bindToController = true;
-
-		// this.template = "<div>{{vm.ths}}<br/>{{vm.tds}}</div><ng-transclude></ng-transclude>";
-
 		this.transclude = true;
-
 		this.replace = true;
 
 		this.template = `<table>
@@ -35,62 +30,78 @@ class UilaTableDirective extends laygoon.util.BaseDirectiveClass {
 	}
 
 	link (scope, element, attr, ctrl) {
-		var _injects = this;
-
-		// ctrl.element = element;
-		ctrl.initTrRepeat();
-
-		_injects.$timeout(function(){			
-			element.find("tbody>tr:first-child").attr("ng-repeat", ctrl.trRepeat);
-			element.find("[ng-transclude]").removeAttr("ng-transclude");
-			element.find("tbody td[ng-repeat]").removeAttr("ng-repeat");
-
-			var p = _injects.$compile(element.contents())(scope);
-
-			_injects.$timeout(function(){
-				ctrl.initTable(element);
-			}, 0);
-		}, 0);
+		ctrl.compileTemplate(element).then(function(){
+			ctrl.initTable(element);
+		});
 	}
 }
-UilaTableDirective.inject(['$compile', '$timeout']);
+//UilaTableDirective.inject(['$compile', '$timeout']);
 
 class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 	constructor(...injects){
 		super(...injects);
 		this.tds = [];
 		this.oldTrs = null; // store the current UI trs element
+		this.dtInstance = null; // a refrence that can access datatable api
+		this.columns = [];
 	}
 
 	get data(){
 		return this._data;
 	}
 
-	set data(newData){
-		let firstLoad = this._data ? false : true,
-			_self = this;
-
-		this._data = newData;
+	// watch data change and update datatable
+	set data(newData){	
+		let _self = this;
 				
-		if(!firstLoad) {
+		if(this.dtInstance) {
+			this._data = newData;
+
 			this.$timeout(function(){
 				_self.updateTable();
-			}, 0);
+			});
+		} else {
+			this._data = newData;
 		}
 	}
 
+	sortData() {
+		if(!this.dtInstance)
+			return;
+
+		//var order = this.dtInstance.order();
+	}
+
 	addTd(key) {
+		this.columns.push(key);
 		this.tds.push('{{ elem.'+ key +'}}');
 	}
 
-	initTrRepeat() {	
-		this.trRepeat = 'elem in vm.data track by elem.'+ this.trackBy;
+	// compile initial template
+	compileTemplate(element) {
+		let _injects = this,
+			_ctrl = this;
+
+		return _injects.$q(function(resolve, reject) {
+			_injects.$timeout(function(){
+				let trNgRepeat = 'elem in vm.data track by elem.'+ _ctrl.trackBy;			
+				element.find("tbody>tr:first-child").attr("ng-repeat", trNgRepeat);
+				element.find("[ng-transclude]").removeAttr("ng-transclude");
+				element.find("tbody td[ng-repeat]").removeAttr("ng-repeat");
+
+				_injects.$compile(element.contents())(_injects.$scope);
+
+				_injects.$timeout(function(){
+					resolve(element);
+				});
+			})
+		});		
 	}
 
 	initTable(table) {
 		this.table = table;
         this.oldTrs = table.find('tbody').children().not(".child");
-        $(table).dataTable();
+        this.dtInstance = $(table).DataTable();
         // {
         //     responsive: true,
         //     retrieve: true
@@ -98,14 +109,13 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 	}
 
 	updateTable() {
-		debugger;
-        let dt = $(this.table).DataTable(),
-            trs = $(this.table).find('tbody').children().not(".child"),
+        let trs = $(this.table).find('tbody').children().not(".child"),
         	trsToBeRemoved = this.diffRows(this.oldTrs, trs),
         	trsToBeAdded = this.diffRows(trs, this.oldTrs);
 
-        dt.rows(trsToBeRemoved).remove()
-                .rows.add(trsToBeAdded);
+        this.dtInstance.rows(trsToBeRemoved).remove()
+                .rows.add(trsToBeAdded)
+                .draw();
 
         this.oldTrs = $(this.table).find('tbody').children().not(".child");
 	}
@@ -114,7 +124,7 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 	    return $.grep(oldTrs, function(x) {return $.inArray(x, newTrs) < 0})
 	} 
 }
-UilaTableDirectiveWorker.inject(['$timeout']);
+UilaTableDirectiveWorker.inject(['$timeout', '$q', '$compile', '$scope']);
 
 class UilaColumnDirective extends laygoon.util.BaseDirectiveClass {
 	constructor(...injects) {

@@ -1,16 +1,22 @@
-<html ng-app="showcase.angularWay.withOptions">
+<html ng-app="showcase.angularWay">
 <link rel="stylesheet" href="../../vendor/angular-plugin/angular-datatables.css">
 <link rel="stylesheet" href="../../vendor/datatable/jquery.dataTables.min.css">
 <link rel="stylesheet" href="../../vendor/datatable/dataTables.responsive.css">
 
 <body>
-<div ng-controller="AngularWayWithOptionsCtrl as showCase">
+<div ng-controller="AngularWayCtrl as showCase">
     <div>
         <input type="button" ng-click="showCase.changeData()" value="Change Data"/>
     </div>
 
     <uila-table class="my-dt row-border hover responsive" data="showCase.persons" track-by="id">
         <uila-column key="id">ID</uila-column>
+        <!-- <uila-column>
+            <uila-column-title>ID</uila-column-title>
+            <uila-column-formatter>
+                <a href="#" ng-click="showCase.goTo($row)">$cell.id</a>
+            </uila-column-formatter>
+        </uila-column> -->
         <uila-column key="firstName">First name</uila-column>
         <uila-column key="lastName">Last name</uila-column>
         <uila-column key="age">Age</uila-column>
@@ -24,35 +30,24 @@
 <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
 <script src="../../vendor/datatable/jquery.dataTables.js"></script>
 <script src="../../vendor/angularjs/angular-1.4.5.js"></script>
-<script src="../../vendor/angular-plugin/angular-datatables.js"></script>
 <script src="../../vendor/angular-plugin/angular-resource.js"></script>
 <script src="../../vendor/datatable/dataTables.responsive.js"></script>
+<script src="../../vendor/other/thenBy.js"></script>
 <script src="base.js"></script>
 <script src="uilaDataTable.js"></script>
 
 <script>
-angular.module('showcase.angularWay.withOptions', ['datatables', 'ngResource', 'uilaDatatable'])
-.controller('AngularWayWithOptionsCtrl', AngularWayWithOptionsCtrl);
+angular.module('showcase.angularWay', ['uilaDatatable'])
+.controller('AngularWayCtrl', AngularWayCtrl);
 
-function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuilder, $timeout) {
+function AngularWayCtrl() {
     var vm = this;
     vm.persons = [];
-    // vm.dtOptions = DTOptionsBuilder.newOptions();
-    // //.withPaginationType('full_numbers').withDisplayLength(2);
-    // // //console.log(vm.dtOptions);
-    // // vm.dtOptions = {
-    // //     iDisplayLength: 2,
-    // //     sPaginationType: "full_numbers"
-    // // }
-    // vm.dtColumnDefs = [
-    //     DTColumnDefBuilder.newColumnDef(0),
-    //     DTColumnDefBuilder.newColumnDef(1).notVisible(),
-    //     DTColumnDefBuilder.newColumnDef(2).notSortable()
-    // ];
-    // console.log(vm.dtColumnDefs);
-    // /*$resource('data.json').query().$promise.then(function(persons) {
-    //     vm.persons = persons;
-    // });*/
+
+    vm.idFormatter = function(){
+
+    }
+
     vm.persons = [{
         "id": 860,
         "firstName": "Superman",
@@ -75,8 +70,6 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
         "phone": "1234334343",
         "company": "uila"
     }];
-
-    var oldtrs;
 
     vm.changeData = function(){
 
@@ -109,44 +102,10 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
                 "phone": "1234334343",
                 "company": "uila"
             }];
-
-            // var ary = vm.persons.map(function(d){
-            //     return [d.id, d.firstName, d.lastName];
-            // });
-            // // console.log(ary);
-            // $timeout(function(){
-            //     var dt = $(".my-dt").DataTable();
-            //     var trs = $('.my-dt tbody').children().not(".child");
-            //     var trsToBeRemoved = diffRows(oldtrs, trs);
-            //     var trsToBeAdded = diffRows(trs, oldtrs);
-            //     debugger;
-            //     /*dt.clear().draw();
-            //     $timeout(function(){
-            //         dt.rows.add(ary).draw();
-            //     }, 1000)*/
-            //     var r = dt.rows(trsToBeRemoved).remove()
-            //             .rows.add(trsToBeAdded);
-            //     oldtrs = $('.my-dt tbody').children().not(".child");
-
-            //     //dt.clear().rows.add(trs)//.draw();
-            // }, 0);
     }
-
-    $timeout(function(){
-        // oldtrs = $('.my-dt tbody').children().not(".child");
-        // $(".my-dt").dataTable({
-        //     responsive: true,
-        //     retrieve: true
-        // });
-    }, 0);  
  
 }
 
-// Get the rows that are not in "newTrs"
-// todo: to have better name convention in params
-function diffRows(oldTrs, newTrs){
-    return $.grep(oldTrs, function(x) {return $.inArray(x, newTrs) < 0})
-} 
 
 </script>
 </html>
