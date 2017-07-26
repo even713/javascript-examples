@@ -10,20 +10,23 @@
     </div>
 
     <uila-table class="my-dt row-border hover responsive" data="showCase.persons" track-by="id">
-        <uila-column key="id">ID</uila-column>
-        <!-- <uila-column>
-            <uila-column-title>ID</uila-column-title>
+        <uila-column key="id" formatter="id-column">
+            <h2>ID</h2>
+        </uila-column>
+        <!-- <uila-column key="id">
+            <uila-column-title><h2>ID</h2></uila-column-title>
             <uila-column-formatter>
-                <a href="#" ng-click="showCase.goTo($row)">$cell.id</a>
+                <a href="#" ng-click="showCase.goTo($row)">$row.id</a>
+
             </uila-column-formatter>
-        </uila-column> -->
+        </uila-column> --> 
         <uila-column key="firstName">First name</uila-column>
         <uila-column key="lastName">Last name</uila-column>
         <uila-column key="age">Age</uila-column>
         <uila-column key="phone">Phone</uila-column>
         <uila-column key="company">Company</uila-column>
     </uila-table>
-
+    <div ng-bind-html="trustedHtml"></div>
 </div>
 </body>
 
@@ -31,22 +34,27 @@
 <script src="../../vendor/datatable/jquery.dataTables.js"></script>
 <script src="../../vendor/angularjs/angular-1.4.5.js"></script>
 <script src="../../vendor/angular-plugin/angular-resource.js"></script>
+<script src="../../vendor/angular-plugin/angular-sanitize.min.js"></script>
 <script src="../../vendor/datatable/dataTables.responsive.js"></script>
 <script src="../../vendor/other/thenBy.js"></script>
 <script src="base.js"></script>
+<script src="UilaTableDirective.js"></script>
+<script src="UilaColumnDirective.js"></script>
+<script src="UilaColumnTitleDirective.js"></script>
 <script src="uilaDataTable.js"></script>
 
 <script>
-angular.module('showcase.angularWay', ['uilaDatatable'])
-.controller('AngularWayCtrl', AngularWayCtrl);
+angular.module('showcase.angularWay', ['ngSanitize', 'uilaDatatable'])
+.controller('AngularWayCtrl', AngularWayCtrl)
+.directive('idColumn', idColumnDirective);
 
-function AngularWayCtrl() {
+function AngularWayCtrl($sce, $scope) {
     var vm = this;
     vm.persons = [];
+    
+    $scope.html = '<ul><li>render me please</li></ul>';
+    $scope.trustedHtml = $sce.trustAsHtml($scope.html);
 
-    vm.idFormatter = function(){
-
-    }
 
     vm.persons = [{
         "id": 860,
@@ -106,6 +114,21 @@ function AngularWayCtrl() {
  
 }
 
+function idColumnDirective(){
+    return {
+        template: `<a href="#" ng-click="goTo(rowData)">{{rowData.id}}</a>`,
+        scope: {
+            rowData: '=',
+            rowIdx: '=',
+            colIdx: '='
+        },
+        link: function(scope, element){
+            scope.goTo = function(rowData){
+                alert(rowData.id);
+            }
+        }
+    }
+}
 
 </script>
 </html>

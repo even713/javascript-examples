@@ -52,7 +52,11 @@
             <td>Ofinspiration</td>
         </tr> -->
         <tr ng-repeat="person in showCase.persons track by person.id">
-            <td>{{ person.id }}</td>
+            <td>
+                <uila-column-formatter row-data="person" 
+                row-idx="$$index" col-idx="0"/>
+            </td>
+            <td><a href="#" ng-click="showCase.showAlert(person.id)">{{ person.id }}</a></td>
             <td>{{ person.firstName }}</td>
             <td>{{ person.lastName }}</td>
             <td>{{ person.age }}</td>
@@ -78,6 +82,10 @@ angular.module('showcase.angularWay.withOptions', ['datatables', 'ngResource'])
 function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuilder, $timeout) {
     var vm = this;
     vm.persons = [];
+
+    vm.showAlert = function(id){
+        alert(id);
+    }
     // vm.dtOptions = DTOptionsBuilder.newOptions();
     // //.withPaginationType('full_numbers').withDisplayLength(2);
     // // //console.log(vm.dtOptions);
