@@ -1,11 +1,45 @@
-class UilaTableDirective extends laygoon.util.BaseDirectiveClass {
+class UilaTableFirstDirective extends laygoon.util.BaseDirectiveClass {
+	constructor(...injects) {
+		super(...injects);
+
+		this.restrict = "EA";
+		this.priority = 1;
+		this.compile = this._compile.bind(this);
+	}
+
+	// without setting template, we can get the inside element "uila-column"s.
+	// use "uila-column" to render tds per column settings.
+	_compile(tElem, tAttrs) {
+		let columns = tElem.children("uila-column"),
+			tdArray = [];
+
+		columns.each(function(idx, col){
+			let key = $(col).attr("key"),
+				formatter = $(col).attr("formatter");		
+
+			if(!formatter) {
+				if(!key) {
+					console.error("no key or formatter for table column");
+					return;
+				}
+				tdArray.push("<td>{{ elem."+ key + "}}</td>");
+			} else {
+				tdArray.push('<td><'+ formatter + ' row-data="elem" ' +
+	                'row-idx="$index" col-idx="'+ idx +'"></'+ formatter +'></td>');
+			}			
+		});
+
+		tElem.data("tdArray", tdArray);		
+	}	
+}
+
+class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 	constructor(...injects){
 		super(...injects);
 
 		this.restrict = "EA";
 
 		this.scope = {
-			trackBy: '@',
 			data: '='
 		}
 
@@ -14,6 +48,8 @@ class UilaTableDirective extends laygoon.util.BaseDirectiveClass {
 		this.bindToController = true;
 		this.transclude = true;
 		this.replace = true;
+		this.priority = 0;
+		this.compile = this._compile.bind(this);
 
 		this.template = `<table>
 			<thead>
@@ -23,29 +59,42 @@ class UilaTableDirective extends laygoon.util.BaseDirectiveClass {
 			</thead>
 			<tbody>
 				<tr>
-					<td ng-repeat="content in vm.tds">{{content}}</td>
+					<!-- Insert formatted column td here -->
 				</tr>
 			</tbody>
 		</table>`;
 	}
 
-	link (scope, element, attr, ctrl) {
-		/*ctrl.compileTemplate(element).then(function(){
-			ctrl.initTable(element);
-		});*/
+	_compile(tElem, tAttrs) {
+		let tbodyTr = tElem.find("tbody > tr"),
+			trNgRepeat = 'elem in vm.data track by elem.'+ tAttrs.trackBy,
+			tdArray = tElem.data("tdArray"),
+			_injects = this;
+
+		tbodyTr.attr("ng-repeat", trNgRepeat);
+
+		tdArray.forEach(function(td){
+			tbodyTr.append(td);
+		});
+
+		return {
+			post: function(scope, element, attr, ctrl) {
+				_injects.$timeout(function(){
+					ctrl.initTable(element);
+				});
+			}
+		}
 	}
 }
-//UilaTableDirective.inject(['$compile', '$timeout']);
+
+UilaTableSecondDirective.inject(['$timeout']);
 
 class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 	constructor(...injects){
 		super(...injects);
-		this.tds = [];
 		this.oldTrs = null; // store the current UI trs element
 		this.dtInstance = null; // a refrence that can access datatable api
-		//this.columns = [];
-		this.trustHtml = this.$sce.trustAsHtml;
-		this.replaceRule = []; // replace directive html using "<" to replace "&lt;"
+		this.dtColumnDefs = [];
 	}
 
 	get data(){
@@ -67,47 +116,36 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 		}
 	}
 
-	sortData() {
-		if(!this.dtInstance)
-			return;
+	// set column defination, see aoColumnDefs: http://legacy.datatables.net/usage/columns
+	// note: if the same column is targeted multiple times in aoColumnDefs, 
+	// the first elements in the array will take the highest priority, and the last the lowest.
+	setColumnDef(targetCol, settings) {
+		//let columnDef = {"aTargets": targetCol};
+		// for(let prop in settings) {
+		// 	let property = null;
+		// 	switch (prop) {
+		// 		// for sorting the column
+		// 		case "type":
+		// 			property = "sType"
+		// 		break;
+		// 		default:
+		// 			return;
+		// 	}
+		// 	columnDef[property] = settings[prop];			
+		// }
+		settings["aTargets"] = targetCol;
 
-		//var order = this.dtInstance.order();
-	}
-
-	addTd(tdContent, isDirective) {
-		// this.tds.push(this.trustHtml(tdContent));
-		this.tds.push(tdContent);
-	}
-
-	// compile initial template
-	compileTemplate(element) {
-		let _injects = this,
-			_ctrl = this;
-
-		return _injects.$q(function(resolve, reject) {
-			_injects.$timeout(function(){
-				let trNgRepeat = 'elem in vm.data track by elem.'+ _ctrl.trackBy;			
-				element.find("tbody>tr:first-child").attr("ng-repeat", trNgRepeat);
-				element.find("[ng-transclude]").removeAttr("ng-transclude");
-				element.find("tbody td[ng-repeat]").removeAttr("ng-repeat");
-
-				_injects.$compile(element.contents())(_injects.$scope);
-
-				_injects.$timeout(function(){
-					resolve(element);
-				});
-			})
-		});		
+		this.dtColumnDefs.push(settings);
 	}
 
 	initTable(table) {
+		var _self = this;
 		this.table = table;
         this.oldTrs = table.find('tbody').children().not(".child");
-        this.dtInstance = $(table).DataTable();
-        // {
-        //     responsive: true,
-        //     retrieve: true
-        // }
+        this.dtInstance = $(table).DataTable({
+        	retrieve: true,
+        	"aoColumnDefs": this.dtColumnDefs
+        });
 	}
 
 	updateTable() {
