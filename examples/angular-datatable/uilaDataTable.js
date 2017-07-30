@@ -7,5 +7,4 @@ angular.module("uilaDatatable", ['ngSanitize'])
 
 .directive("uilaColumn", UilaColumnDirective.create())
 
-.directive("uilaColumnTitle", UilaColumnTitleDirective.create());
 

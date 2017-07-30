@@ -15,15 +15,16 @@ class UilaColumnDirective extends laygoon.util.BaseDirectiveClass {
 			colIdx = nodesList.index(element),
 			settings = {};
 
-		let type = attr.type,
-			notSortable = attr.notSortable;
+		let sType = attr.sType,
+			sClass = attr.sClass,
+			bSortable = attr.bSortable;
 
-		if(type != null)
-			settings["sType"] = type;
-		if(css != null)
-			settings["sClass"]
-		if(notSortable != null)
-			settings["bSortable"] = false;
+		if(sType != null)
+			settings["sType"] = sType;
+		if(sClass != null)
+			settings["sClass"] = sClass;
+		if(bSortable != null)
+			settings["bSortable"] = bSortable == 'true';
 
 		uilaTable.setColumnDef(colIdx, settings);
 	}

@@ -40,7 +40,8 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 		this.restrict = "EA";
 
 		this.scope = {
-			data: '='
+			data: '=',
+			detailRenderer: '&'
 		}
 
 		this.controller = UilaTableDirectiveWorker.create();
@@ -139,13 +140,23 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 	}
 
 	initTable(table) {
-		var _self = this;
+		let _self = this;
 		this.table = table;
         this.oldTrs = table.find('tbody').children().not(".child");
-        this.dtInstance = $(table).DataTable({
+        
+        let tableSettings = {
         	retrieve: true,
         	"aoColumnDefs": this.dtColumnDefs
-        });
+        }
+        if(_self.detailRenderer) {
+        	tableSettings.responsive = {
+		        details: {
+		        	renderer: (api, rowIdx, columns) => 
+		        	_self.detailRenderer({api: api, rowIdx: rowIdx, columns: columns})
+		        }        		
+        	}
+        }
+        this.dtInstance = $(table).DataTable(tableSettings);
 	}
 
 	updateTable() {

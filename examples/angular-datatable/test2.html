@@ -2,22 +2,29 @@
 <link rel="stylesheet" href="../../vendor/angular-plugin/angular-datatables.css">
 <link rel="stylesheet" href="../../vendor/datatable/jquery.dataTables.min.css">
 <link rel="stylesheet" href="../../vendor/datatable/dataTables.responsive.css">
-
+<style>
+.phone-column {
+    background-color: red;
+}
+</style>
 <body>
 <div ng-controller="AngularWayCtrl as showCase">
     <div>
         <input type="button" ng-click="showCase.changeData()" value="Change Data"/>
     </div>
 
-    <uila-table class="my-dt row-border hover responsive" data="showCase.persons" track-by="id">
+    <uila-table class="my-dt row-border hover responsive" 
+    data="showCase.persons" 
+    track-by="id"
+    detail-renderer="showCase.myRenderer(api, rowIdx, columns)">
         <uila-column key="id" formatter="id-column">
             <h2>ID</h2>
         </uila-column>
         <uila-column key="firstName">First name</uila-column>
         <uila-column key="lastName">Last name</uila-column>
-        <uila-column key="age" type="string">Age</uila-column>
-        <uila-column key="phone">Phone</uila-column>
-        <uila-column key="company" not-sortable>Company</uila-column>
+        <uila-column key="age" s-type="string">Age</uila-column>
+        <uila-column key="phone" s-class="phone-column">Phone</uila-column>
+        <uila-column key="company" b-sortable="false">Company</uila-column>
     </uila-table>
 </div>
 </body>
@@ -32,7 +39,6 @@
 <script src="base.js"></script>
 <script src="UilaTableDirective.js"></script>
 <script src="UilaColumnDirective.js"></script>
-<script src="UilaColumnTitleDirective.js"></script>
 <script src="UilaColumnFormatterDirective.js"></script>
 <script src="uilaDataTable.js"></script>
 
@@ -46,6 +52,13 @@ function AngularWayCtrl($sce, $scope) {
     
     $scope.html = '<ul><li>render me please</li></ul>';
     $scope.trustedHtml = $sce.trustAsHtml($scope.html);
+    vm.myRenderer = function(api, rowIdx){
+        
+        let row = api.data()[rowIdx];
+         var data = row.join('');
+ 
+                return '<div>' + data + '</div>';
+    }
 
 
     vm.persons = [{
