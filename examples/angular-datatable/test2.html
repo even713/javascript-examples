@@ -15,9 +15,10 @@
 
     <uila-table class="my-dt row-border hover responsive" 
     data="showCase.persons" 
+    dom="rt"
     track-by="id"
-    detail-renderer="showCase.myRenderer(api, rowIdx, columns)">
-        <uila-column key="id" formatter="id-column">
+    detail-renderer="showCase.myRenderer">
+        <uila-column key="id" formatter="id-column" class-name="control">
             <h2>ID</h2>
         </uila-column>
         <uila-column key="firstName">First name</uila-column>
@@ -25,6 +26,7 @@
         <uila-column key="age" s-type="string">Age</uila-column>
         <uila-column key="phone" s-class="phone-column">Phone</uila-column>
         <uila-column key="company" b-sortable="false">Company</uila-column>
+        <uila-column key="id" s-class="none">Detail</uila-column>
     </uila-table>
 </div>
 </body>
@@ -37,27 +39,26 @@
 <script src="../../vendor/datatable/dataTables.responsive.js"></script>
 <script src="../../vendor/other/thenBy.js"></script>
 <script src="base.js"></script>
-<script src="UilaTableDirective.js"></script>
-<script src="UilaColumnDirective.js"></script>
-<script src="UilaColumnFormatterDirective.js"></script>
-<script src="uilaDataTable.js"></script>
+<script src="src/UilaTableDirective.js"></script>
+<script src="src/UilaColumnDirective.js"></script>
+<script src="src/UilaColumnFormatterDirective.js"></script>
+<script src="src/uilaDataTable.js"></script>
 
 <script>
 angular.module('showcase.angularWay', ['ngSanitize', 'uilaDatatable'])
 .controller('AngularWayCtrl', AngularWayCtrl);
 
-function AngularWayCtrl($sce, $scope) {
+function AngularWayCtrl($sce, $scope, $compile) {
     var vm = this;
     vm.persons = [];
     
     $scope.html = '<ul><li>render me please</li></ul>';
     $scope.trustedHtml = $sce.trustAsHtml($scope.html);
     vm.myRenderer = function(api, rowIdx){
-        
         let row = api.data()[rowIdx];
          var data = row.join('');
  
-                return '<div>' + data + '</div>';
+                return $compile('<div>' + data + '</div>')($scope);
     }
 
 

@@ -17,7 +17,8 @@ class UilaColumnDirective extends laygoon.util.BaseDirectiveClass {
 
 		let sType = attr.sType,
 			sClass = attr.sClass,
-			bSortable = attr.bSortable;
+			bSortable = attr.bSortable,
+			className = attr.className;
 
 		if(sType != null)
 			settings["sType"] = sType;
@@ -25,6 +26,8 @@ class UilaColumnDirective extends laygoon.util.BaseDirectiveClass {
 			settings["sClass"] = sClass;
 		if(bSortable != null)
 			settings["bSortable"] = bSortable == 'true';
+		if(className != null)
+			settings["className"] = className;
 
 		uilaTable.setColumnDef(colIdx, settings);
 	}

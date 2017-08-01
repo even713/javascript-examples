@@ -41,7 +41,7 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 
 		this.scope = {
 			data: '=',
-			detailRenderer: '&'
+			detailRenderer: '='
 		}
 
 		this.controller = UilaTableDirectiveWorker.create();
@@ -80,6 +80,16 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 
 		return {
 			post: function(scope, element, attr, ctrl) {
+				let dom = attr.dom,
+					detailType = attr.detailType ? attr.detailType : 'column';
+
+				ctrl.setDTOption({
+					"dom": dom
+				});
+
+				if(detailType)
+					ctrl.detailType = detailType;
+
 				_injects.$timeout(function(){
 					ctrl.initTable(element);
 				});
@@ -138,6 +148,10 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 
 		this.dtColumnDefs.push(settings);
 	}
+	
+	setDTOption(settings) {
+		this.dtOption = $.extend(this.dtOption, settings);
+	}
 
 	initTable(table) {
 		let _self = this;
@@ -148,11 +162,13 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
         	retrieve: true,
         	"aoColumnDefs": this.dtColumnDefs
         }
+        tableSettings = $.extend(tableSettings, this.dtOption);
+
         if(_self.detailRenderer) {
+        	debugger;
         	tableSettings.responsive = {
 		        details: {
-		        	renderer: (api, rowIdx, columns) => 
-		        	_self.detailRenderer({api: api, rowIdx: rowIdx, columns: columns})
+		        	renderer: _self.detailRenderer
 		        }        		
         	}
         }
