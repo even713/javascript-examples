@@ -245,7 +245,18 @@ class MyContainerDirective extends laygoon.util.BaseDirectiveClass{
 class MyContainerDirectiveWorker extends laygoon.util.BaseNgClass {
     constructor(...injects) {
         super(...injects);
-        this.myRenderer = this._myRenderer.bind(this);
+
+        // http://legacy.datatables.net/usage/options
+        // http://legacy.datatables.net/usage/callbacks
+        this.dtOptions = {
+            dom: "tr",
+            responsive: {
+                details: {
+                    renderer: this._myRenderer.bind(this)
+                }
+            },
+            fnCreatedRow: this.fnCreatedRow
+        }
     }
 
     _myRenderer(api, rowIdx){
@@ -253,6 +264,10 @@ class MyContainerDirectiveWorker extends laygoon.util.BaseNgClass {
          var data = row[1] + ";" + row[2];
  
         return this.$compile('<div>' + data + '</div>')(this.$scope);       
+    }
+
+    fnCreatedRow(nRow, aData, iDataIndex) {
+        console.log(arguments);
     }
 }
 MyContainerDirectiveWorker.inject(['$compile', '$scope']);

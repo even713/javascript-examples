@@ -1,8 +1,7 @@
 <uila-table class="my-dt row-border hover responsive" 
-        data="containerCtrl.data" 
-        dom="rt"
+        data="containerCtrl.data"
         track-by="id"
-        detail-renderer="containerCtrl.myRenderer"
+        dt-options = "::containerCtrl.dtOptions"
         >
             <uila-column key="id" formatter="id-column" >
                 <h2>ID</h2>

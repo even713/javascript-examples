@@ -41,7 +41,9 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 
 		this.scope = {
 			data: '=',
-			detailRenderer: '='
+			dtOptions: '=',
+			detailRenderer: '=',
+			fnCreatedRow: '='
 		}
 
 		this.controller = UilaTableDirectiveWorker.create();
@@ -80,19 +82,8 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 
 		return {
 			post: function(scope, element, attr, ctrl) {
-				let dom = attr.dom,
-					detailType = attr.detailType ? attr.detailType : 'column',
-					paging = attr.paging == "true" ? true : false,
-					pageLength = attr.pageLength;
 
-				ctrl.setDTOption({
-					"dom": dom,
-					"paging": paging || true,
-					"pageLength": pageLength
-				});
-
-				if(detailType)
-					ctrl.detailType = detailType;
+				ctrl.setDTOption(ctrl.dtOptions);
 
 				_injects.$timeout(function(){
 					ctrl.initTable(element);
@@ -156,15 +147,6 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
         }
         tableSettings = $.extend(tableSettings, this.dtOption);
 
-        if(_self.detailRenderer) {
-        	tableSettings.responsive = {
-		        details: {
-		        	renderer: function(api, rowIdx){
-		        		return _self.detailRenderer.call(this, api, rowIdx[0])
-		        	}
-		        }        		
-        	}
-        }
         console.log(tableSettings);
         this.dtInstance = $(table).DataTable(tableSettings);
 	}
