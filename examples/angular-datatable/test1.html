@@ -24,15 +24,17 @@
 <div>
     <input type="button" ng-click="showCase.changeData()" value="Change Data"/>
 </di>
-    <table class="my-dt row-border hover">
+    <table class="my-dt display nowrap">
         <thead>
         <tr>
+            <th></th>
             <th>ID</th>
             <th>First name</th>
             <th>Last name</th>
             <th>Age</th>
             <th>Phone</th>
             <th>Company</th>
+            <th class="none"></th>
         </tr>
         </thead>
         <tbody>
@@ -52,16 +54,18 @@
             <td>Ofinspiration</td>
         </tr> -->
         <tr ng-repeat="person in showCase.persons track by person.id">
-            <td>
+            <!-- <td>
                 <uila-column-formatter row-data="person" 
-                row-idx="$$index" col-idx="0"/>
-            </td>
+                row-idx="$index" col-idx="0"/>
+            </td> -->
+            <td></td>
             <td><a href="#" ng-click="showCase.showAlert(person.id)">{{ person.id }}</a></td>
             <td>{{ person.firstName }}</td>
             <td>{{ person.lastName }}</td>
             <td>{{ person.age }}</td>
             <td>{{ person.phone }}</td>
             <td>{{ person.company }}</td>
+            <td></td>
         </tr>
         </tbody>
     </table>
@@ -125,6 +129,8 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
         "company": "uila"
     }];
 
+    let ary1 = [];
+
     var oldtrs;
 
     vm.changeData = function(){
@@ -184,7 +190,16 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
     $timeout(function(){
         oldtrs = $('.my-dt tbody').children().not(".child");
         $(".my-dt").dataTable({
-            responsive: true,
+            responsive: {
+                details: {
+                    type: 'column'
+                }
+            },
+            columnDefs: [ {
+                className: 'control',
+                orderable: false,
+                targets:   0
+            } ],
             retrieve: true
         });
 

@@ -13,21 +13,7 @@
         <input type="button" ng-click="showCase.changeData()" value="Change Data"/>
     </div>
 
-    <uila-table class="my-dt row-border hover responsive" 
-    data="showCase.persons" 
-    dom="rt"
-    track-by="id"
-    detail-renderer="showCase.myRenderer">
-        <uila-column key="id" formatter="id-column" class-name="control">
-            <h2>ID</h2>
-        </uila-column>
-        <uila-column formatter="first-name">First name</uila-column>
-        <uila-column key="lastName">Last name</uila-column>
-        <uila-column key="age" s-type="string">Age</uila-column>
-        <uila-column key="phone" s-class="phone-column">Phone</uila-column>
-        <uila-column key="company" b-sortable="false">Company</uila-column>
-        <uila-column key="id" s-class="none">Detail</uila-column>
-    </uila-table>
+    <my-container data = "showCase.persons"></my-container>
 </div>
 </body>
 
@@ -80,7 +66,8 @@ $timeout(function(){
         "age": 20,
         "phone": "1234334343",
         "company": "uila"
-    }, {
+    }
+    , {
         "id": 870,
         "firstName": "Foo",
         "lastName": "Whateveryournameis",
@@ -94,18 +81,19 @@ $timeout(function(){
         "age": 20,
         "phone": "1234334343",
         "company": "uila"
-    }];
-}, 2000)
+    }
+    ];
+}, 200)
 
     vm.changeData = function(){
 
             vm.persons = [{
                 "id": 860,
                 "firstName": "Superman2",
-                "lastName": "Yoda",
+                "lastName": "Yoda2",
                 "age": 28,
-                "phone": "1234334343",
-                "company": "uila"
+                "phone": "1234334343999",
+                "company": "uilab"
             }, {
                 "id": 590,
                 "firstName": "Toto",
@@ -136,15 +124,82 @@ class IdColumnDirective extends UilaColumnFormatterDirective {
     constructor(...injects) {
         super(...injects);
 
-        this.template = `<a href="#" ng-click="goTo(rowData)">{{rowData.id}}</a>`;
-    }
+        this.template = `<a href="#" ng-click="goTo(rowData)">{{showMsg}}</a><br/>{{showMsgPost}}`;
 
-    link (scope, element){
-        scope.goTo = function(rowData){
-            alert(rowData.id);
+        this.controller = IdColumnDirectiveWorker.create();
+        this.controllerAs = "idCtrl";
+        this.bindToController = true;
+
+        this.link = {
+            pre: this._pre,
+            post: this._post.bind(this)
         }
     }
+
+    // _pre (scope, element){
+
+    //     //if()
+    //     scope.showMsg = scope.rowData.id + ", " + scope.rowData.firstName;
+    //     scope.goTo = function(rowData){
+    //         alert(rowData.id);
+    //     }
+    // }
+
+    _post(scope, element, attr, ctrl) {
+        ctrl.createCol(element);
+
+        scope.showMsgPost = "post: " + ctrl.rowData.firstName; 
+    }
 }
+
+class IdColumnDirectiveWorker extends laygoon.util.BaseNgClass {
+    get rowData() {
+        return this._rowData;
+    }
+
+    set rowData(newRowData) {
+        this._rowData = newRowData;
+        // console.log(["colIdx", this.colIdx, "rowIdx", this.rowIdx]);
+
+        if(this.element) {
+            console.log("start to update...");
+            let el = this.element.find("a");
+            if(el.data("valTest")) {
+                console.log(["has value", el.data("valTest")]);
+            } else {
+                el.data("valTest", {a: 1, data: this.rowData});
+                console.log(["no value"]);
+            }   
+        }     
+    }
+
+    createCol(element) {
+        this.element = element;
+        let el = this.element.find("a");
+        el.data("valTest", {a: 1, data: this.rowData});
+        console.log(["create", el.data("valTest")]);
+    }
+
+    get colIdx(){
+        return this._colIdx;
+    }    
+
+    set colIdx(newColIdx) {
+        this._colIdx = newColIdx;
+        // console.log(["rowData", this.rowData, "rowIdx", this.rowIdx]);
+    }
+
+    get rowIdx() {
+        return this._rowIdx;
+    }
+
+    set rowIdx(newRowId){
+        this._rowIdx = newRowId;
+        // console.log(["colIdx", this.colIdx, "rowData", this.rowData]);
+    }
+}
+
+IdColumnDirectiveWorker.inject(['$scope']);
 
 class FirstNameDirective extends UilaColumnFormatterDirective {
     constructor(...injects) {
@@ -170,9 +225,43 @@ class ShowPropDirective extends laygoon.util.BaseDirectiveClass{
     }
 }
 
+class MyContainerDirective extends laygoon.util.BaseDirectiveClass{
+    constructor(...injects){
+        super(...injects);
+
+        this.setScope({
+            data: '='
+        });
+
+        this.controller = MyContainerDirectiveWorker.create();
+        this.controllerAs = "containerCtrl";
+        this.bindToController = true;
+
+        this.templateUrl = 'test3.tmp.html';
+
+    }
+}
+
+class MyContainerDirectiveWorker extends laygoon.util.BaseNgClass {
+    constructor(...injects) {
+        super(...injects);
+        this.myRenderer = this._myRenderer.bind(this);
+    }
+
+    _myRenderer(api, rowIdx){
+         let row = api.data()[rowIdx];
+         var data = row[1] + ";" + row[2];
+ 
+        return this.$compile('<div>' + data + '</div>')(this.$scope);       
+    }
+}
+MyContainerDirectiveWorker.inject(['$compile', '$scope']);
+
 angular.module('showcase.angularWay')
 .directive('idColumn', IdColumnDirective.create())
 .directive('showProp', ShowPropDirective.create())
 .directive('firstName', FirstNameDirective.create())
+.directive('myContainer', MyContainerDirective.create())
+.directive('crDetailColumn', UilaColumnFormatterDirective.create())
 </script>
 </html>

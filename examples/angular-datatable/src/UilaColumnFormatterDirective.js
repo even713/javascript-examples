@@ -4,9 +4,9 @@ class UilaColumnFormatterDirective extends laygoon.util.BaseDirectiveClass {
 
 		// make rowData, rowIdx, colIdx accessable
 		this.setScope({
-            rowData: '=',// rowData represents the datasource of the row
             rowIdx: '=', // which row
-            colIdx: '=' // which col
+            colIdx: '=', // which col
+            rowData: '='// rowData represents the datasource of the row
         });
 
         this.restrict = "E";

@@ -24,8 +24,8 @@ class UilaTableFirstDirective extends laygoon.util.BaseDirectiveClass {
 				}
 				tdArray.push("<td>{{ elem."+ key + "}}</td>");
 			} else {
-				tdArray.push('<td><'+ formatter + ' row-data="elem" ' +
-	                'row-idx="$index" col-idx="'+ idx +'"></'+ formatter +'></td>');
+				tdArray.push('<td><'+ formatter + ' col-idx="'+ idx +'" row-idx="$index" row-data="elem" ' +
+	                '></'+ formatter +'></td>');
 			}			
 		});
 
@@ -81,10 +81,14 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 		return {
 			post: function(scope, element, attr, ctrl) {
 				let dom = attr.dom,
-					detailType = attr.detailType ? attr.detailType : 'column';
+					detailType = attr.detailType ? attr.detailType : 'column',
+					paging = attr.paging == "true" ? true : false,
+					pageLength = attr.pageLength;
 
 				ctrl.setDTOption({
-					"dom": dom
+					"dom": dom,
+					"paging": paging || true,
+					"pageLength": pageLength
 				});
 
 				if(detailType)
@@ -131,19 +135,6 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 	// note: if the same column is targeted multiple times in aoColumnDefs, 
 	// the first elements in the array will take the highest priority, and the last the lowest.
 	setColumnDef(targetCol, settings) {
-		//let columnDef = {"aTargets": targetCol};
-		// for(let prop in settings) {
-		// 	let property = null;
-		// 	switch (prop) {
-		// 		// for sorting the column
-		// 		case "type":
-		// 			property = "sType"
-		// 		break;
-		// 		default:
-		// 			return;
-		// 	}
-		// 	columnDef[property] = settings[prop];			
-		// }
 		settings["aTargets"] = targetCol;
 
 		this.dtColumnDefs.push(settings);
@@ -156,6 +147,7 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 	initTable(table) {
 		let _self = this;
 		this.table = table;
+		// this.oldTrs is for angular produced datatable's trs
         this.oldTrs = table.find('tbody').children().not(".child");
         
         let tableSettings = {
@@ -165,26 +157,40 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
         tableSettings = $.extend(tableSettings, this.dtOption);
 
         if(_self.detailRenderer) {
-        	debugger;
         	tableSettings.responsive = {
 		        details: {
-		        	renderer: _self.detailRenderer
+		        	renderer: function(api, rowIdx){
+		        		return _self.detailRenderer.call(this, api, rowIdx[0])
+		        	}
 		        }        		
         	}
         }
+        console.log(tableSettings);
         this.dtInstance = $(table).DataTable(tableSettings);
 	}
 
 	updateTable() {
-        let trs = $(this.table).find('tbody').children().not(".child"),
-        	trsToBeRemoved = this.diffRows(this.oldTrs, trs),
+		// Get the angular trs before dt's draw
+        let trs = $(this.table).find('tbody').children().not(".child");
+
+        if(this.oldTrs && this.oldTrs.length == 0) {
+        	// have no data for last view, there will be a tr show "No data..."
+        	// exclude this tr
+        	if(trs[trs.length - 1].childNodes.length == 1) {
+        		Array.prototype.pop.call(trs);
+        	} else {
+        		console.log("error when update table");
+        	}
+        }
+
+    	let trsToBeRemoved = this.diffRows(this.oldTrs, trs),
         	trsToBeAdded = this.diffRows(trs, this.oldTrs);
 
         this.dtInstance.rows(trsToBeRemoved).remove()
                 .rows.add(trsToBeAdded)
                 .draw();
 
-        this.oldTrs = $(this.table).find('tbody').children().not(".child");
+        this.oldTrs = trs;
 	}
 
 	diffRows(oldTrs, newTrs){
