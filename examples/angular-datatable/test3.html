@@ -242,24 +242,17 @@ class MyContainerDirective extends laygoon.util.BaseDirectiveClass{
     }
 }
 
-class MyContainerDirectiveWorker extends laygoon.util.BaseNgClass {
+class MyContainerDirectiveWorker extends UilaTableSettingsHelper {
     constructor(...injects) {
         super(...injects);
 
-        // http://legacy.datatables.net/usage/options
-        // http://legacy.datatables.net/usage/callbacks
-        this.dtOptions = {
-            dom: "tr",
-            responsive: {
-                details: {
-                    renderer: this._myRenderer.bind(this)
-                }
-            },
-            fnCreatedRow: this.fnCreatedRow
-        }
+        // this.setOptions({
+        //     paging: true,
+        //     pageLength: 2
+        // })
     }
 
-    _myRenderer(api, rowIdx){
+    myRenderer(api, rowIdx){
          let row = api.data()[rowIdx];
          var data = row[1] + ";" + row[2];
  
