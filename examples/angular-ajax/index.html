@@ -8,34 +8,40 @@
 	</title>
 
 </head>
-<body ng-controller="pageController">
+<body ng-controller="pageController" js-url="e.js">
 
 	<h1>
 		$http header settings
 	</h1>
 
 
-
 	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
 	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
 	<script type="text/javascript">
 	angular.module("Demo", [])
-	.controller('pageController', function($http){
+	.controller('pageController', function($http, $scope, $attrs){
 		var conf = {
 			method: 'GET',
 			url: 'test.json'
 		};
 
 		$http(conf).then(function(response){
-			debugger;
 			console.log(response.data);
 		}, function(){
-			debugger;
 			console.log("error");
 		}).finally(function(){
 			console.log("finally");
 		});
+
+		$.getScript( $attrs.jsUrl, function( data, textStatus, jqxhr ) {
+		  console.log( data ); // Data returned
+		  console.log( textStatus ); // Success
+		  console.log( jqxhr.status ); // 200
+		  console.log( "Load was performed." );
+		});
 	});
+
 
 
 	</script>

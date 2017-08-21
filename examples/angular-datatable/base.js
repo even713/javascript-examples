@@ -2,14 +2,23 @@ var laygoon = {};
 
 laygoon.util = {
 	BaseNgClass: class {
-		constructor(...injects) {
+		constructor(...injectAry) {
+			let injects;
+			if(injectAry[0] && injectAry[0].constructor === Array) {
+				injects = injectAry[0];
+			} else {
+				injects = injectAry;
+			}
 			if(injects && injects.length) {
 				injects.forEach((inject, i) => this[this.constructor.ngInject[i]] = inject);
 			}
 		}
 
-		static create() {
-			let createFunction = (...injects) => (new this(...injects));
+		static create(...opts) {
+			let createFunction = (...injects) => {
+				let args = [injects].concat(opts);
+				return new this(...args);
+			}
 			createFunction.$inject = this.ngInject;
 			return createFunction;
 		}

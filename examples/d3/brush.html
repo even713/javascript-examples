@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+  body{
+    cursor: auto!important;
+  }
+.container {
+  width: 900px;
+  height: 120px;
+}
+div.chart{
+	margin-top: 30px;
+}
+  </style>
+</head>
+<body>
+<div class="container"></div>
+<div  class="chart" >
+	<!-- <svg>
+		<g class="chart"></g>
+	</svg> -->
+</div>
+<svg class="demo"></svg>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script> -->
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/d3/d3.v3.js"></script>
+<script src="sliderBarComponent.js"></script>
+<script src="matrixChart.js"></script>
+<script src="matrixData.js"></script>
+<script>
+
+
+var config = {
+  "margin": {
+    "top": 10,
+    "bottom": 20,
+    "left": 28,
+    "right": 0
+  },
+  "sliderHeight": 120,
+  "maxTimeRange": 86400000,
+  "labels": "",
+  "hasMouseOverTip": "false",
+  "tooltipTemplate": ".undefined",
+  "hasBrush": "true"
+},timeRange = {
+  "startTime": 1502705100000,
+  "endTime": 1502708699999,
+  "start": 1502622300000,
+  "end": 1502708699999,
+  "timeOption": "CURRENT",
+  "timeMode": "TIME_TRAVEL",
+  "brush": false
+}
+
+new sliderBarComponent($(".container"), timeRange, config);
+setTimeout(function(){
+	for(var i = 0 ; i < 3440; i++) {
+		$(".chart").append("<div style='width:50px;margin-top:1px;'>test</div>");
+	}
+	//new matrixChart($(".chart g.chart"), matrixData, {width: 862, height: 90});
+}, 0);
+
+// var svg = d3.select('svg.demo')
+
+// var scale = d3.scale.linear()
+// .domain([20, 30])
+// .range([10, 450])
+
+// var brush = d3.svg.brush()
+// brush.x(scale)
+// brush.extent([22, 28])
+
+// // brush.on('brushend', function() {
+// //   console.log(brush.extent())
+// // })
+
+// var g = svg.append('g')
+
+// brush(g)
+
+// g.attr('transform', 'translate(50, 50)')
+// g.selectAll('rect').attr('height', 30)
+// g.selectAll('.background')
+//   .style({ fill: '#4b9e9e', visibility: 'visible' })
+// g.selectAll('.extent')
+//   .style({ fill: '#78c5c5', visibility: 'visible' })
+// g.selectAll('.resize rect')
+//   .style({ fill: '#276c86', visibility: 'visible' })
+</script>    
+  
+</body>
+</html>
