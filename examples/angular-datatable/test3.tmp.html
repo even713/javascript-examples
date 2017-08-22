@@ -7,9 +7,9 @@
                 <h2>ID</h2>
             </uila-column>
             <uila-column formatter="first-name">First name</uila-column>
-            <uila-column key="lastName">Last name</uila-column>
-            <uila-column key="age" s-type="string">Age</uila-column>
+            <uila-column key="lastName" sort-fn="::containerCtrl.sortAge">Last name</uila-column>
+            <uila-column key="age" >Age</uila-column>
             <uila-column key="phone" s-class="phone-column">Phone</uila-column>
-            <uila-column key="company" b-sortable="false">Company</uila-column>
+            <uila-column key="company" filter="myCompany" b-sortable="false">Company</uila-column>
             <uila-column formatter="cr-detail-column" s-class="none">Detail</uila-column>
         </uila-table>

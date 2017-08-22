@@ -18,7 +18,8 @@
 </body>
 
 <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
-<script src="../../vendor/datatable/jquery.dataTables.js"></script>
+<!-- <script src="../../vendor/datatable/jquery.dataTables.js"></script> -->
+<script src="../../vendor/datatable/jquery.dataTables.1.10.4.js"></script>
 <script src="../../vendor/angularjs/angular-1.4.5.js"></script>
 <script src="../../vendor/angular-plugin/angular-resource.js"></script>
 <script src="../../vendor/angular-plugin/angular-sanitize.min.js"></script>
@@ -29,8 +30,16 @@
 <script src="src/UilaColumnDirective.js"></script>
 <script src="src/UilaColumnFormatterDirective.js"></script>
 <script src="src/uilaDataTable.js"></script>
+<script src="src/Helpers.js"></script>
 
 <script>
+jQuery.fn.dataTableExt.oSort['usage-asc']  = function(a, b) {
+    return ((a < b) ? -1 : ((a > b) ?  1 : 0));
+};
+jQuery.fn.dataTableExt.oSort['usage-desc']  = function(a, b) {
+    return ((b < a) ? -1 : ((b > a) ?  1 : 0));
+};
+
 angular.module('showcase.angularWay', ['ngSanitize', 'uilaDatatable'])
 .controller('AngularWayCtrl', AngularWayCtrl);
 
@@ -63,7 +72,7 @@ $timeout(function(){
         "id": 860,
         "firstName": "Superman",
         "lastName": "Yoda",
-        "age": 20,
+        "age": 18,
         "phone": "1234334343",
         "company": "uila"
     }
@@ -71,7 +80,7 @@ $timeout(function(){
         "id": 870,
         "firstName": "Foo",
         "lastName": "Whateveryournameis",
-        "age": 20,
+        "age": 128,
         "phone": "1234334343",
         "company": "uila"
     }, {
@@ -112,7 +121,7 @@ $timeout(function(){
                 "id": 476,
                 "firstName": "Zed",
                 "lastName": "Kyle",
-                "age": 20,
+                "age": 9,
                 "phone": "1234334343",
                 "company": "uila"
             }];
@@ -162,13 +171,13 @@ class IdColumnDirectiveWorker extends laygoon.util.BaseNgClass {
         // console.log(["colIdx", this.colIdx, "rowIdx", this.rowIdx]);
 
         if(this.element) {
-            console.log("start to update...");
+            //console.log("start to update...");
             let el = this.element.find("a");
             if(el.data("valTest")) {
-                console.log(["has value", el.data("valTest")]);
+              //  console.log(["has value", el.data("valTest")]);
             } else {
                 el.data("valTest", {a: 1, data: this.rowData});
-                console.log(["no value"]);
+                //console.log(["no value"]);
             }   
         }     
     }
@@ -177,7 +186,7 @@ class IdColumnDirectiveWorker extends laygoon.util.BaseNgClass {
         this.element = element;
         let el = this.element.find("a");
         el.data("valTest", {a: 1, data: this.rowData});
-        console.log(["create", el.data("valTest")]);
+        //console.log(["create", el.data("valTest")]);
     }
 
     get colIdx(){
@@ -239,6 +248,12 @@ class MyContainerDirective extends laygoon.util.BaseDirectiveClass{
 
         this.templateUrl = 'test3.tmp.html';
 
+        this.link = {
+            pre: function(){
+                console.log("pre...");
+            }
+        }
+
     }
 }
 
@@ -248,7 +263,8 @@ class MyContainerDirectiveWorker extends UilaTableSettingsHelper {
 
         // this.setOptions({
         //     paging: true,
-        //     pageLength: 2
+        //     pageLength: 2,
+        //     dom: "trif"
         // })
     }
 
@@ -259,8 +275,13 @@ class MyContainerDirectiveWorker extends UilaTableSettingsHelper {
         return this.$compile('<div>' + data + '</div>')(this.$scope);       
     }
 
+    sortAge(elem){
+        console.log(["sortAge", elem]);
+        return elem.age;
+    }
+
     fnCreatedRow(nRow, aData, iDataIndex) {
-        console.log(arguments);
+        //console.log(arguments);
     }
 }
 MyContainerDirectiveWorker.inject(['$compile', '$scope']);
@@ -271,5 +292,12 @@ angular.module('showcase.angularWay')
 .directive('firstName', FirstNameDirective.create())
 .directive('myContainer', MyContainerDirective.create())
 .directive('crDetailColumn', UilaColumnFormatterDirective.create())
+.filter('myCompany', function($sce){
+    return function(cellData, rowData, colIdx, rowIdx){
+        return $sce.trustAs('html', '<div style="background-color: yellow">'+cellData+'</div>');
+    }
+})
+
+
 </script>
 </html>

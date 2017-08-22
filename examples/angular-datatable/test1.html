@@ -69,6 +69,18 @@
         </tr>
         </tbody>
     </table>
+
+
+    <table id="products">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>duration</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 </div>
 </body>
 
@@ -80,6 +92,25 @@
 <script src="../../vendor/datatable/dataTables.responsive.js"></script>
 
 <script>
+jQuery.fn.dataTableExt.oSort['usage-asc']  = function(a, b) {
+    return ((a < b) ? -1 : ((a > b) ?  1 : 0));
+};
+jQuery.fn.dataTableExt.oSort['usage-desc']  = function(a, b) {
+    return ((b < a) ? -1 : ((b > a) ?  1 : 0));
+};
+
+jQuery.fn.dataTableExt.oSort["duration-desc"] = function (x, y) {
+    function getMins(str){
+        var arr = str.split(':');
+        return 60 * parseInt(arr[1], 10)+ parseInt(arr[0], 10);
+    };
+    return getMins(x) - getMins(y);
+};
+
+jQuery.fn.dataTableExt.oSort["duration-asc"] = function (x, y) {
+    return jQuery.fn.dataTableExt.oSort["duration-desc"](y, x);
+}
+
 angular.module('showcase.angularWay.withOptions', ['datatables', 'ngResource'])
 .controller('AngularWayWithOptionsCtrl', AngularWayWithOptionsCtrl);
 
@@ -117,7 +148,7 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
         "id": 870,
         "firstName": "Foo",
         "lastName": "Whateveryournameis",
-        "age": 20,
+        "age": 108,
         "phone": "1234334343",
         "company": "uila"
     }, {
@@ -199,6 +230,9 @@ function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuild
                 className: 'control',
                 orderable: false,
                 targets:   0
+            } ,{
+                sType: 'usage',
+                targets:   4
             } ],
             retrieve: true
         });
@@ -223,6 +257,30 @@ function addColors() {
         tr.style.backgroundColor = colors[idx];
     });
 }
+var tableSettings = {
+        "aaData": [
+            [1, "Dinner", "0:40"],
+            [2, "Study", "11:25"],
+            [3, "Sleep", "7:30"]
+        ],
+        "aoColumns": [{
+            "sWidth": "70%",
+            "sClass": "center",
+            "bSortable": false
+        }, {
+            "sWidth": "70%",
+            "sClass": "center",
+            "bSortable": false
+        }, {
+            "sWidth": "70%",
+            "sClass": "center",
+            "sType": "usage"
+        }]
+    
+    };
+$(document).ready(function(){
+       var oTable = $("#products").dataTable(tableSettings);
+});
 
 </script>
 </html>
