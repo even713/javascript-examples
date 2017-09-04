@@ -102,6 +102,14 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 						element.css("visibility", "visible");
 					});
 				}
+
+				let unregister = scope.$watch('ctrl.data', function(){
+					if(ctrl.data && ctrl.data.length == 0) {
+						scope.finished();
+						unregister();
+					}
+				});
+				
 			}
 		}
 	}
@@ -184,7 +192,7 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 			}
 		});
 
-		resultAry = resultAry.concat(data);
+		resultAry = resultAry.concat(_data);
 
 		// let _self = this;
 		// let order = this.dtInstance.order()[0];

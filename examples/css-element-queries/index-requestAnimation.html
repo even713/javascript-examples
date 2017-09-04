@@ -1,0 +1,144 @@
+<html>
+<head>
+<style>
+.container{
+	width: 70%;
+	height: 60%;
+	border: 1px solid red;
+}
+.container2{
+	width: 50%;
+	height: 30%;
+	border: 1px solid blue;
+}
+</style>
+</head>
+<body>
+	<input type="text" onclick="action()" value="action"/>
+<!-- <div class="container">
+
+</div>
+<div class="container2">
+
+</div> -->
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/css-element-queries/fastdom.js"></script>
+<script src="jquery.debouncedresize.js"></script>
+<script src="elementResize.js"></script>
+<script>
+function action(){
+	//$(".container").offresize();
+	//requestAnimationFrame(a);
+	//requestAnimationFrame(b);
+	// a();
+	// b();
+	// requestAnimationFrame(function(){
+	// 	a();
+	// 	requestAnimationFrame(b);
+	// })
+	let start = performance.now();
+
+	let fn = fn4;
+	a(fn);
+	b(fn);
+
+	console.log(performance.now() - start);
+	
+}
+
+function a(fn){
+	$(".container").each(function(idx, el){
+		fn(el, idx);
+	});
+}
+function b(fn){
+	$(".container2").each(function(idx, el){
+		fn(el, idx);
+	});
+}
+
+function fn1(el){
+	let w = el.clientWidth;
+	el.style.width = (w + 50) + 'px';
+}
+
+function fn2(el) {
+	requestAnimationFrame(function(){
+		let w = el.clientWidth;
+		el.style.width = (w + 50) + 'px';
+	});	
+}
+
+function fn3(el, idx) {
+	let w;
+	requestAnimationFrame(function(){
+		w = el.clientWidth;
+		console.log(["read", idx]);
+	});	
+	requestAnimationFrame(function(){		
+		el.style.width = (w + 50) + 'px';
+			console.log(["write", idx]);
+	});
+}
+
+function fn4(el, idx) {
+	let w;
+	requestAnimationFrame(function(){
+		w = el.clientWidth;
+		console.log(["read", idx]);
+		requestAnimationFrame(function(){		
+			el.style.width = (w + 50) + 'px';
+			console.log(["write", idx]);
+		});
+	});		
+}
+
+function fn5(el, idx) {
+	let w;
+	setTimeout(function(){
+		w = el.clientWidth;
+		console.log(["read", idx]);
+		setTimeout(function(){		
+			el.style.width = (w + 50) + 'px';
+			console.log(["write", idx]);
+		}, 1000/60);
+	}, 1000/60);		
+}
+
+function fn6(el, idx) {
+	let w;
+	fastdom.measure(function(){
+		w = el.clientWidth;
+		console.log(["read", idx]);
+		fastdom.mutate(function(){		
+			el.style.width = (w + 50) + 'px';
+			console.log(["write", idx]);
+		});
+	});		
+}
+
+// var element = $(".container")[0];
+// new ResizeSensor(element, function() {
+//     console.log('Changed to ' + element.clientWidth);
+// });
+
+
+// for(var i = 0; i < 100; i++) {
+// 	$("<div class='container'>"+ i +"</div>").appendTo(document.body).onresize(function(){
+// 		console.log([this.innerHTML + " Change to ", this.clientWidth, this]);
+// 	});
+// }
+
+for(var i = 0; i < 100; i++) {
+	$("<div class='container'>"+ i +"</div>").appendTo(document.body);
+}
+
+// $(".container").onresize(function(){
+// 	console.log(["Change to ", this.clientWidth, this]);
+// }, window);
+// $(".container2").onresize(function(){
+// 	console.log(["Container2 change to ", this.clientWidth]);
+// });
+</script>
+</body>
+</html>

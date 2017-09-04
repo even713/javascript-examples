@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>HTML5 video test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    .video-js.video-ss {
+    	width: 960px;
+    	height: 540px;
+    }
+    </style>
+    <script src="../../vendor/jquery/jquery-1.11.1.js"></script>
+    <script scr="https://sadmin.brightcove.com/js/BrightcoveExperiences.js" async defer></script>
+  </head>
+  <body>
+                  <!--
+                    brightcove implementation structure
+                ** In IE browser it will convert the <video> to <object>
+                so ${videoID} is recommended for us to able to control the video
+                data-account  = (sample val - "5327370822001" ) -> user account id
+                data-video-id = (sample val - "5376039364001" ) -> user video id
+                data-player   = (sample val - "default" )
+                -->
+
+                <!-- some for loop -->
+                <div class="component-video-modal"
+                     data-player-id="default"
+                     data-account-id="4082198810001"
+                     data-video-id="5488634056001"
+                     data-elementId="540196706">
+                    <!--
+                        responsive video format
+                        recommend by brightcove
+                     -->
+                    <div style="display: block; position: relative; max-width: 100%;">
+                        <div style="padding-top: 56.25%;">
+                            <video id="540196706"
+                                   style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;"
+                                   data-account="4082198810001"
+                                   data-player="default"
+                                   data-video-id="5488634056001"
+                                   data-embed="default"
+                                   data-application-id
+                                   class="video-js"
+                                   playsinline="true"
+                                   controls></video>
+
+                            
+                        </div>
+                    </div>
+                </div>
+  <script src="//players.brightcove.net/4082198810001/default_default/index.min.js" async defer></script>
+  <script>
+
+  var timer = setInterval(function(){
+    console.log("check...");
+    if(window.videojs) {
+      console.log("ready");
+      clearInterval(timer);
+    } 
+  });
+//var url = "//players.brightcove.net/4082198810001/default_default/index.min.js"
+  // $.getScript( url, function( data, textStatus, jqxhr ) {
+  //                                   console.log(videojs)
+  //                               }, function(){
+  //                                 console.log("fail to load brightcove js");
+  //                               });
+//url = "a.js"
+// $.getScript( url)
+//   .done(function( script, textStatus ) {
+//     console.log( script );
+//   })
+//   .fail(function( jqxhr, settings, exception ) {
+//     $( "div.log" ).text( "Triggered ajaxError handler." );
+// });
+
+// $.ajax({
+//   url: url,
+//   //dataType: "script",
+//   success: function(data){
+//     //eval(data);
+//   }
+// });
+  </script>
+
+  </body>
+</html>

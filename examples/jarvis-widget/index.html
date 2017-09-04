@@ -1,0 +1,80 @@
+<html ng-app="myApp">
+
+<link rel="stylesheet" href="../../vendor/jarviswidget/smartadmin-production.min.css">
+<link rel="stylesheet" href="../../vendor/bootstrap/bootstrap.min.css">
+<body>
+<div class="jarviswidget1">
+    <header>
+        <h2>Widget Title main</h2>
+    </header><!-- widget div-->
+	<div class="widget-body">
+
+    <section widget-grid id="widget-grid-0">
+
+        <!-- row -->
+
+        <!-- <div class="row"> -->
+            <!-- SINGLE GRID -->
+            <article>
+				<div class="jarviswidget" id="wid-id-0">
+
+			        <header>
+			            <h2>Widget Title</h2>
+			        </header><!-- widget div-->
+
+			        <div>
+			            <!-- widget edit box -->
+			            <div class="jarviswidget-editbox">
+			                <!-- This area used as dropdown edit box -->
+			                <input class="form-control" type="text">
+			            </div><!-- end widget edit box -->
+
+			            <!-- widget content -->
+			            <div class="widget-body">
+
+			                [PLACE WIDGET CONTENTS HERE]
+
+			            </div><!-- end widget content -->
+			        </div><!-- end widget div -->
+			    </div><!-- end widget -->
+
+				<div class="jarviswidget" id="wid-id-1">
+
+			        <header>
+			            <h2>Widget Title1</h2>
+			        </header><!-- widget div-->
+
+			        <div>
+			            <!-- widget edit box -->
+			            <div class="jarviswidget-editbox">
+			                <!-- This area used as dropdown edit box -->
+			                <input class="form-control" type="text">
+			            </div><!-- end widget edit box -->
+
+			            <!-- widget content -->
+			            <div class="widget-body">
+
+			                [PLACE WIDGET CONTENTS HERE]
+
+			            </div><!-- end widget content -->
+			        </div><!-- end widget div -->
+			    </div><!-- end widget -->
+            </article><!-- END GRID -->
+
+       <!--  </div> --><!-- end row -->
+
+    </section><!-- end widget grid -->	
+
+	</div>
+</div>
+</body>
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/angularjs/angular-1.4.5.js"></script>
+<script src="../../vendor/bootstrap/bootstrap.min.js"></script>
+<script src="../../vendor/jarviswidget/jarvis.widget.min.js"></script>
+<script src="jarvisWidget.js"></script>
+<script>
+angular.module("myApp", ['jarviswidget'])
+
+</script>
+</html>

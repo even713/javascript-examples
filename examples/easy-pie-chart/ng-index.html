@@ -1,0 +1,28 @@
+<html ng-app="app">
+<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+<script src="../../vendor/easy-pie-chart/angular.easypiechart.js"></script>
+<body>
+<div ng-controller="chartCtrl">
+    <div easypiechart options="options" percent="percent"></div>
+</div>
+<script>
+    var app = angular.module('app', ['easypiechart']);
+    app.controller('chartCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
+        $scope.percent = 65;
+        $scope.options = {
+            animate:false,
+            barColor: 'yellow',
+            //barColor:'#2C3E50',
+            scaleColor:false,
+            lineWidth:20,
+            lineCap:'circle'
+        };
+
+        $timeout(function(){
+        	$scope.percent = 30;
+        	$scope.options.barColor = "yellow";
+        }, 2000)
+    }]);
+</script>
+</body>
+</html>

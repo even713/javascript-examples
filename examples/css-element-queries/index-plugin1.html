@@ -1,0 +1,69 @@
+<html>
+<head>
+<style>
+.container{
+	width: 70%;
+	height: 60%;
+	border: 1px solid red;
+}
+.container2{
+	width: 50%;
+	height: 30%;
+	border: 1px solid blue;
+}
+</style>
+</head>
+<body>
+	<input type="text" onclick="action()" value="action"/>
+<!-- <div class="container">
+
+</div> -->
+<div class="container2">
+
+</div>
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/css-element-queries/jquery.resize.js"></script>
+<!-- https://github.com/sdecima/javascript-detect-element-resize -->
+<script>
+function action(){
+	$(".container").offresize();
+}
+// var element = $(".container")[0];
+// new ResizeSensor(element, function() {
+//     console.log('Changed to ' + element.clientWidth);
+// });
+
+$.fn.extend({
+	onresize : function(fn, context){
+		let el = this[0],
+			timer;
+		// let resizeSensor = new ResizeSensor(this[0], function(){
+		// 	if(timer)
+		// 		window.clearTimeout(timer);
+
+		// 	timer = window.setTimeout(fn.bind(context || el), $.fn.resizeThreshold);
+		// });
+		// this.data("resizeSensor", resizeSensor);
+		this.resize(fn.bind(context || el));
+	},
+	offresize: function(fn) {
+		this.removeResize(fn);
+	},
+	resizeThreshold: 400
+});
+
+for(var i = 0; i < 50; i++) {
+	$("<div class='container'>"+ i +"</div>").appendTo(document.body).onresize(function(){
+		console.log([this.innerHTML + " Change to ", this.clientWidth, this]);
+	});
+}
+
+// $(".container").onresize(function(){
+// 	console.log(["Change to ", this.clientWidth, this]);
+// }, window);
+// $(".container2").onresize(function(){
+// 	console.log(["Container2 change to ", this.clientWidth]);
+// });
+</script>
+</body>
+</html>

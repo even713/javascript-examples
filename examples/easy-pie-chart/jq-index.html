@@ -1,0 +1,24 @@
+<html>
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/easy-pie-chart/jquery.easypiechart.js"></script>
+<body>
+<div>
+    <div class="easy-pie-chart" data-percent="20">20%</div>
+</div>
+<script>
+    $(function(){
+    	$(".easy-pie-chart").easyPieChart({
+				easing: 'easeOutCirc', 
+				barColor : 'red',
+				trackColor: '#BFBFBF',
+				scaleColor : false,
+				lineCap : 'butt',
+			//	lineWidth : parseInt(50 / 8.5),
+				animate : false,
+				rotate : -90,
+			//	size : 50
+			});
+    })
+</script>
+</body>
+</html>

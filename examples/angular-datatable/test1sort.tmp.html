@@ -1,0 +1,46 @@
+    <table class="my-dt display nowrap">
+        <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>Phone</th>
+            <th>Company</th>
+            <th class="none"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- <tr>
+            <td>1</td>
+            <td>Foo</td>
+            <td>Bar</td>
+        </tr>
+        <tr>
+            <td>123</td>
+            <td>Someone</td>
+            <td>Youknow</td>
+        </tr>
+        <tr>
+            <td>987</td>
+            <td>Iamout</td>
+            <td>Ofinspiration</td>
+        </tr> -->
+        <tr ng-repeat="person in containerCtrl.data track by person.id">
+            <!-- <td>
+                <uila-column-formatter row-data="person" 
+                row-idx="$index" col-idx="0"/>
+            </td> -->
+            <td></td>
+            <td><a href="#" ng-click="containerCtrl.showAlert(person.id)">{{ person.id }}</a></td>
+            <td>{{ person.firstName }}</td>
+            <td>{{ person.lastName }}</td>
+            <!-- <td {{showCase.dOrder(person)}}>{{person.firstName}} {{ person.age }}</td> -->
+            <td data-order="{{containerCtrl.ageOrderfn(person)}}">{{person.firstName}} {{ person.age }}</td>
+            <td>{{ person.phone }}</td>
+            <td>{{ person.company }}</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>

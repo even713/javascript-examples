@@ -1,0 +1,51 @@
+<html ng-app="showcase">
+
+<body ng-controller="AngularWayWithOptionsCtrl">
+
+</body>
+
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/angularjs/angular-1.4.5.js"></script>
+
+<script>
+// http://solutionoptimist.com/2013/12/27/javascript-promise-chains-2/
+angular.module('showcase', [])
+.controller('AngularWayWithOptionsCtrl', AngularWayWithOptionsCtrl);
+
+function AngularWayWithOptionsCtrl($q, $timeout) {
+    $q.all([taskAA(), taskBB()]).then(function(results){
+        console.log(results);
+    }, function(reason){
+        console.log(reason);
+    });
+
+    function taskA(){
+        let defered = $q.defer();
+        $timeout(function(){
+            defered.reject("taskA failed");
+            //defered.resolve("taskA result");
+        });
+        return defered.promise;
+    }
+
+    function taskB(){
+        console.log("taskB start...")
+        let defered = $q.defer();
+        $timeout(function(){
+            //defered.resolve("taskB result");
+            defered.reject("taskB failed");
+        });
+        return defered.promise;       
+    }
+
+    function taskAA(){
+        return taskA();
+    }
+
+    function taskBB(){
+        return taskB();
+    }
+}
+
+</script>
+</html>
