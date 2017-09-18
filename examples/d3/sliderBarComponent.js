@@ -22,21 +22,107 @@
 			
 		maxTimeRange: null,
 				
-		initalize: function(){
-			this.layout(this.element);
+		_initalize: function(){
+			this.layout(this.element)
+			.then(function(){
+				return this.addLabels(this.element, this.labels||[]);
+			}.bind(this))
+			.then(function(){
+				this.drawSliderBar(this.element);
+				this.element.on("resize", function(event){
+					this.responsive();
+				}.bind(this));
+				if(this.hasMouseOverTip) 
+					this.addEventForMouseMove();				
+				console.log(performance.now() - gT1);
+				// uilaFastdom.mutate(function(){
+				// 	this.drawSliderBar(this.element);
+				// }, this)
+				// .then(function(){
+				// 	this.element.on("resize", function(event){
+				// 		this.responsive();
+				// 	}.bind(this));
+				// 	if(this.hasMouseOverTip) 
+				// 		this.addEventForMouseMove();
+				// }.bind(this));
+								
+			}.bind(this));
 
-			this.addLabels(this.element, this.labels||[]);
-			
-			this.drawSliderBar(this.element);
-			
-			var that = this;
-			this.element.on("resize", function(event){
-				that.responsive();
-			});
-			if(this.hasMouseOverTip) 
-				this.addEventForMouseMove();
+		},
+
+		initalize: function(){
+			uilaFastdom.measure(function(){
+				this.svgWidth = this.element.width();
+				var margin = this.config.margin;
+				this.height = this.config.sliderHeight - margin.top - margin.bottom;
+
+				this.firstLayout(this.element).then(function(){
+					// calc the width of sliderbar and transform the text groups to most right
+					this.labelGBBox = {width: 0};
+					try {
+						// firefox cannot getBBox when labelG has no label inside it.
+						this.labelGBBox = this.labelG.node().getBBox();
+					} catch(e) {
+						
+					}
+
+					return this.adjustLayoutSize();
+				}.bind(this)).then(function(){
+
+					this.drawSliderBar(this.element);
+					
+					this.element.on("resize", function(event){
+						this.responsive();
+					}.bind(this));
+
+					if(this.hasMouseOverTip) 
+						this.addEventForMouseMove();
+				}.bind(this));
+
+				uilaFastdom.mutate(function(){
+					// for bar chart:
+					this.chartSvg = this._svg.append("g").attr("class", "chart")
+						.attr("height", this.height);
+					
+					// for highlighter layer
+					this.highlighterLayer = this._svg.append("g").attr("class", "high-lighter");
+					
+					// for x axis
+					// create x axis as g element. 
+					this.xAxis = this._svg.append("g")
+						.attr("class", "x axis");
+				}, this);
+			}, this);
+
 		},
 		
+		firstLayout: function(container){
+			if(!container || !container.length) {
+				console.error("no proper container for sliderbar");
+				return;
+			}
+			var margin = this.config.margin;
+			var canvasHeight = this.config.sliderHeight;
+
+			return uilaFastdom.mutate(function(){		
+				// create canvas
+				this._canvas = d3.select(container[0]).append("svg")
+					.attr("width", this.svgWidth)
+					.attr("height", canvasHeight);
+				
+				var rootG = this._canvas
+					.append("g")
+					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+				this._svg = rootG;
+
+				this.labelG = rootG.append("g").attr("class", "labels");
+
+				this.addLabels(this.element, this.labels||[]);
+
+			}, this);
+		},
+
 		layout: function(container){
 			if(!container || !container.length) {
 				console.error("no proper container for sliderbar");
@@ -44,32 +130,39 @@
 			}
 			var margin = this.config.margin;
 			var canvasHeight = this.config.sliderHeight;
-			var canvasWidth = container.width();
-			this.height = this.config.sliderHeight - margin.top - margin.bottom;
-			// create canvas
-			this._canvas = d3.select(container[0]).append("svg")
-				.attr("width", canvasWidth)
-				.attr("height", canvasHeight);
-			
-			var rootG = this._canvas
-				.append("g")
-				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-			this._svg = rootG;
-			
-			// for bar chart:
-			this.chartSvg = rootG.append("g").attr("class", "chart")
-				.attr("height", this.height);
-			
-			// for highlighter layer
-			this.highlighterLayer = rootG.append("g").attr("class", "high-lighter");
-			
-			// for x axis
-			// create x axis as g element. 
-			this.xAxis = rootG.append("g")
-				.attr("class", "x axis");
-			
-			this.labelG = rootG.append("g").attr("class", "labels");
+			return uilaFastdom.measure(function(){
+				var canvasWidth = container.width();
+				this.height = this.config.sliderHeight - margin.top - margin.bottom;
+
+				return uilaFastdom.mutate(function(){		
+					// create canvas
+					this._canvas = d3.select(container[0]).append("svg")
+						.attr("width", canvasWidth)
+						.attr("height", canvasHeight);
+					
+					var rootG = this._canvas
+						.append("g")
+						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+					this._svg = rootG;
+					
+					// for bar chart:
+					this.chartSvg = rootG.append("g").attr("class", "chart")
+						.attr("height", this.height);
+					
+					// for highlighter layer
+					this.highlighterLayer = rootG.append("g").attr("class", "high-lighter");
+					
+					// for x axis
+					// create x axis as g element. 
+					this.xAxis = rootG.append("g")
+						.attr("class", "x axis");
+					
+					this.labelG = rootG.append("g").attr("class", "labels");
+				}, this);
+
+			}, this);
 		},
 		
 	    _invertX: function( mouseX ) {
@@ -95,25 +188,25 @@
 				return;
 			}
 			//setup X axis
-			var x = d3.time.scale()
-				.domain([this.start, this.end])
-				.range([0, this.width]);
-			this.xS = x;
+			// var x = d3.time.scale()
+			// 	.domain([this.start, this.end])
+			// 	.range([0, this.width]);
+			// this.xS = x;
 			//setup Y axis
 			this.y = d3.scale.linear().range([this.height, 0]);
 			
 			// for x axis
 			// set scale and set scale label on the bottom of x axis
-			this.xAxis
-				.attr("transform", "translate(0," + this.height + ")")
-				.call(d3.svg.axis().scale(x).orient("bottom"));	
+			// this.xAxis
+			// 	.attr("transform", "translate(0," + this.height + ")")
+			// 	.call(d3.svg.axis().scale(x).orient("bottom"));	
 			
 			if(!this.startTime && !this.endTime) {
 				this.startTime = this.start;
 				this.endTime = this.start + 1;
 			 }
 			if(this.hasBrush)
-				this.drawBrush(x); 
+				this.drawBrush(this.xS); 
 		},
 		
 		updateY: function(maxY){
@@ -304,23 +397,7 @@
         	.duration(500)		
         	.style("opacity", 0);
 		},
-		drawBrush: function(x){
-			var brush = d3.svg.brush()
-			.x(x)
-			//.extent([this.config.startDate, this.config.endDate])	//select init x range
-			.extent([this.startTime, this.endTime]) //select init x range
-			.on("brush", brushmove)
-			.on("brushend", brushend);
-			this.brush = brush;
-			
-			// Initialize the brush component
-			var slider = this._svg.append("g")
-				.attr("class", "brush")
-				.call(brush);
-
-			slider.selectAll(".background").on("mousedown.brush", backgroudstart).on("touchstart.brush", backgroudstart);
-			
-			function backgroudstart(){
+		_backgroudstart: function(){
 				var eventTarget = d3.event.target;
 				//console.log(eventTarget.classList[0]);
 				var e = d3.event.sourceEvent || d3.event;
@@ -329,44 +406,10 @@
 				else
 					window.event.cancelBubble = true;
 				return false;
-			}
-			
-			var that = this,
-				height = (that.config.sliderHeight - that.config.margin.top - that.config.margin.bottom);
-			// Set pretty resize handles
-			slider.selectAll(".resize").append("path").attr("d", function(d) {
-				var e = +(d == "e"),
-				x = e ? 1 : -1,
-				y = height / 3;
-				return "M" + (.5 * x) + "," + y
-					+ "A6,6 0 0 " + e + " " + (6.5 * x) + "," + (y + 6)
-					+ "V" + (2 * y - 6)
-					+ "A6,6 0 0 " + e + " " + (.5 * x) + "," + (2 * y)
-					+ "Z"
-					+ "M" + (2.5 * x) + "," + (y + 8)
-					+ "V" + (2 * y - 8)
-					+ "M" + (4.5 * x) + "," + (y + 8)
-					+ "V" + (2 * y - 8);				
-			});
+		},
+		_brushmove: function() {
+				var that = this;
 
-			// Set the brush viewing rect
-			slider.selectAll("rect")
-				.attr("height", height);
-			
-			// Define the div for the tooltip
-			this.tooltipDiv = d3.select(this.element[0]).append("div")	
-			    .attr("class", "tooltip")				
-			    .style("opacity", 0);
-			
-			this.mouseOverTip = this.tooltipDiv.append("div")
-				.attr("class", "mouse-over");
-			
-			this.mouseMoveTip = this.tooltipDiv.append("div")
-				.attr("class", "mouse-move");
-
-			//brushend();
-
-			function brushmove() {
 				var s = brush.extent();
 				
 				var start = s[0] && (s[0].getTime ? s[0].getTime() : s[0]),
@@ -385,10 +428,9 @@
 				var timeFormatter = d3.time.format("%x %H:%M");
 				that.tooltipDiv.style("text-align", "right");
                 that.showTooltip("mouse-move", fromStr + ": " + timeFormatter(new Date(start)) + "<br/>" + toStr + ": "  + timeFormatter(new Date(end)));						
-			}
-			
-
-			function brushend() {	
+		},		
+		_brushend: function() {	
+			var that = this;
 				that.hideTooltip();
 	            
 				var s = brush.extent();
@@ -425,8 +467,61 @@
 				
 				that.refreshTimeRange(null, null, that.startTime, that.endTime); // update brush ui.
 				$(that.element).trigger("brushRangeChange", [that.startTime, that.endTime]);		
-			}
+		},		
+		drawBrush: function(x){
+			var brush = d3.svg.brush()
+			.x(x)
+			//.extent([this.config.startDate, this.config.endDate])	//select init x range
+			.extent([this.startTime, this.endTime]) //select init x range
+			.on("brush", this._brushmove.bind(this))
+			.on("brushend", this._brushend.bind(this));
+			
+			// Initialize the brush component
+			var slider = this._svg.append("g")
+				.attr("class", "brush")
+				.call(brush);
+
+			slider.selectAll(".background")
+			.on("mousedown.brush", this._backgroudstart.bind(this))
+			.on("touchstart.brush", this._backgroudstart.bind(this));
+
+			var that = this,
+				height = (that.config.sliderHeight - that.config.margin.top - that.config.margin.bottom);
+			// Set pretty resize handles
+			slider.selectAll(".resize").append("path").attr("d", function(d) {
+				var e = +(d == "e"),
+				x = e ? 1 : -1,
+				y = height / 3;
+				return "M" + (.5 * x) + "," + y
+					+ "A6,6 0 0 " + e + " " + (6.5 * x) + "," + (y + 6)
+					+ "V" + (2 * y - 6)
+					+ "A6,6 0 0 " + e + " " + (.5 * x) + "," + (2 * y)
+					+ "Z"
+					+ "M" + (2.5 * x) + "," + (y + 8)
+					+ "V" + (2 * y - 8)
+					+ "M" + (4.5 * x) + "," + (y + 8)
+					+ "V" + (2 * y - 8);				
+			});
+
+			// Set the brush viewing rect
+			slider.selectAll("rect")
+				.attr("height", height);
+			
+			// Define the div for the tooltip
+			this.tooltipDiv = d3.select(this.element[0]).append("div")	
+			    .attr("class", "tooltip")				
+			    .style("opacity", 0);
+			
+			this.mouseOverTip = this.tooltipDiv.append("div")
+				.attr("class", "mouse-over");
+			
+			this.mouseMoveTip = this.tooltipDiv.append("div")
+				.attr("class", "mouse-move");
+
+
 			this.brush = brush;
+
+			this.setBrushRange(this.startTime, this.endTime, this.xS);
 			return slider;
 		},
 		
@@ -515,14 +610,23 @@
 			   return;
 		  }*/
 		  
-		  var xg = this._svg.selectAll("g.x.axis");
-			xg.html("");// clear the selection
+			this.xAxis.html("");// clear the selection
+			
 			//setup X axis
-			var x = d3.time.scale()
+			var axisScale = d3.time.scale()
 				.domain([this.start, this.end])
-				.range([0, this.width]);	
-			xg.call(d3.svg.axis().scale(x).orient("bottom"));
-		   this.xS = x;
+				.range([0, this.width]);
+
+			//Create the Axis
+			var x = d3.svg.axis()
+                   .scale(axisScale)
+                   .orient("bottom");		
+			
+			this.xAxis
+			.attr("transform", "translate(0," + this.height + ")")
+			.call(x);
+
+		    this.xS = axisScale;
 			return  x;
 		},
 		
@@ -532,7 +636,7 @@
 			this.end = end || this.end;
 			this.startTime = startTime || this.startTime;
 			this.endTime = endTime || this.endTime;
-			this.xS = this.redrawX(this.width);
+			this.redrawX(this.width);
 			this.setBrushRange(startTime, endTime, this.xS);
 		},
 		 
@@ -551,7 +655,7 @@
 			.style("font-size", "1.1em");
 			//.attr("transform", "translate(-6," + cellHeight / 1.5 + ")");	
 			
-			this.adjustLayoutSize();
+			//return this.adjustLayoutSize();
 		},
 		
 		updateLabels: function(labels){
@@ -561,27 +665,21 @@
 		
 		adjustLayoutSize: function(){
 			var container = this.element;
-			
-			// calc the width of sliderbar and transform the text groups to most right
-			var labelGBBox = {width: 0};
-			try {
-				// firefox cannot getBBox when labelG has no label inside it.
-				labelGBBox = this.labelG.node().getBBox();
-			} catch(e) {
-				
-			}
-			//console.log(["labelGBBox", labelGBBox, container.width()]);
 			var lableMarginLeft = 10;
-			this.width = container.width() - this.config.margin.left - labelGBBox.width - this.config.margin.right - lableMarginLeft;
-			var ml = container.width() - this.config.margin.left - labelGBBox.width - this.config.margin.right;
-			this.labelG.attr("transform", "translate("+ ml +", 12)");
-			this.chartSvg.attr("width", this.width);
-			this._canvas.attr("width", container.width());
-			var x = this.redrawX(this.width);
+			this.width = this.svgWidth - this.config.margin.left - this.labelGBBox.width - this.config.margin.right - lableMarginLeft;
+			var ml = this.svgWidth - this.config.margin.left - this.labelGBBox.width - this.config.margin.right;	
 			
-			if(this.brush) {
-				this.setBrushRange(this.startTime, this.endTime, x);
-			}			
+			return uilaFastdom.mutate(function(){
+				this.labelG.attr("transform", "translate("+ ml +", 12)");
+				this.chartSvg.attr("width", this.width);
+				this._canvas.attr("width", this.svgWidth);
+				this.redrawX(this.width);
+				
+				if(this.brush) {
+					this.setBrushRange(this.startTime, this.endTime, this.xS);
+				}
+			}, this);
+
 		},
 						
 		removeLabels: function(){
@@ -590,7 +688,7 @@
 		
 		responsive: function(){
 			//console.log("sliderbar responsive")
-			this.adjustLayoutSize();
+			return this.adjustLayoutSize();
 		}
 		
 	}

@@ -1,0 +1,123 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+    <meta charset="utf-8" />
+
+    <title>
+        Using $scope.$digest() As A Performance Optimization In AngularJS
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="./demo.css"></link>
+    <style>
+    a[ ng-click ] {
+    cursor: pointer ;
+    text-decoration: underline ;
+}
+
+p.apply,
+p.digest {
+    background-color: #FAFAFA ;
+    border: 3px solid #CCCCCC ;
+    cursor: default ;
+    float: left ;
+    height: 75px ;
+    line-height: 75px ;
+    text-align: center ;
+    width: 200px ;
+}
+
+p.apply {
+    margin-right: 30px ;
+}
+
+p.apply.hot,
+p.digest.hot {
+    background-color: #FFCCCC ;
+    border-color: #FF3399 ;
+}
+
+p.logging {
+    clear: both ;
+}
+
+.list-container{
+    borer: 1px solid red;
+    overflow: auto;
+    height: 100px;
+}
+    </style>
+</head>
+<body >
+
+    <h1>
+        Using $scope.$digest() As A Performance Optimization In AngularJS
+    </h1>
+
+    <div ng-controller="listCtrl" class="list-container">
+        <div fa-suspendable ng-repeat="item in visibleList">
+            {{item}} {{$index + item}}
+        </div>
+    </div>
+ 
+
+    <!-- Load scripts. -->
+    <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+    <script src="../../vendor/angularjs/angular-1.4.5.js"></script>
+    <script type="text/javascript">
+        // Create an application module for our demo.
+        var app = angular.module( "Demo", [] );
+        app.controller(
+            "listCtrl",
+            function( $scope, $element) {
+                var counter = 1;
+                $scope.visibleList = getVisibleElements(counter);
+                counter++;
+
+               $element.on('scroll', function (e) {
+                $scope.visibleList = getVisibleElements(counter);
+            
+                $scope.$broadcast('suspend');
+                $scope.$digest();
+                //$scope.$broadcast('resume');
+
+                counter ++;
+              });               
+            }
+        );
+
+        app.directive('faSuspendable', function () {
+          return {
+            link: function (scope) {
+              // Heads up: this might break is suspend/resume called out of order
+              // or if watchers are added while suspended
+              var watchers;
+
+              scope.$on('suspend', function () {
+                watchers = scope.$$watchers;
+                console.log(JSON.stringify(scope.$$watchers));
+                scope.$$watchers = [];
+              });
+
+              scope.$on('resume', function () {
+                if (watchers)
+                  scope.$$watchers = watchers;
+
+                // discard our copy of the watchers
+                watchers = void 0;
+              });
+            }
+          };
+        });
+
+        function getVisibleElements(counter){
+            let ary = [];
+            for(var i = 0; i < 10; i++) {
+                ary.push(i + " sometext..." + " this is the " + counter + "times");
+            }
+            return ary;
+        }
+ 
+    </script>
+
+</body>
+</html>

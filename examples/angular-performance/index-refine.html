@@ -133,6 +133,7 @@ a[ ng-click ] {
                     $scope.$watch('item', function(){
                         $scope.$applyAsync(
                             function() {
+                                console.log(performance.now());
                                 var position = element.position();
                                 $scope.x = Math.floor( position.left );
                                 $scope.y = Math.floor( position.top );

@@ -1,3 +1,6 @@
+// Mini logger
+var debug = 1 ? console.log.bind(console, '[uila-datatable]') : function() {};
+
 const DATA_ORDER_PROP = "dataOrder";
 
 class UilaTableFirstDirective extends laygoon.util.BaseDirectiveClass {
@@ -21,8 +24,8 @@ class UilaTableFirstDirective extends laygoon.util.BaseDirectiveClass {
 				filter = $(col).attr("filter");
 
 			if(formatter) {
-				tdArray.push('<td><'+ formatter + ' col-idx="'+ idx +'" row-idx="$index" row-data="elem" ' +
-	                '></'+ formatter +'></td>');
+				tdArray.push('<td><'+ formatter + ' extra-info="vm.extraInfos['+ idx +']" col-idx="'+ idx +'" row-idx="$index" row-data="elem" ' +
+					'></'+ formatter +'></td>');
 			} else if(filter) {
 				tdArray.push(`<td><span ng-bind-html=elem.`+ key + `|`+ filter +`:elem:"`+ idx +`":$index></td>`);
 			} else if(key){
@@ -30,11 +33,11 @@ class UilaTableFirstDirective extends laygoon.util.BaseDirectiveClass {
 			} else {
 				console.error("no key/formatter/filter for table column");
 				return;
-			}		
+			}
 		});
 
-		tElem.data("tdArray", tdArray);		
-	}	
+		tElem.data("tdArray", tdArray);
+	}
 }
 
 class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
@@ -59,17 +62,17 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 		this.compile = this._compile.bind(this);
 
 		this.template = `<table>
-			<thead>
-		        <tr ng-transclude>
-		        	
-        		</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<!-- Insert formatted column td here -->
-				</tr>
-			</tbody>
-		</table>`;
+		<thead>
+	        <tr ng-transclude>
+
+    		</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<!-- Insert formatted column td here -->
+			</tr>
+		</tbody>
+	</table>`;
 	}
 
 	_compile(tElem, tAttrs) {
@@ -92,24 +95,32 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 
 		return {
 			post: function(scope, element, attr, ctrl) {
+				let firstLoad = true;
 				ctrl.setDTOption(ctrl.dtOptions);
 				let trackBy = attr.trackBy;
 				ctrl.setTableKey(trackBy);
-				
+
 				scope.finished = function(){
+					//debug("ng repeate finished...")
+					onUIChanged();
+				}; // when ngrepeate finished
+
+				scope.$on(scope.$id + "uiChanged", onUIChanged)
+
+				function onUIChanged(){
+					//debug("onUIChanged...");
+					ctrl.storeNgRepeatComment(element);
 					_injects.$timeout(function(){
-						ctrl.initTable(element);
-						element.css("visibility", "visible");
+						if(firstLoad) {
+							ctrl.initTable(element);
+							element.css("visibility", "visible");
+							firstLoad = false;
+						} else {
+							ctrl.updateTable();
+						}
 					});
 				}
 
-				let unregister = scope.$watch('ctrl.data', function(){
-					if(ctrl.data && ctrl.data.length == 0) {
-						scope.finished();
-						unregister();
-					}
-				});
-				
 			}
 		}
 	}
@@ -124,47 +135,32 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 		this.dtInstance = null; // a refrence that can access datatable api
 		this.dtColumnDefs = [];
 		this.sortFns = [];
+		this.extraInfos = [];
 	}
-
-	// prepare data with data attribute for sorting etc.
-	// prepareData(newData){
-	// 	let _self = this;
-
-	// 	if(!newData)
-	// 		return false;
-
-	// 	newData.forEach(function(d){
-	// 		_self.sortFns.forEach(function(sortfn, idx){
-	// 			if(sortfn) {
-	// 				d[DATA_ORDER_PROP + idx] = sortfn(d, idx);
-	// 			}
-	// 		});
-	// 	});
-	// 	return newData;
-	// }
 
 	get sourceData(){
 		return this._sourceData;
 	}
 
 	// watch data change and update datatable
-	set sourceData(newData){				
+	set sourceData(newData){
 		this._sourceData = newData;
 		if(!newData){
-			console.log("set data with undefined");
+			debug("set data with undefined");
 			return;
 		}
 
-		let _self = this;
 		if(this.dtInstance) {
 			// this._data = this.prepareData(newData);
 			this.data = this.sortData(newData);
 
-			this.$timeout(function(){
-				_self.updateTable();
-			});
 		} else {
 			this.data = newData;
+		}
+
+		if(this.data && this.data.length == 0) {
+			// ngrepeat finish event won't fired when data length is 0, so we need to trigger it mannually
+			this.$scope.$broadcast(this.$scope.$id + "uiChanged");
 		}
 	}
 
@@ -192,36 +188,30 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 			}
 		});
 
+		//debug(resultAry, _data);
 		resultAry = resultAry.concat(_data);
 
-		// let _self = this;
-		// let order = this.dtInstance.order()[0];
-		// let col = order[0], dir = order[1];
-		// if(this.sortFns[col]) {
-		// 	let sortFn = this.sortFns[col];
-		// 	data.sort(function(a, b){
-		// 		let aa = sortFn(a, col),
-		// 			bb = sortFn(b, col);
-
-		// 		if(dir == "asc")
-		// 			return ((aa < bb) ? -1 : ((aa > bb) ?  1 : 0));
-		// 		if(dir == "desc")
-		// 			return ((bb < aa) ? -1 : ((bb > aa) ?  1 : 0));
-		// 	});
-		// }
+		if(!_data.length && resultAry.length <= this.data.length) {
+			//debug("trigger uiChanged...")
+			// _data.length means new data's keys all matched the existed trs.
+			// new result ary length not larger than old data length means no new data enter
+			// thus won't trigger ng-repeat on finish event, need to manually trigger "uiChanged" event
+			this.$scope.$broadcast(this.$scope.$id + "uiChanged");
+			
+		}
 
 		return resultAry;
 	}
 
 	// set column defination, see aoColumnDefs: http://legacy.datatables.net/usage/columns
-	// note: if the same column is targeted multiple times in aoColumnDefs, 
+	// note: if the same column is targeted multiple times in aoColumnDefs,
 	// the first elements in the array will take the highest priority, and the last the lowest.
 	setColumnDef(targetCol, settings) {
 		settings["aTargets"] = targetCol;
 
 		this.dtColumnDefs.push(settings);
 	}
-	
+
 	setDTOption(settings) {
 		this.dtOption = $.extend(this.dtOption, settings);
 	}
@@ -230,27 +220,64 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 		this.sortFns[targetCol] = sortFn;
 	}
 
+	setExtraInfo(targetCol, extraInfo){
+		this.extraInfos[targetCol] = extraInfo;
+	}
+
+	// store ngrepeat comment node(e.g. <!-- ngRepeat: elem in vm.data track by elem.id -->)
+	// assisate with tr element, angular use these comments to track elements,
+	// so restore these comments after sort DT
+	storeNgRepeatComment(table){
+		let ngRepeatTrs = $(table).find("tbody > tr[ng-repeat]");
+		let tbody = $(table).find("tbody");
+		let comments = tbody.contents().filter(function(){
+			return this.nodeType == 8 && tbody[0] == this.parentNode;
+		})
+		ngRepeatTrs.each(function(idx, tr){
+			let comment = comments[idx + 1];
+			if(comment && comment.nodeType == 8) {
+				$(tr).data("comment", comment);
+			} else {
+				debug("cannot find assosicate comment node");
+			}
+		});
+	}
+
 	initTable(table) {
 		let _self = this;
 		this.table = table;
 		// this.oldTrs is for angular produced datatable's trs
-        this.oldTrs = table.find('>tbody').children().not(".child");
-        
-        let tableSettings = {
-        	retrieve: true,
-        	"aoColumnDefs": this.dtColumnDefs
-        }
-        tableSettings = $.extend(tableSettings, this.dtOption);
+		this.oldTrs = table.find('>tbody').children().not(".child");
 
-        console.log(tableSettings);
-        this.dtInstance = $(table).DataTable(tableSettings);
+		let tableSettings = {
+			retrieve: true,
+			"aoColumnDefs": this.dtColumnDefs
+		}
+		tableSettings = $.extend(tableSettings, this.dtOption);
+
+		$(table).on('order.dt', function(event, tableSettings){
+			// to prevent nested jq datatable event fired.
+			if(tableSettings.nTable !== this)
+				return;
+			_self.restoreNgRepeatComment();
+		});
+		this.dtInstance = $(table).DataTable(tableSettings);
+	}
+
+	restoreNgRepeatComment(){
+		let ngRepeatTrs = $(this.table).find("tbody > tr[ng-repeat]");
+
+		ngRepeatTrs.each(function(idx, tr){
+			let comment = $(tr).data("comment");
+			$(comment).insertAfter(tr);
+		});
 	}
 
 	updateTable(){
 		// use rows().every() instead when datatable is 1.10.6+
 		let table = this.dtInstance;
 		table.rows().eq(0).each( function ( index ) {
-		    table.row( index ).invalidate(); // update row data		 	
+			table.row( index ).invalidate(); // update row data
 		} );
 
 		this._updateTable();
@@ -259,30 +286,30 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 	_updateTable() {
 
 		// Get the angular trs before dt's draw
-        let trs = $(this.table).find('>tbody').children().not(".child");
+		let trs = $(this.table).find('>tbody').children().not(".child");
 
-        if(this.oldTrs && this.oldTrs.length == 0) {
-        	// have no data for last view, there will be a tr show "No data..."
-        	// exclude this tr
-        	if(trs[trs.length - 1].childNodes.length == 1) {
-        		Array.prototype.pop.call(trs);
-        	} else {
-        		console.log("error when update table");
-        	}
-        }
+		if(this.oldTrs && this.oldTrs.length == 0) {
+			// have no data for last view, there will be a tr show "No data..."
+			// exclude this tr
+			if(trs[trs.length - 1].childNodes.length == 1) {
+				Array.prototype.pop.call(trs);
+			} else {
+				debug("error when update table");
+			}
+		}
 
-    	let trsToBeRemoved = this.diffRows(this.oldTrs, trs),
-        	trsToBeAdded = this.diffRows(trs, this.oldTrs);
+		let trsToBeRemoved = this.diffRows(this.oldTrs, trs),
+			trsToBeAdded = this.diffRows(trs, this.oldTrs);
 
-        this.dtInstance.rows(trsToBeRemoved).remove()
-                .rows.add(trsToBeAdded)
-                .draw();
+		this.dtInstance.rows(trsToBeRemoved).remove()
+			.rows.add(trsToBeAdded)
+			.draw();
 
-        this.oldTrs = trs;
+		this.oldTrs = trs;
 	}
 
 	diffRows(oldTrs, newTrs){
-	    return $.grep(oldTrs, function(x) {return $.inArray(x, newTrs) < 0})
-	} 
+		return $.grep(oldTrs, function(x) {return $.inArray(x, newTrs) < 0})
+	}
 }
 UilaTableDirectiveWorker.inject(['$timeout', '$q', '$compile', '$scope']);

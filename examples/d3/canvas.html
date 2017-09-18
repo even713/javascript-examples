@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+  body{
+    cursor: auto!important;
+  }
+.container {
+  width: 900px;
+  height: 120px;
+}
+div.chart{
+	margin-top: 30px;
+  width: 80%;
+  border: 1px solid red;
+}
+  </style>
+</head>
+<body>
+<input type="button" value="test" onclick="test()"/>
+
+
+
+
+<div  class="chart" >
+	<svg height="120" width="900">
+		<g class="chart">
+      <!-- <foreignObject width="150" height="150">
+        <canvas id="canvas" width="100%" height="100%"></canvas>
+      </foreignObject> -->
+    </g>
+	</svg>
+</div>
+
+<div class="canvas-chart">
+
+</div>
+<!-- <canvas id="canvas" width="100%" height="100%"></canvas> -->
+<svg class="demo"></svg>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script> -->
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/d3/d3.v3.js"></script>
+<script src="../../vendor/css-element-queries/fastdom.js"></script>
+<script src="../../vendor/css-element-queries/fastdom-promised.js"></script>
+
+<script>
+    function draw(canvas) {
+      if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        for(var i = 0; i < 120; i++) {
+          ctx.fillStyle = 'rgb(200, '+ i +', 0)';
+          ctx.fillRect(i *10, 10, 8, 8);
+
+          ctx.fillStyle = 'rgba(50, '+ i +', 200, 0.5)';
+          ctx.fillRect(i*10, 10 + 10, 8, 8);
+
+          ctx.fillStyle = 'rgba(0, '+ i +', 200, 0.5)';
+          ctx.fillRect(i*10, 10 + 20, 8, 8);
+
+
+          ctx.fillStyle = 'rgba(100, '+ i +', 200, 0.5)';
+          ctx.fillRect(i*10, 10 + 30, 8, 8);
+
+
+          ctx.fillStyle = 'rgba(150, '+ i +', 200, 0.5)';
+          ctx.fillRect(i*10, 10 + 40, 8, 8);
+        }
+      }
+    }
+
+    function init(element){
+      // var foreignObject = $(`<foreignObject width="150" height="150">
+      //   <canvas id="canvas" width="100%" height="100%"></canvas>
+      // </foreignObject>`).appendTo(element);
+
+      var foreignObject = d3.select(element[0]).append("foreignObject")
+          .attr("width", 1500)
+          .attr("height", 1500);
+
+      var foBody = foreignObject.append("xhtml:body")
+        .style("margin", "0px")
+        .style("padding", "0px")
+        .style("background-color", "none")
+        .style("width", "150px")
+        .style("height", "150px")
+        .style("border", "none");
+        
+     var canvas = foBody.append("canvas")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", "100%")
+      .attr("height", "100%")   
+          // .append("canvas")
+          // .attr("id", "canvas")
+          // .attr("width", "100%")
+          // .attr("height", "100%")
+
+      draw(canvas.node())
+    }
+
+    function init2(){
+      var canvas = $('<canvas id="canvas" width="1200px" height="120px"></canvas>').appendTo(".canvas-chart");
+      draw(canvas[0]);
+    }
+
+    init2();
+
+     //init($("div.chart g.chart"));
+
+    // draw($("#canvas")[0]);
+
+    function test(){
+      for(var i = 0; i < 10; i++) {
+        var j = i;
+        requestAnimationFrame(function(){
+          console.log(j);
+        }, 2);
+      }
+    }
+</script>    
+  
+</body>
+</html>

@@ -33,16 +33,17 @@ a[ ng-click ] {
     <h2>
         Accessing DOM Layout During Linking
         &mdash;
-        <a ng-click="rebuild()">Rebuild</a>
+        
     </h2>
 
     <div
-        ng-repeat="item in items"
+        
         bn-item
+        a="item"
         class="item">
 
-        ID: {{ item.id }}<br />
-        Coords: {{ x }} , {{ y }}<br />
+        <br />
+        <br />
 
     </div>
 
@@ -60,14 +61,14 @@ a[ ng-click ] {
             "AppController",
             function( $scope ) {
                 // I hold the data being rendered in the ng-repeat.
-                $scope.items = buildItems( 1000 );
+                //$scope.items = buildItems( 1 );
                 // ---
                 // PUBLIC METHODS.
                 // ---
                 // I rebuild the collection, forcing a re-rendering of the ng-repeat.
-                $scope.rebuild = function() {
-                    $scope.items = buildItems( 1000 );
-                };
+                // $scope.rebuild = function() {
+                //     $scope.items = buildItems( 1000 );
+                // };
                 // ---
                 // PRIVATE METHODS.
                 // ---
@@ -97,13 +98,16 @@ a[ ng-click ] {
                     // browser to stop and repaint after each ng-repeat node is stamped-
                     // out so that it can apply the CSS and get the positioning.
                     var position = element.position();
-                    $scope.x = Math.floor( position.left );
-                    $scope.y = Math.floor( position.top );
+                   $scope.x = Math.floor( position.left );
+                   // $scope.y = Math.floor( position.top );
                 }
                 // Return the directive configuration.
                 return({
                     link: link,
-                    restrict: "A"
+                    restrict: "A",
+                    scope:{
+                        a:'='
+                    }
                 });
             }
         );

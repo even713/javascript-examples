@@ -1,0 +1,239 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		Infinite scroll
+	</title>
+<style>
+html{
+	height: 100%;
+}
+.container{
+	display: flex;
+	display: -webkit-flex; /* Safari */
+	flex-direction: column;
+	height: 600px;
+}
+.top{
+	
+	height: 50px;
+}
+.main{
+    -webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */    
+    flex: 1;
+    height: 200px;
+	border: 1px solid red;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+li{
+	font-size: 34px;
+}
+</style>
+</head>
+<body >
+
+<div class="container">
+	<div class="top">
+		<h1>
+			Infinite scroll
+		</h1>
+	<div>
+	<div class="main" ng-controller="pageController">
+		<input type="button" value="start" ng-click="start()">
+		<input type="button" value="reload" ng-click="fUser.reload()">
+		<ul infinite-scroll='fUser.nextPage()' infinite-scroll-disabled='fUser.busy' infinite-scroll-distance='0' infinite-scroll-container="'.main'"
+		>
+			<li ng-repeat="user in fUser.items track by $index">username: {{user}}</li>
+		</ul>
+	</div>
+</div>
+
+	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+	<script type="text/javascript" src="../../vendor/bind-once/bindonce.3.0.1.js"></script>
+	<script type="text/javascript" src="../../vendor/ng-infinite-scroll/ng-infinite-scroll.js"></script>
+	<script type="text/javascript" src="../../vendor/other/BaseNgClass.js"></script>
+	<script type="text/javascript">
+	// angular.module("Demo", ['pasvaz.bindonce'])
+	angular.module("Demo", ['infinite-scroll'])
+	.controller('pageController', function($http, $scope, queryQuers, fetchUser){
+		// queryQuers.getList().then(function(users){
+		// 	$scope.users = users;
+		// });
+
+		$scope.start = function(){
+			$scope.fUser = new fetchUser();
+		}
+	})
+	.service('queryQuers', function($q, $timeout){
+
+		this.getList = function(){
+			console.log("fetching data...");
+			var defer = $q.defer();
+
+			var users = ["Linda", "Peter", "A", "B", "C", "D", "E", "F", "G", "H"];
+			// for(var i = 0; i < 10; i++) {
+			// 	users.push("name " + Math.random());
+			// }
+
+			$timeout(function(){
+				defer.resolve(users);
+			}, 500);
+
+			return defer.promise;
+		}
+
+		this.getDetails = function(keys){
+			var defer = $q.defer();
+
+			// var obj = {age: Math.random()};
+			var ary = [];
+			for(var i = 0; i < keys.length; i++) {
+				let obj = {age: 18};
+				if(keys[i] == "Linda") {
+					obj.age = 38;
+				}
+				if(keys[i] == "Peter") {
+					obj.age = 58;
+				}
+				ary.push(obj);
+			}
+
+			$timeout(function(){
+				defer.resolve(ary);
+			}, 500);
+
+			return defer.promise;
+		}
+
+		this.getDetails2 = function(keys){
+			var defer = $q.defer();
+
+			// var obj = {age: Math.random()};
+			var ary = [];
+			for(var i = 0; i < keys.length; i++) {
+				let obj = {age: 19};
+				if(keys[i] == "Linda") {
+					obj.age = 39;
+				}
+				if(keys[i] == "Peter") {
+					obj.age = 59;
+				}
+				ary.push(obj);
+			}
+
+			$timeout(function(){
+				defer.resolve(ary);
+			}, 500);
+
+			return defer.promise;
+		}		
+
+	})
+
+{
+	class FetchUser extends laygoon.util.BaseFactoryClass{
+		constructor(...injects){
+			super(...injects);
+			this.numPerPage = 1;
+			this.wholeList = [];
+			this.viewingList = [];
+			this.items = [];
+			this.busy = false;
+
+			this.getWholeList();
+		}
+
+		reload(){
+			this.wholeList = [];
+			// todo: abort the request
+			this.busy = false;
+
+			this.getWholeList().then(function(){
+				let compareList = this.wholeList.slice(0, this.viewingList.length);
+
+				if(JSON.stringify(compareList) == JSON.stringify(this.viewingList)){
+					this.update();
+				} else {
+					// empty the content and then reload
+					this.viewingList = [];
+					this.items = [];
+				}
+			}.bind(this));
+		}
+
+		update(){
+			let updateList = this.viewingList.slice();
+			this._update(updateList, 0);
+		}
+
+		_update(updateList, nth){
+			let key = updateList.shift();
+			if(!key) {
+				console.log("end of update queue");
+				return;
+			}
+
+			this.queryQuers.getDetails2([key]).then(function(detail){
+				this.items[nth] = {key: key, detail: detail[0]};
+				this._update(updateList, nth + 1);
+			}.bind(this));
+		}
+
+		getWholeList(){
+			if(this.busy)
+				return;
+
+			this.busy = true;
+
+			this.request = this.queryQuers.getList().then(function(data){
+				this.wholeList = data;
+				this.busy = false;
+				this.request = null;
+				//console.log(this.wholeList);
+			}.bind(this));
+
+			return this.request;
+		}
+
+		nextPage(){
+			if(this.busy)
+				return;
+
+			this.busy = true;
+
+			let viewingListLength = this.viewingList.length;
+			if(viewingListLength == this.wholeList.length)
+				return;
+
+			let keys = this.wholeList.slice(viewingListLength, viewingListLength + this.numPerPage);
+
+			this.viewingList = this.viewingList.concat(keys);
+			console.log(keys);
+			
+			this.request = this.queryQuers.getDetails(keys).then(function(data){
+				data.forEach(function(d, i){
+					this.items.push({key: keys[i], detail: d});
+				}.bind(this));
+				this.busy = false;
+				this.request = null;
+			}.bind(this));
+		}
+	}
+
+	FetchUser.inject(['queryQuers']);
+
+	angular.module("Demo").factory("fetchUser", FetchUser.create());
+}
+
+
+
+	</script>
+
+</body>
+</html>

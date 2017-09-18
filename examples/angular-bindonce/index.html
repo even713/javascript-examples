@@ -1,0 +1,201 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		Bind Once
+	</title>
+
+</head>
+<body >
+
+	<h1>
+		Bind Once
+	</h1>
+	<div ng-controller="pageController">
+		<ul >
+			<!-- One time binding -->
+			<!-- <li ng-repeat="session in sessions track by session.name">
+			    <div class="info">
+			      {{::session.name}} - {{::session.room}} - {{::session.hour}} - {{::session.speaker}}
+			    </div>
+			    <div class="likes">
+			      {{::session.likes}} likes! <button ng-click="likeSession(session)">Like it!</button>
+			    </div>
+			  </li> -->
+
+			  <!-- normal binding -->
+		  <!-- <li ng-repeat="session in sessions track by session.name">
+		    <div class="info">
+		      {{session.name}} - {{session.room}} - {{session.hour}} - {{session.speaker}}
+		    </div>
+		    <div class="likes">
+		      {{session.likes}} likes! <button ng-click="likeSession(session)">Like it!</button>
+		    </div>
+		  </li> -->	
+
+		  <!-- bindonce -->
+		  <li refresh-on="'refreshTaskList'" bindonce ng-repeat="session in sessions track by session.name">
+		    <div class="info">
+		      <span bo-text="session.name"></span> -
+		      <span bo-text="session.room"></span> -
+		      <span bo-text="session.hour"></span> -
+		      <span bo-text="session.speaker"></span>
+		    </div>
+		    <div class="likes">
+		      {{session.likes}} likes! <button ng-click="likeSession(session)">Like it!</button>
+		    </div>
+
+
+		  </li>
+
+		<!-- bind notifier -->
+		  <!-- <li ng-repeat="session in :auto:sessions track by session.name">
+			    <div class="info">
+			      {{:auto:session.name}} - {{:auto:session.room}} - {{:auto:session.hour}} - {{:auto:session.speaker}}
+			    </div>
+			    <div class="likes">
+			      {{:auto:session.likes}} likes! <button ng-click="likeSession(session)">Like it!</button>
+			    </div>
+			  </li> -->
+		</ul>
+
+		
+
+		<div ng-controller="childController">
+			<input type="button" value="child click" ng-click="childClick()"/>
+
+			<div refresh-on="'refreshIf'" bindonce="showText">
+				<span bo-if="showText">ng if text display here</span>
+			</div>
+		</div>
+	</div>
+
+<!--   <div ng-controller="ctrl">
+    
+      <div ng-repeat="d in :auto:data2 track by $index">
+        {{::d}}
+      </div>
+   
+  </div> -->
+
+	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+	<script type="text/javascript" src="../../vendor/bind-once/bindonce.3.0.1.js"></script>
+	<script type="text/javascript" src="../../vendor/angular-bind-notifier/bindNotifier.js"></script>
+	<script type="text/javascript">
+	angular.module("Demo", ['pasvaz.bindonce'])
+	// angular.module("Demo", ['angular.bind.notifier'])
+	.controller('pageController', function($http, $scope, $attrs){
+
+        // Setting up a watcher to mimic the high number of bindings that most
+        // applications will have. I will be called on every digest.
+        $scope.$watch(
+            function() {
+                console.log( "Top-level digest 1." );
+            }
+        );
+
+		  $scope.sessions = [{
+		  	name: "Math",
+		  	room: "101",
+		  	hour: "5",
+		  	speaker: "Father"
+		  },
+		  {
+		  	name: "Physical",
+		  	room: "302",
+		  	hour: "3",
+		  	speaker: "Mother"
+		  },
+		  {
+		  	name: "English",
+		  	room: "504",
+		  	hour: "2",
+		  	speaker: "Peter"
+		  },
+		  {
+		  	name: "Language",
+		  	room: "202",
+		  	hour: "1",
+		  	speaker: "Linda"
+		  }];
+$scope.autoExpr = Math.random(0,10).toString();
+		  $scope.likeSession = function(session) {
+		  	$scope.autoExpr = Math.random(0,10).toString();
+		  	
+
+		  	$scope.sessions = [{
+			  	name: "Math",
+			  	room: "101",
+			  	hour: "7",
+			  	speaker: "Father"
+			  },
+			  {
+			  	name: "Physical",
+			  	room: "302",
+			  	hour: "3",
+			  	speaker: "Mother"
+			  },
+			  {
+			  	name: "English",
+			  	room: "504",
+			  	hour: "2",
+			  	speaker: "Peter"
+			  },
+			  {
+			  	name: "Language",
+			  	room: "202",
+			  	hour: "1",
+			  	speaker: "Linda"
+			  }];
+
+			  // $scope.$broadcast('$$rebind::auto');
+		  	//session.hour ++;
+		  	setTimeout(function(){
+		  		$scope.$broadcast('refreshTaskList');
+		  	}, 200);
+		  }
+	})
+	.controller('childController', function($scope){
+		$scope.showText = true;
+
+		$scope.childClick = function(){
+			$scope.showText = !$scope.showText;
+			// $scope.isChildScopeClicked = !$scope.isChildScopeClicked;
+
+		  	setTimeout(function(){
+		  		$scope.$broadcast('refreshIf');
+		  	}, 200);			
+		}
+	});
+
+
+// angular.module("Demo").controller('ctrl', function ($scope, $interval, $Notifier) {
+//   //$scope.data = [1,2,3,4,5,6,7,8,9,10];
+//   $scope.data2 = [1,2,3,4,5,6,7,8,9,10];
+   
+//   /** single $watch **/ 
+//   $scope.autoExpr = Math.random(0,10).toString();
+//   $interval(function () {
+//     $scope.autoExpr = Math.random(0,10).toString();
+
+//     $scope.data2 = shuffle($scope.data2);
+//   }, 250);
+
+// 	new $Notifier($scope, {
+//     auto: 'autoExpr'
+//   });
+// });
+  
+  
+function shuffle(o){
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
+	</script>
+
+</body>
+</html>

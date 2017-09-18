@@ -18,8 +18,9 @@ gulp.task('connect', function() {
 //         .pipe(insert.wrap('{', '}'));
 // })
 gulp.task('uila-table-core', function(){
-    return gulp.src(['examples/angular-datatable/src/UilaColumnDirective.js',
+    return gulp.src([
         'examples/angular-datatable/src/UilaTableDirective.js',
+        'examples/angular-datatable/src/UilaColumnDirective.js',
         'examples/angular-datatable/src/uilaDataTable.js'])
         .pipe(concat('uila-datatable.src.js'))
         .pipe(insert.wrap('{' + '\n', '\n' + '}'))        

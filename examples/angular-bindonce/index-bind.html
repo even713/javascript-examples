@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		Optional Bind
+	</title>
+
+</head>
+<body >
+
+	<h1>
+		Optional Bind
+	</h1>
+	<div ng-controller="pageController">
+		<edit-user></edit-user>
+	</div>
+
+
+	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.6.6.js"></script>
+	<script type="text/javascript" src="../../vendor/bind-once/bindonce.3.0.1.js"></script>
+	<script type="text/javascript" src="../../vendor/angular-bind-notifier/bindNotifier.js"></script>
+	<script type="text/javascript">
+	// angular.module("Demo", ['pasvaz.bindonce'])
+	angular.module("Demo", [])
+	.controller('pageController', function($http, $scope, $attrs){
+		$scope.user = "Linda";
+	})
+	.directive('editUser', function($timeout){
+		return {
+			link: function(scope){
+
+			},
+			controller: function(){
+				var that = this;
+				console.log(this.user);
+
+				$timeout(function(){
+					that.user = "peter";
+				}, 2000)
+			},
+			controllerAs: "ctrl",
+			bindToController: true,
+			scope: {
+				user: '=?'
+			},
+			template: "{{ctrl.user}}"
+		}
+	});
+
+
+	</script>
+
+</body>
+</html>

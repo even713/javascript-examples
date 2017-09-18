@@ -41,6 +41,9 @@ jQuery.fn.dataTableExt.oSort['usage-desc']  = function(a, b) {
 };
 
 angular.module('showcase.angularWay', ['ngSanitize', 'uilaDatatable'])
+// .config(['$compileProvider', function ($compileProvider) {
+//   $compileProvider.debugInfoEnabled(false);
+// }])
 .controller('AngularWayCtrl', AngularWayCtrl);
 
 function AngularWayCtrl($sce, $scope, $compile, $timeout) {
@@ -231,6 +234,12 @@ class ShowPropDirective extends laygoon.util.BaseDirectiveClass{
         });
 
         this.template = "Show: {{propName}}: {{prop}}"
+    }
+
+    link(scope){
+        scope.$watch('prop', function(newValue, oldValue){
+            console.log("prop changed", oldValue, newValue);
+        });
     }
 }
 

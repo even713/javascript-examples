@@ -1,0 +1,35 @@
+<html>
+<link rel="stylesheet" href="../../vendor/flex-slider/flexslider.css" type="text/css">
+<style>
+.flexslider{
+	margin: 10px;
+}
+</style>
+<body>
+<div class="flexslider">
+  <ul class="slides">
+    <li>
+      <img src="slide1.jpg" />
+    </li>
+    <li>
+      <img src="slide2.jpg" />
+    </li>
+    <li>
+      <img src="slide3.jpg" />
+    </li>
+    <li>
+      <img src="slide4.jpg" />
+    </li>
+  </ul>
+</div>
+</body>
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/flex-slider/jquery.flexslider.js"></script>
+<script>
+$(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "slide"
+  });
+});
+</script>
+</html>
