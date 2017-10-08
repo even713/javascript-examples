@@ -12,8 +12,13 @@
     <div>
         <input type="button" ng-click="showCase.changeData()" value="Change Data"/>
     </div>
+    <div>
+        <input type="button" ng-click="showCase.destroyTable()" value="Destroy table"/>
+    </div>
 
-    <my-container data = "showCase.persons"></my-container>
+    <div class="main">
+        <my-container data = "showCase.persons" info="showCase.info"></my-container>
+    </div>
 </div>
 </body>
 
@@ -68,6 +73,10 @@ function AngularWayCtrl($sce, $scope, $compile, $timeout) {
     }
 
     vm.myRenderer = r.bind(this);    
+    vm.info = {detail: "tmp3 datatable info"};
+    vm.destroyTable = function(){
+        $(".main").html("main....");
+    }    
 
 
 $timeout(function(){
@@ -136,7 +145,7 @@ class IdColumnDirective extends UilaColumnFormatterDirective {
     constructor(...injects) {
         super(...injects);
 
-        this.template = `<a href="#" ng-click="goTo(rowData)">{{showMsg}}</a><br/>{{showMsgPost}}`;
+        this.template = `<a href="#" ng-click="goTo(rowData)">{{idCtrl.dtInfo.detail}}</a><br/>{{showMsgPost}}`;
 
         this.controller = IdColumnDirectiveWorker.create();
         this.controllerAs = "idCtrl";
@@ -248,7 +257,8 @@ class MyContainerDirective extends laygoon.util.BaseDirectiveClass{
         super(...injects);
 
         this.setScope({
-            data: '='
+            data: '=',
+            info: '='
         });
 
         this.controller = MyContainerDirectiveWorker.create();

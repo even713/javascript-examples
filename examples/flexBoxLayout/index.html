@@ -29,6 +29,76 @@
   -webkit-flex: 2;
           flex: 2;
 }
+
+/* study relateive*/
+.relative1 {
+  position: relative;
+  border: 1px solid blue;
+}
+.relative2 {
+  position: relative;
+  top: 0px;
+  left: 20px;
+  background-color: white;
+  width: 500px;
+  border: 1px solid red;
+}
+
+.position-layout {
+  position: relative;
+  border: 1px solid red;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+}
+.position-layout * {
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+}
+.position-layout .nav{
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid green;
+}
+.position-layout .section{
+  margin-left: 200px;
+  border: 1px solid green;
+}
+/* end study relative*/
+
+/* study float */
+.float-layout {
+  position: relative;
+  border: 1px solid red;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+
+  
+}
+.float-layout * {
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+}
+.float-layout .nav{
+  float: left;
+  border: 1px solid green;
+}
+.clearfix:after{
+  content: "";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+.float-layout .section{
+  margin-left: 200px;
+  border: 1px solid green;
+}
+/* end study float */
 </style>
 </head>
 <body>
@@ -39,6 +109,35 @@
 	<div class="flex2"></div>
 </div>
 
+<div class="position-container">
+  <div class="relative1">relative 表现的和 static 一样，除非你添加了一些额外的属性。</div>
+  <div class="relative2">在一个相对定位（position属性的值为relative）的元素上设置 top 、 right 、 bottom 和 left 属性会使其偏离其正常位置。其他的元素的位置则不会受该元素的影响发生位置改变来弥补它偏离后剩下的空隙。</div>
+</div>
+
+<div class="position-layout">
+  <div class="nav">
+    navigation here
+  </div>
+  <div class="section header">Header..</div>
+  <div class="section content">Content..</div>
+</div>
+
+<div class="float-layout clearfix">
+   <div class="nav">
+    <ul>
+      <li>test1</li>
+      <li>test1</li>
+      <li>test1</li>
+      <li>test1</li>
+      <li>test1</li>
+      <li>test1</li>
+    </ul>
+  </div>
+  <div class="section header">
+    header..
+  </div>
+  <div class="section content">Content..</div> 
+</div>
 <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
 <script>
 // for(var i = 0; i < 5; i++) {

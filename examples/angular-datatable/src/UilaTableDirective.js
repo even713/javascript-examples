@@ -24,7 +24,7 @@ class UilaTableFirstDirective extends laygoon.util.BaseDirectiveClass {
 				filter = $(col).attr("filter");
 
 			if(formatter) {
-				tdArray.push('<td><'+ formatter + ' extra-info="vm.extraInfos['+ idx +']" col-idx="'+ idx +'" row-idx="$index" row-data="elem" ' +
+				tdArray.push('<td><'+ formatter + ' dt-info="vm.dtInfo" col-idx="'+ idx +'" row-idx="$index" row-data="elem" ' +
 					'></'+ formatter +'></td>');
 			} else if(filter) {
 				tdArray.push(`<td><span ng-bind-html=elem.`+ key + `|`+ filter +`:elem:"`+ idx +`":$index></td>`);
@@ -50,7 +50,8 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 			sourceData: '=data',
 			dtOptions: '=',
 			detailRenderer: '=',
-			fnCreatedRow: '='
+			fnCreatedRow: '=',
+			dtInfo: '='
 		}
 
 		this.controller = UilaTableDirectiveWorker.create();
@@ -100,12 +101,27 @@ class UilaTableSecondDirective extends laygoon.util.BaseDirectiveClass {
 				let trackBy = attr.trackBy;
 				ctrl.setTableKey(trackBy);
 
+				// will be call when ng-repeat finished(if data.length == 0, won't fire this function)
 				scope.finished = function(){
 					//debug("ng repeate finished...")
 					onUIChanged();
-				}; // when ngrepeate finished
+				}; 
 
-				scope.$on(scope.$id + "uiChanged", onUIChanged)
+				// listen uiChanged event for manually update/create dt.
+				scope.$on(scope.$id + "uiChanged", onUIChanged);
+
+				// at the first time initiliaze dt, but data length is 0
+				if(ctrl.data && ctrl.data.length == 0) {
+					onUIChanged();
+				}
+
+				scope.$on("$destroy", function(){
+					ctrl.destroyTable();
+				});
+
+				element.on("$destroy", function(){
+					scope.$destroy();
+				});
 
 				function onUIChanged(){
 					//debug("onUIChanged...");
@@ -232,7 +248,7 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 		let tbody = $(table).find("tbody");
 		let comments = tbody.contents().filter(function(){
 			return this.nodeType == 8 && tbody[0] == this.parentNode;
-		})
+		});
 		ngRepeatTrs.each(function(idx, tr){
 			let comment = comments[idx + 1];
 			if(comment && comment.nodeType == 8) {
@@ -306,6 +322,11 @@ class UilaTableDirectiveWorker extends laygoon.util.BaseNgClass {
 			.draw();
 
 		this.oldTrs = trs;
+	}
+
+	destroyTable(){
+		this.dtInstance.destroy(true);
+		//console.log("destroy table");
 	}
 
 	diffRows(oldTrs, newTrs){

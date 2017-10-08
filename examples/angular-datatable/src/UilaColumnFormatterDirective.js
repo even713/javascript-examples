@@ -6,7 +6,8 @@ class UilaColumnFormatterDirective extends laygoon.util.BaseDirectiveClass {
 		this.setScope({
             rowIdx: '=', // which row
             colIdx: '=', // which col
-            rowData: '='// rowData represents the datasource of the row
+            rowData: '=',// rowData represents the datasource of the row
+            dtInfo: '='
         });
 
         this.restrict = "E";
