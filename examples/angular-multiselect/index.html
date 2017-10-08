@@ -1,0 +1,50 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		Angular multi select dropdown
+	</title>
+<link rel=stylesheet type=text/css href="../../vendor/bootstrap/bootstrap.min.css"/>
+<!-- <link rel=stylesheet type=text/css href="font-awesome.min.css"/> -->
+</head>
+<body >
+
+	<h1>
+		Angular multi select dropdown
+	</h1>
+	<div ng-controller="pageController">
+		<div>
+			<span class="caret"></span>
+		</div>
+		<div ng-dropdown-multiselect="" options="example6data" selected-model="example6model" extra-settings="example6settings" translation-texts="example5customTexts"></div>
+
+		<div ng-dropdown-multiselect="" options="example5data" selected-model="example5model" extra-settings="example5settings" translation-texts="example5customTexts"></div>
+	</div>
+
+	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+	<script type="text/javascript" src="../../vendor/loadash/lodash.min.js"></script>
+	<script type="text/javascript" src="../../vendor/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../vendor/ng-multi-select/angularjs-dropdown-multiselect.js"></script>
+
+	<script type="text/javascript">
+	angular.module("Demo", ['angularjs-dropdown-multiselect'])
+	.controller('pageController', function($scope){
+		$scope.example6data = [ { id: 1, label: 'David' }, { id: 2, label: 'Jhon' }, { id: 3, label: 'Danny' } ]; 
+		$scope.example6model = [$scope.example6data[0], $scope.example6data[2]]; 
+		$scope.example6settings = {};
+
+
+		$scope.example5model = []; 
+		$scope.example5data = [ {id: 1, label: "David"}, {id: 2, label: "Jhon"}, {id: 3, label: "Danny"}]; 
+		$scope.example5settings = {selectionLimit: 1, showCheckAll: false, showUncheckAll: false, dynamicTitle: false, buttonClasses:"btn btn-default fa fa-sort-amount-desc"}; 
+		$scope.example5customTexts = {buttonDefaultText: '', dynamicButtonTextSuffix: 'haha'};
+	})
+
+	</script>
+
+</body>
+</html>

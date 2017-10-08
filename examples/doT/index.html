@@ -1,0 +1,32 @@
+Test: <input type="text" id="test"/>
+<div id="ui"></div>
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/doT/doT.js"></script>
+<script>
+var obj = {
+  "id": 138373,
+  "derivativeID": 3122,
+  "featureID": 12582,
+  "optional": false,
+  "derivativeFeaturePricing": null,
+  "derivativeFeatureImage": "",
+  "derivativeFeatureComments": "",
+  "derivativeFeatureValue": "hello\"===",
+  "isKeyFeature": false,
+  "feature": {
+    "id": 12582,
+    "categoryID": 446,
+    "categoryName": "Infotainment & Connectivity",
+    "name": "SYNC (with Voice control)",
+    "title": "SYNC (with Voice control)",
+    "key": "12582"
+  }
+};
+$("#test").val(obj.derivativeFeatureValue);
+
+// var tempFn = doT.template("<h1>Here is a sample template {{=it.foo}}</h1>");
+var tempFn = doT.template("<input type='text' id='test2' value='{{=it.derivativeFeatureValue}}'/>");
+// var resultText = tempFn({foo: 'with doT'});
+var resultText = tempFn(obj);
+$("#ui").html(resultText);
+</script>

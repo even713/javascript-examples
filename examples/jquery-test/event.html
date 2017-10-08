@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		Test trigger event
+	</title>
+
+</head>
+<body >
+
+	<h1>
+		Test trigger event
+	</h1>
+	<div class="container">
+		Container;
+		<div class="child">Child</div>
+	</div>
+
+
+	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		$(".container").on("event1", function(){
+			console.log("container event1.");
+		})
+
+		$(".child").on("click", function(){
+			$(this).trigger("event1");
+		})
+	});
+
+	</script>
+
+</body>
+</html>

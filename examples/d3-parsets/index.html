@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="../../vendor/d3-parsets/d3.parsets.css"></link>
+  <style>
+  body{
+    cursor: auto!important;
+  }
+.container {
+  width: 700px;
+  height: 520px;
+}
+div.chart{
+	margin-top: 30px;
+  width: 80%;
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <svg width="960" height="960">
+    <g transform="translate(0, 600) rotate(90)"></g>
+  </svg>
+</div>
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/d3/d3.v3.js"></script>
+<script src="../../vendor/d3-parsets/d3.parsets.js"></script>
+<script>
+var chart = d3.parsets()
+      // .dimensions(["Survived", "Sex", "Age", "Class"]);
+      // .dimensions(["Class", "Age", "Sex", "Survived"]);
+      // .dimensions(["Servers", "Query", "Status"])
+      .dimensions(["Status", "Query", "Servers"])
+
+var vis = d3.select(".container svg g")
+    //.attr("width", 700)
+    //.attr("height", 520);
+
+// d3.csv("titanic.csv", function(error, csv) {
+//   console.log(csv)
+//   vis.datum(csv).call(chart);
+// });
+
+var dataSets = [
+  {
+    "Servers": "Gateway [192.168.0.1]",
+    "Query": "Get",
+    "Status": "200",
+    "Value": 2
+  },
+  {
+    "Servers": "192.168.0.218",
+    "Query": "Get",
+    "Status": "300",
+    "Value": 60
+  },
+  {
+    "Servers": "192.168.0.218",
+    "Query": "Other",
+    "Status": "300",
+    "Value": 40
+  },
+  {
+    "Servers": "Weblogic_11g-s1",
+    "Query": "Get",
+    "Status": "200",
+    "Value": 20
+  },
+  {
+    "Servers": "hyperv-03.mydatacenter.com",
+    "Query": "PutPost",
+    "Status": "100",
+    "Value": 14
+  }
+];
+chart.value(function(d){
+  return d.Value;
+})
+
+vis.datum(dataSets).call(chart);
+
+//d3.select(".container").select('svg')
+</script>    
+  
+</body>
+</html>

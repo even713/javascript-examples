@@ -1,0 +1,67 @@
+<html>
+<head>
+<style>
+*{
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */	
+}
+
+.container{
+  display: -webkit-flex;
+  display: flex;
+  border: 1px solid blue;
+      flex-wrap: nowrap;
+}
+.item{
+	border: 1px solid red;
+  -webkit-flex: 1;
+      flex: 1;
+      min-width: 400px;
+      height: 200px;
+      position: relative;
+}
+.item1{
+	width: 100px;
+      position: relative;
+}
+.test1 .d-flex{
+  width: 600px;
+  display: flex;
+  display: -webkit-flex;
+}
+.test1 .d-flex li{
+  border: 1px solid red;
+}
+.test1 .d-flex li:nth-of-type(1) {
+  flex: 2 0 100px;
+  -webkit-flex: 2 0 100px;
+}
+.test1 .d-flex li:nth-of-type(2) {
+  flex: 0 0 150px;
+  -webkit-flex: 0 0 150px;
+}
+.test1 .d-flex li:nth-of-type(3) {
+  flex: 2 0 100px;
+  -webkit-flex: 2 0 100px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="item1">&nbsp;</div>
+		<div class="item">item..</div>
+		<div class="item">item..</div>
+		<div class="item">item..</div>
+		<div class="item" style="display: none;">item..</div>
+	</div>
+
+  <div class="test1">
+    <ul class="d-flex">
+      <li>2 / 0 / 100px;</li>
+      <li>0 / 0 / 150px;</li>
+      <li>2 / 0 / 100px;</li>
+    </ul>
+  </div>
+</body>
+</html>

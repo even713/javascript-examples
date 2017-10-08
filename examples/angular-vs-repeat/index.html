@@ -1,0 +1,127 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+    <meta charset="utf-8" />
+
+    <title>
+        Angular vs repeat
+    </title>
+<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <style>
+.container{
+    height: 200px;
+    overflow: auto;
+    width: 200px;
+}
+
+.row{
+    /*width: 200px;*/
+    height: 30px;
+    overflow-x: none;
+    white-space: nowrap;
+    
+}
+.row > * {
+    display: inline-block;
+    position: relative;
+    top: -100%;
+}
+
+.cell{ 
+    width: 80px;
+    margin: 0;
+    height: 100%;
+    top: -90% !important;
+}
+
+.container-horizontal{
+    width: 200px;
+    height: 200px;
+    overflow: auto;
+    white-space: nowrap;
+}
+.container-horizontal > * {
+    display: inline-block;
+    position: relative;
+    top: -100%;
+}
+
+    </style>
+</head>
+<body ng-controller="AppController">
+
+    <h1>
+        Angular vs repeat
+    </h1>
+    <input type="button" value="Update" ng-click="update()"/>
+<!-- <div ng-repeat="item in someArray track by item.id">
+            <div>{{item.id}}  {{item.name}}</div>
+        </div> -->
+
+    <div class="container" vs-repeat >
+        
+        <div ng-repeat="app in appArray" >
+            <div class="row" vs-repeat vs-horizontal >
+                <div ng-repeat="site in siteArray" class="cell">
+                    <div>{{someArray[app][site].id}}  {{someArray[app][site].name}}</div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+
+    <!-- <div class="container-horizontal" vs-repeat vs-horizontal>
+        <div ng-repeat="site in siteArray" class="cell">
+            <div>{{site}}</div>
+        </div>
+    </div> -->
+   
+
+
+    <!-- Load scripts. -->
+    <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+    <script src="../../vendor/angularjs/angular-1.4.5.js"></script>
+    <script src="../../vendor/angular-vs-repeat/angular-vs-repeat.js"></script>
+    <script type="text/javascript">
+angular.module("Demo", ['vs-repeat'])
+.controller("AppController", function($scope){
+    $scope.someArray = {};
+    $scope.siteArray = [];
+    $scope.appArray = [];
+
+    $(".container").scroll(function(){
+        let left = this.scrollLeft;
+        console.log(left);
+        $(".row").scrollLeft(left);
+        //$scope.$emit('vsRepeatTrigger');
+    });
+    // for(let i = 0; i < 1000; i++) {
+    //     $scope.someArray.push({id: i, name: "Linda" + i, app: "app1", site: "site2"});
+    // }
+    for(let i = 0; i < 30; i++) {
+        $scope.siteArray.push("site" + i);
+    }
+
+    for(let i = 0; i < 30; i++) {
+        $scope.appArray.push("app" + i);
+        for(let j = 0; j < 30; j++) {
+            if(!$scope.someArray["app" + i]) {
+                $scope.someArray["app" + i] = {};
+            }
+            $scope.someArray["app" + i]["site" + j] = {id: i + "," + j, name: "Linda"}
+        }
+    }
+
+    console.log($scope.someArray)
+
+    $scope.update = function(){
+        $scope.someArray = [];
+        for(let i = 0; i < 1000; i++) {
+            $scope.someArray.push({id: i, name: "Peter" + i});
+        }       
+    }
+});
+    </script>
+
+</body>
+</html>
