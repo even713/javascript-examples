@@ -18,20 +18,69 @@
 		<div class="child">Child</div>
 	</div>
 
+	<div class="button-div">This is a button</div>
+
 
 	<!-- Load scripts. -->
 	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
 	<script type="text/javascript">
 
 	$(document).ready(function(){
-		$(".container").on("event1", function(){
-			console.log("container event1.");
-		})
+		// Test 1 begin:
+		// $(".container").on("event1", function(){
+		// 	console.log("container event1.");
+		// })
 
-		$(".child").on("click", function(){
-			$(this).trigger("event1");
-		})
+		// $(".child").on("click", function(){
+		// 	$(this).trigger("event1");
+		// })
+		// Test 1 end:
+
 	});
+
+	// Test 2 begin: test remove event when using bind or proxy
+	$(document).ready(function(){
+		// way1: reference to bind result;
+		// let fn = containerClickHandler.bind(obj);
+		// $(".container").on("click", fn);
+
+		// way2: 
+		$(".container").on("click", instance.containerClickHandler);
+
+		$(".container").on("click", function(){
+			console.log("This is text bind on anony function");
+		});
+		// $(".button-div").on("click", function(){
+		// 	$(".container").off("click", fn);
+		// })
+
+		$(".button-div").on("click", function(){
+			$(".container").off("click", instance.containerClickHandler);
+		})
+	})
+
+	function containerClickHandler(){
+		console.log(this.text);
+	}
+	function containerClickHandler2(){
+		console.log(obj.text);
+	}
+
+	var obj = {
+		text: "Hello container 1"
+	}
+
+	var instance2 = {
+		text: "This is from instance2"
+	}
+	var instance = {
+		text: "Hello container 1",
+		containerClickHandler: function(){
+			console.log(this.text);
+		}.bind(instance2)
+	}
+
+	// Test 2 end
 
 	</script>
 

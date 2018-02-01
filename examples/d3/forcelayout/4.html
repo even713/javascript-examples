@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4</title>
+</head>
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+          rel="stylesheet">
+<style>
+	.node{
+		fill: #ccc;
+		stroke: #fff;
+		stroke-width: 2px;
+	}
+
+	.link{
+		stroke: #777;
+		stroke-width: 2px;
+	}
+
+	button {
+	    position: absolute;
+	    width: 30px;
+	}
+	button#slow {
+	    margin-top: 28px;
+	}
+	button#play {
+	    margin-top: 54px;
+	}
+	button#reset {
+	    margin-top: 80px;
+	}
+
+</style>
+<body>
+    <button id='advance' title='Advance Layout One Increment'>
+        <i class='fa fa-step-forward'></i>
+    </button>
+    <button id='slow' title='Run Layout in Slow Motion'>
+        <i class='fa fa-play'></i>
+    </button>
+    <button id='play' title='Run Layout at Full Speed'>
+        <i class='fa fa-fast-forward'></i>
+    </button>
+    <button id='reset' title='Reset Layout to Beginning'>
+        <i class='fa fa-undo'></i>
+    </button>
+</body>
+<script src="/vendor/d3/d3.v3.js"></script>
+<script>
+// http://jsdatav.is/visuals.html?id=83515b77c2764837aac2
+	var width = 640,
+		height = 480;
+
+	var animationStep = 400;
+
+	var force = null,
+    nodes = null,
+    links = null;
+
+	var svg = d3.select("body").append("svg")
+				.attr("width", width)
+				.attr("height", height);
+
+	var initForce = function() {
+		svg.selectAll('*').remove();
+
+	    var dataNodes = [
+        { x:   width/3, y:   height/3 },
+        { x:   width/3, y: 2*height/3 },
+        { x: 2*width/3, y:   height/3 },
+        { x: 2*width/3, y: 2*height/3 }]
+
+
+        var dataLinks = [
+        { source: 0, target: 1, graph: 0 },
+        { source: 2, target: 3, graph: 1 }
+    	];
+
+	    force = d3.layout.force()
+        .size([width, height])
+        .nodes(dataNodes)
+        .links(dataLinks);
+
+        force.gravity(0);
+
+	    force.linkDistance(function(link) {
+	       return link.graph === 0 ? height/2 : height/4;
+	    }); 
+	    
+        links = svg.selectAll('.link')
+        .data(dataLinks)
+        .enter().append('line')
+        .attr('class', 'link')
+        .attr('x1', function(d) { return dataNodes[d.source].x; })
+        .attr('y1', function(d) { return dataNodes[d.source].y; })
+        .attr('x2', function(d) { return dataNodes[d.target].x; })
+        .attr('y2', function(d) { return dataNodes[d.target].y; });    
+
+        nodes = svg.selectAll('.node')
+        .data(dataNodes)
+        .enter().append('circle')
+        .attr('class', 'node')
+        .attr('r', width/25)
+        .attr('cx', function(d) { return d.x; })
+        .attr('cy', function(d) { return d.y; });   
+
+        force.on('tick', stepForce);
+	}
+
+var stepForce = function() {
+    if (force.fullSpeed) {
+
+    nodes.attr('cx', function(d) { return d.x; })
+        .attr('cy', function(d) { return d.y; });
+
+    } else {
+
+        nodes.transition().ease('linear').duration(animationStep)
+            .attr('cx', function(d) { return d.x; })
+            .attr('cy', function(d) { return d.y; });
+    }
+
+	if (force.fullSpeed) {
+
+        links.attr('x1', function(d) { return d.source.x; })
+            .attr('y1', function(d) { return d.source.y; })
+            .attr('x2', function(d) { return d.target.x; })
+            .attr('y2', function(d) { return d.target.y; });
+
+    } else {
+
+        links.transition().ease('linear').duration(animationStep)
+            .attr('x1', function(d) { return d.source.x; })
+            .attr('y1', function(d) { return d.source.y; })
+            .attr('x2', function(d) { return d.target.x; })
+            .attr('y2', function(d) { return d.target.y; });
+    }
+
+    if (!force.fullSpeed) {
+        force.stop();
+    }
+
+    if (force.slowMotion) {
+        setTimeout(
+            function() { force.start(); },
+            animationStep
+        );
+    }    
+}
+
+d3.select('#advance').on('click', function() {
+
+    force.start();
+
+});
+
+d3.select('#slow').on('click', function() {
+
+    // Indicate that the animation is in progress.
+
+    force.slowMotion = true;
+    force.fullSpeed  = false;
+
+    // Get the animation rolling
+
+    force.start();
+
+});
+
+d3.select('#play').on('click', function() {
+
+    // Indicate that the full speed operation is in progress.
+
+    force.slowMotion = false;
+    force.fullSpeed  = true;
+
+    // Get the animation rolling
+
+    force.start();
+
+});
+
+d3.select('#reset').on('click', function() {
+
+    // If we've already started the layout, stop it.
+    if (force) {
+        force.stop();
+    }
+
+    // Re-initialize to start over again.
+
+    initForce();
+
+});
+
+initForce();	
+</script>
+</html>
