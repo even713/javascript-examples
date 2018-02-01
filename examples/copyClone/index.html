@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Clone an object</title>
+</head>
+<body>
+	
+</body>
+<script>
+function Car(){
+	this.name = "GM";
+	this.run = function(){
+		console.log("car run");
+	}
+}
+
+Car.prototype = {
+	color: "red",
+	stop: function(){
+		console.log("car stop");
+	}
+}
+
+var obj,
+	copyObj;
+
+	// Way 1: JSON.stringify
+	function copyWay1(){
+		obj = {
+			aStr: "text...",
+			bObject: new Car(),
+			cArray: [
+				1, 2, new Car()
+			]
+		}
+
+		copyObj = JSON.parse(JSON.stringify(obj));
+		console.log(copyObj);
+	}
+
+	// Way 2: Object.create
+
+	function copyWay2() {
+		obj = {
+			aStr: "text...",
+			bObject: new Car(),
+			cArray: [
+				1, 2, new Car()
+			]
+		}
+
+		copyObj = Object.create(obj);
+
+		// the source object is a array
+		obj = [1,2,3];
+		copyObj = Object.create(obj);
+		console.log(obj, copyObj);	
+
+		// the source object is a string
+		obj = "This is a string";
+		copyObj = Object.create(obj);
+		console.log(obj, copyObj);	
+	}
+
+	// Way 3: Object.assign
+	function copyWay3(){
+		obj = {
+			aStr: "text...",
+			bObject: new Car(),
+			cArray: [
+				1, 2, new Car()
+			]
+		}
+
+		copyObj = Object.assign({}, obj);
+		console.log(obj, copyObj);	
+
+		obj = [1,2,3];
+		copyObj = Object.assign([], obj);
+		console.log(obj, copyObj);	
+
+		// the source object is a string
+		obj = "This is a string";
+		copyObj = Object.assign("", obj);
+		console.log(obj, copyObj);		
+	}
+
+copyWay3();
+// TODO: http://jsben.ch/bWfk9
+</script>
+</html>

@@ -26,7 +26,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 template += '<li ng-hide="!settings.showCheckAll || settings.selectionLimit > 0"><a data-ng-click="selectAll()"><span class="glyphicon glyphicon-ok"></span>  {{texts.checkAll}}</a>';
                 template += '<li ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"><span class="glyphicon glyphicon-remove"></span>   {{texts.uncheckAll}}</a></li>';
                 template += '<li ng-hide="(!settings.showCheckAll || settings.selectionLimit > 0) && !settings.showUncheckAll" class="divider"></li>';
-                template += '<li ng-show="settings.enableSearch"><div class="dropdown-header"><input type="text" class="form-control" style="width: 100%;" ng-model="searchFilter" placeholder="{{texts.searchPlaceholder}}" /></li>';
+                template += '<li ng-show="settings.enableSearch"><div class="dropdown-header"><input type="text" class="form-control" style="width: 100%;" ng-model="searchFilter[settings.searchField]" placeholder="{{texts.searchPlaceholder}}" /></li>';
                 template += '<li ng-show="settings.enableSearch" class="divider"></li>';
 
                 if (groups) {
@@ -61,10 +61,22 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     $scope.open = !$scope.open;
                 };
 
+                $scope.field = "$"
+
+                $scope.searchFilterRule = function(a, b){
+                    console.log(arguments);
+                    return true;
+                };
+
                 $scope.checkboxClick = function ($event, id) {
                     $scope.setSelectedItem(id);
                     $event.stopImmediatePropagation();
                 };
+
+                $scope.searchRule = function(a, b){
+                    console.log(arguments);
+                    return true;
+                }
 
                 $scope.externalEvents = {
                     onItemSelect: angular.noop,
@@ -84,6 +96,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     idProp: 'id',
                     externalIdProp: 'id',
                     enableSearch: false,
+                    searchField: "$",
                     selectionLimit: 0,
                     showCheckAll: true,
                     showUncheckAll: true,
@@ -289,4 +302,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 $scope.externalEvents.onInitDone();
             }
         };
-}]);
+}]).filter('searchRule', function(a, b){
+    console.log(a, b);
+    return true;
+});

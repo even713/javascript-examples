@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		$http header settings
+	</title>
+
+</head>
+<body ng-controller="pageController">
+
+	<h1>
+		$http header settings
+	</h1>
+	<div ng-include="'ngInclude.tmp.html'" 
+ng-init="title = 'SortedAccount List'; accountList = sortedAccounts"></div>
+
+	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+	<script type="text/javascript">
+	angular.module("Demo", [])
+	.controller('pageController', function($http, $scope, $attrs){
+		$scope.sortedAccounts = [1, 2, 3];
+	})
+	.controller('tmpController', function($scope){
+		$scope.init = function(){
+			console.log("sortedAccounts", $scope.sortedAccounts);
+		}
+
+		$scope.init();
+	});
+
+
+
+	</script>
+
+</body>
+</html>

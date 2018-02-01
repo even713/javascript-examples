@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Inject Demo</title>
+</head>
+<body>
+	
+	<div id="module-2">
+		<h1>This is module 2</h1>
+	</div>
+
+	<div id="module-1" ng-app="module1">
+		<h1>This is module 1</h1>
+		<div ng-controller="ctrl4module1">
+			<button ng-click="callInject()">Inject</button>
+		</div>
+	</div>
+</body>
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+<script>
+	function callInject1(){
+		angular.injector(["module1"]).get("service4Module1")
+			.sayHello();
+	}
+
+	angular.module("module1", [])
+	.service("service4Module1", function(){
+		this.sayHello = function(){
+			console.log("hello module1");
+		}
+	})
+	.controller("ctrl4module1", function($scope){
+		$scope.callInject = function(){
+			console.log("inject...")
+			//callInject1();
+			// angular.injector(["module2"]).invoke(function(service4Module2){
+			// 	service4Module2.sayHello();
+			// })
+		}
+	});
+
+	angular.module("module2", [])
+	.service("service4Module2", function(){
+		this.sayHello = function(){
+			console.log("hello module2");
+		}
+	});
+
+	angular.bootstrap("#module-2", ['module2']);
+</script>
+</html>

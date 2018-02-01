@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CORS Example</title>
+</head>
+<body>
+	<h1>CORS Example</h1>
+
+</body>
+<script>
+fetch("http://localhost:8080/colorWheel/query?customerId=123456790&endTime=1513373939999&isZoomIn=false&startTime=1513371240000&uuid=5000b1c5-a209-4671-e6ba-20d9ea4cecfd")
+.then(function(result){
+	console.log(result);
+});
+</script>
+</html>

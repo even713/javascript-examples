@@ -35,7 +35,7 @@
 	.controller('pageController', function($scope){
 		$scope.example6data = [ { id: 1, label: 'David' }, { id: 2, label: 'Jhon' }, { id: 3, label: 'Danny' } ]; 
 		$scope.example6model = [$scope.example6data[0], $scope.example6data[2]]; 
-		$scope.example6settings = {};
+		$scope.example6settings = {enableSearch: true, searchField: "label"};
 
 
 		$scope.example5model = []; 

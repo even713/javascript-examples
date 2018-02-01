@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>url issue</title>
+</head>
+<body>
+	<a href="#/appTopology?node=S QL_2012(+n1&nodeType=VM&currentTab=depServiceTab">click me</a>
+</body>
+<script>
+function getUrlParam(name, useSearch){
+				var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			if(useSearch)
+				var hash = window.location.search.split("?")
+			else
+				var hash = window.location.hash.split("?");
+			
+			var r;
+			if(hash[1]){
+				r = hash[1].match(reg);
+			}
+			console.log(r[2])
+			if (r!=null) return unescape(r[2]); return null;
+}
+</script>
+
+</html>

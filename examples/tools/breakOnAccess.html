@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Break on access</title>
+</head>
+<body>
+	
+</body>
+<script src="../../vendor/tools/break-on-access.js"></script>
+<script>
+	var MyObject = {
+		a: "di"
+	};
+
+	breakOn(MyObject, "a");
+
+	function a(){
+		MyObject = {
+			a: "c"
+		}
+	}
+
+	function b(){
+		MyObject.a = "h";
+	}
+</script>
+</html>
