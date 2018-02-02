@@ -15,10 +15,12 @@
     <button id="update" onclick="updateNodes()">Update</button>
     <div class="chart"></div>
 </body>
-<script src="/vendor/d3/d3.v3.js"></script>
+<script src="/vendor/d3/d3.v35.js"></script>
+<!--<script src="https://d3js.org/d3.v3.js"></script>-->
+<script src="BubbleChartClass.js"></script>
 <script>
      var width = 640,
-     	 height = 900,
+     	 height = 640,
              chartInstance;
 //
 //     var canvas = d3.select("body").append("svg")
@@ -33,18 +35,17 @@
              height: height,
              container: ".chart",
              gravity: 0.45,
-             collide: 0.1,
              friction: 0.3
          }, data)
      });
 
      function updateNodes(){
          d3.json("data2.json", function(data){
-             chartInstance.updateChart(data);
+             chartInstance.refresh(data);
          });
      }
 
-     class BubbleChart {
+     class BubbleChart2 {
          getLevels(){
              return {
                  "Critical": {color: "rgb(219, 27, 27)", y: this.height / 6},
@@ -70,12 +71,8 @@
          }
 
          _initialize(){
-             this._force = d3.layout.force()
-                     .size([this.width, this.height])
-                     .charge(this._charge)
-                     .gravity(this.GRAVITY)
-                     .friction(this.FRICTION)
-                     .on("tick", this._tick.bind(this));
+
+                     //.on("tick", this._tick.bind(this));
 
              this._create();
          }
@@ -90,12 +87,27 @@
          }
 
          updateChart(data){
-             this._force.stop();
-
+             //this._force.stop();
              this.sourceData = data;
              this.nodesData = this._createNodes(data);
 
-             this._force.nodes(this.nodesData);
+             var force = d3.layout.force()
+                     .size([this.width, this.height])
+                     .charge(this._charge)
+                     .gravity(this.GRAVITY)
+                     .friction(this.FRICTION);
+
+             force.nodes(this.nodesData);
+             //console.log("before", JSON.parse(JSON.stringify(this.nodesData)));
+
+             force.start();
+             let n = 30;
+             console.time("force");
+             for (var i = n * n; i > 0; --i) force.tick();
+             force.stop();
+             console.timeEnd("force");
+             //console.log("after", JSON.parse(JSON.stringify(this.nodesData)));
+
 
              this._bubbles = this.svg.selectAll(".bubble")
                      .data(this.nodesData);
@@ -103,7 +115,7 @@
                      .remove();
              this._bubbles.enter()
                      .append("circle");
-                     
+
              this._bubbles.attr("class", "bubble")
                      .attr("fill", function (d) {
                          return this.getLevels()[d.level].color;
@@ -113,8 +125,6 @@
                      })
                      .attr("cx", function(d){return d.x;})
                      .attr("cy", function(d){return d.y;});
-
-             this._force.start();
          }
 
          _createNodes(data){
@@ -140,11 +150,12 @@
          }
 
          _tick(e) {
-             this._bubbles
-                 .each(this._gravity(e.alpha * this.GRAVITY))
-                 .each(this._collide(this.COLLIDE, this.nodesData))
-                 .attr('cx', function (d) { return d.x; })
-                 .attr('cy', function (d) { return d.y; });
+             //this._bubbles
+                 //.each(this._gravity(e.alpha * this.GRAVITY))
+                 //.each(this._collide(this.COLLIDE, this.nodesData))
+                 //.attr('cx', function (d) {
+                 //        return d.x; })
+                 //.attr('cy', function (d) { return d.y; });
          }
 
          _charge(d){
@@ -191,43 +202,48 @@
              }
          }
 
-         _gravity(k) {
-             return function(d) {
-                 if (typeof(d.tx) !== "undefined") {
-                     d.x = d.x + (d.tx - d.x) * k;
-                     d.y = d.y + (d.ty - d.y) * k;
-                 }
-             };
-         }
-
-         _collide(k, nodes) {
-             var q = d3.geom.quadtree(nodes),
-                    padding = 0;
-             return function (node) {
-                 var nr = node.r + padding,
-                         nx1 = node.x - nr,
-                         nx2 = node.x + nr,
-                         ny1 = node.y - nr,
-                         ny2 = node.y + nr;
-                 q.visit(function (quad, x1, y1, x2, y2) {
-                     if (quad.point && (quad.point !== node )) {
-                         var x = node.x - quad.point.x,
-                                 y = node.y - quad.point.y,
-                                 l = x * x + y * y,
-                                 r = nr + quad.point.r;
-
-                         if (l < r * r) {
-                             l = ((l = Math.sqrt(l)) - r) / l * k;
-                             node.x -= x *= l;
-                             node.y -= y *= l;
-                             quad.point.x += x;
-                             quad.point.y += y;
-                         }
-                     }
-                     return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-                 });
-             };
-         }
+//         _gravity(k) {
+//             return function(d) {
+//                 if (typeof(d.tx) !== "undefined") {
+//                     d.x = d.x + (d.tx - d.x) * k;
+//                     d.y = d.y + (d.ty - d.y) * k;
+//                 }
+//             };
+//         }
+//
+//         _collide(k, nodes) {
+//             var q = d3.geom.quadtree(nodes),
+//                    padding = 0;
+//             return function (node) {
+//                 if(node.name == "child1")
+//                     console.log("watch d", "before _collide", node.x, JSON.parse(JSON.stringify(node)))
+//                 var nr = node.r + padding,
+//                         nx1 = node.x - nr,
+//                         nx2 = node.x + nr,
+//                         ny1 = node.y - nr,
+//                         ny2 = node.y + nr;
+//                 q.visit(function (quad, x1, y1, x2, y2) {
+//                     if (quad.point && (quad.point !== node )) {
+//                         var x = node.x - quad.point.x,
+//                                 y = node.y - quad.point.y,
+//                                 l = x * x + y * y,
+//                                 r = nr + quad.point.r;
+//
+//                         if (l < r * r) {
+//                             l = ((l = Math.sqrt(l)) - r) / l * k;
+//                             node.x -= x *= l;
+//                             node.y -= y *= l;
+//                             quad.point.x += x;
+//                             quad.point.y += y;
+//                         }
+//                     }
+//                     return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+//                 });
+//
+//                 if(node.name == "child1")
+//                     console.log("watch d", "after _collide", node.x, JSON.parse(JSON.stringify(node)))
+//             };
+//         }
      }
 
 </script>
