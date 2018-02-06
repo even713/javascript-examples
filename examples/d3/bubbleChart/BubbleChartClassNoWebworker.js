@@ -69,7 +69,7 @@ class BubbleChart {
     }
 
     _newWorker(){
-        this.worker = new Worker("bubbleChartWebwoker.js");
+        this.worker = new Worker("bubbleChartWebworker.js");
 
         this._postData();
 

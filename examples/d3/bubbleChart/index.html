@@ -26,6 +26,7 @@
 <body>
     <button id="start" onclick="startChart()">Start</button>
     <button id="update" onclick="updateNodes()">Update</button>
+    <button id="resize" onclick="resizeChart()">Resize</button>
     <div class="container">
         <div class="chart chart1"></div>
         <div class="chart chart2"></div>
@@ -40,7 +41,7 @@
 <script>
      var width = 250,
      	 height = 250,
-             chartInstance,
+             chartInstance = [],
              data;
 //
 //     var canvas = d3.select("body").append("svg")
@@ -60,16 +61,22 @@
 //         }, data)
      });
 
+     function resizeChart(){
+         width = 300;
+         height = 300;
+         chartInstance[0].resizeChart(width, height);
+     }
+
      function startChart(){
          console.time("createChart");
-         for(let i = 0; i < 5; i ++) {
-             chartInstance = new BubbleChart({
+         for(let i = 0; i < 1; i ++) {
+             chartInstance.push(new BubbleChart({
                  width: width,
                  height: height,
                  container: ".chart" + (i + 1),
                  gravity: 0.45,
                  friction: 0.3
-             }, data)
+             }, data))
          }
      }
 

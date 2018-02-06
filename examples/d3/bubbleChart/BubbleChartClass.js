@@ -71,15 +71,17 @@ class BubbleChart {
         this._postData();
 
         this.worker.onmessage = event => {
+            this.nodesData = event.data.nodesData;
             switch (event.data.type) {
-                case "end":
-                    this.nodesData = event.data.nodesData;
-                    this.updateChart(event.data.nodesData);
+                case "update":
+                    this._updateChart(event.data.nodesData);
+                case "resize":
+                    this.changeSize(event.data.nodesData)
             }
         }
     }
 
-    _postData(){
+    _postData(eventType){
         let postObj = Object.assign({}, this);
         // to avid webworker post error
         delete postObj._force;
@@ -88,7 +90,8 @@ class BubbleChart {
         delete postObj._groups;
 
         this.worker.postMessage({
-            chartConfig: postObj
+            chartConfig: postObj,
+            eventType: eventType || "update"
         });
     }
 
@@ -125,20 +128,8 @@ class BubbleChart {
         };
     }
 
-    updateChart(nodesData){
-        //this._bubbles = this.svg.selectAll(".bubble")
-        //    .data(nodesData);
-        //this._bubbles.exit()
-        //    .remove();
-        //this._bubbles.enter()
-        //    .append("circle");
-        //
-        //this._bubbles.attr("class", "bubble")
-        //    .attr("fill", d => d.color)
-        //    .attr("r", d => d.radius)
-        //    .attr("cx", d => d.x)
-        //    .attr("cy", d => d.y);
-
+    _updateChart(nodesData){
+        this.nodesData = nodesData;
         this._groups = this.svg.selectAll(".bubble-group")
             .data(nodesData);
         this._groups.exit().remove();
@@ -156,6 +147,28 @@ class BubbleChart {
             .attr("r", d => d.radius);
 
         console.timeEnd("createChart")
+    }
+
+    resizeChart(width, height){
+        this.width = width;
+        this.height = height;
+
+        this._postData("resize");
+    }
+
+    changeSize(nodesData){
+        this.nodesData = nodesData;
+
+        this.svg
+            .attr("width", this.width)
+            .attr("height", this.height);
+
+        this._groups = this.svg.selectAll(".bubble-group")
+                        .data(nodesData)
+                        .attr("transform", d => "translate("+ (d.x) +", "+ (d.y) +")");
+
+        this._groups.select(".bubble")
+            .attr("r", d => d.radius);
     }
 
     _createNodes(data){
@@ -224,5 +237,12 @@ class BubbleChart {
         } else {
             return levels[4];
         }
+    }
+
+    destroy(){
+
+
+        this.worker.terminate();
+        this.worker = null;
     }
 }
