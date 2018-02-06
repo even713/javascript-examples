@@ -19,24 +19,28 @@ class BubbleChart {
 
         this.sourceData = data;
 
-        this.maxTickTime = 60;
-
         if(this.container)
             this._create();
     }
 
     _create(){
-        this._newWorker();
+        //this._newWorker();
+
+        this.w_updateData(this.sourceData);
 
         this.svg = d3.select(this.container)
             .append("svg")
             .attr("width", this.width)
             .attr("height", this.height);
+
+        this.updateChart(this.nodesData);
     }
 
     refresh(data){
         this.sourceData = data;
-        this._postData();
+       // this._postData();
+        this.w_updateData(this.sourceData);
+        this.updateChart(this.nodesData);
     }
 
     w_updateData(newData){
@@ -57,8 +61,7 @@ class BubbleChart {
 
         // Run the layout a fixed number of times.
         let n = this.nodesData.length / 6;
-        n = Math.max(n, this.maxTickTime);
-       // n = 30;
+        //n = 30;
         console.time("force");
         for (var i = n * n; i > 0; --i) force.tick();
         force.stop();
@@ -66,7 +69,7 @@ class BubbleChart {
     }
 
     _newWorker(){
-        this.worker = new Worker("bubbleChartWebworker.js");
+        this.worker = new Worker("bubbleChartWebwoker.js");
 
         this._postData();
 
@@ -156,6 +159,7 @@ class BubbleChart {
             .attr("r", d => d.radius);
 
         console.timeEnd("createChart")
+
     }
 
     _createNodes(data){

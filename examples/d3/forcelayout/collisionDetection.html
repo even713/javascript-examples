@@ -15,8 +15,11 @@
     root.fixed = true;
 
     var force = d3.layout.force()
-            .gravity(0.05)
-            .charge(function(d, i) { return i ? 0 : -2000; })
+            .gravity(0.5)
+            .charge(d => -Math.pow(d.radius, 2.0) * 2.5)
+            .friction(0.3)
+            //.gravity(0.05)
+            //.charge(function(d, i) { return i ? 0 : -2000; })
             .nodes(nodes)
             .size([width, height]);
 
@@ -44,12 +47,12 @@
                 .attr("cy", function(d) { return d.y; });
     });
 
-    svg.on("mousemove", function() {
-        var p1 = d3.mouse(this);
-        root.px = p1[0];
-        root.py = p1[1];
-        force.resume();
-    });
+//    svg.on("mousemove", function() {
+//        var p1 = d3.mouse(this);
+//        root.px = p1[0];
+//        root.py = p1[1];
+//        force.resume();
+//    });
 
     function collide(node) {
         var r = node.radius + 16,
@@ -59,6 +62,7 @@
                 ny2 = node.y + r;
         return function(quad, x1, y1, x2, y2) {
             if (quad.point && (quad.point !== node)) {
+                //debugger;
                 var x = node.x - quad.point.x,
                         y = node.y - quad.point.y,
                         l = Math.sqrt(x * x + y * y),

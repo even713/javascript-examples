@@ -9,7 +9,6 @@
             stroke: #fff;
             stroke-width: 2px;
         }
-
         .container{
             display: -webkit-flex;
             display: flex;
@@ -26,6 +25,7 @@
 <body>
     <button id="start" onclick="startChart()">Start</button>
     <button id="update" onclick="updateNodes()">Update</button>
+    <div id="content"></div>
     <div class="container">
         <div class="chart chart1"></div>
         <div class="chart chart2"></div>
@@ -36,12 +36,11 @@
 </body>
 <script src="/vendor/d3/d3.v35.js"></script>
 <!--<script src="https://d3js.org/d3.v3.js"></script>-->
-<script src="BubbleChartClass.js"></script>
+<script src="BubbleChartClassNoWebworker.js"></script>
 <script>
      var width = 250,
      	 height = 250,
-             chartInstance,
-             data;
+             chartInstance;
 //
 //     var canvas = d3.select("body").append("svg")
 //     			.attr("width", width)
