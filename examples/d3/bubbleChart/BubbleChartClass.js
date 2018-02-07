@@ -118,26 +118,31 @@ class BubbleChartClass {
         };
     }
 
-    updateChart(nodesData){
-        this.nodesData = nodesData;
-        this._groups = this.svg.selectAll(".bubble-group")
-            .data(nodesData);
-        this._groups.exit().remove();
-        let newGroups = this._groups.enter()
-            .append("g");
-        newGroups.append("circle")
-            .attr("class", "bubble");
-        //newGroups.append("text").text(d => d.name);
 
-       // console.log("transform groups num", this._groups[0].length);
-        this._groups.attr("class", "bubble-group")
-        .attr("transform", d => "translate("+ (d.x) +", "+ (d.y) +")");
+    // To be override
+    updateChart(nodesData){
+        this._createGroups(nodesData)
+            .append("circle")
+            .attr("class", "bubble");
 
         this._groups.select(".bubble")
             .attr("fill", d => d.color)
             .attr("r", d => d.radius);
+    }
 
-        //console.timeEnd("createChart")
+    _createGroups(nodesData){
+        this.nodesData = nodesData;
+        this._groups = this.svg.selectAll(".bubble-group")
+            .data(nodesData);
+        this._groups.exit().remove();
+
+        let newGroups = this._groups.enter()
+            .append("g");
+
+        this._groups.attr("class", "bubble-group")
+            .attr("transform", d => "translate("+ (d.x) +", "+ (d.y) +")");
+
+        return newGroups;
     }
 
     resizeChart(width, height){
@@ -147,7 +152,15 @@ class BubbleChartClass {
         this._postData("resize");
     }
 
+    // To be override
     changeSize(nodesData){
+        this._changeSize(nodesData);
+
+        this._groups.select(".bubble")
+            .attr("r", d => d.radius);
+    }
+
+    _changeSize(nodesData){
         this.nodesData = nodesData;
 
         this.svg
@@ -155,11 +168,8 @@ class BubbleChartClass {
             .attr("height", this.height);
 
         this._groups = this.svg.selectAll(".bubble-group")
-                        .data(nodesData)
-                        .attr("transform", d => "translate("+ (d.x) +", "+ (d.y) +")");
-
-        this._groups.select(".bubble")
-            .attr("r", d => d.radius);
+            .data(nodesData)
+            .attr("transform", d => "translate("+ (d.x) +", "+ (d.y) +")");
     }
 
     _createNodes(data){
@@ -175,7 +185,6 @@ class BubbleChartClass {
         });
 
         let nodes = data.map(function(d){
-            //d.value = 300;
             return {
                 name: d.name,
                 value: d.value,
@@ -199,22 +208,37 @@ class BubbleChartClass {
         if(!this._radiusScale)
         {
             this._radiusScale = d3.scale.pow()
-                .exponent(0.5)
-            //.range([0, Math.min(this.width, this.height) / 7]);
+                .exponent(0.5);
+            // k = (R2 - R1) / (Math.pow(D2, 0.5) - Math.pow(D1, 0.5))
+            // R = k * Math.pow(D, 0.5)
         }
 
         return this._radiusScale;
     }
 
     _setRadiusScale(data){
-        let maxV = d3.max(data, function(d){return +d.value || 0;}),
+        let R1 = 1, // indicates Range1, the min Radius pixcel should be larger than 1
+            R2, // indicates Range2, the max Radius could a circle be, to be calculated
+            D1 = 0, // min data can be 0
+            D2 = d3.max(data, function(d){return +d.value || 0;}), // the max value among the data list
             sumV = d3.sum(data, function(d){return +d.value || 0;}),
-            domain = [0, maxV],
-            maxRange = ((Math.min(this.width, this.height)/ 2) * Math.pow(maxV/sumV, 0.5)) + 1,
+            domain = [D1, D2];
+            //ranges = [0, maxV],
+            //maxRange = ((Math.min(this.width, this.height)/ 2) * Math.pow(maxV/sumV, 0.5)) + 1,
+            //maxRange = Math.min(this.width, this.height) / (1 * Math.pow(sumV, 0.5)) + 1,
+            //R2 = 2 * Math.pow(maxV * sumV, 0.5)/Math.min(this.width, this.height) + 1,
+        //R2 = ((Math.min(this.width, this.height)/ 2) * Math.pow(D2/sumV, 0.5)) + 1;
+        //R2 = ((Math.min(this.width, this.height)/ 4) * Math.pow(Math.PI * D2/sumV, 0.5));
+        //R2 = Math.pow(Math.min(this.width, this.height) * D2/(8 * sumV), 0.5) + 1;
+        R2 = ((Math.min(this.width, this.height) / 3) * Math.pow(D2/sumV, 0.5)) + 1
+        //R2 = 58.92707251507495;
+        //R2 = 13.5;
         // avg = Math.,
-            ranges = [1, maxRange * 0.65];
+        let ranges = [R1, R2];
+            //domain = [1, maxDomain];
         console.log("ranges", ranges);
         console.log("domain", domain);
+        console.log("D2", D2, "sum", sumV);
         this._getRadiusScale()
             .range(ranges)
             .domain(domain);

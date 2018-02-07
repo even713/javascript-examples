@@ -16,6 +16,13 @@
         }
 
         .chart {
+            -webkit-flex: 2;
+            flex: 2;
+            border: 1px solid grey;
+            height: 500px;
+        }
+
+        .action {
             -webkit-flex: 1;
             flex: 1;
             border: 1px solid grey;
@@ -24,43 +31,35 @@
     </style>
 </head>
 <body>
-    <button id="start" onclick="startChart()">Start</button>
-    <button id="update" onclick="updateNodes()">Update</button>
-    <button id="resize" onclick="resizeChart()">Resize</button>
+
     <div class="container">
+        <div class="action chart-1-actions">
+            Bubble chart actions:<br/>
+            <button onclick="startChart()">Start</button><br/>
+            <button  onclick="updateNodes()">Update</button><br/>
+            <button onclick="resizeChart()">Resize</button>
+        </div>
         <div class="chart chart1"></div>
+        <div class="action chart-2-actions">
+            Bubble chart with pie actions:<br/>
+            <button onclick="startChart()">Start</button><br/>
+            <button  onclick="updateNodes()">Update</button><br/>
+            <button onclick="resizeChart()">Resize</button>
+        </div>
         <div class="chart chart2"></div>
-        <div class="chart chart3"></div>
-        <div class="chart chart4"></div>
-        <div class="chart chart5"></div>
     </div>
 </body>
 <script src="/vendor/d3/d3.v35.js"></script>
 <!--<script src="https://d3js.org/d3.v3.js"></script>-->
 <script src="BubbleChartClass.js"></script>
 <script>
-     var width = 250,
-     	 height = 250,
+     var width = 250 * 2,
+     	 height = 250 * 2,
              chartInstance = [],
              data;
-//
-//     var canvas = d3.select("body").append("svg")
-//     			.attr("width", width)
-//     			.attr("height", height)
-//     			.append("g")
-//     			.attr("transform", "translate(50, 50)");
 
      d3.json("data.json", function(response){
-
-
          data = convertData(response);
-//         chartInstance = new BubbleChartClass({
-//             width: width,
-//             height: height,
-//             container: ".chart",
-//             gravity: 0.45,
-//             friction: 0.3
-//         }, data)
      });
 
      function resizeChart(){
@@ -70,7 +69,6 @@
      }
 
      function startChart(){
-         console.time("createChart");
          for(let i = 0; i < 1; i ++) {
              chartInstance.push(new BubbleChartClass({
                  width: width,
@@ -115,6 +113,7 @@
         response.forEach(function(d){
             let level = getHealthLevel(d.healthScore);
             d.color = HealthLevels[level].color;
+            //d.value = 300;
         });
 
         return response;
