@@ -1,14 +1,4 @@
-class BubbleChart {
-    getLevels(){
-        return {
-            "Critical": {color: "rgb(219, 27, 27)", y: this.height / 6},
-            "Major": {color: "rgb(255, 99, 33)", y: this.height / 3},
-            "Minor": {color: "rgb(255, 208, 51)", y: this.height / 2},
-            "Normal": {color: "rgb(123, 220, 42)", y: 2 * this.height / 3},
-            "NoData": {color: "#ccc", y: 5 * this.height / 6}
-        }
-    }
-
+class BubbleChartClass {
     constructor(option, data){
         this.GRAVITY = option.gravity || 0.5;
         this.FRICTION = option.friction || 0.3;
@@ -74,7 +64,7 @@ class BubbleChart {
             this.nodesData = event.data.nodesData;
             switch (event.data.type) {
                 case "update":
-                    this._updateChart(event.data.nodesData);
+                    this.updateChart(event.data.nodesData);
                 case "resize":
                     this.changeSize(event.data.nodesData)
             }
@@ -128,17 +118,18 @@ class BubbleChart {
         };
     }
 
-    _updateChart(nodesData){
+    updateChart(nodesData){
         this.nodesData = nodesData;
         this._groups = this.svg.selectAll(".bubble-group")
             .data(nodesData);
         this._groups.exit().remove();
-        this._groups.enter()
-            .append("g")
-            .append("circle")
+        let newGroups = this._groups.enter()
+            .append("g");
+        newGroups.append("circle")
             .attr("class", "bubble");
+        //newGroups.append("text").text(d => d.name);
 
-        console.log("transform groups num", this._groups[0].length);
+       // console.log("transform groups num", this._groups[0].length);
         this._groups.attr("class", "bubble-group")
         .attr("transform", d => "translate("+ (d.x) +", "+ (d.y) +")");
 
@@ -146,7 +137,7 @@ class BubbleChart {
             .attr("fill", d => d.color)
             .attr("r", d => d.radius);
 
-        console.timeEnd("createChart")
+        //console.timeEnd("createChart")
     }
 
     resizeChart(width, height){
@@ -172,21 +163,26 @@ class BubbleChart {
     }
 
     _createNodes(data){
-
         this._setRadiusScale(data);
 
+        let colorArray = d3.map(data, function(d) { return d.color; }),
+            colorSize = colorArray.size();
+
+        let colorCenterMap = {}, i = 0;
+        colorArray.forEach(color => {
+            colorCenterMap[color] = {y: (i + 1) * this.height/colorSize};
+            i ++;
+        });
+
         let nodes = data.map(function(d){
-            let healthLevel = this._getHealthLevel(d.healthScore),
-                healthLevelObj = this.getLevels()[healthLevel];
             //d.value = 300;
             return {
                 name: d.name,
                 value: d.value,
-                radius: this._getRadiusScale()(d.value), // the circle size depends on
-                level: healthLevel,
+                radius: this._getRadiusScale()(d.value),
                 x: Math.random() * this.width,
-                y: healthLevelObj.y,
-                color: healthLevelObj.color
+                y: colorCenterMap[d.color].y,
+                color: d.color
             }
         }.bind(this));
 
@@ -224,24 +220,7 @@ class BubbleChart {
             .domain(domain);
     }
 
-    _getHealthLevel(healthScore){
-        let levels = d3.keys(this.getLevels());
-        if(healthScore >= 0 && healthScore < 25) {
-            return levels[0];
-        } else if(healthScore >= 25 && healthScore < 50) {
-            return levels[1];
-        } else if(healthScore >= 50 && healthScore < 75) {
-            return levels[2];
-        } else if(healthScore >= 75 && healthScore <= 100) {
-            return levels[3];
-        } else {
-            return levels[4];
-        }
-    }
-
     destroy(){
-
-
         this.worker.terminate();
         this.worker = null;
     }

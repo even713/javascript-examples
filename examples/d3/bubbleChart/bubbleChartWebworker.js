@@ -5,7 +5,7 @@ importScripts("BubbleChartClass.js");
 onmessage = function(event) {
     var chartConfig = event.data.chartConfig,
         eventType = event.data.eventType;
-    var chartInstance = new BubbleChart({
+    var chartInstance = new BubbleChartClass({
         width: chartConfig.width,
         height: chartConfig.height,
         gravity: chartConfig.GRAVITY,
