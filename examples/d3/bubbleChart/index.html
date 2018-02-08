@@ -28,6 +28,12 @@
             border: 1px solid grey;
             height: 500px;
         }
+
+        .bubble-pie{
+            fill-opacity: 0.8;
+            stroke-width: 1;
+            stroke: #666;
+        }
     </style>
 </head>
 <body>
@@ -42,9 +48,9 @@
         <div class="chart chart1"></div>
         <div class="action chart-2-actions">
             Bubble chart with pie actions:<br/>
-            <button onclick="startChart()">Start</button><br/>
-            <button  onclick="updateNodes()">Update</button><br/>
-            <button onclick="resizeChart()">Resize</button>
+            <button onclick="startPieChart()">Start</button><br/>
+            <button  onclick="updatePieNodes()">Update</button><br/>
+            <button onclick="resizePieChart()">Resize</button>
         </div>
         <div class="chart chart2"></div>
     </div>
@@ -52,37 +58,55 @@
 <script src="/vendor/d3/d3.v35.js"></script>
 <!--<script src="https://d3js.org/d3.v3.js"></script>-->
 <script src="BubbleChartClass.js"></script>
+<script src="BubbleChartWithPieClass.js"></script>
 <script>
      var width = 250 * 2,
      	 height = 250 * 2,
-             chartInstance = [],
+             bubbleChart = null,
+             bubblePieChart = null,
              data;
 
      d3.json("data.json", function(response){
          data = convertData(response);
+         //data = data.concat(data).concat(data);
+         //data = data.concat(data);
      });
 
      function resizeChart(){
          width = 300;
          height = 300;
-         chartInstance[0].resizeChart(width, height);
+         bubbleChart.resizeChart(width, height);
      }
 
      function startChart(){
-         for(let i = 0; i < 1; i ++) {
-             chartInstance.push(new BubbleChartClass({
+         bubbleChart = new BubbleChartClass({
                  width: width,
                  height: height,
                  container: ".chart" + (i + 1),
                  gravity: 0.45,
                  friction: 0.3
-             }, data))
-         }
+             }, data);
+     }
+
+     function startPieChart(){
+         bubblePieChart = new BubbleChartWithPieClass({
+             width: width,
+             height: height,
+             container: ".chart" + (2),
+             gravity: 0.45,
+             friction: 0.3
+         }, data);
      }
 
      function updateNodes(){
          d3.json("data2.json", function(data){
-             chartInstance[0].refresh(convertData(data));
+             bubbleChart.refresh(convertData(data));
+         });
+     }
+
+     function updatePieNodes(){
+         d3.json("data2.json", function(data){
+             bubblePieChart.refresh(convertData(data));
          });
      }
 
@@ -113,6 +137,7 @@
         response.forEach(function(d){
             let level = getHealthLevel(d.healthScore);
             d.color = HealthLevels[level].color;
+            d.pieData = [{value: 20, color: d.color}, {value: 80}];
             //d.value = 300;
         });
 

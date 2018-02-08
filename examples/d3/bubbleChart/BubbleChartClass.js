@@ -47,12 +47,12 @@ class BubbleChartClass {
 
         // Run the layout a fixed number of times.
         let n = this.nodesData.length / 6;
+        //console.log("run force", n, this.maxTickTime);
         n = Math.max(n, this.maxTickTime);
-       // n = 30;
-        console.time("force");
+        //console.time("force");
         for (var i = n * n; i > 0; --i) force.tick();
         force.stop();
-        console.timeEnd("force");
+        //console.timeEnd("force");
     }
 
     _newWorker(){
@@ -73,7 +73,7 @@ class BubbleChartClass {
 
     _postData(eventType){
         let postObj = Object.assign({}, this);
-        // to avid webworker post error
+        // to avoid webworker post error
         delete postObj._force;
         delete postObj.worker;
         delete postObj.svg;
@@ -93,6 +93,7 @@ class BubbleChartClass {
         while (++i < n) q.visit(this._collide(this.nodesData[i]));
     }
 
+    // collide detection: https://github.com/d3/d3-3.x-api-reference/blob/master/Quadtree-Geom.md#visit
     _collide(node){
         let padding = 0;
         var r = node.radius + padding,
@@ -117,7 +118,6 @@ class BubbleChartClass {
             return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
         };
     }
-
 
     // To be override
     updateChart(nodesData){
@@ -185,14 +185,13 @@ class BubbleChartClass {
         });
 
         let nodes = data.map(function(d){
-            return {
-                name: d.name,
-                value: d.value,
+            let obj = {
                 radius: this._getRadiusScale()(d.value),
                 x: Math.random() * this.width,
-                y: colorCenterMap[d.color].y,
-                color: d.color
-            }
+                y: colorCenterMap[d.color].y
+            };
+
+            return Object.assign(obj, d);
         }.bind(this));
 
         nodes.sort(function (a, b) { return b.value - a.value; });
@@ -223,22 +222,8 @@ class BubbleChartClass {
             D2 = d3.max(data, function(d){return +d.value || 0;}), // the max value among the data list
             sumV = d3.sum(data, function(d){return +d.value || 0;}),
             domain = [D1, D2];
-            //ranges = [0, maxV],
-            //maxRange = ((Math.min(this.width, this.height)/ 2) * Math.pow(maxV/sumV, 0.5)) + 1,
-            //maxRange = Math.min(this.width, this.height) / (1 * Math.pow(sumV, 0.5)) + 1,
-            //R2 = 2 * Math.pow(maxV * sumV, 0.5)/Math.min(this.width, this.height) + 1,
-        //R2 = ((Math.min(this.width, this.height)/ 2) * Math.pow(D2/sumV, 0.5)) + 1;
-        //R2 = ((Math.min(this.width, this.height)/ 4) * Math.pow(Math.PI * D2/sumV, 0.5));
-        //R2 = Math.pow(Math.min(this.width, this.height) * D2/(8 * sumV), 0.5) + 1;
-        R2 = ((Math.min(this.width, this.height) / 3) * Math.pow(D2/sumV, 0.5)) + 1
-        //R2 = 58.92707251507495;
-        //R2 = 13.5;
-        // avg = Math.,
+        R2 = ((Math.min(this.width, this.height) / 3) * Math.pow(D2/sumV, 0.5)) + 1;
         let ranges = [R1, R2];
-            //domain = [1, maxDomain];
-        console.log("ranges", ranges);
-        console.log("domain", domain);
-        console.log("D2", D2, "sum", sumV);
         this._getRadiusScale()
             .range(ranges)
             .domain(domain);

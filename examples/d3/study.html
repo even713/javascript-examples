@@ -236,7 +236,8 @@
 // 			.attr("d", arc);
 
 // study: pie layout
- var data = [10, 30, 80],
+ //var data = [10, 30, 80],
+ var data = [{name: "one", value: 10}, {name: "two", value: 30}, {name: "three", value: 80}],
  	r = 300;
 
  var canvas = d3.select("body").append("svg")
@@ -248,9 +249,9 @@
 
  var group = canvas.append("g")
  			.attr("transform", "translate(300, 300)")
-
- var circle = group.append("circle")
-		 .attr("r", r)
+//
+// var circle = group.append("circle")
+//		 .attr("r", r)
 		// .attr("fill", "rgb(219, 27, 27)");
 
  // https://github.com/d3/d3-3.x-api-reference/blob/master/API-Reference.md
@@ -259,10 +260,11 @@
  			.outerRadius(r);
 
  var pie	= d3.layout.pie()
- 			.value(function(d){return d});
+ 			.value(function(d){return d.value});
+var pieData = pie(data);
 
  var arcs = group.selectAll(".arcs")
- 			.data(pie(data))
+ 			.data(pieData)
  			.enter()
  			.append("g")
  			.attr("class", "arcs");
@@ -274,18 +276,19 @@
  		return arc.apply(this, args)
  	})
  	.attr("fill", function(d, i){
- 		return color(d.data);
+ 		return color(d.data.value);
  	})
 		 .style("fill-opacity", "0.5")
  	;
 
  arcs.append("text")
  	.attr("transform", function(d){
+			 console.log(d);
  		return "translate("+ arc.centroid(d) +")";
  	})
  	.attr("text-anchor", "middle")
  	.attr("font-size", "1.5em")
- 	.text(function(d){return d.data})
+ 	.text(function(d){return d.data.name})
 
 // Study: tree layout/ diagonal
 // var canvas = d3.select("body").append("svg")
