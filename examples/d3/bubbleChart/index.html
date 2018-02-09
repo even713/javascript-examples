@@ -78,11 +78,17 @@
          bubbleChart.resizeChart(width, height);
      }
 
+     function resizePieChart(){
+         width = 300;
+         height = 300;
+         bubblePieChart.resizeChart(width, height);
+     }
+
      function startChart(){
          bubbleChart = new BubbleChartClass({
                  width: width,
                  height: height,
-                 container: ".chart" + (i + 1),
+                 container: ".chart1",
                  gravity: 0.45,
                  friction: 0.3
              }, data);
@@ -137,11 +143,22 @@
         response.forEach(function(d){
             let level = getHealthLevel(d.healthScore);
             d.color = HealthLevels[level].color;
-            d.pieData = [{value: 20, color: d.color}, {value: 80}];
+            let p1 = 100,
+                    p2 = 0;
+            if(level != "NoData") {
+                p1 = randomIntFromInterval(0, 100);
+                p2 = 100 - p1
+            }
+            d.pieData = [{value: p1, color: d.color}, {value: p2}];
             //d.value = 300;
         });
 
         return response;
     }
+
+     function randomIntFromInterval(min,max)
+     {
+         return Math.floor(Math.random()*(max-min+1)+min);
+     }
 
 </script>

@@ -2,17 +2,17 @@ class BubbleChartWithPieClass extends BubbleChartClass {
     updateChart(nodesData){
         this._createGroups(nodesData);
 
-        let pieLayout = d3.layout.pie()
+        this._pieLayout = d3.layout.pie()
             .value(d => d.value); // pieLayout: used to generate data for piechart, it includes startAngle etc.
 
-        let arc = d3.svg.arc()
+        this._arc = d3.svg.arc()
                     .innerRadius(0)
                     .outerRadius(d => d.data.radius); // generate the path for each piece of pie
 
         // each group(<g></g>) will have one or more ".arcs" to be a pie
         let arcs = this._groups.selectAll(".arcs")
                 .data(wholeData => {
-                    return pieLayout(wholeData.pieData.map(d => {
+                    return this._pieLayout(wholeData.pieData.map(d => {
                                         d.radius = wholeData.radius;
                                         return d;
                     }));
@@ -29,9 +29,24 @@ class BubbleChartWithPieClass extends BubbleChartClass {
         //      <path class='bubble-pie'></path>
         // </g>
         arcs.select(".bubble-pie")
-                .attr("d", arc)
-                .attr("fill", function(d, i){
-                    return d.data.color ? d.data.color : "#fff";
-                })
+                .attr("d", this._arc)
+                .attr("fill", d => d.data.color ? d.data.color : "#fff")
+    }
+
+    changeSize(nodesData){
+        this._changeSize(nodesData);
+
+        this._arc.outerRadius(d => d.data.radius);
+
+        let arcs = this._groups.selectAll(".arcs")
+            .data(wholeData => {
+                return this._pieLayout(wholeData.pieData.map(d => {
+                    d.radius = wholeData.radius;
+                    return d;
+                }));
+            });
+
+        arcs.select(".bubble-pie")
+            .attr("d", this._arc);
     }
 }

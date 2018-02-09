@@ -72,12 +72,7 @@ class BubbleChartClass {
     }
 
     _postData(eventType){
-        let postObj = Object.assign({}, this);
-        // to avoid webworker post error
-        delete postObj._force;
-        delete postObj.worker;
-        delete postObj.svg;
-        delete postObj._groups;
+        let postObj = JSON.parse(JSON.stringify(this));
 
         this.worker.postMessage({
             chartConfig: postObj,
