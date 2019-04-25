@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Array setter</title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+  const handler = {
+    set: function(obj, prop, value) {
+      console.log(obj, prop, value);
+    }
+  };
+  var params = new Proxy({}, handler);
+
+  </script>
+</html>

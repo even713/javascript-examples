@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Tooltips demo</title>
+    <link rel="stylesheet" href="http://localhost:8080/2.3.0.%7BVER_REPLACE%7D/smartadmin-1.4.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container" ng-controller="mainController">
+      <button type="button" name="button" ng-click="update()">Update</button>
+      <svg>
+
+      </svg>
+    </div>
+  </body>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+  <script type="text/javascript" src="http://localhost:8080/2.3.0.%7BVER_REPLACE%7D/smartadmin-1.4.1/js/bootstrap/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    angular.module("myApp", []);
+  </script>
+  <script type="text/javascript" src="Tooltips.js"></script>
+  <script type="text/javascript">
+    angular.module("myApp")
+    .controller("mainController", function(ToolTips, $scope){
+      var clusterMouseOverTemplate = function(d){
+				return"<div style='width: 50px;'>"+d+" Mouse over</div>";
+			};
+
+      var clusterClickTemplate = function(d){
+				return"<div style='width: 50px;'>"+d+" Click</div>";
+			};
+
+			const tooltip = new ToolTips(clusterMouseOverTemplate, {element: "circle", priority:2, triggerEvent: 'mouseover' });
+      const tooltip2 = new ToolTips(clusterClickTemplate, {element: "circle", priority:1, triggerEvent: 'click' });
+
+      let data = [32, 57, 293];
+      createChart(data, tooltip, tooltip2);
+
+      $scope.update = function(){
+        tooltip.unbindAll();
+        data = data.map(d=>d+100)
+        updateChart(data, tooltip, tooltip2);
+      }
+    });
+
+    function updateChart(data, tooltip, tooltip2){
+      createChart(data, tooltip, tooltip2);
+    }
+
+    function createChart(data, tooltip, tooltip2){
+      const svg = d3.select("svg");
+      var circle = svg.selectAll("g.circle")
+        .data(data, function(d) { return d; });
+
+      circle.enter().append("g")
+          .append("circle")
+          .attr("cy", function(d, i) {
+            return i * 30 + 60;
+          })
+          .attr("cx", function(d, i) { return i * 100 + 30; })
+          .attr("r", function(d) {
+            return 40;
+            // return Math.sqrt(d);
+          });
+
+      circle.exit().remove();
+
+      tooltip.bind(circle);
+      // tooltip2.bind(circle);
+
+      // circle.on("click", function (d) {
+      //   console.log(d);
+      // })
+    }
+  </script>
+</html>

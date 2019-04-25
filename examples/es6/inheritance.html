@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Inheritance</title>
+  </head>
+  <body>
+    test
+  </body>
+  <script type="text/javascript">
+    class A {
+      foo(){
+        console.log("this is A's foo");
+      }
+    }
+
+    class Z {
+      bar(){
+        console.log("this is Z's bar");
+      }
+    }
+
+    // B mixin, will need a wrapper over it to be used
+  const B = (B) => {
+    B = B || Object;
+    return class extends B {
+      bar() {
+        if (super.bar) super.bar(); // mixins don't know who is super, guard against not having the method
+        console.log(`from B -> inside instance of B: ${this instanceof B}`);
+      }
+    }
+  };
+
+  class C extends B() {
+
+  }
+
+  // class D extends Inheritance.fromMultiClass(A, Z) {
+  //
+  // }
+
+  var Inheritance = {
+    fromMultiClass: function(a, b){
+        let result = class extends a {
+
+        }
+    }
+  }
+
+  let inst1 = new C();
+  console.log(inst1);
+  </script>
+</html>

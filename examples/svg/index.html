@@ -1,0 +1,22 @@
+<style>
+*{
+	  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+}
+</style>
+<div style="width: 200px; height: 200px; border: 1px solid red;">
+	<euarechart>
+	<svg class="eu-stack-area-chart" height="100" width="100">
+	    <g class="area-chart"></g>
+	    <g class="bar-chart"></g>
+	</svg>
+	</euarechart>
+</div>
+
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script>
+$(function(){
+	$("svg").attr("width", 200).attr("height", 200);
+})
+</script>

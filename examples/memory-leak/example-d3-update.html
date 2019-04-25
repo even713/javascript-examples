@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>From chrome demo</title>
+  </head>
+  <body>
+    <div class="timerange">
+      <a href="#" id="create">Create</a>
+      <a href="#" id="update">Update</a>
+      <div class="container">
+        <svg width="1000" height="100">
+
+        </svg>
+      </div>
+    </div>
+
+    <!-- <button type="button" id="create" name="button">Create</button> -->
+  </body>
+  <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+  <script src="../../vendor/d3/d3.v3.js"></script>
+  <script type="text/javascript">
+  let startTime = 1542948600000,
+      endTime = 1542952199999;
+
+  function create(startTime, endTime) {
+    var alphabet='abcdefghijklmnopqrstuvwxyz'.split('');
+    d3.select('svg').selectAll('text').data(alphabet).enter().append('text')
+    	.text(function(d){return d;})
+    	.attr('x', function(d,i){return i*15;})
+    	.attr('y', 15);
+  }
+
+  function update(str) {
+    var vowelsAndNums = str.split('');
+    // var letters = d3.select('svg').selectAll('text');
+    // letters.data(vowelsAndNums, function(d) { return d; });
+    // combine above two lines:
+    var letters = d3.select('svg').selectAll('text').data(vowelsAndNums, function(d) {
+  		return d;
+  	});
+
+    let exit = letters.exit();
+    exit.remove();
+    for(let i = 0; i < exit[0].length; i++) {
+      if(exit[0][i]) {
+        delete exit[0][i].__data__;
+        exit[0][i] = null;
+      }
+    }
+    exit[0].length = 0;
+
+    letters.attr('x', function(d,i) { return i*15; });
+
+    const enters = letters.enter();
+    enters.append('text')
+    	.text(function(d) { return d; })
+    	.attr('x', function(d,i) { return i*15; })
+    	.attr('y', 15);
+
+    letters = null;
+  }
+
+  document.getElementById('create').addEventListener('click', function(){
+    const oneMin = 1 * 60 * 1000;
+    startTime -= oneMin;
+    endTime -= oneMin;
+
+    create(startTime, endTime);
+  });
+
+var timer = null;
+  document.getElementById('update').addEventListener('click', function() {
+    if(timer) {
+      clearInterval(timer);
+      timer = null;
+      return;
+    }
+
+    timer = setInterval(function(){
+      update(getRanNum());
+      // update("aeiou123")
+    }, 500);
+  })
+
+  function getRanNum(){
+      var result = [];
+       for(var i=0;i<20;i++){
+          var ranNum = Math.ceil(Math.random() * 25); //生成一个0到25的数字
+          var str = String.fromCharCode(65+ranNum);
+          if(result.indexOf(str) > -1) {
+            i--;
+            continue;
+          }
+           //大写字母'A'的ASCII是65,A~Z的ASCII码就是65 + 0~25;然后调用String.fromCharCode()传入ASCII值返回相应的字符并push进数组里
+           result.push(str);
+       }
+    return  result.join('');
+   }
+
+
+
+  </script>
+</html>

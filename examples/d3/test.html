@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+  body{
+    cursor: auto!important;
+  }
+.container {
+  width: 900px;
+  height: 120px;
+}
+div.chart{
+  margin-top: 30px;
+}
+  </style>
+</head>
+<body>
+<div class="container">
+  <svg class="demo"></svg>
+</div>
+<div  class="chart" >
+  <!-- <svg>
+    <g class="chart"></g>
+  </svg> -->
+</div>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script> -->
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/d3/d3.v3.js"></script>
+<script>
+$(document).ready(function(){
+  let chartContainer = $(".container")
+  d3.select(chartContainer.find("svg").parent()[0]).append("div")
+                .attr("class", "tooltip barchart")
+                .style("opacity", 0)
+                // .style("display", "none")
+                .style("z-index", 1050);
+
+});
+</script>
+
+</body>
+</html>

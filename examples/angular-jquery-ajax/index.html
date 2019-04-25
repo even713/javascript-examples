@@ -1,0 +1,177 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		Http request parameter
+	</title>
+
+</head>
+<body ng-controller="pageController" js-url="e.js">
+
+	<h1>
+		Http request parameter
+	</h1>
+
+
+	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+	<script type="text/javascript">
+/* JQuery start..... */
+// Case 1: query string parameter a = 1, b = 2
+// let params = {
+// 	a: 1,
+// 	b: 2
+// }
+// // way 1:
+// $.ajax({
+// 		"dataType": 'json',
+// 		"type": "GET",
+// 		"url": "test.json?" + $.param(params)
+// })
+//
+// //way 2:
+// $.ajax({
+// 		//"dataType": 'json',
+// 		"type": "GET",
+// 		"url": "http://localhost:3000/",
+// 		"data": params
+// })
+
+// Case2: post form data and note array
+
+// way 1, ary can be accept as array on server side
+// let params = {
+// 	a: 1,
+// 	b: 2,
+// 	ary1: [3,4,5]
+// }
+//
+// $.ajax({
+// 	"type": "POST",
+// 	"url": "http://localhost:3000",
+// 	"data": params
+// 	// "data": JSON.stringify(params)// compare with JSON.stringify
+// })
+
+// way2, ary will be converted into a string like "3,4,5" on server side
+let params = [
+	{name: "a", value: 1},
+	{name: "b", value: 2},
+	{name: "ary1", value: [3,4,5]}
+]
+
+$.ajax({
+	"type": "POST",
+	"url": "http://localhost:3000",
+	"data": params
+})
+
+// Case 3: post param as requestPayload
+// let params = {
+// 	a: 1,
+// 	b: 2,
+// 	ary1: [3,4,5]
+// }
+//
+// $.ajax({
+// 	"type": "POST",
+// 	"url": "http://localhost:3000?id=1",
+// 	"data": JSON.stringify(params),
+// 	"contentType": "application/json",
+// 	// processData:false
+// })
+
+// Case4: xml parse error in firefox
+// $.ajax({
+// 		"dataType": 'json',
+// 		"type": "GET",
+// 		"url": "http://localhost:3000/?i=2",
+// 		"mimeType": "json"
+// }) .done(function() {
+//     alert( "success" );
+//   })
+//   .fail(function() {
+//     alert( "error" );
+//   })
+//   .always(function() {
+//     alert( "complete" );
+//   });
+/* JQuery end..... */
+
+	angular.module("Demo", [])
+	.controller('pageController', function($http, $scope, $attrs){
+
+		// Case 1: query string parameter a = 1, b = 2
+// var conf = {
+// 	method: 'GET',
+// 	url: 'http://localhost:3000',
+// 	params: {
+// 		a: 1,
+// 		b: 2
+// 	}
+// };
+//
+// $http(conf).then(function(response){
+// 	console.log(response.data);
+// }, function(){
+// 	console.log("error");
+// }).finally(function(){
+// 	console.log("finally");
+// });
+
+		// Case2: post form data and note array
+		// https://stackoverflow.com/questions/11442632/how-can-i-post-data-as-form-data-instead-of-a-request-payload
+// var conf = {
+// 	method: 'POST',
+// 	url: 'http://localhost:3000',
+// 	params: {
+// 		a: 1,
+// 		b: 2
+// 	},
+// 	data: $.param({
+// 		c: 3,
+// 		d: 4
+// 	}),
+// 	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+// };
+		//
+		// $http(conf).then(function(response){
+		// 	console.log(response.data);
+		// }, function(){
+		// 	console.log("error");
+		// }).finally(function(){
+		// 	console.log("finally");
+		// });
+
+		// Case 3: post param as requestPayload
+// var conf = {
+// 	method: 'POST',
+// 	url: 'http://localhost:3000',
+// 	params: {
+// 		a: 1,
+// 		b: 2
+// 	},
+// 	data: {
+// 		c: 3,
+// 		d: 4
+// 	}
+// };
+		//
+		// $http(conf).then(function(response){
+		// 	console.log(response.data);
+		// }, function(){
+		// 	console.log("error");
+		// }).finally(function(){
+		// 	console.log("finally");
+		// });
+
+	});
+
+
+	</script>
+
+</body>
+</html>

@@ -4,279 +4,225 @@
     <meta charset="UTF-8">
     <title>d3 bubble chart</title>
     <style>
+        body{
+            background: #eafffc;
+        }
         .node{
             fill: #ccc;
             stroke: #fff;
             stroke-width: 2px;
         }
+
         .container{
             display: -webkit-flex;
             display: flex;
         }
 
         .chart {
+            -webkit-flex: 2;
+            flex: 2;
+            border: 1px solid grey;
+            height: 500px;
+        }
+
+        .action {
             -webkit-flex: 1;
             flex: 1;
             border: 1px solid grey;
             height: 500px;
         }
+
+        .bubble-pie{
+            fill-opacity: 0.8;
+            stroke-width: 1;
+            stroke: #666;
+        }
     </style>
 </head>
 <body>
-    <button id="start" onclick="startChart()">Start</button>
-    <button id="update" onclick="updateNodes()">Update</button>
-    <div id="content"></div>
-    <div class="container">
-        <div class="chart chart1"></div>
-        <div class="chart chart2"></div>
-        <div class="chart chart3"></div>
-        <div class="chart chart4"></div>
-        <div class="chart chart5"></div>
+<div>
+    <button onclick="console.log('UI thread button click')">Click me</button>
+    <input type="text" value=""/>
+</div>
+<div class="container">
+    <div class="action chart-1-actions">
+        Bubble chart actions:<br/>
+        <button onclick="startChart()">Start</button><br/>
+        <button  onclick="updateNodes()">Update</button><br/>
+        <button onclick="resizeChart()">Resize</button><br/>
+        <button onclick="calTime()">Cal Time</button>
+        <button onclick="saveResult()">Save result</button>
     </div>
+    <div class="chart chart1"></div>
+    <div class="action chart-2-actions">
+        Bubble chart with pie actions:<br/>
+        <button onclick="startPieChart()">Start</button><br/>
+        <button  onclick="updatePieNodes()">Update</button><br/>
+        <button onclick="resizePieChart()">Resize</button>
+    </div>
+    <div class="chart chart2"></div>
+</div>
 </body>
 <script src="/vendor/d3/d3.v35.js"></script>
+<script src="/vendor/jquery/jquery-2.0.2.min.js"></script>
 <!--<script src="https://d3js.org/d3.v3.js"></script>-->
 <script src="BubbleChartClassNoWebworker.js"></script>
+<script src="BubbleChartWithPieClass.js"></script>
 <script>
-     var width = 250,
-     	 height = 250,
-             chartInstance;
-//
-//     var canvas = d3.select("body").append("svg")
-//     			.attr("width", width)
-//     			.attr("height", height)
-//     			.append("g")
-//     			.attr("transform", "translate(50, 50)");
+    $(function () {
+        for(let i = 0; i < numOfCharts; i++) {
+            $(".chart.chart1").append(`<div class='child${i}'></div>`);
+        }
+    })
 
-     d3.json("data.json", function(d){
-         data = d;
-//         chartInstance = new BubbleChartClass({
-//             width: width,
-//             height: height,
-//             container: ".chart",
-//             gravity: 0.45,
-//             friction: 0.3
-//         }, data)
-     });
+    var width = 50 * 2,
+            height = 50 * 2,
+            bubbleChartInstance = [],
+            bubblePieChart = null,
+            data,
+            numOfCharts = 6,
+            reports = [],
+            startTime = 0;
 
-     function startChart(){
-         console.time("createChart");
-         for(let i = 0; i < 5; i ++) {
-             chartInstance = new BubbleChart({
-                 width: width,
-                 height: height,
-                 container: ".chart" + (i + 1),
-                 gravity: 0.45,
-                 friction: 0.3
-             }, data)
-         }
-     }
+    d3.json("data.json", function(response){
+        response = response.concat(response).concat(response);
+        data = convertData(response);
+        //data = data.concat(data).concat(data);
+        //data = data.concat(data);
+    });
 
-     function updateNodes(){
-         d3.json("data2.json", function(data){
-             chartInstance.refresh(data);
-         });
-     }
+    function resizeChart(){
+        width = 300;
+        height = 300;
+        //bubbleChart.resizeChart(width, height);
+    }
 
-     class BubbleChart2 {
-         getLevels(){
-             return {
-                 "Critical": {color: "rgb(219, 27, 27)", y: this.height / 6},
-                 "Major": {color: "rgb(255, 99, 33)", y: this.height / 3},
-                 "Minor": {color: "rgb(255, 208, 51)", y: this.height / 2},
-                 "Normal": {color: "rgb(123, 220, 42)", y: 2 * this.height / 3},
-                 "NoData": {color: "#ccc", y: 5 * this.height / 6}
-             }
-         }
+    function resizePieChart(){
+        width = 300;
+        height = 300;
+        bubblePieChart.resizeChart(width, height);
+    }
 
-         constructor(option, data){
-             this.GRAVITY = option.gravity || 0.5;
-             this.COLLIDE = option.collide || 0.1;
-             this.FRICTION = option.friction || 0.3;
+    function startChart(){
+        startTime = Date.now();
+        for(let i = 0; i < numOfCharts; i++) {
+            let bubbleChart = new BubbleChartClass({
+                width: width,
+                height: height,
+                container: `.chart1 .child${i}`,
+                gravity: 0.45,
+                friction: 0.3
+            }, data);
+            bubbleChartInstance.push(bubbleChart);
+        }
+    }
 
-             this.width = option.width || 600;
-             this.height = option.height || 800;
-             this.container = option.container;
+    function calTime(){
+        let chartsTime = [];
+        for(let i = 0; i < bubbleChartInstance.length;i ++) {
+            let times = [], list = bubbleChartInstance[i].timeList;
+            times.push({name: "tick", time: list[2] - list[1]});
+            times.push({name: "create chart total time", time: list[3] - list[0]});
+            chartsTime.push(times);
+            //console.table([{name: "new worker", time: this.timeList[2] - this.timeList[1]},
+            //    {name: "total time",  time: this.timeList[3] - this.timeList[0]}])
+        }
 
-             this.sourceData = data;
+        let result = chartsTime.reduce((total, obj) => {
+            for(let j = 0; j < total.length; j++) {
+                total[j].time += obj[j].time;
+            }
+            return total;
+        }).map(obj => {return {name: obj.name, "average time (ms)": obj.time/bubbleChartInstance.length}});
+        console.table(result);
+        return result;
+    }
 
-             this._initialize();
-         }
+    function saveResult(){
+        reports = localStorage.getItem("reportNoWorker");
+        reports = reports ? JSON.parse(reports) : [];
+        let dist = reports.find(r =>r.chartsNum == numOfCharts);
+        //console.log("find dist", dist, bubbleChartInstance[bubbleChartInstance.length -1].timeList[3] - startTime);
+        if(dist) {
+            dist.cost = calTime();
+            dist.uiCost = bubbleChartInstance[bubbleChartInstance.length -1].timeList[3] - startTime;
+        } else {
+            reports.push({chartsNum: numOfCharts, cost: calTime(),
+                uiCost: bubbleChartInstance[bubbleChartInstance.length -1].timeList[3] - startTime});
+        }
+        localStorage.setItem("reportNoWorker", JSON.stringify(reports));
+        reports.sort((a,b) =>a.chartsNum > b.chartsNum).forEach(r => {
+            console.group("Below is cost for " + r.chartsNum + " charts, UI cost total time: "+ r.uiCost  +"");
+            console.table(r.cost);
+            console.groupEnd();
+        })
+    }
 
-         _initialize(){
+    function startPieChart(){
+        bubblePieChart = new BubbleChartWithPieClass({
+            width: width,
+            height: height,
+            container: ".chart" + (2),
+            gravity: 0.45,
+            friction: 0.3
+        }, data);
+    }
 
-                     //.on("tick", this._tick.bind(this));
+    function updateNodes(){
+        d3.json("data2.json", function(data){
+            bubbleChart.refresh(convertData(data));
+        });
+    }
 
-             this._create();
-         }
+    function updatePieNodes(){
+        d3.json("data2.json", function(data){
+            bubblePieChart.refresh(convertData(data));
+        });
+    }
 
-         _create(){
-             this.svg = d3.select(this.container)
-                     .append("svg")
-                     .attr("width", this.width)
-                     .attr("height", this.height);
+    var HealthLevels = {
+        "Critical": {color: "rgb(219, 27, 27)"},
+        "Major": {color: "rgb(255, 99, 33)"},
+        "Minor": {color: "rgb(255, 208, 51)"},
+        "Normal": {color: "rgb(123, 220, 42)"},
+        "NoData": {color: "#ccc"}
+    };
 
-             this.updateChart(this.sourceData);
-         }
+    function getHealthLevel(healthScore){
+        let levels = d3.keys(HealthLevels);
+        if(healthScore >= 0 && healthScore < 25) {
+            return levels[0];
+        } else if(healthScore >= 25 && healthScore < 50) {
+            return levels[1];
+        } else if(healthScore >= 50 && healthScore < 75) {
+            return levels[2];
+        } else if(healthScore >= 75 && healthScore <= 100) {
+            return levels[3];
+        } else {
+            return levels[4];
+        }
+    }
 
-         updateChart(data){
-             //this._force.stop();
-             this.sourceData = data;
-             this.nodesData = this._createNodes(data);
+    function convertData(response){
+        response.forEach(function(d){
+            let level = getHealthLevel(d.healthScore);
+            d.color = HealthLevels[level].color;
+            let p1 = 100,
+                    p2 = 0;
+            if(level != "NoData") {
+                p1 = randomIntFromInterval(0, 100);
+                p2 = 100 - p1
+            }
+            d.pieData = [{value: p1, color: d.color}, {value: p2}];
+            //d.value = 300;
+        });
 
-             var force = d3.layout.force()
-                     .size([this.width, this.height])
-                     .charge(this._charge)
-                     .gravity(this.GRAVITY)
-                     .friction(this.FRICTION);
+        return response;
+    }
 
-             force.nodes(this.nodesData);
-             //console.log("before", JSON.parse(JSON.stringify(this.nodesData)));
-
-             force.start();
-             let n = 30;
-             console.time("force");
-             for (var i = n * n; i > 0; --i) force.tick();
-             force.stop();
-             console.timeEnd("force");
-             //console.log("after", JSON.parse(JSON.stringify(this.nodesData)));
-
-
-             this._bubbles = this.svg.selectAll(".bubble")
-                     .data(this.nodesData);
-             this._bubbles.exit()
-                     .remove();
-             this._bubbles.enter()
-                     .append("circle");
-
-             this._bubbles.attr("class", "bubble")
-                     .attr("fill", function (d) {
-                         return this.getLevels()[d.level].color;
-                     }.bind(this))
-                     .attr("r", function (d) {
-                         return d.radius;
-                     })
-                     .attr("cx", function(d){return d.x;})
-                     .attr("cy", function(d){return d.y;});
-         }
-
-         _createNodes(data){
-
-            this._setRadiusScale(data);
-
-            let nodes = data.map(function(d){
-                let healthLevel = this._getHealthLevel(d.healthScore);
-                //d.value = 300;
-                return {
-                    name: d.name,
-                    value: d.value,
-                    radius: this._getRadiusScale()(d.value), // the circle size depends on
-                    level: healthLevel,
-                    x: Math.random() * width,
-                    y: this.getLevels()[healthLevel].y
-                }
-            }.bind(this));
-
-            nodes.sort(function (a, b) { return b.value - a.value; });
-
-            return nodes;
-         }
-
-         _tick(e) {
-             //this._bubbles
-                 //.each(this._gravity(e.alpha * this.GRAVITY))
-                 //.each(this._collide(this.COLLIDE, this.nodesData))
-                 //.attr('cx', function (d) {
-                 //        return d.x; })
-                 //.attr('cy', function (d) { return d.y; });
-         }
-
-         _charge(d){
-             return -Math.pow(d.radius, 2.0) * 2.5;
-         }
-
-         _getRadiusScale(){
-             if(!this._radiusScale)
-             {
-                 this._radiusScale = d3.scale.pow()
-                         .exponent(0.5)
-                         //.range([0, Math.min(this.width, this.height) / 7]);
-             }
-
-             return this._radiusScale;
-         }
-
-         _setRadiusScale(data){
-             let maxV = d3.max(data, function(d){return +d.value || 0;}),
-                     sumV = d3.sum(data, function(d){return +d.value || 0;}),
-                     domain = [0, maxV],
-                     maxRange = ((Math.min(this.width, this.height)/ 2) * Math.pow(maxV/sumV, 0.5)) + 1,
-                    // avg = Math.,
-                     ranges = [1, maxRange * 0.65];
-             console.log("ranges", ranges);
-             console.log("domain", domain);
-             this._getRadiusScale()
-                     .range(ranges)
-                     .domain(domain);
-         }
-
-         _getHealthLevel(healthScore){
-             let levels = d3.keys(this.getLevels());
-             if(healthScore >= 0 && healthScore < 25) {
-                 return levels[0];
-             } else if(healthScore >= 25 && healthScore < 50) {
-                 return levels[1];
-             } else if(healthScore >= 50 && healthScore < 75) {
-                 return levels[2];
-             } else if(healthScore >= 75 && healthScore <= 100) {
-                 return levels[3];
-             } else {
-                 return levels[4];
-             }
-         }
-
-//         _gravity(k) {
-//             return function(d) {
-//                 if (typeof(d.tx) !== "undefined") {
-//                     d.x = d.x + (d.tx - d.x) * k;
-//                     d.y = d.y + (d.ty - d.y) * k;
-//                 }
-//             };
-//         }
-//
-//         _collide(k, nodes) {
-//             var q = d3.geom.quadtree(nodes),
-//                    padding = 0;
-//             return function (node) {
-//                 if(node.name == "child1")
-//                     console.log("watch d", "before _collide", node.x, JSON.parse(JSON.stringify(node)))
-//                 var nr = node.r + padding,
-//                         nx1 = node.x - nr,
-//                         nx2 = node.x + nr,
-//                         ny1 = node.y - nr,
-//                         ny2 = node.y + nr;
-//                 q.visit(function (quad, x1, y1, x2, y2) {
-//                     if (quad.point && (quad.point !== node )) {
-//                         var x = node.x - quad.point.x,
-//                                 y = node.y - quad.point.y,
-//                                 l = x * x + y * y,
-//                                 r = nr + quad.point.r;
-//
-//                         if (l < r * r) {
-//                             l = ((l = Math.sqrt(l)) - r) / l * k;
-//                             node.x -= x *= l;
-//                             node.y -= y *= l;
-//                             quad.point.x += x;
-//                             quad.point.y += y;
-//                         }
-//                     }
-//                     return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-//                 });
-//
-//                 if(node.name == "child1")
-//                     console.log("watch d", "after _collide", node.x, JSON.parse(JSON.stringify(node)))
-//             };
-//         }
-     }
+    function randomIntFromInterval(min,max)
+    {
+        return Math.floor(Math.random()*(max-min+1)+min);
+    }
 
 </script>

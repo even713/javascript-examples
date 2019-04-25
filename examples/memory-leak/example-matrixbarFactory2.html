@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>From chrome demo</title>
+  </head>
+  <body ng-controller="mainPageCtrl">
+    <div class="timerange">
+      <a href="#" id="create" ng-click="create()">Create</a>
+      <div class="container">
+        <svg width="1000" height="120">
+          <g class="chart"></g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- <button type="button" id="create" name="button">Create</button> -->
+  </body>
+  <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+  <script src="../../vendor/d3/d3.v3.js"></script>
+  <script src="../../vendor/angularjs/angular-1.4.5.js"></script>
+  <script type="text/javascript">
+  angular.module("myApp", [])
+  .controller("mainPageCtrl", function($scope, diagram, $interval, matrixbar) {
+    $scope.startTime = 1542948600000;
+    $scope.endTime = 1542952199999;
+    let chartInstance;
+
+    const refresh = function() {
+      // const ul = $(".container ul");
+      // $(".container ul").empty();
+      // const data = diagram.getData($scope.startTime, $scope.endTime);
+      const element = $(".chart");
+      //console.log(data);
+      if(chartInstance) {
+        chartInstance.refreshChart({start: $scope.startTime, end: $scope.endTime, maxHeight: 150})
+      } else {
+        chartInstance = new matrixbar(element, {width: 1000, height: 120}, {start: $scope.startTime, end: $scope.endTime, maxHeight: 150});
+      }
+
+      // const list = data.timeSeries.slice(0);
+      //$scope.list = data.timeSeries.slice(0);
+      // for(let i = 0; i < 24 * 60; i ++) {
+      //   // $(".container ul").append("<li>"+ list[i].grade +"</li>")
+      //   ul.append("<li>"+ Math.random() +"</li>")
+      // }
+    }
+
+    $scope.create = function () {
+      let timer = null;
+      const times = 120; //12 * 60;40
+      let count = 0;
+
+      timer = $interval(function () {
+        refresh();
+        count ++;
+        if(count === times) {
+          $interval.cancel(timer);
+          timer = null;
+        }
+      }, 1.5 * 1000)
+
+      //refresh();
+
+    }
+  }).
+  service("diagram", function() {
+    this.getData = function(startTime, endTime) {
+      const timeSeries = [];
+      const rows = 5;
+      const cols = 60;
+      for(let i = 0; i < rows; i++) {
+        for(let j = 0; j < cols; j++) {
+          timeSeries.push({col: j, row: i, grade: Math.random()});
+        }
+      }
+      return {numOfColumn: 60, timeSeries, changedFlag: Math.random(),
+      yLabels: ["APP_RESPONSE","CPU_HEALTH","MEMORY_HEALTH","STORAGE_HEALTH","NETWORK_HEALTH"]};
+    }
+  })
+  .factory("matrixbar", [function(){
+	var matrixChart = function(element, size) {
+		this.element = d3.select(element[0]);
+		//this.data = data;
+		this.chartContainer = this.element;
+		this.width = size.width;
+		this.height = size.height;
+
+		this.initialze();
+	}
+
+	matrixChart.prototype = {
+		initialze: function() {
+			this.drawChart(this.element);
+		},
+
+		drawChart: function(svgEl) {
+			//console.log("draw matrix chart");
+			var that = this;
+
+			if(svgEl[0][0].childNodes.length == 0) {
+				//draw the grid background
+				svgEl.append("rect")
+					.attr("class", "grid-background")
+					.attr("width", this.width)
+					.attr("height", this.height);
+			} else {
+				svgEl.select('rect.grid-background').attr('width', this.width).attr('height', this.height);
+			}
+			this.updateData(svgEl, this.width, this.height);
+		},
+
+		updateData: function(svg, width, height){
+      const data = this.getData();
+			if(!data.numOfColumn || ! data.yLabels) {
+				console.error("wrong data format for matrix")
+				return;
+			}
+			//var colorArray = laygoon.common.colorArray;
+			// create rect with class "date" for num of data length and position each rect.
+			var numOfColumn = data.numOfColumn,
+				numOfRow = data.yLabels && data.yLabels.length;
+			this.numOfRow = numOfRow;
+			this.numOfColumn = numOfColumn;
+			var	cellWidth = width / numOfColumn,
+				cellHeight = height / numOfRow;
+			var heatMap = svg.selectAll(".date")
+			.data(data.timeSeries);
+			heatMap.exit().remove();
+			heatMap.enter().append("rect").attr("class", "date");
+      heatMap.style("fill", function(d) {
+				return this.getColorByGrade(d.g - 1); }.bind(this));
+			heatMap.attr("width", cellWidth);
+			heatMap.attr("height", cellHeight);
+			heatMap.attr("x", function(d) {
+				return d.col * cellWidth;
+				});
+			heatMap.attr("y", function(d) { return d.row * cellHeight; });
+		},
+
+		changeSize: function(size) {
+			//console.log("change matrix size");
+			this.width = size.width;
+			this.height = size.height;
+
+			var cellWidth = this.width / this.numOfColumn;
+			var cellHeight  = this.height / this.numOfRow;
+			//update rect grid-background
+			this.element.select('rect.grid-background').attr('width', this.width).attr('height', this.height);
+			//update rect date
+			this.element.selectAll('rect.date')
+			   .attr("x", function(d){
+				  // //console.log(cellWidth);
+				   return d.col * cellWidth;})
+			   .attr("y", function(d){ return d.row * cellHeight; })
+			   .attr("width", cellWidth)
+			   .attr("height", cellHeight);
+		},
+
+		refreshChart: function() {
+			//this.data = data;
+			this.drawChart(this.element);
+		},
+
+		destroy: function() {
+			//this.element.selectAll("*").remove();
+			this.element.html(null);
+			// this.data = [];
+			//console.log('destroy-martrux');
+		},
+
+    getColorByGrade(grade) {
+  		const colors = ["#DB1B1B", "#FF6321", "#FFD033", "#7BDC2A", "#DDDDDD"];
+      const rnd = Math.floor(Math.random() * 5);
+      return colors[rnd];
+  	},
+
+    getData(){
+      const timeSeries = [];
+      const rows = 5;
+      const cols = 3600;
+      for(let i = 0; i < rows; i++) {
+        for(let j = 0; j < cols; j++) {
+          timeSeries.push({col: j, row: i, grade: Math.random()});
+        }
+      }
+      return {numOfColumn: cols, timeSeries, changedFlag: Math.random(),
+      yLabels: ["APP_RESPONSE","CPU_HEALTH","MEMORY_HEALTH","STORAGE_HEALTH","NETWORK_HEALTH"]};
+    }
+
+	}
+
+	return matrixChart;
+}]);
+
+
+  </script>
+</html>

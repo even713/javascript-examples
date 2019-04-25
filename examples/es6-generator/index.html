@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Generator test</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// function *bear(){
+	// 	console.log("1");
+	// 	let kind = yield;
+	// 	console.log(kind + 2);
+	// 	yield;
+	// 	console.log(3);
+	// }
+
+	// var Bear = bear();
+	// Bear.next();
+function assert(a, b){
+	return a == b;
+}
+function* demo() {
+  var res = yield 10;
+  assert(res === 32);
+  return 42;
+}
+
+var d = demo();
+var resA = d.next();
+console.log(resA)
+// => {value: 10, done: false}
+var resB = d.next(32);
+console.log(resB);
+// => {value: 42, done: true}
+//if we call d.next() again it throws an error	
+console.log(d.next());
+</script>
+</html>

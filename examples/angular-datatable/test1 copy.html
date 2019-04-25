@@ -1,0 +1,180 @@
+<html ng-app="showcase.angularWay.withOptions">
+<link rel="stylesheet" href="../../vendor/angular-plugin/angular-datatables.css">
+<link rel="stylesheet" href="../../vendor/datatable/jquery.dataTables.min.css">
+<link rel="stylesheet" href="../../vendor/datatable/dataTables.responsive.css">
+
+<body>
+<div ng-controller="AngularWayWithOptionsCtrl as showCase">
+    <!-- <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="row-border hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>FirstßName</th>
+            <th>LastName</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="person in showCase.persons track by person.id">
+            <td>{{ person.id }}</td>
+            <td>{{ person.firstName }}</td>
+            <td>{{ person.lastName }}</td>
+        </tr>
+        </tbody>
+    </table> -->
+<div>
+    <input type="button" ng-click="showCase.changeData()" value="Change Data"/>
+</di>
+    <table class="my-dt row-border hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>Phone</th>
+            <th>Company</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- <tr>
+            <td>1</td>
+            <td>Foo</td>
+            <td>Bar</td>
+        </tr>
+        <tr>
+            <td>123</td>
+            <td>Someone</td>
+            <td>Youknow</td>
+        </tr>
+        <tr>
+            <td>987</td>
+            <td>Iamout</td>
+            <td>Ofinspiration</td>
+        </tr> -->
+        <tr ng-repeat="person in showCase.persons track by person.id">
+            <td>{{ person.id }}</td>
+            <td>{{ person.firstName }}</td>
+            <td>{{ person.lastName }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.phone }}</td>
+            <td>{{ person.company }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/datatable/jquery.dataTables.js"></script>
+<script src="../../vendor/datatable/dataTables.responsive.js"></script>
+<script src="../../vendor/angularjs/angular-1.4.5.js"></script>
+<script src="../../vendor/angular-plugin/angular-datatables.js"></script>
+<script src="../../vendor/angular-plugin/angular-resource.js"></script>
+
+<script>
+angular.module('showcase.angularWay.withOptions', ['datatables', 'ngResource'])
+.controller('AngularWayWithOptionsCtrl', AngularWayWithOptionsCtrl);
+
+function AngularWayWithOptionsCtrl($resource, DTOptionsBuilder, DTColumnDefBuilder, $timeout) {
+    var vm = this;
+    vm.persons = [];
+    // vm.dtOptions = DTOptionsBuilder.newOptions();
+    // //.withPaginationType('full_numbers').withDisplayLength(2);
+    // // //console.log(vm.dtOptions);
+    // // vm.dtOptions = {
+    // //     iDisplayLength: 2,
+    // //     sPaginationType: "full_numbers"
+    // // }
+    // vm.dtColumnDefs = [
+    //     DTColumnDefBuilder.newColumnDef(0),
+    //     DTColumnDefBuilder.newColumnDef(1).notVisible(),
+    //     DTColumnDefBuilder.newColumnDef(2).notSortable()
+    // ];
+    // console.log(vm.dtColumnDefs);
+    // /*$resource('data.json').query().$promise.then(function(persons) {
+    //     vm.persons = persons;
+    // });*/
+    vm.persons = [{
+        "id": 860,
+        "firstName": "Superman",
+        "lastName": "Yoda",
+        "age": 20,
+        "phone": "1234334343",
+        "company": "uila"
+    }, {
+        "id": 870,
+        "firstName": "Foo",
+        "lastName": "Whateveryournameis",
+        "age": 20,
+        "phone": "1234334343",
+        "company": "uila"
+    }, {
+        "id": 590,
+        "firstName": "Toto",
+        "lastName": "Titi",
+        "age": 20,
+        "phone": "1234334343",
+        "company": "uila"
+    }];
+
+    vm.changeData = function(){
+            vm.persons = [{
+                "id": 860,
+                "firstName": "Superman",
+                "lastName": "Yoda",
+                "age": 20,
+                "phone": "1234334343",
+                "company": "uila"
+            }, {
+                "id": 590,
+                "firstName": "Toto",
+                "lastName": "Titi",
+                "age": 21,
+                "phone": "1234334343",
+                "company": "uila"
+            }, {
+                "id": 803,
+                "firstName": "Luke",
+                "lastName": "Kyle",
+                "age": 20,
+                "phone": "1234334343",
+                "company": "uila"
+            }, {
+                "id": 476,
+                "firstName": "Zed",
+                "lastName": "Kyle",
+                "age": 20,
+                "phone": "1234334343",
+                "company": "uila"
+            }];
+
+            var ary = vm.persons.map(function(d){
+                return [d.id, d.firstName, d.lastName];
+            });
+            console.log(ary);
+            $timeout(function(){
+                var dt = $(".my-dt").DataTable();
+                var trs = $('.my-dt tbody').children();
+                debugger;
+                //console.log(trs);
+                /*dt.clear().draw();
+                $timeout(function(){
+                    dt.rows.add(ary).draw();
+                }, 1000)*/
+                //dt.clear().rows.add(trs)//.draw();
+            }, 100);
+    }
+
+    $timeout(function(){
+        /*$(".my-dt").DataTable({
+            retrieve: true,
+            responsive: {
+                type: 'inline'
+            }
+        });*/
+        $(".my-dt").dataTable();
+    }, 1000);    
+}
+
+</script>
+</html>

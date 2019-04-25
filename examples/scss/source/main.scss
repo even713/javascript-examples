@@ -1,0 +1,179 @@
+@import "variables";
+@import "mixin";
+
+$baseline: 0.2em;
+
+body{
+  margin: 0;
+  div {
+    background: $bg1;
+    &.title {
+      font-size: $baseline;
+      font-weight: bold;
+      a {
+        color: #fff;
+        &:hover{
+          background: lighten($bg1, 20);
+        }
+      }
+    }
+  }
+
+  div.health-grade-2{
+    @include grade-2;
+    width: (100%/5);
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+  }
+}
+
+##{$selector1} {
+  background-color: red;
+}
+
+p {
+  $font-size: 0pt;
+  $line-height: 30px;
+  font-size: $font-size + $line-height;
+}
+
+$w: 10;
+p:before {
+  content: "I ate #{5+$w} pies";
+}
+
+%message-shared{
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success{
+  @extend %message-shared;
+  border-color: green;
+}
+
+.error{
+  @extend %message-shared;
+  border-color: red;
+}
+
+@mixin msg-shared {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success-msg{
+  @include msg-shared;
+  border-color: green;
+}
+
+// list
+$pages: ('blog', 'news');
+
+@each $page in $pages {
+  .#{$page} {
+    background: fadeout(#ccc, 0.7);
+    width: round(percentage(50/120));
+  }
+}
+
+// map
+$colors: (
+  primary: 'red',
+  secondary: 'white'
+);
+
+.test {
+  background: map-get($colors, primary);
+  @extend .success-msg;
+}
+
+// for
+@for $i from 1 through 4 {
+
+}
+
+@import "component1";
+
+%foo {
+  content: 'foo';
+}
+
+@media print {
+  .bar {
+
+    @at-root(without: media) {
+      @extend %foo;
+    }
+  }
+}
+
+@mixin size($width, $height: 0) {
+  width: $width;
+  height: $height;
+}
+@mixin boxshadow($shadow) {
+  box-shadow: $shadow;
+}
+// @mixin dummy($a, $b, $c) {
+//   // font-size: $a;
+//   // width: $b;
+//   height: $c;
+// }
+//
+.div1 {
+  //@include size($width: 24px, $height: 12px);
+  // @include size(30px, 30px);
+
+  //$params: 40px, 30px;
+  //@include size($params...);
+
+  // $params: (300px, 30px);
+  // @include size(nth($params, 1), nth($params, 2));
+
+  $params: (
+    'height': 20px,
+    'width': 30px
+  );
+  @include size($params...);
+
+  @include boxshadow(10px 10px 20px #333);
+}
+// @include dummy('12px', '42px', '30px');
+
+// @mixin transform($property) {
+//   -webkit-transform: $property;
+//       -ms-transform: $property;
+//           transform: $property;
+// }
+//
+// .box { @include transform(rotate(30deg)); }
+
+$z-indexes: (
+  'modal': 5000,
+  'dropdown': 4000,
+  'default': 1,
+  'below': -1,
+);
+
+/// Get a z-index value from a layer name
+/// @access public
+/// @param {String} $layer - Layer's name
+/// @return {Number}
+/// @require $z-indexes
+@function z($layer) {
+  @debug $layer;
+  @if not map-has-key($z-indexes, $layer) {
+    @error 'There is no layer named `#{$layer}` in $z-indexes. '
+         + 'Layer should be one of #{map-keys($z-indexes)}.';
+  }
+
+  @return map-get($z-indexes, $layer);
+};
+
+.div2 {
+  z-index: z('modal')
+}

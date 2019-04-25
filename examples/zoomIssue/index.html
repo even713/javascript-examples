@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Zoom issue</title>
+    <!-- <link rel="stylesheet" href="https://devportal.uila.com/2.3.0.4e3d1d2/gulp/index_all.css"> -->
+
+    <!-- <link rel="stylesheet" href="http://localhost:8080/2.3.0.%7BVER_REPLACE%7D/css/common.css"> -->
+    <!-- <link rel="stylesheet" href="http://localhost:8080/2.3.0.%7BVER_REPLACE%7D/css/main.css"> -->
+
+    <style media="screen">
+      table th, table td{
+        border-left: 1px solid blue;
+        border-top: 1px solid blue;
+      }
+
+      body{
+        font-size: 16px;
+      }
+
+      .padded {
+        font-size: 16px;
+        padding: 1em;
+        border: 1px solid red;        1
+      }
+
+      .popover{
+        width: 40em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="padded">
+      hello this is 16px with 1em padding
+    </div>
+
+    <div class="popover in ui-draggable" role="tooltip" id="popover753506" style="top: 289.969px; left: 279.969px; display: block;"><div class="arrow"></div><h3 class="popover-title"><span><i class="fa fa-comment" style="margin-right: 5px;"></i></span><span>VM Network</span><a href="javascript:void(0)" rel="tooltip" data-placement="bottom" data-original-title="Close" class="pull-right close"><i class="fa fa-times"></i></a></h3><div class="popover-content"><div id="tip-id-48"><div data-ng-controller="sankeyTooltipClikCtrl" class="sankey-tooltip-click-view b-tooltip-template-base-style ng-scope">
+	<!-- ngIf: d.hasFromLinks --><div data-ng-if="d.hasFromLinks" class="fromlink text-center ng-scope">
+		<div class="title ng-binding">Traffic Flow From</div>
+		<div class="b-tooltip-template-base-style__content">
+			<div>
+				<table class="b-tooltip-template-base-style__table">
+					<thead>
+						<tr class="b-tooltip-template-base-style__head-tr">
+							<!-- ngIf: isAPI!=true --><th class="b-tooltip-template-base-style__table-header ng-binding ng-scope" ng-if="isAPI!=true">VSwitch</th><!-- end ngIf: isAPI!=true -->
+							<!-- ngIf: isAPI==true -->
+							<th class="b-tooltip-template-base-style__table-header ng-binding">Total Bytes</th>
+							<th class="b-tooltip-template-base-style__table-header">%</th>
+							<th class="b-tooltip-template-base-style__table-header ng-binding">Network Response Time</th>
+							<th class="b-tooltip-template-base-style__table-header ng-binding">Fatal Retries</th>
+							<!-- ngIf: isAPI!=true --><th class="b-tooltip-template-base-style__table-header ng-binding ng-scope" ng-if="isAPI!=true">Virtual Packet Drop</th><!-- end ngIf: isAPI!=true -->
+							<th class="b-tooltip-template-base-style__table-header ng-binding">Zero Window</th>
+							<th class="b-tooltip-template-base-style__table-header ng-binding">Reset</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="b-tooltip-template-base-style__table-body traffic-flow-from">
+				<table class="b-tooltip-template-base-style__table">
+					<tbody>
+						<!-- ngRepeat: ele in d.fromList --><tr data-ng-repeat="ele in d.fromList" class="ng-scope">
+							<td title="vSwitch0" class="ng-binding">vSwitch0</td>
+							<td class="ng-binding">35.98 GB</td>
+							<td class="ng-binding">100%</td>
+							<!-- ngIf: ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: ele.netResponseTime != 'N/A' --><td data-ng-if="ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade--6">17 ms</td><!-- end ngIf: ele.netResponseTime != 'N/A' -->
+							<td>
+								<span class="b-tooltip-template-base-style__grade--6">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade--6">0</span>
+							</td>
+							<!-- ngIf: isAPI!=true --><td ng-if="isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade--6">35003460</span>
+								/
+								<span class="b-tooltip-template-base-style__grade--6">0</span>
+							</td><!-- end ngIf: isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="14/426">14/426</td>
+						</tr><!-- end ngRepeat: ele in d.fromList -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div><!-- end ngIf: d.hasFromLinks -->
+	<div class="currentNode text-center">
+		<!-- ngIf: isAPI!=true --><div class="title ng-binding ng-scope" ng-if="isAPI!=true">PortGroup: VM Network</div><!-- end ngIf: isAPI!=true -->
+		<!-- ngIf: isAPI==true -->
+		<div class="b-tooltip-template-base-style__content">
+			<table class="b-tooltip-template-base-style__table">
+				<thead>
+					<tr class="b-tooltip-template-base-style__head-tr">
+						<th class="b-tooltip-template-base-style__table-header ng-binding">Total Bytes</th>
+						<th class="b-tooltip-template-base-style__table-header ng-binding">Network Response Time</th>
+						<th class="b-tooltip-template-base-style__table-header ng-binding">Fatal Retries</th>
+						<!-- ngIf: isAPI!=true --><th class="b-tooltip-template-base-style__table-header ng-binding ng-scope" ng-if="isAPI!=true">Virtual Packet Drop</th><!-- end ngIf: isAPI!=true -->
+						<th class="b-tooltip-template-base-style__table-header ng-binding">Zero Window</th>
+						<th class="b-tooltip-template-base-style__table-header ng-binding">Reset</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="ng-binding">35.98 GB</td>
+						<!-- ngIf: d.nodeInfo.netResponseTime != 'N/A' --><td data-ng-if="d.nodeInfo.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">1 ms</td><!-- end ngIf: d.nodeInfo.netResponseTime != 'N/A' -->
+						<!-- ngIf: d.nodeInfo.netResponseTime == 'N/A' -->
+						<td>
+							<span class="b-tooltip-template-base-style__grade-0">0</span>
+							/
+							<span class="b-tooltip-template-base-style__grade-0">0</span>
+						</td>
+						<!-- ngIf: isAPI!=true --><td ng-if="isAPI!=true" class="ng-scope">
+							<span class="b-tooltip-template-base-style__grade-0">0</span>
+							/
+							<span class="b-tooltip-template-base-style__grade-0">0</span>
+						</td><!-- end ngIf: isAPI!=true -->
+						<td class="ng-binding">0/0</td>
+						<td class="reset ng-binding" title="44/1065">44/1065</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- ngIf: d.hasToLinks --><div data-ng-if="d.hasToLinks" class="text-center ng-scope">
+		<div class="title ng-binding">Traffic Flow To
+		</div>
+		<div class="b-tooltip-template-base-style__content traffic-flow-to">
+			<div>
+				<table class="b-tooltip-template-base-style__table">
+					<thead>
+						<tr class="b-tooltip-template-base-style__head-tr">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && ((isAPI!=true && !standardUser && !isFreemiumUser) || isAPI==true) -->
+							<th class="b-tooltip-template-base-style__table-header ng-binding">VM</th>
+							<th class="b-tooltip-template-base-style__table-header ng-binding">Total Bytes</th>
+							<th class="b-tooltip-template-base-style__table-header">%</th>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<th class="b-tooltip-template-base-style__table-header ng-binding">Network Response Time</th>
+							<th class="b-tooltip-template-base-style__table-header ng-binding">Fatal Retries</th>
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><th class="b-tooltip-template-base-style__table-header ng-binding ng-scope" data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true">Virtual Packet Drop</th><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<th class="b-tooltip-template-base-style__table-header ng-binding">Zero Window</th>
+							<th class="b-tooltip-template-base-style__table-header ng-binding">Reset</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="b-tooltip-template-base-style__table-body">
+				<table class="b-tooltip-template-base-style__table">
+					<tbody>
+						<!-- ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="LotusNote_7.5-s1" class="ng-scope"><div class="ng-binding">LotusNote_7.5-s1</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">35.96 GB</td>
+							<td class="ng-binding">99.93%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">0 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/426">0/426</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Virtual Information Controller-portal-1.19-ova" class="ng-scope"><div class="ng-binding">Virtual Information Controller-portal-1.19-ova</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">12.20 MB</td>
+							<td class="ng-binding">0.03%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">2 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="4/0">4/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="VIC-1.28-223" class="ng-scope"><div class="ng-binding">VIC-1.28-223</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">5.82 MB</td>
+							<td class="ng-binding">0.02%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">0 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="DEV-UMAS-VIC" class="ng-scope"><div class="ng-binding">DEV-UMAS-VIC</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">2.91 MB</td>
+							<td class="ng-binding">0.01%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">0 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="10/0">10/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="VIC-1.28-225" class="ng-scope"><div class="ng-binding">VIC-1.28-225</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">2.06 MB</td>
+							<td class="ng-binding">0.01%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">0 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Mssql-Server" class="ng-scope"><div class="ng-binding">Mssql-Server</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">1.68 MB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">1 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">1</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-4-iST" class="ng-scope"><div class="ng-binding">Uila-vST-4-iST</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">939.78 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">0 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="VIC-2.0-53-223" class="ng-scope"><div class="ng-binding">VIC-2.0-53-223</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">305.23 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-123456790-esxhost3.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-123456790-esxhost3.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">252.99 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">21660</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Postgres-Server" class="ng-scope"><div class="ng-binding">Postgres-Server</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">155.70 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">0 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-123456789-esxhost3.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-123456789-esxhost3.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">96.21 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">7726</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-123456789-esxhost2.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-123456789-esxhost2.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">93.86 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-000000302-esxhost2.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-000000302-esxhost2.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">93.61 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">0 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-123456790-esxhost5.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-123456790-esxhost5.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">88.93 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-3">8779517</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-000088888-esxhost1.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-000088888-esxhost1.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">87.5 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">2</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-123456790-esxhost1.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-123456790-esxhost1.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">86.92 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-123456790-esxhost2.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-123456790-esxhost2.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">86.80 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-000088888-esxhost3.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-000088888-esxhost3.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">86.76 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">19232</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-000088888-esxhost2.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-000088888-esxhost2.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">86.56 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-000001071-esxhost1.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-000001071-esxhost1.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">53.52 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Vst-pktgen" class="ng-scope"><div class="ng-binding">Vst-pktgen</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">47.81 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-000001071-esxhost3.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-000001071-esxhost3.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">30.42 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">1710</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-000001071-esxhost5.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-000001071-esxhost5.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">28.94 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-3">8518713</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="Uila-vST-000001071-esxhost2.mydatacenter.com" class="ng-scope"><div class="ng-binding">Uila-vST-000001071-esxhost2.mydatacenter.com</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">24.18 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' --><td data-ng-if="d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A'" class="ng-binding ng-scope">N/A</td><!-- end ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="WC-01-COPY" class="ng-scope"><div class="ng-binding">WC-01-COPY</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">1.49 KB</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">0 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList --><tr data-ng-repeat="ele in d.toList" class="ng-scope">
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI!=true && !standardUser && !isFreemiumUser -->
+							<!-- ngIf: d.nodeType == 'VMData' && d.toNodeType=='Classifier' && isAPI==true -->
+							<!-- ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 --><td data-ng-if="d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' &amp;&amp; ele.subGrade == -1" title="WC-01+COPY" class="ng-scope"><div class="ng-binding">WC-01+COPY</div></td><!-- end ngIf: d.toNodeType != 'Classifier' || d.toNodeType =='Classifier' && ele.subGrade == -1 -->
+							<!-- ngIf: d.toNodeType  == 'Classifier' && ele.subGrade != -1 -->
+							<td class="ng-binding">976 B</td>
+							<td class="ng-binding">0%</td>
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' || ele.netResponseTime == 'N/A' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; ele.netResponseTime != 'N/A'" class="b-tooltip-template-base-style__grade-0">0 ms</td><!-- end ngIf: d.toNodeType != 'Classifier' && ele.netResponseTime != 'N/A' -->
+							<!-- ngIf: d.toNodeType == 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' --><td data-ng-if="d.toNodeType != 'Classifier'" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' -->
+							<!-- ngIf: d.toNodeType != 'Classifier' && isAPI!=true --><td data-ng-if="d.toNodeType != 'Classifier' &amp;&amp; isAPI!=true" class="ng-scope">
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+								/
+								<span class="b-tooltip-template-base-style__grade-0">0</span>
+							</td><!-- end ngIf: d.toNodeType != 'Classifier' && isAPI!=true -->
+							<td class="ng-binding">0/0</td>
+							<td class="reset ng-binding" title="0/0">0/0</td>
+						</tr><!-- end ngRepeat: ele in d.toList -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div><!-- end ngIf: d.hasToLinks -->
+	<div class="b-tooltip-template-base-style__form-actions">
+		<!-- ngIf: d.validatedLink -->
+		<div class="row flowAnalysis-filter">
+			<div class="col-md-12">
+				<i class="b-tooltip-template-base-style__icon fa fa-external-link-square pull-left">
+					<a class="b-tooltip-template-base-style__action ng-binding" href="javascript:void(0)">Filter
+					</a>
+				</i>
+			</div>
+		</div>
+		<!-- ngIf: isAPI!=true --><!-- ngIf: isAPI!=true --><!-- end ngIf: isAPI!=true --><!-- ngIf: isAPI!=true --><!-- end ngIf: isAPI!=true -->
+		<!-- ngIf: isAPI!=true --><!-- ngIf: isAPI!=true --><!-- end ngIf: isAPI!=true --><!-- ngIf: isAPI!=true --><!-- end ngIf: isAPI!=true -->
+		<!-- ngIf: isAPI==true && d.nodeType=='VMData' -->
+	</div>
+</div></div></div></div>
+  </body>
+</html>

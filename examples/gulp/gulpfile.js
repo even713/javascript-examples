@@ -1,5 +1,6 @@
 var gulp = require("gulp");
 var minifyInline = require("gulp-minify-inline");
+var connect = require('gulp-connect');
 var concat = require("gulp-concat");
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
@@ -41,4 +42,8 @@ gulp.task('usemin-index', function () {
 //gulp.task('default', ['minify-inline']);
 gulp.task('default', ['watch']);
 //gulp.task('default', ['usemin-index'])
-
+gulp.task('connect', function() {
+    connect.server({
+        port: 8888
+    });
+});

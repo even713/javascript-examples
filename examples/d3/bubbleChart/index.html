@@ -37,13 +37,18 @@
     </style>
 </head>
 <body>
-
+<div>
+    <button onclick="console.log('UI thread button click')">Click me</button>
+    <input type="text" value=""/>
+</div>
     <div class="container">
         <div class="action chart-1-actions">
             Bubble chart actions:<br/>
             <button onclick="startChart()">Start</button><br/>
             <button  onclick="updateNodes()">Update</button><br/>
-            <button onclick="resizeChart()">Resize</button>
+            <button onclick="resizeChart()">Resize</button><br/>
+            <button onclick="calTime()">Cal Time</button>
+            <button onclick="saveResult()">Save result</button>
         </div>
         <div class="chart chart1"></div>
         <div class="action chart-2-actions">
@@ -56,17 +61,28 @@
     </div>
 </body>
 <script src="/vendor/d3/d3.v35.js"></script>
+<script src="/vendor/jquery/jquery-2.0.2.min.js"></script>
 <!--<script src="https://d3js.org/d3.v3.js"></script>-->
 <script src="BubbleChartClass.js"></script>
 <script src="BubbleChartWithPieClass.js"></script>
 <script>
-     var width = 250 * 2,
-     	 height = 250 * 2,
-             bubbleChart = null,
+    $(function () {
+        for(let i = 0; i < numOfCharts; i++) {
+            $(".chart.chart1").append(`<div class='child${i}'></div>`);
+        }
+    })
+    
+     var width = 50 * 2,
+     	 height = 50 * 2,
+             bubbleChartInstance = [],
              bubblePieChart = null,
-             data;
+             data,
+             numOfCharts = 1,
+             reports = [],
+             startTime = 0;
 
      d3.json("data.json", function(response){
+         response = response.concat(response).concat(response);
          data = convertData(response);
          //data = data.concat(data).concat(data);
          //data = data.concat(data);
@@ -75,7 +91,7 @@
      function resizeChart(){
          width = 300;
          height = 300;
-         bubbleChart.resizeChart(width, height);
+         //bubbleChart.resizeChart(width, height);
      }
 
      function resizePieChart(){
@@ -85,14 +101,61 @@
      }
 
      function startChart(){
-         bubbleChart = new BubbleChartClass({
+         startTime = Date.now();
+         for(let i = 0; i < numOfCharts; i++) {
+             let bubbleChart = new BubbleChartClass({
                  width: width,
                  height: height,
-                 container: ".chart1",
+                 container: `.chart1 .child${i}`,
                  gravity: 0.45,
                  friction: 0.3
              }, data);
+             bubbleChartInstance.push(bubbleChart);
+         }
      }
+
+    function calTime(){
+        let chartsTime = [];
+        for(let i = 0; i < bubbleChartInstance.length;i ++) {
+            let times = [], list = bubbleChartInstance[i].timeList;
+            times.push({name: "new worker", time: list[2] - list[1]});
+            times.push({name: "UI post message to worker", time: list[4] - list[3]});
+            times.push({name: "tick", time: list[6] - list[5]});
+            times.push({name: "worker post message to UI", time: list[8] - list[7]});
+            times.push({name: "create chart total time", time: list[9] - list[0]});
+            chartsTime.push(times);
+            //console.table([{name: "new worker", time: this.timeList[2] - this.timeList[1]},
+            //    {name: "total time",  time: this.timeList[3] - this.timeList[0]}])
+        }
+
+        let result = chartsTime.reduce((total, obj) => {
+            for(let j = 0; j < total.length; j++) {
+                total[j].time += obj[j].time;
+            }
+            return total;
+        }).map(obj => {return {name: obj.name, "average time (ms)": obj.time/bubbleChartInstance.length}});
+        console.table(result);
+        return result;
+    }
+
+    function saveResult(){
+        reports = localStorage.getItem("report");
+        reports = reports ? JSON.parse(reports) : [];
+        let dist = reports.find(r =>r.chartsNum == numOfCharts);
+        if(dist) {
+            dist.cost = calTime();
+            dist.uiCost = bubbleChartInstance[bubbleChartInstance.length -1].timeList[9] - startTime;
+        } else {
+            reports.push({chartsNum: numOfCharts, cost: calTime(),
+            UICost: bubbleChartInstance[bubbleChartInstance.length -1].timeList[9] - startTime});
+        }
+        localStorage.setItem("report", JSON.stringify(reports));
+        reports.sort((a,b) =>a.chartsNum > b.chartsNum).forEach(r => {
+            console.group("Below is cost for " + r.chartsNum + " charts, UI cost total time: "+ r.uiCost  +"");
+            console.table(r.cost);
+            console.groupEnd();
+        })
+    }
 
      function startPieChart(){
          bubblePieChart = new BubbleChartWithPieClass({

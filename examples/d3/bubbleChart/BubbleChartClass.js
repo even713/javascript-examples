@@ -6,8 +6,12 @@ class BubbleChartClass {
         this.width = option.width || 600;
         this.height = option.height || 800;
         this.container = option.container;
+        this.logger = option.logger;
+        this.timeList = [];
 
         this.sourceData = data;
+
+        data && console.log("#bubble", data && data.length);
 
         this.maxTickTime = 60;
 
@@ -16,6 +20,8 @@ class BubbleChartClass {
     }
 
     _create(){
+        this.timeList.push(Date.now()) // t1: start to create
+        //console.time(`${this.container} total time`);
         this._newWorker();
 
         this.svg = d3.select(this.container)
@@ -49,14 +55,18 @@ class BubbleChartClass {
         let n = this.nodesData.length / 6;
         //console.log("run force", n, this.maxTickTime);
         n = Math.max(n, this.maxTickTime);
-        //console.time("force");
+        this.timeList.push(Date.now()) // t6: start to tick
+        //console.time(`${this.logger} force`);
         for (var i = n * n; i > 0; --i) force.tick();
         force.stop();
-        //console.timeEnd("force");
+        this.timeList.push(Date.now()) // t7: end to tick
+        //console.timeEnd(`${this.logger} force`);
     }
 
     _newWorker(){
+        this.timeList.push(Date.now()) // t2: start to create worker
         this.worker = new Worker("bubbleChartWebworker.js");
+        this.timeList.push(Date.now()) // t3: end to create worker
 
         this._postData();
 
@@ -64,6 +74,8 @@ class BubbleChartClass {
             this.nodesData = event.data.nodesData;
             switch (event.data.type) {
                 case "update":
+                    this.timeList = this.timeList.concat(event.data.timeList);
+                    this.timeList.push(Date.now()); // t9: UI receive message from worker
                     this.updateChart(event.data.nodesData);
                 case "resize":
                     this.changeSize(event.data.nodesData)
@@ -72,6 +84,7 @@ class BubbleChartClass {
     }
 
     _postData(eventType){
+        this.timeList.push(Date.now()) // t4: start to post Data to worker
         let postObj = JSON.parse(JSON.stringify(this));
 
         this.worker.postMessage({
@@ -123,6 +136,11 @@ class BubbleChartClass {
         this._groups.select(".bubble")
             .attr("fill", d => d.color)
             .attr("r", d => d.radius);
+        this.timeList.push(Date.now()) // t10: end create chart
+        //console.log(this.timeList);
+        //console.timeEnd(`${this.container} total time`);
+        //console.table([{name: "new worker", time: this.timeList[2] - this.timeList[1]},
+        //    {name: "total time",  time: this.timeList[3] - this.timeList[0]}])
     }
 
     _createGroups(nodesData){

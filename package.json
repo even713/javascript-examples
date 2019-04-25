@@ -13,21 +13,32 @@
   "author": "even713",
   "license": "",
   "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
     "chai": "^3.4.1",
+    "cors": "^2.8.4",
     "critical": "^0.9.0",
+    "express": "^4.16.3",
     "fakerest": "^1.1.4",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
     "gulp-connect": "^2.2.0",
     "gulp-critical-css": "^1.0.1",
+    "gulp-dart-sass": "^0.9.1",
     "gulp-insert": "^0.5.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.19",
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.7",
+    "sass": "^1.10.3",
     "sinon": "^1.17.3",
     "video.js": "^5.6.0"
   },
   "scripts": {
     "test": "karma start karma.conf.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2"
   }
 }

@@ -1,0 +1,142 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		$http header settings
+	</title>
+
+</head>
+<body ng-controller="myController">
+    <button ng-click="add()">Add item</button>
+		<button ng-click="changeFromDirective()">Change from directive</button>
+    <h2 ng-if="isLoading">Loading...</h2>
+    <li ng-repeat="item in list track by $index">
+			{{item.nodeName}}
+      <!-- <div ng-if="test==true" style="padding: 15px; border: 1px solid red;">
+				<h2>{{item.appData[0].nodeStatus}}</h2>
+        <my-directive data="item"></my-directive>
+      </div> -->
+    </li>
+
+
+	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+	<script type="text/javascript">
+	angular.module("Demo", [])
+
+.service("api", function($q){
+	let data = [
+        {
+        	nodeName: "vm1",
+        	appData: [
+        	{
+            nodeStatus: 0,
+            version: 1
+          }
+        ]},
+				{
+					nodeName: 'vm2'
+				},
+				{
+					nodeName: 'vm3'
+				}
+      ],
+      counter = 4;
+
+  // let newData = [
+  // {id: 4, name: "hehe", color: "#8800FF"},
+	// 			{id: 1, name: "linda", color: "red"},
+  //       {id: 2, name: "I'm changed", color: "blue"},
+  //       {id: 5, name: "Hello", color: "yellow"},
+  // ]
+	let newData = [
+		{nodeName: 'vm4'},
+		{nodeName: 'vm3'},
+		{nodeName: 'vm6'}
+	]
+
+	this.getList = function(){
+  	let defer = $q.defer();
+
+    setTimeout(function(){
+    	defer.resolve(data);
+    }, 0);
+    return defer.promise;
+  }
+
+  this.add = function(name, color){
+
+    	// data[0].appData[0].nodeStatus = 1;
+    data = newData;
+    //data.push({id: 3, name: name, color: color});
+    counter ++;
+  }
+})
+.controller("myController", function($scope, api){
+	$scope.isLoading = false;
+
+	$scope.test = true;
+
+  let counter = 0;
+
+  $scope.add = function(){
+  	let name = "new" + counter,
+    		color = "#000";
+    api.add(name, color);
+    counter ++;
+    refreshList();
+  }
+
+	$scope.changeFromDirective = function(){
+		$scope.$broadcast("changeData");
+	}
+
+  refreshList();
+
+  function refreshList(){
+  	$scope.isLoading = true;
+    api.getList().then(function(data){
+    	$scope.list = [];
+			$scope.list = data;
+      $scope.isLoading = false;
+    })
+  }
+})
+.directive("myDirective", function(){
+	return {
+  	scope: {
+    	data: '='
+    },
+    template: `<h3>My Directive</h3>`,
+  	link: function($scope, element){
+    	console.log("linked...");
+      $scope.$watch('data', function(){
+      	console.log('data changed');
+      })
+
+			$scope.$on("changeData", function(){
+				let data = {
+        	nodeName: "vm1",
+        	appData: [
+        	{
+            nodeStatus: 3,
+            version: 1
+          }
+        ]};
+				for(let d in data) {
+					$scope.data[d] = data[d];
+				}
+			})
+    }
+  }
+})
+
+
+
+	</script>
+
+</body>
+</html>

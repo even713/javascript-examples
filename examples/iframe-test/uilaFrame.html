@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Uila</title>
+  </head>
+  <body>
+    <h1>This is Uila App</h1>
+    <input type="button" name="" value="Call API One" onclick="changeData()">
+  </body>
+  <script type="text/javascript">
+  // changeData();
+  // let childDomain = document.domain;
+  //     document.domain = childDomain;
+  document.domain = document.domain;
+
+    function apiOne(){
+      alert("this is api One from child");
+    }
+
+    function callParentAPI(){
+      parent.APIOne();
+    }
+
+    function changeData(){
+
+      //debugger;
+      //window.name = "isIdle";
+    }
+
+    function getUilaStatus(){
+      return "isIdle";
+    }
+
+    window.onload = function(){
+      window.addEventListener('message', function(event){
+        if (event.origin !== "http://localhost:8081")
+          return;
+        if(event.data == "callUilaAPIOne") {
+          apiOne();
+        }
+      });
+    }
+  </script>
+</html>

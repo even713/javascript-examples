@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>From chrome demo</title>
+  </head>
+  <body>
+    <div class="timerange">
+      <a href="#" id="create">Create</a>
+    </div>
+
+    <!-- <button type="button" id="create" name="button">Create</button> -->
+  </body>
+  <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+  <script type="text/javascript">
+  var Test = class {
+    constructor(){
+      this.data = [];
+      this.xxx = {
+        a:1, b:2
+      }
+    }
+
+    create() {
+      //this.data = null;
+      const data = [];
+      var ul = document.createElement('ul');
+      for (var i = 0; i < 1000; i++) {
+        var li = document.createElement('li');
+        ul.appendChild(li);
+        data.push(li);
+      }
+
+      this.data = data;
+      this.m = this.xxx;
+    }
+  }
+
+  //var detachedNodes;
+const test = new Test();
+  function create() {
+    // var ul = document.createElement('ul');
+    // for (var i = 0; i < 10; i++) {
+    //   var li = document.createElement('li');
+    //   ul.appendChild(li);
+    // }
+    // const detachedNodes = ul;
+
+    // const test = new Test();
+    test.create();
+  }
+
+window.onload = function() {
+  let testTimer = null;
+
+  $(".timerange").on("mouseover", "#create", function(event){
+      console.log("over")
+      event.stopPropagation();
+
+        if(testTimer) {
+					clearInterval(testTimer);
+					testTimer = null;
+					return;
+				}
+				testTimer = setInterval(function () {
+          let oneMin = 1 * 60 * 1000;
+  				oneMin = null;
+          //console.log("hehe")
+					//that.setTimeRange(that.startTime - oneMin, that.endTime - oneMin, false, that.startTime - oneMin, that.endTime - oneMin,'CUSTOM', false, true, false, "btn-range");
+				}, 0.5 * 1000);
+			});
+
+  // document.getElementById('create').addEventListener('click', function(){
+	// 			let oneMin = 1 * 60 * 1000;
+	// 			oneMin = null;
+	// 		});
+}
+
+  // document.getElementById('create').addEventListener('click', create);
+  </script>
+</html>

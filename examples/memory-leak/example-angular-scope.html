@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>From chrome demo</title>
+  </head>
+  <body ng-controller="mainPageCtrl">
+    <div class="timerange">
+      <a href="#" id="create" ng-click="create()">Create</a>
+      <div class="container">
+        <ul>
+          <li>Test</li>
+          <li ng-repeat="d in list ">{{d.grade}}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- <button type="button" id="create" name="button">Create</button> -->
+  </body>
+  <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+  <script src="../../vendor/angularjs/angular-1.4.5.js"></script>
+  <script type="text/javascript">
+  angular.module("myApp", [])
+  .controller("mainPageCtrl", function($scope, diagram, $interval) {
+    $scope.startTime = 1542948600000;
+    $scope.endTime = 1542952199999;
+
+    const refresh = function() {
+      // const ul = $(".container ul");
+      // $(".container ul").empty();
+      const data = diagram.getData($scope.startTime, $scope.endTime);
+      // const list = data.timeSeries.slice(0);
+      $scope.list = data.timeSeries.slice(0);
+      // for(let i = 0; i < 24 * 60; i ++) {
+      //   // $(".container ul").append("<li>"+ list[i].grade +"</li>")
+      //   ul.append("<li>"+ Math.random() +"</li>")
+      // }
+    }
+
+    $scope.create = function () {
+      let timer = null;
+      const times = 30; //12 * 60;
+      let count = 0;
+
+      timer = $interval(function () {
+        refresh();
+        count ++;
+        if(count === times) {
+          $interval.cancel(timer);
+          timer = null;
+        }
+      }, 1.5 * 1000)
+
+      //refresh();
+
+    }
+  }).
+  service("diagram", function() {
+    this.getData = function(startTime, endTime) {
+      const timeSeries = [];
+      const nums = 24 * 60;
+      for(let i = 0; i < nums; i++) {
+        timeSeries.push({col: 1, row: i, grade: Math.random()});
+      }
+      return {numOfVm: 60, timeSeries, changedFlag: Math.random()};
+    }
+  });
+
+
+  </script>
+</html>

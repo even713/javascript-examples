@@ -1,0 +1,45 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		AngularJS Async practise
+	</title>
+
+</head>
+<body ng-controller="pageController">
+
+	<h1>
+		AngularJS Async practise
+	</h1>
+
+
+	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+	<script type="text/javascript">
+	// traditional way:
+	angular.module("Demo", [])
+	.controller('pageController', function($http, $scope){
+		var conf = {
+			method: 'GET',
+			url: 'test.json'
+		};
+
+		$http(conf).then(function(response){
+			console.log(response.data);
+		}, function(){
+			console.log("error");
+		}).finally(function(){
+			console.log("finally");
+		});
+
+});
+
+
+
+	</script>
+
+</body>
+</html>

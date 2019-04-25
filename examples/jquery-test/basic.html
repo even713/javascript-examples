@@ -1,0 +1,23 @@
+<html>
+<script src="../../vendor/jquery/jquery-2.2.4.js"></script>
+<style>
+div{
+	padding: 10px;
+	border: 1px solid red;
+}
+</style>
+<div class="container"></div>
+<body>
+<input type="button" value="test $" onclick="testA()"/>
+<script>
+function testA(){
+	for(var i = 0; i < 1000; i++) {
+		var div = $("<div><span>test"+ i +"</span></div>");
+		var text = div.find("span").text();
+		console.log(text);
+	}
+}
+
+</script>
+</body>
+</html>

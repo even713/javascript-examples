@@ -1,0 +1,5 @@
+$grade2: #FFF !default;
+@mixin grade-2{
+  background-color: $grade2;
+  color: #000;
+}

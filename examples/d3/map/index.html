@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>d3 map</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0
+      }
+      .country {
+        fill: none;
+                stroke: #FFF;
+                stroke-width: 1px;
+      }
+
+      .container .chart svg{
+        /* background: #333; */
+      }
+      .container .chart svg .marker text{
+        font-weight: bold;
+        /* alignment-baseline: middle; */
+        /* text-anchor:middle; */
+      }
+
+      .graticule {
+                fill: none;
+                stroke: #aaa;
+                stroke-opacity: .5;
+                stroke-width: .5px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chart">
+
+        </div>
+    </div>
+</body>
+<script src="/vendor/d3/d3.v3.js"></script>
+<script src="/vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="/vendor/topojson.v2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.3/d3-tip.min.js"></script>
+<!--<script src="https://d3js.org/d3.v3.js"></script>-->
+<script>
+let projection
+function drawChart() {
+  // const width = $(".container .chart").width(),
+  //     height = window.innerHeight;
+  const width = 1000,
+        height = 500;
+
+  const zoom = d3.behavior.zoom()
+          // .scaleExtent([1, 1])
+          .on("zoom", function(){
+              // console.log("zoom", d3.event.translate, d3.event.scale);
+              svg
+              .attr("transform", "translate(" + d3.event.translate + ") scale(" + d3.event.scale + ")");
+          });
+
+// issue1: why .call need to be before append "g": http://bl.ocks.org/sgruhier/1d692762f8328a2c9957
+// while this demo doesn't : https://bl.ocks.org/mbostock/6123708
+// todo: tried to adjust order in test2.html simple demo
+  const svg = d3.select(".container .chart").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .call(zoom)
+      .append("g")
+      .attr("class", "map-group")
+    // .attr("style", "background: grey");
+
+var graticule = d3.geo.graticule();
+
+  // svg.append("g")
+  //     .attr("class", "map-group")
+  //     //.attr("transform", "translate(0, 0)")
+  //     .call(zoom);
+  // svg.call(zoom);
+
+  // projection
+  projection = d3.geo.mercator()
+                    .translate([width, height])//Q: translate的数值和比出来的不太一样
+                    .scale(350);
+
+  const path = d3.geo.path().projection(projection);
+
+  d3.json("worldData.json", function(error, world) {
+    let data = topojson.feature(world, world.objects.subunits).features;
+    // first step: create
+    svg.selectAll(".country")
+        .data(data)
+        .enter().append("path")
+      .attr("class", "country")
+      .attr("d", path)
+      .style('fill', function(d){
+        if(d.id == "USA")
+          return 'rgb(0, 153, 51)';
+        else {
+          return '#F0F0F0'
+        }
+      })
+      .on("click", function (d, idx) {
+                        console.log(d, idx);
+                    });
+                    
+                    svg.append("path")
+                        .datum(graticule)
+                        .attr("class", "graticule")
+                        .attr("d", path);
+
+     addMarkers([{
+       longitude: 103.8547,
+       latitude: 1.2929,
+       count: 10
+     },{
+       longitude: 93.8547,
+       latitude: 12.2929,
+       count: 8
+     }]);
+
+    // svg.append("circle")
+    //   .attr("cx", document.body.clientWidth / 2)
+    //   .attr("cy", document.body.clientHeight / 2)
+    //   .attr("r", 50)
+    //   .style("fill", "#B8DEE6")
+  })
+}
+
+function addMarkers(data){
+  //longitude, latitude
+  const svg = d3.select("svg g.map-group");
+  const g = svg.selectAll(".marker")
+    .data(data)
+    .enter().append("g")
+    .attr("class", "marker")
+    .attr("transform", function(d){
+      const coords = projection([d.longitude, d.latitude])
+      return "translate("+ coords[0] +", "+ coords[1] +")";
+    });
+
+    const tip = d3.tip()
+      .attr("class", "d3-tip")
+      .offset([-10, 0])
+      .html(function(d) {
+        return d.longitude + ": " + d.latitude;
+      });
+
+    g.call(tip);
+
+  g.append("image")
+    .attr("xlink:href", "s2.svg")
+    .attr("x", -27)
+    .attr("y", -28)
+    .on("mouseover", tip.show)
+    .on("mouseout", tip.hide);
+
+  g.append("text")
+    .text(function(d){
+      return d.count
+    })
+    .attr("x", 0)
+      .attr("y", 0)
+      .attr("alignment-baseline", "middle")
+      .attr("text-anchor", "middle");
+
+
+//<circle cx="0" cy="0" r="35" stroke="#aaa" stroke-width="2" fill="#fff"></circle>
+    //  x="0" y="0" alignment-baseline="middle" font-size="12" stroke-width="0" stroke="#000" text-anchor="middle"
+}
+
+function drawCity() {
+  // d3.csv("geoNameCities.csv", function(error, capitals) {
+  //   svg.selectAll(".city-circle")
+  //       .data(capitals)
+  //       .enter().append("circle")
+  //       .attr("r", 2)
+  //       .attr("cx", function(d){
+  //         var coords = projection([d.longitude, d.latitude])
+  //         return coords[0];
+  //       }).attr("cy", function(d){
+  //         var coords = projection([d.longitude, d.latitude])
+  //         return coords[1];
+  //       });
+  //
+  //     svg.selectAll(".city-label")
+  //         .data(capitals)
+  //         .enter().append("text")
+  //         .attr("class", "city-label")
+  //         .attr("x", function(d){
+  //           var coords = projection([d.longitude, d.latitude])
+  //           return coords[0];
+  //         })
+  //         .attr("y", function(d){
+  //           var coords = projection([d.longitude, d.latitude])
+  //           return coords[1];
+  //         })
+  //         .text(function(d) {
+  //           return d.name;
+  //         }).attr("dx", 10)
+  //         .attr("dy", 5)
+  // })
+}
+
+window.onload = function() {
+  drawChart();
+}
+</script>

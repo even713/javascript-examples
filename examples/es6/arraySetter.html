@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Array setter</title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+  let requestManager = {};
+
+  // let moduleRequestChangeHandler = {
+  //   moduleName: "moduleA",
+  //   statuss: "hehe",
+  //   set: (obj, prop, value)=>{
+  //     obj[prop] = value;
+  //     if(prop === "length") {
+  //       // if(obj.length === 1 && value === 1)
+  //       //   this.status = "start";
+  //       //
+  //       // if(value === 0)
+  //       //     this.status = "finish";
+  //       broadcast(this.moduleName, this.statuss);
+  //     }
+  //     return true;
+  //   }
+  // };
+
+  class moduleRequestChangeHandler{
+    constructor(moduleName){
+      this.moduleName = moduleName;
+      Object.assign(this, {
+        set: (obj, prop, value)=>{
+          let status;
+          if(obj.length === 0 && prop != "length")
+              status = "processing";
+          if(prop === "length" && value === 0) {
+                status = "finish";
+          }
+
+          if(status)
+              broadcast(this.moduleName, status);
+              
+          obj[prop] = value;
+          return true;
+        }
+      })
+    }
+  }
+
+  // let handler = Object.assign({moduleName: "moduleA"}, moduleRequestChangeHandler);
+  requestManager["moduleA"] = new Proxy([], new moduleRequestChangeHandler("moduleA"));
+
+  requestManager["moduleA"].push("request1");
+  requestManager["moduleA"].push("request2");
+  requestManager["moduleA"].push("request3");
+  requestManager["moduleA"].push("request4");
+
+  requestManager["moduleB"] = new Proxy([], new moduleRequestChangeHandler("moduleB"));
+  requestManager["moduleB"].push("request5");
+
+  // requestManager["moduleA"].pop();
+  console.log("------------------------")
+  requestManager["moduleA"].splice(0, 3);
+  requestManager["moduleA"].pop();
+  console.log("------------------------")
+
+  console.log(requestManager);
+
+  function broadcast(moduleName, status){
+    console.log(moduleName + " status changed to ", status);
+  }
+
+  </script>
+</html>

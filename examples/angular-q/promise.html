@@ -1,0 +1,61 @@
+<html ng-app="showcase">
+
+<body ng-controller="AngularWayWithOptionsCtrl">
+
+</body>
+
+<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="../../vendor/angularjs/angular-1.4.5.js"></script>
+
+<script>
+var data = [
+    "Hello",
+    "World",
+    "I",
+    "am",
+    "Hero"
+]
+
+angular.module('showcase', [])
+.service("vimService", function($q){
+    var deferred;
+    this.getStatus = ()=>{
+        if(deferred)
+            return deferred.promise;
+        deferred = $q.defer();
+        this.sendQuery().then(function(resp){
+            deferred.resolve(resp);
+            deferred = null;
+        }, function(){
+            deferred.reject("error");
+            deferred = null;
+        });
+        return deferred.promise;
+    }
+
+    this.sendQuery = function(){
+        console.log("sendQuery start...");
+        var d = $q.defer();
+        setTimeout(function(){
+            console.log("sendQuery end.");
+            d.resolve(data.shift());
+        }, 1000);
+        return d.promise;
+    }
+})
+.controller('AngularWayWithOptionsCtrl', AngularWayWithOptionsCtrl);
+
+function AngularWayWithOptionsCtrl(vimService) {
+    vimService.getStatus().then(function(data){
+        console.log("frist query back: ", data);
+    });
+
+    // setTimeout(function(){
+    //     vimService.getStatus().then(function(data){
+    //         console.log("second query back: ", data);
+    //     });
+    // }, 500);
+}
+
+</script>
+</html>

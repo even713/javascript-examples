@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+  var arra = [];
+  function process() {
+    var count = 900000;
+    for(var i = 0; i < count; i++) {
+      arra[i] = i;
+    }
+  }
+
+  var start = +new Date();
+console.time("insertary")
+  process();
+  var end = +new Date();
+  console.timeEnd("insertary");
+  console.log("time spend" + (end - start));
+  </script>
+</html>

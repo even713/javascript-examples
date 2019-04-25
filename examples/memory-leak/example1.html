@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>From chrome demo</title>
+  </head>
+  <body>
+    <button type="button" id="grow" name="button">Grow</button>
+  </body>
+  <script type="text/javascript">
+  var x = [];
+
+  function grow() {
+    for (var i = 0; i < 100; i++) {
+      document.body.appendChild(document.createElement('div'));
+    }
+    x.push(new Array(1000000).join('x'));
+  }
+
+  document.getElementById('grow').addEventListener('click', grow);
+  </script>
+</html>

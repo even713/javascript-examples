@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>From chrome demo</title>
+  </head>
+  <body>
+    <div class="timerange">
+      <a href="#" id="create">Create</a>
+      <div class="container">
+        <svg width="1000" height="100">
+
+        </svg>
+      </div>
+
+      <div class="test">
+        test
+      </div>
+    </div>
+
+    <!-- <button type="button" id="create" name="button">Create</button> -->
+  </body>
+  <script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+  <script src="../../vendor/d3/d3.v3.js"></script>
+  <script type="text/javascript">
+  let startTime = 1542948600000,
+      endTime = 1542952199999;
+
+  function create(startTime, endTime) {
+    const width = 1000;
+    const height = 10;
+    const isNew = !d3.select("g.x.axis")[0][0];
+    let axisEl = null;
+    if(isNew) {
+      axisEl = d3.select(".container svg").append("g").attr("class", "x axis");
+    } else {
+      axisEl = d3.select("g.x.axis")
+    }
+
+    //setup X axis
+		var axisScale = d3.time.scale()
+			.domain([startTime, endTime])
+			.range([0, width]);
+
+    //Create the Axis
+		var x = d3.svg.axis()
+			.scale(axisScale)
+			.orient("bottom");
+
+		isNew && axisEl
+			.attr("transform", "translate(0," + height + ")");
+
+		axisEl.call(x);
+  }
+
+// var
+// axisEl = null,
+//axisScale;
+  function createOld(startTime, endTime) {
+    const width = 1000;
+    const height = 10;
+    // const isNew = axisEl == null;
+    // // let axisEl = null;
+    // if(isNew) {
+    //   axisEl = d3.select(".container svg").append("g").attr("class", "x axis");
+    // }
+
+    const isNew = !d3.select("g.x.axis")[0][0];
+    let axisEl = null;
+    if(isNew) {
+      axisEl = d3.select(".container svg").append("g").attr("class", "x axis");
+      attachEvents(width, startTime, endTime);
+    } else {
+      axisEl = d3.select("g.x.axis")
+    }
+
+    axisEl.html = "";
+    //setup X axis
+    // 加if虽然看上去只是不重复给axisScale赋值，却对node的创建避免了重复
+    //if(!axisScale)
+		const axisScale = d3.time.scale()
+			.domain([startTime, endTime])
+			.range([0, width]);
+
+    //Create the Axis
+		var x = d3.svg.axis()
+			.scale(axisScale)
+			.orient("bottom");
+
+		axisEl
+			.attr("transform", "translate(0," + height + ")")
+      .call(x);
+  }
+
+  function attachEvents(width, startTime, endTime) {
+    // d3.select(".container svg").on("mousemove", () => {
+    //   // const xS = d3.time.scale()
+  	// 	// 	.domain([startTime, endTime])
+  	// 	// 	.range([0, width]);
+    //
+    //   const xS = axisScale;
+    //
+    //   const mousePos = d3.mouse(d3.select(".container svg")[0][0])[0];
+    //   const xValue = xS(mousePos);
+    //   const xTime = xValue.getTime ? xValue.getTime() : xValue
+    //   console.log(xTime);
+    // });
+  }
+
+  function refresh(element) {
+    const oneMin = 1 * 60 * 1000;
+    startTime -= oneMin;
+    endTime -= oneMin;
+
+    createOld(startTime, endTime);
+
+    $(element).trigger("timerangeChange", {startTime: startTime, endTime: endTime});
+  }
+
+  let timer = null;
+  document.getElementById('create').addEventListener('click', function(){
+    if(timer) {
+      clearInterval(timer);
+      timer = null;
+      return;
+    }
+
+    setInterval(()=>{
+      refresh(this);
+    }, 500)
+  });
+
+$(document.body).on("timerangeChange", (obj, param)=>{
+  $(".test").html(JSON.stringify(param));
+  //console.log(param);
+})
+
+  </script>
+</html>

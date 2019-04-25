@@ -1,0 +1,33 @@
+<div id="content">This is child.</div>
+<input type="button" value="Change Parent" id="changeParentBtn" onclick="changeParent()"/>
+<script>
+var last = "";
+setInterval(function() {
+    if(last == window.location.hash) return;
+    last = window.location.hash;
+
+    document.getElementById("content").innerHTML += "<p>change page to "+ last +"</p>";
+    //do stuff with 'window.location.hash'
+}, 1000);
+
+function changeParent(){
+	// top.redirectTest();
+	// return;
+
+    // if(typeof(exec_obj)=='undefined'){  
+    //     exec_obj = document.createElement('iframe');  
+    //     exec_obj.name = 'tmp_frame';  
+    //     exec_obj.src = 'http://localhost/execA.html';  
+    //     exec_obj.style.display = 'none';  
+    //     document.body.appendChild(exec_obj);  
+    // }else{  
+    //     exec_obj.src = 'http://localhost/execA.html?' + Math.random();  
+    // }  
+    //document.domain = "localhost:8080";	
+	console.log(top.location);
+	let l = top.location.protocol + "//" + top.location.hostname + ":" + top.location.port;
+	let l2 = top.location.protocol + "//" + top.location.host;
+	console.log(l2);
+	top.location.assign(l + "/examples/angular-datatable/test3.html");
+}
+</script>

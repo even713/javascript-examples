@@ -48,6 +48,7 @@ laygoon.util.BaseDirectiveClass = class extends laygoon.util.BaseNgClass {
 	}
 
 	compile() {
+		// If both compile/link function exist, directive will execute compile function
 
 		// make "this" point to directive class in link/pre functions
 		// make "this.scope" point to the "scope" in link/pre functions so that the scope

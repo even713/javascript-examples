@@ -1,0 +1,189 @@
+<!doctype html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8" />
+
+	<title>
+		Infinite scroll
+	</title>
+<style>
+html{
+	height: 100%;
+}
+.container{
+	display: flex;
+	display: -webkit-flex; /* Safari */
+	flex-direction: column;
+	height: 600px;
+}
+.top{
+
+	height: 50px;
+}
+.main{
+    -webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */
+    flex: 1;
+    height: 200px;
+	border: 1px solid red;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+li{
+	font-size: 34px;
+}
+</style>
+</head>
+<body >
+
+<div class="container">
+	<div class="top">
+		<h1>
+			Infinite scroll
+		</h1>
+	<div>
+	<div class="main" ng-controller="pageController">
+		<input type="button" value="start" ng-click="start()">
+		<input type="button" value="reload" ng-click="reload()">
+		<input type="button" value="remove" ng-click="remove()">
+		<ul infinite-scroll='fUser.nextPage()'
+    infinite-scroll-disabled='fUser.busy' infinite-scroll-distance='0'
+    infinite-scroll-container="'.main'"
+		>
+			<li ng-repeat="user in fUser.items track by user.username">username: {{user}}</li>
+		</ul>
+	</div>
+</div>
+
+	<!-- Load scripts. -->
+	<script src="../../vendor/jquery/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="../../vendor/angularjs/angular-1.4.5.js"></script>
+	<script type="text/javascript" src="../../vendor/bind-once/bindonce.3.0.1.js"></script>
+	<script type="text/javascript" src="../../vendor/ng-infinite-scroll/ng-infinite-scroll.1.3.0.js"></script>
+	<script type="text/javascript" src="../../vendor/other/BaseNgClass.js"></script>
+  <script type="text/javascript" src="BaseInfiniteScroll.js"></script>
+	<script type="text/javascript">
+	// angular.module("Demo", ['pasvaz.bindonce'])
+	angular.module("Demo", ['infinite-scroll'])
+	.controller('pageController', function($http, $scope, queryQuers, fetchUser){
+		// queryQuers.getList().then(function(users){
+		// 	$scope.users = users;
+		// });
+
+		$scope.start = function(){
+			$scope.fUser = new fetchUser({ctrlScope: $scope, updateEventName: "event", itemKeyName: "username"});
+      $scope.fUser.updateView();
+		}
+
+		$scope.reload = function(){
+			queryQuers.changeUser();
+			$scope.fUser.updateView();
+		}
+
+		$scope.remove = function(){
+			$scope.fUser.removeItem("Linda")
+		}
+	})
+	.service('queryQuers', function($q, $timeout, $http){
+    var users = ["Linda", "Peter", "A", "B", "C"];
+    let count = 0;
+
+		this.changeUser = function(){
+			users = ["Linda", "F", "G", "Peter"];
+		}
+
+		this.getList = function(){
+			console.log("fetching data...");
+			var defer = $q.defer();
+
+
+			// for(var i = 0; i < 10; i++) {
+			// 	users.push("name " + Math.random());
+			// }
+
+			$timeout(function(){
+				defer.resolve(users);
+			}, 500);
+
+			return defer.promise;
+		}
+
+		this.getDetails2 = function(keys){
+			var defer = $q.defer();
+
+			// var obj = {age: Math.random()};
+			var ary = [];
+			for(var i = 0; i < keys.length; i++) {
+				let obj = {age: 19, username: keys[i]};
+				if(keys[i] == "Linda") {
+					obj.age = 39;
+				}
+				if(keys[i] == "Peter") {
+					obj.age = 59;
+				}
+        obj.age += count;
+				ary.push(obj);
+			}
+
+      console.log(ary)
+
+      count ++;
+
+			$timeout(function(){
+				defer.resolve(ary[0]);
+			}, 500);
+
+			return defer.promise;
+		}
+
+		this.getDetails1 = function(keys){
+			let url, defer = $q.defer();
+			if(keys[0] == "Linda")
+				url = "linda.json";
+			else if(keys[0] == "Peter")
+					url = "peter.json";
+			else {
+				url = "others.json";
+			}
+			$http({url}).then((data) => {
+				let result = data.data;
+				if(result.username == "others")
+					result.username = keys[0];
+				defer.resolve(result);
+			}, (error) => {
+				console.log("error", error);
+				defer.reject(error);
+			}).finally((msg)=>{
+				console.log("finally", msg);
+			});
+			return defer.promise;
+		}
+	});
+
+  class FetchUser extends BaseInfiniteScrollFactory{
+    constructor(injects, {ctrlScope, updateEventName, pageInstance, itemKeyName}){
+        super(injects, {ctrlScope, updateEventName, itemKeyName});
+        //this.numPerPage = -1; // no pagination
+        this.pageInstance = pageInstance;
+    }
+
+    queryWholeList(){
+        return this.queryQuers.getList();
+    }
+
+    queryDetailPerPage(list){
+        return this.queryQuers.getDetails1(list);
+    }
+  }
+
+	FetchUser.inject(['queryQuers']);
+
+	angular.module("Demo").factory("fetchUser", FetchUser.create());
+
+
+
+
+	</script>
+
+</body>
+</html>

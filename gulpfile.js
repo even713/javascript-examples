@@ -4,12 +4,22 @@ var concat = require('gulp-concat');
 var critical = require('critical');
 var criticalCss = require('gulp-critical-css');
 var insert = require('gulp-insert');
+var sass = require('gulp-dart-sass');
+var babel = require("gulp-babel");
 
 gulp.task('connect', function() {
     connect.server({
         port: 8888
     });
 });
+
+gulp.task('test', () =>
+		gulp.src('examples/angular-async/e.js')
+			.pipe(babel({
+				presets: ["@babel/preset-env"]
+			}))
+			.pipe(gulp.dest('dist/'))
+);
 
 // gulp.task('uila-table', function(){
 // 	return gulp.src('examples/angular-datatable/src/*.js')
@@ -23,7 +33,7 @@ gulp.task('uila-table-core', function(){
         'examples/angular-datatable/src/UilaColumnDirective.js',
         'examples/angular-datatable/src/uilaDataTable.js'])
         .pipe(concat('uila-datatable.src.js'))
-        .pipe(insert.wrap('{' + '\n', '\n' + '}'))        
+        .pipe(insert.wrap('{' + '\n', '\n' + '}'))
         .pipe(gulp.dest('examples/angular-datatable/src/'));
 })
 
@@ -53,6 +63,16 @@ gulp.task('criticalThis', function(){
     gulp.src('examples/ford/critical.css')
         .pipe(criticalCss())
         .pipe(gulp.dest('examples/ford/dist'))
+});
+
+gulp.task('sass', function () {
+  return gulp.src('examples/scss/source/*.scss')
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(gulp.dest('examples/scss/dist'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch('examples/scss/source/*.scss', ['sass']);
 });
 
 gulp.task('default', ['connect']);
