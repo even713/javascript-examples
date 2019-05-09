@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>d3 map</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0
+      }
+      .container .chart{
+        background: grey;
+      }
+      .country {
+        fill: none;
+                stroke: #FFF;
+                stroke-width: 1px;
+      }
+
+      .container .chart svg{
+        /* background: #333; */
+      }
+      .container .chart svg .marker text{
+        font-weight: bold;
+        /* alignment-baseline: middle; */
+        /* text-anchor:middle; */
+      }
+
+      .graticule {
+                fill: none;
+                stroke: #aaa;
+                stroke-opacity: .5;
+                stroke-width: .5px;
+            }
+    </style>
+</head>
+<body>
+    <button type="button" onClick="updateMarkers()" name="button">Update markers</button>
+    <div class="container">
+        <div class="chart">
+
+        </div>
+    </div>
+</body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<!-- <script src="/vendor/d3/d3.v3.js"></script> -->
+<script src="/vendor/jquery/jquery-2.0.2.min.js"></script>
+<script src="/vendor/topojson.v2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.3/d3-tip.min.js"></script>
+<script src="WorldMap.js"></script>
+<script>
+let map;
+window.onload = function(){
+  map = new WorldMap(".container .chart", 1568, 500);
+  setTimeout(function(){
+    map.updateMakers([{
+      "longitude": 27.5667,
+      "latitude": 53.9,
+      text: "A"
+    },{
+      "longitude": 11.8445,
+      "latitude": 48.2771,
+      text: "B"
+    }]);
+  }, 2000);
+}
+
+function updateMarkers(){
+  map.updateMakers([
+    {
+      "city": "Zurich",
+      "longitude": 8.5546,
+      "latitude": 47.3664,
+      "text": "C",
+      "country": "Switzerland",
+      "tooltipInfo": "Country: Switzerland <br/> City: Zurich"
+    },
+    {
+      "city": "Rochester",
+      "longitude": -77.6845,
+      "latitude": 43.1685,
+      "text": "D",
+      "country": "United States",
+      "tooltipInfo": "Country: United States <br/> City: Rochester"
+    },
+    {
+      "city": "Brea",
+      "longitude": -117.8854,
+      "latitude": 33.9339,
+      "text": "E",
+      "country": "United States",
+      "tooltipInfo": "Country: United States <br/> City: Brea"
+    }
+  ]);
+}
+
+
+</script>

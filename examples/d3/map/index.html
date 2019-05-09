@@ -103,15 +103,15 @@ var graticule = d3.geo.graticule();
       .on("click", function (d, idx) {
                         console.log(d, idx);
                     });
-                    
+
                     svg.append("path")
                         .datum(graticule)
                         .attr("class", "graticule")
                         .attr("d", path);
 
-     addMarkers([{
-       longitude: 103.8547,
-       latitude: 1.2929,
+     updateMarkers([{
+       longitude: 38.8636,
+       latitude: -94.7103,
        count: 10
      },{
        longitude: 93.8547,
@@ -127,7 +127,7 @@ var graticule = d3.geo.graticule();
   })
 }
 
-function addMarkers(data){
+function updateMarkers(data){
   //longitude, latitude
   const svg = d3.select("svg g.map-group");
   const g = svg.selectAll(".marker")
